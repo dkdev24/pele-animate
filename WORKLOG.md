@@ -103,3 +103,17 @@ Big glyph look achieved; stroke weight and routing polish pending.
 ### Status
 
 Big-glyph scenes look close to the Lab cards; wide nodes and more glyphs pending.
+
+---
+
+## v0.8.0 — DoveRunner preset pack
+
+**Date:** 2026-10-22
+
+### Changes
+
+- `preset-doverunner.js`: package, token, lock, database, bits-a, bits-b glyphs; FWM and packaging demo scenes.
+
+### Status
+
+Generic core plus preset split in place; packaging (phase 6) pending.

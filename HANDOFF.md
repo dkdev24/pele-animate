@@ -19,14 +19,14 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: glyph redraw. `registerGlyphs(pack, strokeWidth=1.1)` wraps glyphs in a thin-stroke group; player (gradient screen, stand), phone (notch, lines) redrawn; label rects take the panel color in `.pa-scene`; Multi-DRM demo rebuilt with two `<-->` edges (no pile-up). Screenshot-verified. docs-starlight vendored copy is now stale (re-copy `pele-animate.js/css`, `glyphs.js`).
+2026-10-22: `preset-doverunner.js` (package, token, lock, database, bits-a/bits-b chip rows) on top of generic `glyphs.js` (now exports S/L/W). Demo has Forensic Watermarking (A/B segments with session ids) and packaging scenes; screenshot-verified. Wide art works as a wide glyph inside the square box (`h: 120`). docs-starlight branch left as is (uncommitted, vendored copy stale).
 
 ---
 
 ## Next Actions
 
 1. Daniel: review docs-starlight trial branch; decide commit/push/revert.
-2. Wide-node approach (nested svg viewBox in a glyph?); more glyphs (token, package, lock pill, binary chips) for `preset-doverunner`.
+2. Watch the motion on the new scenes; tune UNIT/TOKEN timing. Optional: `≠` / caption glyphs, lock-pill labels (DASH/HLS/CMAF).
 3. Phase 6: packaging (npm, README, `preset-doverunner` split).
 
 ---
@@ -45,5 +45,6 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 |---|---|
 | `PLAN.md` | Dev plan, phases, risks |
 | `pele-animate.js` / `.css` | Prototype post-processor |
-| `glyphs.js` | Glyph registry + 6 glyphs |
+| `glyphs.js` | Glyph registry + 6 generic glyphs |
+| `preset-doverunner.js` | DRM/FWM/packaging glyph pack |
 | `demo.html` | Test page (`python3 -m http.server`, open `/demo.html`) |

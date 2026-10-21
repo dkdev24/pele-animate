@@ -1,8 +1,8 @@
 // Glyph registry. A glyph is the inner markup of a 24x24 SVG; colors come from --pa-* variables so packs can theme.
 // Pass `icons` to pele's render()/mount() options: mount(el, text, { icons }).
-const S = 'var(--pa-solid,#4F378B)';
-const L = 'var(--pa-light,#d9d0f0)';
-const W = '#fff';
+export const S = 'var(--pa-solid,#4F378B)';
+export const L = 'var(--pa-light,#d9d0f0)';
+export const W = '#fff';
 const reg = new Map();
 
 // Pele draws icons with stroke-width 2 in a 24 box, which turns heavy once a node is sized up; glyphs get a thin line instead.

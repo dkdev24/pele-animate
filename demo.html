@@ -9,6 +9,22 @@
   P <-->|auth token| O
   P <-->|token / license| D</pre>
 <pre class="d">flowchart LR
+  K@{ icon: "package", form: "square", h: 88, label: "Packager" }
+  A@{ icon: "bits-a", form: "square", h: 120, label: "client A segments" }
+  B@{ icon: "bits-b", form: "square", h: 120, label: "client B segments" }
+  PA@{ icon: "player", form: "square", h: 88, label: "Player A" }
+  PB@{ icon: "player", form: "square", h: 88, label: "Player B" }
+  K -->|session 011010| A --> PA
+  K -->|session 101101| B --> PB</pre>
+<pre class="d">flowchart LR
+  S@{ icon: "document", form: "square", h: 88, label: "source" }
+  K@{ icon: "package", form: "square", h: 88, label: "package" }
+  T@{ icon: "token", form: "square", h: 88, label: "license token" }
+  L@{ icon: "lock", form: "square", h: 88, label: "encrypted" }
+  DB@{ icon: "database", form: "square", h: 88, label: "key database" }
+  S --> K --> L
+  DB --> T --> K</pre>
+<pre class="d">flowchart LR
   A@{ icon: "document", form: "square", h: 88, label: "APK / IPA" }
   B@{ icon: "shield", form: "square", h: 88, label: "DoveRunner" }
   C@{ icon: "phone", form: "square", h: 88, label: "Protected app" }
@@ -25,6 +41,7 @@
 <script type="module">
 import { mount } from './node_modules/pele/dist/pele.js';
 import { icons } from './glyphs.js';
+import './preset-doverunner.js';
 import { watch } from './pele-animate.js';
 document.querySelectorAll('pre.d').forEach((el) => { const src = el.textContent; mount(el, src, { icons, onError: console.error }); watch(el, src); });
 </script>
