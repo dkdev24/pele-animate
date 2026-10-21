@@ -3,9 +3,9 @@
 <style>body{font:16px sans-serif;margin:1rem;color-scheme:light dark}@media(prefers-color-scheme:dark){body{background:#17131f;color:#eee}}pre{margin:0;max-width:640px}</style>
 <pre class="d">flowchart LR
   %% pa: 1=P 2=O 3=D
-  O@{ icon: "server", form: "rounded", label: "OTT service" }
-  P@{ icon: "player", form: "rounded", label: "Player" }
-  D@{ icon: "key", form: "rounded", label: "DRM server" }
+  O@{ icon: "server", form: "square", h: 88, label: "OTT service" }
+  P@{ icon: "player", form: "square", h: 88, label: "Player" }
+  D@{ icon: "key", form: "square", h: 88, label: "DRM server" }
   P -->|auth token| O
   P -->|token| D
   D -->|license| P</pre>

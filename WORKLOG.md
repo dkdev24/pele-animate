@@ -75,3 +75,17 @@ Ready to integrate into docs-starlight (phase 4).
 ### Status
 
 Works in a built preview, light and dark. Not yet reviewed by Daniel; plain diagrams without icons.
+
+---
+
+## v0.6.0 — Fork spike
+
+**Date:** 2026-10-22
+
+### Changes
+
+- `fitGlyphs()` + `.pa-art`: large frameless glyphs from stock Pele `h:` sizing. Fork judged unnecessary for size.
+
+### Status
+
+Big glyph look achieved; stroke weight and routing polish pending.

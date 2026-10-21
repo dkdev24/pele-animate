@@ -19,14 +19,15 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: phase 4. Trial in `docs-starlight` on branch `feat/pele-animate-trial` (uncommitted, awaiting Daniel): files vendored in `src/vendor/pele-animate/`, opt-in per diagram with a ```` ```mermaid animate ```` fence (`remark-pele.mjs`), `pele-mount.ts` loads the lib only when a page has one, CSS via `customCss` (dynamic CSS import in the mount script was not emitted by the build). `/drm-concepts/` EN diagram animated; verified in built preview, light+dark. Scene theme vars now `:where()` so host CSS wins.
+2026-10-22: phase 5 spike. Stock Pele already sizes icon nodes (`h: 88`); `fitGlyphs()` + `.pa-art` make the glyph fill the box frameless. No fork needed for size. Remaining: thin glyph strokes, wide nodes, same-pair edge routing. docs-starlight trial branch still uncommitted. Stopped docs-starlight preview (pid 5942); left danielkimdev-astro's on :4399.
 
 ---
 
 ## Next Actions
 
-1. Daniel: review the trial page, decide commit/push of the docs-starlight branch (push of a branch is not a prod deploy; merge to `main` is).
-2. Phase 5 spike: fork `shapes` hook in `~/Sites/pele-src` for card-sized nodes; then redraw a diagram with glyphs.
+1. Daniel: review docs-starlight trial branch; decide commit/push/revert.
+2. Phase 3b: redraw glyphs with thin strokes at big size; wide-node approach (nested svg viewBox in glyph?) ; try a sequence-style Multi-DRM scene.
+3. Phase 6: packaging (npm, README, `preset-doverunner` split).
 
 ---
 

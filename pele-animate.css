@@ -37,3 +37,6 @@
 }
 :where(:root[data-theme="dark"] .pa-scene) { --pa-bg: #241d3b; --pa-solid: #b9a6ff; --pa-light: #3a2f5e; --pele-surface: #2f2650; --pele-fg: #ece8ff; }
 .pa-scene:focus-visible { outline: 2px solid var(--pa-solid); outline-offset: 2px; }
+
+/* Big icon nodes: the glyph is the picture, the frame rect goes away. */
+.pa-art > rect:first-child { fill: none; stroke: none; }

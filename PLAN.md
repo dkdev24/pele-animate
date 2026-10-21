@@ -41,8 +41,14 @@ Obsidian and Mermaid itself still render a plain diagram.
 | 2 | BFS sequencing + `%% pa:` override; token travel per step | order matches the Lab card's 6 s loop | ~1 h |
 | 3 | Scene frame, captions, theming, reduced-motion, hover replay | light/dark + phone width screenshots | ~1 h |
 | 4 | docs-starlight integration behind a flag on one page | `/drm-concepts/` | ~30 min |
-| 5 | Fork `pele-motion` with `options.shapes` **only if** phases 1-3 can't reach the card look | — | decide after 3 |
+| 5 | Fork spike (**done 2026-10-22**): stock Pele sizes icon nodes via `A@{ icon, form: "square", h: 88 }` (box = `h`, layout accounts for it); `fitGlyphs()` stretches the glyph over the frame and hides it. Verdict: **no fork needed for size/frameless art.** Fork only for wide non-square nodes (Pele icon box is square) or edge routing to illustration outlines | done |
 | 6 | Packaging: npm publish, README, preset-doverunner split | install in a clean Astro app | ~1 h |
+
+## Phase 5 spike notes
+
+- Works: `h: 88` icons render as large frameless glyphs; sequencing and tokens unaffected.
+- Glyph stroke width is fixed at 2 in a 24 viewBox, so it scales thick at 88px; set `stroke-width` per glyph (~1.2) when redrawing.
+- Not solved by sizing: three edges between the same pair still pile up and labels overlap lines (Pele layered layout); wide panels (the 80x32 OTT card) need a non-square box.
 
 ## Non-goals (for now)
 

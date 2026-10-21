@@ -36,7 +36,19 @@ function bfs(ids, pairs, pinned) {
   return level;
 }
 
+// Spike: icon nodes sized with `h: 88` get a frame of that size; let the glyph fill it and hide the frame so the glyph is the art.
+function fitGlyphs(svg) {
+  svg.querySelectorAll('.pele-node').forEach((n) => {
+    const g = n.querySelector(':scope > svg.pele-icon');
+    const frame = g?.previousElementSibling;
+    if (!g || frame?.tagName !== 'rect' || +frame.getAttribute('width') < 60) return;
+    for (const a of ['x', 'y', 'width', 'height']) g.setAttribute(a, frame.getAttribute(a));
+    n.classList.add('pa-art');
+  });
+}
+
 export function animate(svg, { hover = svg, source = '' } = {}) {
+  fitGlyphs(svg);
   svg.querySelectorAll('.pa-dot').forEach((d) => d.remove());
   svg.classList.add('pa-ready');
   const nodes = [...svg.querySelectorAll('.pele-node')];
