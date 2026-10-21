@@ -17,3 +17,17 @@ Persistent project history. Append entries; do not edit past entries.
 ### Status
 
 Prototype only; glyph packs and choreography pending.
+
+---
+
+## v0.2.0 — Glyph registry
+
+**Date:** 2026-10-21
+
+### Changes
+
+- `glyphs.js`: `registerGlyphs`, `icons` resolver, 6 glyphs; demo uses Pele's `@{ icon }` syntax.
+
+### Status
+
+Glyphs render in stock Pele; size capped at Pele's 48px icon box (fork `shapes` hook is the fix, PLAN phase 5).

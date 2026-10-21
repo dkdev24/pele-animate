@@ -1,18 +1,25 @@
 <!doctype html><meta charset="utf-8"><title>pele-animate demo</title>
 <link rel="stylesheet" href="pele-animate.css">
-<style>body{font:16px sans-serif;margin:2rem;--pele-accent:#4F378B}pre{margin:6rem 0;cursor:pointer}</style>
+<style>body{font:16px sans-serif;margin:2rem;--pele-accent:#4F378B;--pa-solid:#4F378B;--pa-light:#e4dcf6}pre{margin:4rem 0;cursor:pointer}</style>
+<pre class="d">flowchart LR
+  O@{ icon: "server", form: "rounded", label: "OTT service" }
+  P@{ icon: "player", form: "rounded", label: "Player" }
+  D@{ icon: "key", form: "rounded", label: "DRM server" }
+  P -->|auth token| O
+  P -->|token| D
+  D -->|license| P</pre>
+<pre class="d">flowchart LR
+  A@{ icon: "document", form: "rounded", label: "APK / IPA" }
+  B@{ icon: "shield", form: "rounded", label: "DoveRunner" }
+  C@{ icon: "phone", form: "rounded", label: "Protected app" }
+  A --> B --> C</pre>
 <pre class="d">flowchart LR
   A[Player] --> B{Token ok?}
   B -->|yes| C[License server]
-  B -->|no| D[Reject]
-  C --> E[Play]</pre>
-<pre class="d">sequenceDiagram
-  Player->>OTT: sign in
-  OTT-->>Player: token
-  Player->>DRM: token
-  DRM-->>Player: license</pre>
+  B -->|no| D[Reject]</pre>
 <script type="module">
 import { mount } from './node_modules/pele/dist/pele.js';
+import { icons } from './glyphs.js';
 import { watch } from './pele-animate.js';
-document.querySelectorAll('pre.d').forEach((el) => { mount(el, el.textContent); watch(el); });
+document.querySelectorAll('pre.d').forEach((el) => { mount(el, el.textContent, { icons, onError: console.error }); watch(el); });
 </script>
