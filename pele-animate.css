@@ -1,0 +1,27 @@
+/* Draw-in once when scrolled into view; a dot travels each edge while hovered/focused. Idle = finished picture. */
+.pa-ready:not(.pa-in) .pele-node,
+.pa-ready:not(.pa-in) .pele-edge-label { opacity: 0; }
+.pa-ready:not(.pa-in) .pele-edge > path { stroke-dashoffset: var(--len); }
+.pa-ready:not(.pa-in) .pele-marker { opacity: 0; }
+
+.pa-ready.pa-in .pele-node,
+.pa-ready.pa-in .pele-edge-label,
+.pa-ready.pa-in .pele-marker { animation: pa-fade .4s ease-out backwards; animation-delay: var(--d, 0s); }
+.pa-ready.pa-in .pele-edge > path:not(.pele-marker) {
+  stroke-dasharray: var(--len);
+  animation: pa-draw .6s ease-out backwards;
+  animation-delay: var(--d, 0s);
+  stroke-dashoffset: 0;
+}
+@keyframes pa-fade { from { opacity: 0; } }
+@keyframes pa-draw { from { stroke-dashoffset: var(--len); } }
+
+.pa-dot { fill: var(--pele-accent, #4F378B); opacity: 0; offset-rotate: 0deg; }
+.pa-ready.pa-hover .pa-dot { animation: pa-hop 2s linear infinite; animation-delay: var(--d, 0s); }
+@keyframes pa-hop { 0% { offset-distance: 0; opacity: 0; } 10%, 90% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pa-ready * { animation: none !important; }
+  .pa-ready .pele-node, .pa-ready .pele-edge-label, .pa-ready .pele-marker { opacity: 1 !important; }
+  .pa-ready .pele-edge > path { stroke-dashoffset: 0 !important; }
+}
