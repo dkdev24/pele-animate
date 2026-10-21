@@ -145,3 +145,17 @@ Publishable; waiting on the publish decision.
 ### Status
 
 All 52 docs-starlight diagram pages mount in the trial branch.
+
+---
+
+## v0.9.0 — Public release
+
+**Date:** 2026-10-22
+
+### Changes
+
+- Repo made public, first npm publish (`pele-animate`). Internal repo paths removed from docs.
+
+### Status
+
+Public; docs-starlight switches from the vendored copy to the package.

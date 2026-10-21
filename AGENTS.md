@@ -1,7 +1,7 @@
 # AGENTS.md — pele-animate
 
 Animated, illustrated SVG diagrams from plain Mermaid code, built on [Pele](https://github.com/obsidianmd/pele) (MIT).
-First consumer: `../docs-starlight`. Visual reference: `../doverunner-lab/apps/web/components/ProductArt.*`.
+First consumer: the DoveRunner docs site. Visual reference: the DoveRunner Lab product cards.
 Dev plan: `PLAN.md` (read it before building). Owner: Daniel Kim (`dkdev24`, private repo).
 
 ## Layout

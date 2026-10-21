@@ -1,9 +1,11 @@
 {
   "name": "pele-animate",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Animated, illustrated SVG scenes from plain Mermaid code, as a post-processor for Pele.",
   "type": "module",
   "license": "MIT",
+  "homepage": "https://github.com/dkdev24/pele-animate#readme",
+  "publishConfig": { "access": "public" },
   "author": "Daniel Kim",
   "repository": { "type": "git", "url": "git+https://github.com/dkdev24/pele-animate.git" },
   "keywords": ["mermaid", "pele", "svg", "diagram", "animation"],
