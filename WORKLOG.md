@@ -89,3 +89,17 @@ Works in a built preview, light and dark. Not yet reviewed by Daniel; plain diag
 ### Status
 
 Big glyph look achieved; stroke weight and routing polish pending.
+
+---
+
+## v0.7.0 — Glyph redraw
+
+**Date:** 2026-10-22
+
+### Changes
+
+- Thin-stroke glyph group, richer player/phone, panel-colored edge-label backgrounds, Multi-DRM demo with bidirectional edges.
+
+### Status
+
+Big-glyph scenes look close to the Lab cards; wide nodes and more glyphs pending.

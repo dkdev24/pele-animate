@@ -1,18 +1,17 @@
 <!doctype html><meta charset="utf-8"><title>pele-animate demo</title>
-<link rel="stylesheet" href="pele-animate.css">
+<link rel="stylesheet" href="pele-animate.css?v=2">
 <style>body{font:16px sans-serif;margin:1rem;color-scheme:light dark}@media(prefers-color-scheme:dark){body{background:#17131f;color:#eee}}pre{margin:0;max-width:640px}</style>
 <pre class="d">flowchart LR
   %% pa: 1=P 2=O 3=D
   O@{ icon: "server", form: "square", h: 88, label: "OTT service" }
   P@{ icon: "player", form: "square", h: 88, label: "Player" }
   D@{ icon: "key", form: "square", h: 88, label: "DRM server" }
-  P -->|auth token| O
-  P -->|token| D
-  D -->|license| P</pre>
+  P <-->|auth token| O
+  P <-->|token / license| D</pre>
 <pre class="d">flowchart LR
-  A@{ icon: "document", form: "rounded", label: "APK / IPA" }
-  B@{ icon: "shield", form: "rounded", label: "DoveRunner" }
-  C@{ icon: "phone", form: "rounded", label: "Protected app" }
+  A@{ icon: "document", form: "square", h: 88, label: "APK / IPA" }
+  B@{ icon: "shield", form: "square", h: 88, label: "DoveRunner" }
+  C@{ icon: "phone", form: "square", h: 88, label: "Protected app" }
   A --> B --> C</pre>
 <pre class="d">sequenceDiagram
   Player->>OTT: sign in

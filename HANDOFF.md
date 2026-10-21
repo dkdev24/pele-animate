@@ -19,14 +19,14 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: phase 5 spike. Stock Pele already sizes icon nodes (`h: 88`); `fitGlyphs()` + `.pa-art` make the glyph fill the box frameless. No fork needed for size. Remaining: thin glyph strokes, wide nodes, same-pair edge routing. docs-starlight trial branch still uncommitted. Stopped docs-starlight preview (pid 5942); left danielkimdev-astro's on :4399.
+2026-10-22: glyph redraw. `registerGlyphs(pack, strokeWidth=1.1)` wraps glyphs in a thin-stroke group; player (gradient screen, stand), phone (notch, lines) redrawn; label rects take the panel color in `.pa-scene`; Multi-DRM demo rebuilt with two `<-->` edges (no pile-up). Screenshot-verified. docs-starlight vendored copy is now stale (re-copy `pele-animate.js/css`, `glyphs.js`).
 
 ---
 
 ## Next Actions
 
 1. Daniel: review docs-starlight trial branch; decide commit/push/revert.
-2. Phase 3b: redraw glyphs with thin strokes at big size; wide-node approach (nested svg viewBox in glyph?) ; try a sequence-style Multi-DRM scene.
+2. Wide-node approach (nested svg viewBox in a glyph?); more glyphs (token, package, lock pill, binary chips) for `preset-doverunner`.
 3. Phase 6: packaging (npm, README, `preset-doverunner` split).
 
 ---
