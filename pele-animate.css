@@ -24,17 +24,16 @@
 }
 
 /* Scene frame: tinted panel like the Lab product cards. Override any --pa-* / --pele-* on the container to retheme. */
-.pa-scene {
+:where(.pa-scene) {
   --pa-bg: #efeafa; --pa-solid: #4F378B; --pa-light: #e4dcf6;
   --pele-bg: transparent; --pele-surface: #fff; --pele-surface-alt: var(--pa-light);
   --pele-border: color-mix(in srgb, var(--pa-solid) 40%, transparent);
   --pele-line: color-mix(in srgb, var(--pa-solid) 65%, transparent);
   --pele-accent: var(--pa-solid); --pele-fg: #1f1a33;
-  background: var(--pa-bg); border-radius: 16px; padding: 1.25rem; margin: 1.5rem 0;
-  display: flex; justify-content: center; overflow-x: auto; cursor: pointer;
 }
+.pa-scene { background: var(--pa-bg); border-radius: 16px; padding: 1.25rem; margin: 1.5rem 0; display: flex; justify-content: center; overflow-x: auto; cursor: pointer; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .pa-scene { --pa-bg: #241d3b; --pa-solid: #b9a6ff; --pa-light: #3a2f5e; --pele-surface: #2f2650; --pele-fg: #ece8ff; }
+  :where(:root:not([data-theme="light"]) .pa-scene) { --pa-bg: #241d3b; --pa-solid: #b9a6ff; --pa-light: #3a2f5e; --pele-surface: #2f2650; --pele-fg: #ece8ff; }
 }
-:root[data-theme="dark"] .pa-scene { --pa-bg: #241d3b; --pa-solid: #b9a6ff; --pa-light: #3a2f5e; --pele-surface: #2f2650; --pele-fg: #ece8ff; }
+:where(:root[data-theme="dark"] .pa-scene) { --pa-bg: #241d3b; --pa-solid: #b9a6ff; --pa-light: #3a2f5e; --pele-surface: #2f2650; --pele-fg: #ece8ff; }
 .pa-scene:focus-visible { outline: 2px solid var(--pa-solid); outline-offset: 2px; }

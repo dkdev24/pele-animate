@@ -19,13 +19,14 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: phase 3. `watch()` adds `.pa-scene` (tinted panel, `--pa-*`/`--pele-*` theming, light/dark incl. `data-theme`), focusable, click/Enter replays intro. Screenshots at 390px light+dark: Pele flips to vertical, no overflow. Daniel confirmed the demo looks fine.
+2026-10-22: phase 4. Trial in `docs-starlight` on branch `feat/pele-animate-trial` (uncommitted, awaiting Daniel): files vendored in `src/vendor/pele-animate/`, opt-in per diagram with a ```` ```mermaid animate ```` fence (`remark-pele.mjs`), `pele-mount.ts` loads the lib only when a page has one, CSS via `customCss` (dynamic CSS import in the mount script was not emitted by the build). `/drm-concepts/` EN diagram animated; verified in built preview, light+dark. Scene theme vars now `:where()` so host CSS wins.
 
 ---
 
 ## Next Actions
 
-1. Phase 4: docs-starlight integration behind a flag on `/drm-concepts/` (one call in `src/scripts/pele-mount.ts`, import css, glyph pack).
+1. Daniel: review the trial page, decide commit/push of the docs-starlight branch (push of a branch is not a prod deploy; merge to `main` is).
+2. Phase 5 spike: fork `shapes` hook in `~/Sites/pele-src` for card-sized nodes; then redraw a diagram with glyphs.
 
 ---
 

@@ -60,3 +60,18 @@ Timeline and tokens verified numerically; visual polish (phase 3) pending.
 ### Status
 
 Ready to integrate into docs-starlight (phase 4).
+
+---
+
+## v0.5.0 — docs-starlight trial
+
+**Date:** 2026-10-22
+
+### Changes
+
+- Scene theme vars wrapped in `:where()` so a host stylesheet can override them.
+- Trial integration in docs-starlight (branch, not merged); opt-in via `mermaid animate` fence.
+
+### Status
+
+Works in a built preview, light and dark. Not yet reviewed by Daniel; plain diagrams without icons.
