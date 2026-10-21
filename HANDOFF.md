@@ -19,15 +19,15 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: repo made **public**, `pele-animate@0.9.0` published to npm (account `danielkimdev`; registry briefly showed a `0.0.0-stage` placeholder before 0.9.0 appeared). docs-starlight now uses the package (vendor copy removed): PR https://github.com/doverunner/docs-starlight/pull/102 against `main`, awaiting Daniel's review. No staging deploy was wired to the PR (workflow deploys on push to `main`/`qa`; no `qa` branch on the remote).
+2026-10-22: docs-starlight PR #102 (consumes `pele-animate@0.9.0`) tested on the branch preview and merged to `main` = production deploy. Local branches deleted; the `pele-src` reference clone was removed (re-clone `obsidianmd/pele` only if a fork becomes necessary). Earlier the same day: repo made public, 0.9.0 published to npm.
 
 ---
 
 ## Next Actions
 
-1. Daniel: review PR #102 (staging/preview route is undecided), then merge or request changes.
-2. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
-3. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
+1. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
+2. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
+3. Next release is 0.10.0 (stay on 0.x); docs-starlight then needs a `^0.10.0` range bump.
 
 ---
 
@@ -35,7 +35,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 - Node pulse skipped: Pele positions nodes with a `transform` attribute that a CSS transform would override.
 - Multi-DRM triple edge between Player/OTT/DRM routes messily (Pele layout); needs bigger nodes (fork) or sequence form.
-- No fork needed so far. Pele source clone for reference: `~/Sites/pele-src` (outside this repo).
+- No fork needed so far. Pele source clone (`pele-src`) was removed; re-clone `obsidianmd/pele` if needed.
 
 ---
 
