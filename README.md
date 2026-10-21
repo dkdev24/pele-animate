@@ -2,6 +2,7 @@
 
 Animated, illustrated SVG scenes from plain Mermaid code. A small post-processor for
 [Pele](https://github.com/obsidianmd/pele) (MIT), which renders the Mermaid; this adds the motion and the pictures.
+Unofficial add-on; not affiliated with or endorsed by the Pele or Obsidian teams.
 The source stays valid Mermaid, so GitHub or Obsidian still show a normal diagram.
 
 - Nodes appear in order (BFS from the sources, or pinned with a `%% pa:` comment), edges draw in, labels fade in.

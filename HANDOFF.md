@@ -19,14 +19,14 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: phase 6 packaging. `package.json` (exports `.`, `/glyphs`, `/preset-doverunner`, `/style.css`; `pele` peer `^1.7.0`; `files` list), README, MIT LICENSE. `npm pack` tarball installed in a clean Vite app (scratchpad), built, verified in a browser. **Not published** (name `pele-animate` is free on npm as of 2026-10-22). No smoke test yet. docs-starlight trial branch still as is.
+2026-10-22: kept private (no npm publish). Applied to **all** diagrams on docs-starlight branch `feat/pele-animate-trial` (uncommitted): `remark-pele` adds `pele-animate` to every fence, `pele-mount.ts` always animates, vendored copy refreshed, `.pele-diagram.pa-scene { --pele-bg: var(--pa-bg) }` so autonumber badges are readable. Lib: intro capped at ~3 s for long diagrams (`MAX_INTRO`), 12px scene padding under 600px, README notes it is unofficial. Checked 52 built pages: every diagram mounts. Not eyeballed: KO pages, state diagram, phone width after padding change.
 
 ---
 
 ## Next Actions
 
 1. Daniel: review docs-starlight trial branch; decide commit/push/revert.
-2. Daniel: decide npm publish (public, unscoped `pele-animate`) vs keep private; repo is private now.
+2. Daniel: npm stays private for now; before any public publish reconsider the name (no trademark text found in Pele's repo, MIT covers code only).
 3. Watch the motion on the new scenes; tune UNIT/TOKEN timing. Optional: `≠` / lock-pill glyphs; types; a smoke test.
 3. Phase 6: packaging (npm, README, `preset-doverunner` split).
 

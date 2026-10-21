@@ -131,3 +131,17 @@ Generic core plus preset split in place; packaging (phase 6) pending.
 ### Status
 
 Publishable; waiting on the publish decision.
+
+---
+
+## v0.8.2 — Long-diagram pacing
+
+**Date:** 2026-10-22
+
+### Changes
+
+- `MAX_INTRO` caps the intro for long diagrams; smaller scene padding on phones; README disclaimer.
+
+### Status
+
+All 52 docs-starlight diagram pages mount in the trial branch.

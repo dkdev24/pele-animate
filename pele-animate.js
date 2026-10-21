@@ -2,6 +2,7 @@
 // source once the source is up, the target appears as the edge lands. Sequence diagrams: actors, then messages in order.
 const NS = 'http://www.w3.org/2000/svg';
 const UNIT = 0.8; // seconds per BFS level / message
+const MAX_INTRO = 3; // a long diagram squeezes its steps so the intro never runs past about this many seconds
 const TOKEN = 0.5; // seconds a token takes to cross an edge
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -58,17 +59,20 @@ export function animate(svg, { hover = svg, source = '' } = {}) {
   const times = new Map(); // edge element -> start time
 
   if (svg.classList.contains('pele-sequence')) {
+    const u = Math.min(UNIT, MAX_INTRO / Math.max(1, edges.length));
     nodes.forEach((n) => set(n, 0));
     svg.querySelectorAll('.pele-lifeline').forEach((l) => set(l, 0.2));
-    edges.forEach((e, i) => times.set(e, 0.5 + i * UNIT));
+    edges.forEach((e, i) => times.set(e, 0.5 + i * u));
   } else {
     const pairs = edges.map((e) => endpoints(e.dataset.id, ids));
     const level = bfs(ids, pairs.filter(Boolean), parseOrder(source));
-    nodes.forEach((n) => set(n, level.get(n.dataset.id) * UNIT));
+    const u = Math.min(UNIT, MAX_INTRO / (Math.max(0, ...level.values()) + 1));
+    const k = u / UNIT;
+    nodes.forEach((n) => set(n, level.get(n.dataset.id) * u));
     // Start after the source is up, but never so early that the arrow lands before its target appears (pinned steps).
     edges.forEach((e, i) => {
       const [s, d] = pairs[i] ?? [];
-      times.set(e, Math.max((level.get(s) ?? 0) * UNIT + 0.3, (level.get(d) ?? 0) * UNIT - 0.5));
+      times.set(e, Math.max((level.get(s) ?? 0) * u + 0.3 * k, (level.get(d) ?? 0) * u - 0.5 * k));
     });
   }
 

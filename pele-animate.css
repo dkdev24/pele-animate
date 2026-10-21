@@ -32,6 +32,7 @@
   --pele-accent: var(--pa-solid); --pele-fg: #1f1a33;
 }
 .pa-scene { background: var(--pa-bg); border-radius: 16px; padding: 1.25rem; margin: 1.5rem 0; display: flex; justify-content: center; overflow-x: auto; cursor: pointer; }
+@media (max-width: 600px) { .pa-scene { padding: .75rem; } }
 @media (prefers-color-scheme: dark) {
   :where(:root:not([data-theme="light"]) .pa-scene) { --pa-bg: #241d3b; --pa-solid: #b9a6ff; --pa-light: #3a2f5e; --pele-surface: #2f2650; --pele-fg: #ece8ff; }
 }
