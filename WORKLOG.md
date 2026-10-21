@@ -31,3 +31,18 @@ Prototype only; glyph packs and choreography pending.
 ### Status
 
 Glyphs render in stock Pele; size capped at Pele's 48px icon box (fork `shapes` hook is the fix, PLAN phase 5).
+
+---
+
+## v0.3.0 — Sequenced choreography
+
+**Date:** 2026-10-21
+
+### Changes
+
+- BFS timeline for flowcharts, message-order timeline for sequence diagrams, `%% pa:` pinning, WAAPI token loop on hover/focus, `pa-done` skips the intro after resize re-render.
+- Fixed dashed edges turning solid after draw-in (dash now lives in the keyframes).
+
+### Status
+
+Timeline and tokens verified numerically; visual polish (phase 3) pending.
