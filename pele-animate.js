@@ -122,5 +122,18 @@ export function watch(container, source = '') {
     else svg.addEventListener('animationend', () => (played = true), { once: true });
   };
   new MutationObserver(run).observe(container, { childList: true });
+  container.classList.add('pa-scene');
+  container.tabIndex = 0;
+  container.title ||= 'Click to replay';
+  container.addEventListener('click', () => replay(container.querySelector('svg.pele')));
+  container.addEventListener('keydown', (e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), replay(container.querySelector('svg.pele'))));
   run();
+}
+
+// Play the intro again (removing pa-in/pa-done restarts the CSS animations).
+export function replay(svg) {
+  if (!svg || reduced()) return;
+  svg.classList.remove('pa-in', 'pa-done');
+  void svg.getBoundingClientRect();
+  svg.classList.add('pa-in');
 }

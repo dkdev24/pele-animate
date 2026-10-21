@@ -46,3 +46,17 @@ Glyphs render in stock Pele; size capped at Pele's 48px icon box (fork `shapes` 
 ### Status
 
 Timeline and tokens verified numerically; visual polish (phase 3) pending.
+
+---
+
+## v0.4.0 — Scene frame
+
+**Date:** 2026-10-22
+
+### Changes
+
+- `.pa-scene` panel + theming vars, dark mode, `replay()` on click/Enter, focusable container.
+
+### Status
+
+Ready to integrate into docs-starlight (phase 4).

@@ -13,19 +13,19 @@ Cross-session context memory. Update this file at the end of every session.
 ## Project Status
 
 Library that turns Mermaid code into animated, illustrated SVG scenes at runtime (built on Pele, MIT). Plan in `PLAN.md`.
-Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phase 2 (BFS sequencing, `%% pa:` override, WAAPI token loop on hover) done; scene frame/theming not started.
+Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phase 2 (BFS sequencing, `%% pa:` override, WAAPI token loop on hover) done; phase 3 (scene frame, light/dark theming via `--pa-*`, click/Enter replay) done; phone-width verified by screenshot.
 
 ---
 
 ## Last Session
 
-2026-10-21: phase 2. `animate(svg,{source})`/`watch(container, source)`: nodes by BFS level (or `%% pa: 1=P 2=O 3=D`), edge draws after its source, tokens cross edges in order in a hover loop (WAAPI). Sequence diagrams: actors, then messages in order (`.pele-message`). Verified timeline values and token order in a browser; intro motion not eyeballed.
+2026-10-22: phase 3. `watch()` adds `.pa-scene` (tinted panel, `--pa-*`/`--pele-*` theming, light/dark incl. `data-theme`), focusable, click/Enter replays intro. Screenshots at 390px light+dark: Pele flips to vertical, no overflow. Daniel confirmed the demo looks fine.
 
 ---
 
 ## Next Actions
 
-1. Phase 3: scene frame, captions, theming, hover replay of intro, phone-width screenshots. Eyeball the intro first.
+1. Phase 4: docs-starlight integration behind a flag on `/drm-concepts/` (one call in `src/scripts/pele-mount.ts`, import css, glyph pack).
 
 ---
 
