@@ -1,1 +1,20 @@
-{"name":"pele-animate","version":"0.0.1","type":"module","dependencies":{"pele":"^1.7.0"}}
+{
+  "name": "pele-animate",
+  "version": "0.8.0",
+  "description": "Animated, illustrated SVG scenes from plain Mermaid code, as a post-processor for Pele.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Daniel Kim",
+  "repository": { "type": "git", "url": "git+https://github.com/dkdev24/pele-animate.git" },
+  "keywords": ["mermaid", "pele", "svg", "diagram", "animation"],
+  "exports": {
+    ".": "./pele-animate.js",
+    "./glyphs": "./glyphs.js",
+    "./preset-doverunner": "./preset-doverunner.js",
+    "./style.css": "./pele-animate.css"
+  },
+  "files": ["pele-animate.js", "pele-animate.css", "glyphs.js", "preset-doverunner.js", "README.md", "LICENSE"],
+  "sideEffects": ["*.css", "./preset-doverunner.js"],
+  "peerDependencies": { "pele": "^1.7.0" },
+  "devDependencies": { "pele": "^1.7.0" }
+}

@@ -6,7 +6,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.1.0**
+**0.8.0**
 
 ---
 
@@ -19,14 +19,15 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: `preset-doverunner.js` (package, token, lock, database, bits-a/bits-b chip rows) on top of generic `glyphs.js` (now exports S/L/W). Demo has Forensic Watermarking (A/B segments with session ids) and packaging scenes; screenshot-verified. Wide art works as a wide glyph inside the square box (`h: 120`). docs-starlight branch left as is (uncommitted, vendored copy stale).
+2026-10-22: phase 6 packaging. `package.json` (exports `.`, `/glyphs`, `/preset-doverunner`, `/style.css`; `pele` peer `^1.7.0`; `files` list), README, MIT LICENSE. `npm pack` tarball installed in a clean Vite app (scratchpad), built, verified in a browser. **Not published** (name `pele-animate` is free on npm as of 2026-10-22). No smoke test yet. docs-starlight trial branch still as is.
 
 ---
 
 ## Next Actions
 
 1. Daniel: review docs-starlight trial branch; decide commit/push/revert.
-2. Watch the motion on the new scenes; tune UNIT/TOKEN timing. Optional: `≠` / caption glyphs, lock-pill labels (DASH/HLS/CMAF).
+2. Daniel: decide npm publish (public, unscoped `pele-animate`) vs keep private; repo is private now.
+3. Watch the motion on the new scenes; tune UNIT/TOKEN timing. Optional: `≠` / lock-pill glyphs; types; a smoke test.
 3. Phase 6: packaging (npm, README, `preset-doverunner` split).
 
 ---

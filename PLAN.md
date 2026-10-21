@@ -42,7 +42,7 @@ Obsidian and Mermaid itself still render a plain diagram.
 | 3 | Scene frame, captions, theming, reduced-motion, hover replay | light/dark + phone width screenshots | ~1 h |
 | 4 | docs-starlight integration behind a flag on one page | `/drm-concepts/` | ~30 min |
 | 5 | Fork spike (**done 2026-10-22**): stock Pele sizes icon nodes via `A@{ icon, form: "square", h: 88 }` (box = `h`, layout accounts for it); `fitGlyphs()` stretches the glyph over the frame and hides it. Verdict: **no fork needed for size/frameless art.** Fork only for wide non-square nodes (Pele icon box is square) or edge routing to illustration outlines | done |
-| 6 | Packaging: npm publish, README, preset-doverunner split | install in a clean Astro app | ~1 h |
+| 6 | Packaging (**done 2026-10-22**, not published): `package.json` exports, README, LICENSE, `npm pack` tarball installed in a clean Vite app (built and verified in a browser). Publish step waits on Daniel | tarball in clean app | done |
 
 ## Phase 5 spike notes
 

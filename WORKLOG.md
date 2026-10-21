@@ -117,3 +117,17 @@ Big-glyph scenes look close to the Lab cards; wide nodes and more glyphs pending
 ### Status
 
 Generic core plus preset split in place; packaging (phase 6) pending.
+
+---
+
+## v0.8.1 — Packaging
+
+**Date:** 2026-10-22
+
+### Changes
+
+- Package exports, README, LICENSE; tarball verified in a clean Vite app. Version in package.json is 0.8.0; not published.
+
+### Status
+
+Publishable; waiting on the publish decision.
