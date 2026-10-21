@@ -19,16 +19,15 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: kept private (no npm publish). Applied to **all** diagrams on docs-starlight branch `feat/pele-animate-trial` (uncommitted): `remark-pele` adds `pele-animate` to every fence, `pele-mount.ts` always animates, vendored copy refreshed, `.pele-diagram.pa-scene { --pele-bg: var(--pa-bg) }` so autonumber badges are readable. Lib: intro capped at ~3 s for long diagrams (`MAX_INTRO`), 12px scene padding under 600px, README notes it is unofficial. Checked 52 built pages: every diagram mounts. Not eyeballed: KO pages, state diagram, phone width after padding change.
+2026-10-22: repo made **public**, `pele-animate@0.9.0` published to npm (account `danielkimdev`; registry briefly showed a `0.0.0-stage` placeholder before 0.9.0 appeared). docs-starlight now uses the package (vendor copy removed): PR https://github.com/doverunner/docs-starlight/pull/102 against `main`, awaiting Daniel's review. No staging deploy was wired to the PR (workflow deploys on push to `main`/`qa`; no `qa` branch on the remote).
 
 ---
 
 ## Next Actions
 
-1. Daniel: review docs-starlight trial branch; decide commit/push/revert.
-2. Daniel: npm stays private for now; before any public publish reconsider the name (no trademark text found in Pele's repo, MIT covers code only).
-3. Watch the motion on the new scenes; tune UNIT/TOKEN timing. Optional: `≠` / lock-pill glyphs; types; a smoke test.
-3. Phase 6: packaging (npm, README, `preset-doverunner` split).
+1. Daniel: review PR #102 (staging/preview route is undecided), then merge or request changes.
+2. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
+3. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
 
 ---
 
@@ -36,7 +35,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 - Node pulse skipped: Pele positions nodes with a `transform` attribute that a CSS transform would override.
 - Multi-DRM triple edge between Player/OTT/DRM routes messily (Pele layout); needs bigger nodes (fork) or sequence form.
-- Fork (`pele-motion`) only if phases 1-3 can't reach the card look. Pele source clone: `~/Sites/pele-src` (outside this repo).
+- No fork needed so far. Pele source clone for reference: `~/Sites/pele-src` (outside this repo).
 
 ---
 
