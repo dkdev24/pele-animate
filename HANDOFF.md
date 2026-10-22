@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.10.0** (prepared, committed locally; `npm publish` pending)
+**0.10.0** (published to npm 2026-10-22)
 
 ---
 
@@ -28,7 +28,7 @@ Earlier 2026-10-22: docs-starlight PR #102 (`pele-animate@0.9.0`) merged to `mai
 
 1. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 2. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-3. Publish 0.10.0 (`npm publish`, 2FA), push, then docs-starlight installs it (range already `^0.10.0` there).
+3. docs-starlight is on `^0.10.0` (installed, built). Next release 0.11.0; docs then needs a range bump.
 
 ---
 

@@ -174,4 +174,4 @@ Public; docs-starlight switches from the vendored copy to the package.
 
 ### Status
 
-Prepared, not yet published. docs-starlight needs a `^0.10.0` range bump.
+Published to npm; docs-starlight installed it (`^0.10.0`).
