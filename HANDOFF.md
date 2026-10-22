@@ -18,7 +18,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22 (later): added `cloud` (glyphs.js), `storage`, `plugin`, `variants`, `watermark`, `video` (camera), `media` (video tile + music note) and `encoder` (preset-doverunner.js: film frame → arrow → bit cells) glyphs for the docs `drm-concepts` diagram. Released as 0.10.0 (see WORKLOG). Tested by copying both files into docs-starlight `node_modules` (clear `node_modules/.vite` after).
+2026-10-22 (later): 0.10.0 published (glyphs `cloud`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`; `animate()` equalizes sequence participant box heights; bold titles). Public `CHANGELOG.md` added; tags `0.9.0` (`500cdc0`) and `0.10.0` (`9573bc8`) pushed, each matching its npm tarball. Test trick: copy files into docs `node_modules/pele-animate`, clear `node_modules/.vite`.
 
 Earlier 2026-10-22: docs-starlight PR #102 (`pele-animate@0.9.0`) merged to `main` = production deploy; repo made public, 0.9.0 on npm.
 
@@ -44,6 +44,7 @@ Earlier 2026-10-22: docs-starlight PR #102 (`pele-animate@0.9.0`) merged to `mai
 | Path | Purpose |
 |---|---|
 | `PLAN.md` | Dev plan, phases, risks |
+| `CHANGELOG.md` | Public changelog (add an entry per release; not yet in npm `files`) |
 | `pele-animate.js` / `.css` | Prototype post-processor |
 | `glyphs.js` | Glyph registry + 6 generic glyphs |
 | `preset-doverunner.js` | DRM/FWM/packaging glyph pack |
