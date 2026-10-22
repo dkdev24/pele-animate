@@ -52,3 +52,7 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
+
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.10.0...HEAD
+[0.10.0]: https://github.com/dkdev24/pele-animate/compare/0.9.0...0.10.0
+[0.9.0]: https://github.com/dkdev24/pele-animate/releases/tag/0.9.0
