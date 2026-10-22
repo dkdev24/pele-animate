@@ -9,6 +9,7 @@ Dev plan: `PLAN.md` (read it before building). Owner: Daniel Kim (`dkdev24`, pri
 - `pele-animate.js` / `.css` — post-processor (`animate(svg)`, `watch(container)`)
 - `demo.html` — test page; serve with `python3 -m http.server`
 - `PLAN.md` — phases and findings
+- `CHANGELOG.md` — public, Keep a Changelog format; add an entry with every release (no internal names)
 
 ## Working agreements
 

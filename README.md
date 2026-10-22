@@ -72,3 +72,7 @@ variable on it; defaults are `:where()` rules, so your stylesheet wins.
 - Relies on Pele's SVG structure (`.pele-node`, `.pele-edge`, `data-id`); `pele` is a peer dependency pinned to `^1.7.0`.
 - Flowcharts and sequence diagrams only. No types yet.
 - Glyph art is square-boxed; wide art is drawn as a wide glyph inside the square.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
