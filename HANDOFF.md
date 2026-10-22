@@ -8,7 +8,6 @@ Cross-session context memory. Update this file at the end of every session.
 **0.10.0** (published to npm 2026-10-22)
 
 ---
-
 ## Project Status
 
 Library that turns Mermaid code into animated, illustrated SVG scenes at runtime (built on Pele, MIT). Plan in `PLAN.md`.
