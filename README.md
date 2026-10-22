@@ -8,6 +8,7 @@ The source stays valid Mermaid, so GitHub or Obsidian still show a normal diagra
 - Nodes appear in order (BFS from the sources, or pinned with a `%% pa:` comment), edges draw in, labels fade in.
 - Hover or focus: tokens travel the edges in sequence. Click or Enter replays the intro.
 - `@{ icon: "name" }` nodes become illustrations from a glyph pack. Unknown names fall back to a plain Pele box.
+- Sequence diagrams: participant boxes in a row get the tallest height (Pele sizes each to its own text). Group and box titles are bold.
 - Idle state is the finished picture; `prefers-reduced-motion` turns the motion off. Light and dark themes.
 
 ## Install

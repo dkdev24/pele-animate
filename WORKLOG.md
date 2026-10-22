@@ -169,6 +169,7 @@ Public; docs-starlight switches from the vendored copy to the package.
 ### Changes
 
 - New glyphs: `cloud` (`glyphs.js`); `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark` (`preset-doverunner.js`). README glyph list updated.
+- `animate()` equalizes sequence participant box heights per row (`equalizeActors`); scene CSS bolds group/box titles.
 - Checked: sequence-diagram participants ignore `@{ icon }` (Pele renders the id letters), so glyphs apply to flowcharts only.
 
 ### Status

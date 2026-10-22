@@ -43,3 +43,6 @@
 .pa-art > rect:first-child { fill: none; stroke: none; }
 /* Edge labels sit on the line; give them the panel color so the line doesn't strike through the text. */
 .pa-scene .pele-edge-label rect { fill: var(--pa-bg); }
+
+/* Group and box titles read as headings. */
+:where(.pa-scene) .pele-cluster-label { font-weight: 700; }

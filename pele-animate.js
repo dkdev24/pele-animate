@@ -48,8 +48,37 @@ function fitGlyphs(svg) {
   });
 }
 
+// Pele sizes each sequence participant box to its own text, which leaves ragged rows. Give every box in a row the tallest height:
+// header boxes grow upward (bottoms stay on the lifeline start), footer boxes grow downward (tops stay on the lifeline end).
+function equalizeActors(svg) {
+  if (!svg.classList.contains('pele-sequence') || svg.dataset.paEqualized) return;
+  svg.dataset.paEqualized = '1';
+  for (const footer of [false, true]) {
+    const boxes = [...svg.querySelectorAll('g.pele-actor-participant')].filter((g) => g.classList.contains('pele-actor-footer') === footer);
+    const rects = boxes.map((g) => g.querySelector('rect')).filter(Boolean);
+    if (rects.length < 2) continue;
+    const num = (r, a) => +r.getAttribute(a);
+    const heights = rects.map((r) => num(r, 'height'));
+    const max = Math.max(...heights);
+    const top = Math.min(...rects.map((r) => num(r, 'y')));
+    const bottom = Math.max(...rects.map((r) => num(r, 'y') + num(r, 'height')));
+    boxes.forEach((g, i) => {
+      const grow = max - heights[i];
+      if (!grow) return;
+      rects[i].setAttribute('y', String(footer ? top : bottom - max));
+      rects[i].setAttribute('height', String(max));
+      const dy = footer ? grow / 2 : -grow / 2; // re-centre the label
+      g.querySelectorAll('text, tspan').forEach((t) => {
+        const y = t.getAttribute('y');
+        if (y !== null) t.setAttribute('y', String(+y + dy));
+      });
+    });
+  }
+}
+
 export function animate(svg, { hover = svg, source = '' } = {}) {
   fitGlyphs(svg);
+  equalizeActors(svg);
   svg.querySelectorAll('.pa-dot').forEach((d) => d.remove());
   svg.classList.add('pa-ready');
   const nodes = [...svg.querySelectorAll('.pele-node')];
