@@ -1,12 +1,11 @@
 # HANDOFF.md
 
 Cross-session context memory. Update this file at the end of every session.
-
 ---
 
 ## Current Version
 
-**0.9.0**
+**0.10.0** (prepared, committed locally; `npm publish` pending)
 
 ---
 
@@ -19,7 +18,9 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Last Session
 
-2026-10-22: docs-starlight PR #102 (consumes `pele-animate@0.9.0`) tested on the branch preview and merged to `main` = production deploy. Local branches deleted; the `pele-src` reference clone was removed (re-clone `obsidianmd/pele` only if a fork becomes necessary). Earlier the same day: repo made public, 0.9.0 published to npm.
+2026-10-22 (later): added `cloud` (glyphs.js), `storage`, `plugin`, `variants`, `watermark`, `video` (camera), `media` (video tile + music note) and `encoder` (preset-doverunner.js: film frame → arrow → bit cells) glyphs for the docs `drm-concepts` diagram. Released as 0.10.0 (see WORKLOG). Tested by copying both files into docs-starlight `node_modules` (clear `node_modules/.vite` after).
+
+Earlier 2026-10-22: docs-starlight PR #102 (`pele-animate@0.9.0`) merged to `main` = production deploy; repo made public, 0.9.0 on npm.
 
 ---
 
@@ -27,7 +28,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 1. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 2. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-3. Next release is 0.10.0 (stay on 0.x); docs-starlight then needs a `^0.10.0` range bump.
+3. Publish 0.10.0 (`npm publish`, 2FA), push, then docs-starlight installs it (range already `^0.10.0` there).
 
 ---
 
@@ -35,7 +36,6 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 - Node pulse skipped: Pele positions nodes with a `transform` attribute that a CSS transform would override.
 - Multi-DRM triple edge between Player/OTT/DRM routes messily (Pele layout); needs bigger nodes (fork) or sequence form.
-- No fork needed so far. Pele source clone (`pele-src`) was removed; re-clone `obsidianmd/pele` if needed.
 
 ---
 

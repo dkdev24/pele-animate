@@ -19,4 +19,5 @@ registerGlyphs({
   document: `<path d="M6 2.5h8l4.5 4.5v14a1 1 0 0 1-1 1h-11.5a1 1 0 0 1-1-1v-17.5a1 1 0 0 1 1-1z" fill="${L}" stroke="${S}"/><path d="M14 2.5V7h4.5" fill="none" stroke="${S}"/><path d="M8.5 12h7M8.5 15.5h7" stroke="${S}"/>`,
   shield: `<path d="M12 2.5l8 3v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10v-6z" fill="${S}" stroke="none"/><path d="M8.5 12l2.6 2.6 4.6-5" fill="none" stroke="${W}" stroke-width="2.2"/>`,
   phone: `<rect x="6.5" y="2" width="11" height="20" rx="2.5" fill="${W}" stroke="${S}"/><path d="M10.5 3.8h3" stroke="${S}"/><rect x="8.5" y="6" width="7" height="4" rx="1" fill="${S}" stroke="none"/><path d="M8.5 12.5h7M8.5 15h7M8.5 17.5h4" stroke="${S}"/><path d="M10.5 20.2h3" stroke="${S}"/>`,
+  cloud: `<path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 8.5a4.75 4.75 0 0 1 .5 9.5z" fill="${L}" stroke="${S}"/>`,
 });

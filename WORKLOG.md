@@ -159,3 +159,18 @@ All 52 docs-starlight diagram pages mount in the trial branch.
 ### Status
 
 Public; docs-starlight switches from the vendored copy to the package.
+
+---
+
+## v0.10.0 — Docs diagram glyphs
+
+**Date:** 2026-10-22
+
+### Changes
+
+- New glyphs: `cloud` (`glyphs.js`); `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark` (`preset-doverunner.js`). README glyph list updated.
+- Checked: sequence-diagram participants ignore `@{ icon }` (Pele renders the id letters), so glyphs apply to flowcharts only.
+
+### Status
+
+Prepared, not yet published. docs-starlight needs a `^0.10.0` range bump.

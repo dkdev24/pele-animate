@@ -58,8 +58,8 @@ flowchart LR
 | `registerGlyphs(pack, strokeWidth = 1.1)` (`/glyphs`) | Add glyphs: `{ name: '<inner markup of a 24x24 svg>' }`; colors via `--pa-solid` / `--pa-light` |
 | `icons` (`/glyphs`) | Pele `icons` resolver |
 
-Generic glyphs: `player`, `server`, `key`, `document`, `shield`, `phone`. `preset-doverunner`: `package`, `token`, `lock`,
-`database`, `bits-a`, `bits-b`.
+Generic glyphs: `player`, `server`, `key`, `document`, `shield`, `phone`, `cloud`. `preset-doverunner`: `package`, `token`, `lock`,
+`database`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`, `bits-a`, `bits-b`.
 
 ## Theme
 
