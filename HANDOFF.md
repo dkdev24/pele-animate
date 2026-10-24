@@ -16,8 +16,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-24 (latest): 0.13.0 released: Tabler packs (`pele-animate/tabler/<category>`, `--pa-stroke`), illustrated glyphs renamed `doverunner-<name>` and moved into the preset, `icons()` fallback square. docs-starlight diagrams migrated locally; it must bump to `^0.13.0` before its next push (uncommitted there).
-Earlier: 0.12.0 edge pins + `diagram-step-order` skill; 0.11.0 step mode (see WORKLOG).
+2026-10-24 (latest): 0.13.0 released (Tabler packs, `doverunner-*` rename, fallback glyph); docs-starlight migrated and pushed (`8ff46b4`). Then public-site planning: `SITE_DEV_PLAN.md` (site, `/docs`, skills) and `SITE_FRAMEWORK_RESEARCH.md`; spiked SvelteKit and Nuxt in scratch dirs; **Daniel picked SvelteKit 3**. Nothing built yet; no npm release since 0.13.0.
 ---
 
 ## Next Actions
@@ -26,7 +25,7 @@ Earlier: 0.12.0 edge pins + `diagram-step-order` skill; 0.11.0 step mode (see WO
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 4. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-5. docs-starlight: bump to `^0.13.0`, build, then push (migrated icon names are in its working tree). Next release 0.14.0.
+5. Site: answer `SITE_DEV_PLAN.md` §13 (docs single-source, pnpm migration, skills in npm, check CLI, preset docs, KO timing), then start S0 (pnpm workspace, CI, Pages project) and S1 (types + `/docs`). Next release 0.14.0.
 
 ---
 
@@ -41,7 +40,7 @@ Earlier: 0.12.0 edge pins + `diagram-step-order` skill; 0.11.0 step mode (see WO
 
 | Path | Purpose |
 |---|---|
-| `PLAN.md` | Dev plan, phases, risks |
+| `PLAN.md`, `SITE_DEV_PLAN.md`, `SITE_FRAMEWORK_RESEARCH.md` | Dev plan; public site/docs/skills plan (SvelteKit); framework spikes and numbers |
 | `CHANGELOG.md` | Public changelog (add an entry per release; not yet in npm `files`) |
 | `pele-animate.js` / `.css` | Prototype post-processor |
 | `glyphs.js` | Glyph registry (`icons`, `registerGlyphs`, `registerTabler`); no art; unknown names get a fallback square |

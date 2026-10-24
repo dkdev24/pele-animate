@@ -43,9 +43,9 @@ sequenceDiagram
 | Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p2.png" width="560" alt="Sequence diagram rendered by Pele"> |
 | pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a2.gif" width="560" alt="Animated sequence diagram: messages appear in order, tokens travel"> |
 
-With glyphs (`@{ icon }` nodes, `%% pa: 1=P 2=O 3=D` pins the order):
+With icons (`@{ icon }` nodes from the Tabler `computers` pack, `%% pa: 1=C 2=L 3=S` pins the order):
 
-<img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a3.gif" width="560" alt="Animated scene with illustrated Player, OTT service and DRM server">
+<img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a3.gif" width="560" alt="Animated scene with Tabler icons: a request, a load balancer and a cloud service">
 
 ## Install
 
@@ -59,7 +59,7 @@ npm i pele-animate pele
 import { mount } from 'pele';
 import { watch } from 'pele-animate';
 import { icons } from 'pele-animate/glyphs';
-import 'pele-animate/preset-doverunner'; // the illustrated `doverunner-*` glyphs; skip it to use only Tabler packs
+import 'pele-animate/tabler/computers'; // one Tabler category; import as many as you need
 import 'pele-animate/style.css';
 
 for (const el of document.querySelectorAll('pre.mermaid')) {
@@ -73,16 +73,16 @@ Mermaid source:
 
 ```mermaid
 flowchart LR
-  %% pa: 1=P 2=O 3=D
-  P@{ icon: "doverunner-player", form: "square", h: 88, label: "Player" }
-  O@{ icon: "doverunner-server", form: "square", h: 88, label: "OTT service" }
-  D@{ icon: "doverunner-key", form: "square", h: 88, label: "DRM server" }
-  P <-->|auth token| O
-  P <-->|token / license| D
+  %% pa: 1=C 2=L 3=S
+  C@{ icon: "http-get", form: "square", h: 88, label: "Request" }
+  L@{ icon: "load-balancer", form: "square", h: 88, label: "Load balancer" }
+  S@{ icon: "cloud-computing", form: "square", h: 88, label: "Cloud service" }
+  C <-->|route| L
+  L <-->|forward| S
 ```
 
 `form: "square", h: 88` makes a large frameless glyph; leave both out for a small icon in a frame.
-`%% pa: 1=P 2=O 3=D` pins nodes to steps (optional). `X>Y` pins the edge from X to Y, so an edge between nodes that are
+`%% pa: 1=C 2=L 3=S` pins nodes to steps (optional). `X>Y` pins the edge from X to Y, so an edge between nodes that are
 already visible can have its own step: `%% pa: 1=A,B 2=C,B>C 3=C>B`. Pin the nodes first; an edge pinned before its target appears lands early.
 Sequence diagrams animate actors, then messages in order.
 
@@ -98,8 +98,7 @@ Sequence diagrams animate actors, then messages in order.
 | `registerGlyphs(pack, strokeWidth = 1.1)` (`/glyphs`) | Add glyphs: `{ name: '<inner markup of a 24x24 svg>' }`; colors via `--pa-solid` / `--pa-light` |
 | `icons` (`/glyphs`) | Pele `icons` resolver; unknown names get a neutral rounded square, since Pele ships no icons of its own |
 
-Illustrated glyphs (filled, two-tone, DoveRunner style) come from `pele-animate/preset-doverunner` and are all named `doverunner-<name>`: `player`, `server`, `key`, `document`, `shield`, `phone`, `cloud`, `package`, `token`, `lock`, `database`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`,
-`bits-a`, `bits-b`. Plain names (`server`, `lock`, ...) are Tabler's.
+Icons come from the packs you import: Tabler categories (below) or your own via `registerGlyphs`. `pele-animate/preset-doverunner` is an optional extra set of filled, two-tone glyphs (all named `doverunner-<name>`).
 
 ### Tabler icon packs
 
@@ -109,7 +108,7 @@ About 4,300 line icons from [Tabler Icons](https://github.com/tabler/tabler-icon
 import 'pele-animate/tabler/devices';   // also: system, database, development, communication, charts, ...
 ```
 
-Then use any name from that category: `A@{ icon: "device-tv", form: "square", h: 88 }`. The illustrated glyphs are prefixed `doverunner-`, so no Tabler name is shadowed.
+Then use any name from that category: `A@{ icon: "device-tv", form: "square", h: 88 }`. The `computers` pack (44 icons: `network`, `load-balancer`, `cloud-computing`, `http-get`, `topology-star`, ...) suits infrastructure diagrams.
 Tabler icons are stroke-only, so the stroke width is adjustable: set `--pa-stroke` on the container (default `1.5`; Tabler draws at 2 and
 designs every icon to work at other widths). Categories: see `tabler/` (Brand, Letters, Numbers, Zodiac and Gender are left out).
 Regenerate with `node scripts/build-tabler.mjs <tabler-icons checkout>`. License notice: `THIRD-PARTY-NOTICES.md`.

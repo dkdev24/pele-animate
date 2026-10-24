@@ -223,3 +223,19 @@ Published to npm and GitHub release; docs-starlight bumped to `^0.12.0`.
 
 Breaking for `^0.12` consumers (icon names, glyphs moved). Published to npm and GitHub release; docs-starlight must bump to `^0.13.0`.
 
+---
+
+## Site planning (unversioned)
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `SITE_DEV_PLAN.md`: plan for pele-animate.danielkimdev.com, the single-source `/docs`, and agent skills (phases S0 to S8).
+- `SITE_FRAMEWORK_RESEARCH.md`: researched Astro alternatives; spiked SvelteKit 3 and Nuxt 4 + Nuxt Content in scratch dirs (docs from outside the app, `live` fence, 4,368-icon browser, cold JS per route). Decision: **SvelteKit 3** with `adapter-static`; Astro is the fallback.
+- README now uses Tabler `computers` icons in its example; `a3.gif` regenerated.
+
+### Status
+
+Planning only, no code in the repo beyond docs. No npm release since 0.13.0. Open decisions in `SITE_DEV_PLAN.md` §13.
+
