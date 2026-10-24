@@ -20,13 +20,13 @@
 
 <svelte:head>
 	<title>pele-animate: step-by-step Mermaid diagrams with icons</title>
-	<meta name="description" content="Make a Pele diagram explain itself one step at a time: you choose the order, readers step through it, and nodes can carry icons." />
+	<meta name="description" content="Make a Mermaid diagram explain itself one step at a time: you choose the order, readers step through it, and nodes can carry icons." />
 </svelte:head>
 
 <section class="wrap hero">
-		<h1>Diagrams that explain themselves</h1>
+		<h1>Mermaid diagrams that explain themselves</h1>
 		<p class="lead">
-			Readers step through a <a href="https://pele.run">Pele</a> diagram in the order you choose, with icons from a set of 4,000+.
+			Readers step through a Mermaid diagram, rendered by <a href="https://pele.run">Pele</a>, in the order you choose, with icons from a set of 4,000+.
 		</p>
 		<div class="cta">
 			<a class="btn primary" href="/docs/getting-started/">Get started</a>
@@ -42,7 +42,7 @@
 
 	<section class="wrap split">
 		<figure class="editor">
-			<figcaption>diagram.mmd</figcaption>
+			<figcaption>diagram.md</figcaption>
 			<pre aria-label="Mermaid source of the diagram above"><code>{#each lines as l}<span class="ln">{@html l}</span>{/each}</code></pre>
 		</figure>
 		<div class="proofs">
