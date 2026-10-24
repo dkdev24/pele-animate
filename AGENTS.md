@@ -7,7 +7,7 @@ Dev plan: `PLAN.md`. Owner: Daniel Kim (`dkdev24`). **Public repo and public npm
 ## Layout
 
 - `pele-animate.js` / `.css` — post-processor (`animate(svg)`, `watch(container)`)
-- `docs/` — the documentation (Markdown, single source: read on GitHub, shipped in npm, rendered by the site later). Fenced `mermaid` blocks must render: `pnpm test`
+- `docs/` — the documentation (Markdown, single source: read on GitHub, shipped in npm, rendered by the site later). Fenced `mermaid` blocks must render: `pnpm test`. Diagrams with `@{ icon }` use the ```` ```mermaid-icons live ```` fence (GitHub cannot draw icons)
 - `skills/` — agent skills shipped in npm: `pele-animate` (adopt + verify), `diagram-step-order`; `.claude/skills/diagram-step-order` is a symlink
 - `site/` — SvelteKit 3 site (S3 done; deploys to pele-animate.pages.dev on push to `main`); `DESIGN.md` is its look and feel; `pnpm build` runs its checks. `types/` — hand-written `.d.ts`. `tabler/` — generated, never hand-edit (`scripts/build-tabler.mjs`)
 - `demo.html` — test page; serve with `python3 -m http.server`

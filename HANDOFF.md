@@ -16,7 +16,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-24 (latest): 0.14.0 released (types, docs, skills). **S3 built and live** at https://pele-animate.pages.dev/: SvelteKit 3 site with the 16 docs rendered from `/docs`, live diagrams, changelog + RSS, `llms.txt`, `.md` siblings, `DESIGN.md`, build-time site check. Daniel lifted the upstream hold; kepano has not replied yet. Next: S4 `/icons`, S5 playground.
+2026-10-24 (latest): 0.14.0 released (types, docs, skills). **S3 built and live** at https://pele-animate.pages.dev/: SvelteKit 3 site with the 16 docs rendered from `/docs`, live diagrams, changelog + RSS, `llms.txt`, `.md` siblings, `DESIGN.md`, build-time site check. Daniel lifted the upstream hold; kepano has not replied yet. README polished for GitHub (badges, links, hero, generic examples; repo description/topics/homepage set). GitHub's Mermaid shows "?" for `@{ icon }` nodes, so icon examples use the ```` ```mermaid-icons ```` fence (source on GitHub, animated on the site). Next: S4 `/icons`, S5 playground.
 ---
 
 ## Next Actions
