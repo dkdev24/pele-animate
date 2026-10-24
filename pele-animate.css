@@ -1,17 +1,17 @@
 /* Draw-in once when scrolled into view; a dot travels each edge while hovered/focused. Idle = finished picture. */
-.pa-ready:not(.pa-in) .pele-node,
-.pa-ready:not(.pa-in) .pele-edge-label,
-.pa-ready:not(.pa-in) .pele-lifeline,
-.pa-ready:not(.pa-in) .pele-marker { opacity: 0; }
-.pa-ready:not(.pa-in) .pele-edge > path:not(.pele-marker) { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
+.pa-ready:not(.pa-in):not(.pa-step) .pele-node,
+.pa-ready:not(.pa-in):not(.pa-step) .pele-edge-label,
+.pa-ready:not(.pa-in):not(.pa-step) .pele-lifeline,
+.pa-ready:not(.pa-in):not(.pa-step) .pele-marker { opacity: 0; }
+.pa-ready:not(.pa-in):not(.pa-step) .pele-edge > path:not(.pele-marker) { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
 
 /* Keyframes carry the dash, so edges that are dashed in the diagram go back to their own dash pattern afterwards. */
-.pa-ready.pa-in .pele-node,
-.pa-ready.pa-in .pele-edge-label,
-.pa-ready.pa-in .pele-lifeline,
-.pa-ready.pa-in .pele-marker { animation: pa-fade .4s ease-out backwards; animation-delay: var(--d, 0s); }
-.pa-ready.pa-in .pele-edge > path:not(.pele-marker) { animation: pa-draw .4s ease-out backwards; animation-delay: var(--d, 0s); }
-.pa-ready.pa-done * { animation: none !important; }
+.pa-ready.pa-in:not(.pa-step) .pele-node,
+.pa-ready.pa-in:not(.pa-step) .pele-edge-label,
+.pa-ready.pa-in:not(.pa-step) .pele-lifeline,
+.pa-ready.pa-in:not(.pa-step) .pele-marker { animation: pa-fade .4s ease-out backwards; animation-delay: var(--d, 0s); }
+.pa-ready.pa-in:not(.pa-step) .pele-edge > path:not(.pele-marker) { animation: pa-draw .4s ease-out backwards; animation-delay: var(--d, 0s); }
+.pa-ready.pa-done:not(.pa-step) * { animation: none !important; }
 @keyframes pa-fade { from { opacity: 0; } }
 @keyframes pa-draw { from { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); } to { stroke-dasharray: var(--len); stroke-dashoffset: 0; } }
 
@@ -19,9 +19,16 @@
 
 @media (prefers-reduced-motion: reduce) {
   .pa-ready * { animation: none !important; }
-  .pa-ready .pele-node, .pa-ready .pele-edge-label, .pa-ready .pele-lifeline, .pa-ready .pele-marker { opacity: 1 !important; }
+  .pa-ready:not(.pa-step) .pele-node, .pa-ready:not(.pa-step) .pele-edge-label, .pa-ready:not(.pa-step) .pele-lifeline, .pa-ready:not(.pa-step) .pele-marker { opacity: 1 !important; }
   .pa-ready .pele-edge > path { stroke-dasharray: none; stroke-dashoffset: 0 !important; }
 }
+
+/* Step mode: elements are shown by step; the ones just revealed fade / draw in. */
+.pa-step .pa-hid { opacity: 0; }
+.pa-step .pa-dot { display: none; }
+.pa-step .pa-pop { animation: pa-fade .4s ease-out backwards; }
+.pa-step .pele-edge > path:not(.pele-marker).pa-pop { animation-name: pa-draw; }
+.pa-step .pele-edge > .pele-marker.pa-pop { animation-delay: .3s; }
 
 /* Scene frame: tinted panel like the Lab product cards. Override any --pa-* / --pele-* on the container to retheme. */
 :where(.pa-scene) {
@@ -46,3 +53,13 @@
 
 /* Group and box titles read as headings. */
 :where(.pa-scene) .pele-cluster-label { font-weight: 700; }
+
+/* Step controls: previous | play/pause | next, shown under the diagram in step mode. */
+.pa-scene.pa-stepping { flex-direction: column; align-items: center; gap: .75rem; }
+.pa-controls { display: flex; align-items: center; gap: .125rem; padding: .25rem; border-radius: 999px; cursor: default;
+  background: var(--pele-surface); color: var(--pele-fg); border: 1px solid var(--pele-border); font: 500 .8rem/1 system-ui, sans-serif; }
+.pa-controls button { width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 50%; background: none; color: inherit; font: inherit; font-size: 1rem; cursor: pointer; }
+.pa-controls button:hover:not(:disabled) { background: var(--pele-surface-alt); }
+.pa-controls button:disabled { opacity: .35; cursor: default; }
+.pa-controls button:focus-visible { outline: 2px solid var(--pa-solid); }
+.pa-count { min-width: 4ch; padding: 0 .5rem; text-align: center; font-variant-numeric: tabular-nums; }

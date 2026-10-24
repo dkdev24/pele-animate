@@ -3,9 +3,23 @@
 All notable changes to `pele-animate` are recorded here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project stays on `0.x`: minor versions
-may change behavior, so pin a range such as `^0.10.0` and bump it deliberately.
+may change behavior, so pin a range such as `^0.11.0` and bump it deliberately.
 
 ## [Unreleased]
+
+## [0.11.0] - 2026-10-24
+
+Step-by-step playback.
+### Added
+
+- Step-by-step playback: clicking a diagram (or pressing Enter) enters step mode with previous / play-pause / next controls.
+  Each BFS level (flowcharts) or message (sequence diagrams) is one step. Keys: Space play/pause, ←/→ step, Esc leave.
+
+### Changed
+
+- README: Mermaid vs Pele vs pele-animate comparison with animated GIFs (`examples/`, regenerate with `examples/capture.sh`).
+- Step controls have their own tooltips; the ✕ button exits step mode instead of restarting it.
+- `watch()` click now enters step mode instead of replaying the intro. Pass `{ controls: false }` as the third argument for the old click-to-replay.
 
 ## [0.10.0] - 2026-10-22
 
@@ -53,6 +67,7 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.10.0...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.11.0...HEAD
+[0.11.0]: https://github.com/dkdev24/pele-animate/compare/0.10.0...0.11.0
 [0.10.0]: https://github.com/dkdev24/pele-animate/compare/0.9.0...0.10.0
 [0.9.0]: https://github.com/dkdev24/pele-animate/releases/tag/0.9.0

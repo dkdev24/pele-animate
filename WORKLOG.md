@@ -175,3 +175,18 @@ Public; docs-starlight switches from the vendored copy to the package.
 ### Status
 
 Published to npm; docs-starlight installed it (`^0.10.0`).
+
+---
+
+## v0.11.0 — Step-by-step playback
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `watch()`: click/Enter enters step mode (previous / play-pause / next bar, Space, ←/→, Esc, ✕ to leave). One step per BFS level or sequence message; `animate()` exposes `svg.paSteps`. `{ controls: false }` keeps click-to-replay.
+- README "Compare" section: Mermaid vs Pele vs pele-animate, animated GIFs in `examples/` (`compare.html`, `capture.sh`; images use absolute raw URLs so the npm page shows them).
+
+### Status
+
+Published to npm and GitHub release. docs-starlight is still on `^0.10.0`; needs a range bump to use step mode.

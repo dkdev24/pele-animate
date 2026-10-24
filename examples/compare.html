@@ -1,0 +1,63 @@
+<!doctype html><meta charset="utf-8"><title>pele-animate examples</title>
+<!-- Source page for the README images. Serve the repo root (python3 -m http.server) and run examples/capture.sh. -->
+<link rel="stylesheet" href="../pele-animate.css">
+<style>
+  body { font: 16px sans-serif; margin: 0; padding: 1rem; background: #fff; color: #1f1a33; color-scheme: light; width: 720px; }
+  .box { width: 680px; margin: 0 0 1.5rem; padding: 20px; box-sizing: border-box; background: #fff; display: flex; justify-content: center; }
+  .pa-scene { margin: 0 0 1.5rem; width: 680px; box-sizing: border-box; }
+  pre { margin: 0; font-family: inherit; }
+</style>
+<script type="module">
+import { mount } from '../node_modules/pele/dist/pele.js';
+import { icons } from '../glyphs.js';
+import { watch, replay } from '../pele-animate.js';
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs';
+
+const flow = `flowchart LR
+  A[Player] -->|auth token| B[OTT service]
+  A -->|license request| C[DRM server]
+  C -->|license| A`;
+const seq = `sequenceDiagram
+  Player->>OTT: sign in
+  OTT-->>Player: token
+  Player->>DRM: token
+  DRM-->>Player: license`;
+const glyphs = `flowchart LR
+  %% pa: 1=P 2=O 3=D
+  O@{ icon: "server", form: "square", h: 88, label: "OTT service" }
+  P@{ icon: "player", form: "square", h: 88, label: "Player" }
+  D@{ icon: "key", form: "square", h: 88, label: "DRM server" }
+  P <-->|auth token| O
+  P <-->|token / license| D`;
+
+mermaid.initialize({ startOnLoad: false, theme: 'default' });
+for (const [id, src] of [['m1', flow], ['m2', seq]]) {
+  const { svg } = await mermaid.render(`mm-${id}`, src);
+  document.getElementById(id).innerHTML = svg;
+}
+for (const [id, src] of [['p1', flow], ['p2', seq]]) mount(document.getElementById(id), src, { icons });
+for (const [id, src] of [['a1', flow], ['a2', seq], ['a3', glyphs]]) {
+  const el = document.getElementById(id);
+  mount(el, src, { icons });
+  watch(el, src, { controls: false });
+}
+
+// Deterministic frames: pause every animation in `el` and seek. Phase 'intro' = draw-in, 'tokens' = hover loop.
+window.start = (id, phase) => {
+  const el = document.getElementById(id);
+  el.dispatchEvent(new PointerEvent('pointerleave'));
+  if (phase === 'intro') replay(el.querySelector('svg.pele'));
+  else el.dispatchEvent(new PointerEvent('pointerenter'));
+  return el.getAnimations({ subtree: true }).find((a) => !(a instanceof CSSAnimation))?.effect.getTiming().duration / 1000 ?? 0;
+};
+window.seek = (id, t, phase) => {
+  for (const a of document.getElementById(id).getAnimations({ subtree: true })) {
+    a.pause();
+    a.currentTime = a instanceof CSSAnimation ? (phase === 'intro' ? t * 1000 : 1e5) : phase === 'tokens' ? t * 1000 : 0;
+  }
+};
+window.ready = true;
+</script>
+<div class="box" id="m1"></div><div class="box" id="p1"></div><pre class="d" id="a1"></pre>
+<div class="box" id="m2"></div><div class="box" id="p2"></div><pre class="d" id="a2"></pre>
+<pre class="d" id="a3"></pre>

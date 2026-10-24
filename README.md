@@ -6,10 +6,46 @@ Unofficial add-on; not affiliated with or endorsed by the Pele or Obsidian teams
 The source stays valid Mermaid, so GitHub or Obsidian still show a normal diagram.
 
 - Nodes appear in order (BFS from the sources, or pinned with a `%% pa:` comment), edges draw in, labels fade in.
-- Hover or focus: tokens travel the edges in sequence. Click or Enter replays the intro.
+- Hover or focus: tokens travel the edges in sequence. The intro plays once on scroll-in. Click (or Enter) enters step mode: previous / play-pause / next buttons, with Space (play/pause), ←/→ (step) and Esc (leave).
 - `@{ icon: "name" }` nodes become illustrations from a glyph pack. Unknown names fall back to a plain Pele box.
 - Sequence diagrams: participant boxes in a row get the tallest height (Pele sizes each to its own text). Group and box titles are bold.
 - Idle state is the finished picture; `prefers-reduced-motion` turns the motion off. Light and dark themes.
+
+## Compare
+
+The same Mermaid source, three renderers. The pele-animate images loop: the intro draws in, then tokens travel the edges (as on hover).
+Regenerate with `examples/capture.sh`.
+
+```mermaid
+flowchart LR
+  A[Player] -->|auth token| B[OTT service]
+  A -->|license request| C[DRM server]
+  C -->|license| A
+```
+
+| Renderer | Result |
+|---|---|
+| Mermaid | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/m1.png" width="560" alt="Flowchart rendered by Mermaid"> |
+| Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p1.png" width="560" alt="Flowchart rendered by Pele"> |
+| pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a1.gif" width="560" alt="Animated flowchart: nodes appear, edges draw in, tokens travel"> |
+
+```mermaid
+sequenceDiagram
+  Player->>OTT: sign in
+  OTT-->>Player: token
+  Player->>DRM: token
+  DRM-->>Player: license
+```
+
+| Renderer | Result |
+|---|---|
+| Mermaid | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/m2.png" width="560" alt="Sequence diagram rendered by Mermaid"> |
+| Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p2.png" width="560" alt="Sequence diagram rendered by Pele"> |
+| pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a2.gif" width="560" alt="Animated sequence diagram: messages appear in order, tokens travel"> |
+
+With glyphs (`@{ icon }` nodes, `%% pa: 1=P 2=O 3=D` pins the order):
+
+<img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a3.gif" width="560" alt="Animated scene with illustrated Player, OTT service and DRM server">
 
 ## Install
 
@@ -52,7 +88,7 @@ flowchart LR
 
 | Export | |
 |---|---|
-| `watch(container, source?)` | Animate the SVG inside `container` (and every re-render of it); adds the scene panel, click and Enter replay |
+| `watch(container, source?)` | Animate the SVG inside `container` (and every re-render of it); adds the scene panel and step mode (click / Enter); pass `{ controls: false }` as a third argument for click-to-replay instead |
 | `animate(svg, { hover, source })` | Animate one SVG; you handle re-renders |
 | `replay(svg)` | Play the intro again |
 | `parseOrder(source)` | Read the `%% pa:` pins |

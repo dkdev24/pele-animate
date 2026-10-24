@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.10.0** (published to npm 2026-10-22)
+**0.11.0** (published to npm 2026-10-24)
 
 ---
 ## Project Status
@@ -16,18 +16,18 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
+2026-10-24: 0.11.0 released (npm, tag, GitHub release): step-by-step playback (click → prev/play/next bar, Space/←/→/Esc/✕; `{ controls: false }` = old replay) and README Compare section with animated GIFs (`examples/capture.sh` regenerates). Step mode only browser-checked on flowchart demo.
 
 2026-10-22 (later): 0.10.0 published (glyphs `cloud`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`; `animate()` equalizes sequence participant box heights; bold titles). Public `CHANGELOG.md` added; tags `0.9.0` (`500cdc0`) and `0.10.0` (`9573bc8`) pushed, each matching its npm tarball. Test trick: copy files into docs `node_modules/pele-animate`, clear `node_modules/.vite`.
-
-Earlier 2026-10-22: docs-starlight PR #102 (`pele-animate@0.9.0`) merged to `main` = production deploy; repo made public, 0.9.0 on npm.
 
 ---
 
 ## Next Actions
 
-1. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
-2. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-3. docs-starlight is on `^0.10.0` (installed, built). Next release 0.11.0; docs then needs a range bump.
+1. Check step mode on a sequence diagram + phone width; bump docs-starlight to `^0.11.0`.
+2. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
+3. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
+4. docs-starlight is on `^0.10.0`; bump needed for 0.11.0. Next release 0.12.0.
 
 ---
 
