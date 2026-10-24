@@ -9,6 +9,13 @@
   L -->|forward| S
   S -->|response| L
   L -->|reply| C`;
+
+	// A tiny highlighter for the hero source: one pass, so spans never nest. Input is the constant above, escaped anyway.
+	const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	const hl = (line: string) =>
+		esc(line).replace(/^(\s*%%.*)$|("[^"]*")|(\|[^|]*\|)|(--&gt;)|(\bflowchart\b|\bLR\b)|(\b(?:icon|form|h|label)(?=:))/g,
+			(m, c, str, lbl, arrow, kw, key) => `<span class="${c ? 'c' : str ? 's' : lbl ? 'l' : arrow ? 'a' : kw ? 'k' : 'p'}">${m}</span>`);
+	const lines = hero.split('\n').map(hl);
 </script>
 
 <svelte:head>
@@ -34,9 +41,12 @@
 	</section>
 
 	<section class="wrap split">
-		<p class="big num" aria-hidden="true">4,368</p>
+		<figure class="editor">
+			<figcaption>diagram.mmd</figcaption>
+			<pre aria-label="Mermaid source of the diagram above"><code>{#each lines as l}<span class="ln">{@html l}</span>{/each}</code></pre>
+		</figure>
 		<div class="proofs">
-			<div><h2>You set the order</h2><p>Pin steps with one comment line, <code>%% pa: 1=C 2=L 3=S</code>. Without it, the order follows the edges. <a href="/docs/step-order/">Step order</a></p></div>
+			<div><h2>You set the order</h2><p>Pin steps with one comment line, <code>%% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C</code>. Without it, the order follows the edges. <a href="/docs/step-order/">Step order</a></p></div>
 			<div><h2>Readers step through it</h2><p>Previous, play and next buttons, plus Space and the arrow keys. The finished picture is the resting state. <a href="/docs/how-it-works/">How it works</a></p></div>
 			<div><h2>Icons from a big set</h2><p>4,368 line icons in 36 categories, loaded only for the categories you import, with adjustable stroke width. <a href="/docs/icons/">Icons</a></p></div>
 		</div>
@@ -89,8 +99,19 @@ bun add pele-animate pele</code></pre>
 	.stage > div { width: 100%; }
 	.stage :global(.pa-scene svg) { width: min(100%, 52rem); height: auto; flex: none; }
 	.hint { color: var(--color-muted); font-size: var(--text-sm); text-align: center; margin: var(--space-md) auto 0; }
-	.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--gap-columns); align-items: center; margin-top: var(--section-gap-s); }
-	.big { font-family: var(--font-outlier); font-size: clamp(6rem, 14vw, 11rem); line-height: 0.9; letter-spacing: -0.02em; color: var(--color-ink); }
+	.split { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--gap-columns); align-items: center; margin-top: var(--section-gap-s); }
+	.editor { margin: 0; border-radius: var(--radius-card); background: var(--color-sheet); box-shadow: var(--shadow-card); overflow: hidden; min-width: 0; }
+	.editor figcaption { padding: var(--space-sm) var(--space-md); font: 500 var(--text-sm) var(--font-code); color: var(--color-muted); background: var(--color-paper-3); box-shadow: inset 0 -1px 0 var(--color-rule); }
+	.editor pre { margin: 0; padding: var(--space-md) 0; background: none; box-shadow: none; border-radius: 0; font-size: 0.78rem; line-height: 1.75; counter-reset: ln; overflow-x: auto; }
+	.editor code { display: block; width: max-content; min-width: 100%; }
+	.editor :global(.ln) { display: block; padding: 0 var(--space-md) 0 0; color: var(--color-ink-2); white-space: pre; }
+	.editor :global(.ln)::before { counter-increment: ln; content: counter(ln); display: inline-block; width: 3ch; margin-right: var(--space-md); padding-left: var(--space-xs); text-align: right; color: var(--color-muted); opacity: 0.8; user-select: none; }
+	.editor :global(.c) { color: var(--color-muted); font-style: normal; }
+	.editor :global(.k) { color: var(--color-accent); font-weight: 600; }
+	.editor :global(.p) { color: var(--code-key); }
+	.editor :global(.s) { color: var(--code-str); }
+	.editor :global(.l) { color: var(--code-lbl); }
+	.editor :global(.a) { color: var(--color-accent); }
 	.proofs { display: grid; gap: var(--space-lg); }
 	.proofs h2 { font-size: var(--text-title); max-width: none; margin-bottom: var(--space-2xs); }
 	.proofs p { color: var(--color-ink-2); }

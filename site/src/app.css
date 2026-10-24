@@ -17,6 +17,33 @@
 	--bg: var(--color-paper); --bg-soft: var(--color-paper-2); --fg: var(--color-ink); --fg-muted: var(--color-muted);
 	--line: var(--color-rule); --accent: var(--color-accent); --accent-soft: var(--color-accent-soft);
 	--font: var(--font-body); --mono: var(--font-code);
+	/* code samples: warm Bloom tones that hold contrast on the paper and on umber */
+	--code-str: light-dark(#8c5f0e, #d8ac6e); --code-lbl: light-dark(#994352, #ee98a3); --code-key: light-dark(#684b38, #ccad99);
+	/* diagram tones and series (used by .pa-scene below); light-dark() follows color-scheme */
+	--tone1-solid: light-dark(#8c5f0e, #d8ac6e);
+	--tone1-bg: light-dark(#fdf6eb, #261c0f);
+	--tone1-light: light-dark(#f4dab6, #473418);
+	--tone1-surface: light-dark(#faeedf, #382b19);
+	--tone2-solid: light-dark(#994352, #ee98a3);
+	--tone2-bg: light-dark(#fff3f4, #2a191a);
+	--tone2-light: light-dark(#ffd0d4, #4e2d31);
+	--tone2-surface: light-dark(#ffeaec, #3d2629);
+	--tone3-solid: light-dark(#7c4c67, #d8a7c1);
+	--tone3-bg: light-dark(#fef3f9, #281821);
+	--tone3-light: light-dark(#f3d4e4, #4c2c3e);
+	--tone3-surface: light-dark(#fbebf3, #3c2632);
+	--tone4-solid: light-dark(#8f3830, #f1998e);
+	--tone4-bg: light-dark(#fff3f1, #2a1917);
+	--tone4-light: light-dark(#ffd1ca, #4f2e29);
+	--tone4-surface: light-dark(#ffebe7, #3e2724);
+	--series-1: light-dark(#aa4429, #eb9070);
+	--series-2: light-dark(#976712, #e5b568);
+	--series-3: light-dark(#ab505f, #e9979e);
+	--series-4: light-dark(#6b4e3a, #c4a48c);
+	--series-5: light-dark(#8f3830, #dc8d7d);
+	--series-6: light-dark(#8a6d2c, #dcc17f);
+	--series-7: light-dark(#825269, #ca9caf);
+	--series-8: light-dark(#666736, #abb07c);
 	/* diagram scene: hex on purpose, the playground colour pickers read these back as #rrggbb */
 	--scene-bg: #fdfaf6; --scene-solid: #a0422d; --scene-light: #f3d0b9; --scene-surface: #f7ebe0; --scene-fg: #221510;
 }
@@ -91,11 +118,11 @@ pre.shiki { background: var(--color-paper-2) !important; }
 	margin: 1.25rem 0; border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
 
 /* Diagram variation: each live diagram on a docs page takes the next warm Bloom tone (see live.ts); series charts use a warm 8-colour set. light-dark() follows color-scheme. */
-.pa-scene[data-tone='1'] { --scene-solid: light-dark(#8c5f0e, #d8ac6e); --scene-bg: light-dark(#fdf6eb, #261c0f); --scene-light: light-dark(#f4dab6, #473418); --scene-surface: light-dark(#faeedf, #382b19); }
-.pa-scene[data-tone='2'] { --scene-solid: light-dark(#994352, #ee98a3); --scene-bg: light-dark(#fff3f4, #2a191a); --scene-light: light-dark(#ffd0d4, #4e2d31); --scene-surface: light-dark(#ffeaec, #3d2629); }
-.pa-scene[data-tone='3'] { --scene-solid: light-dark(#7c4c67, #d8a7c1); --scene-bg: light-dark(#fef3f9, #281821); --scene-light: light-dark(#f3d4e4, #4c2c3e); --scene-surface: light-dark(#fbebf3, #3c2632); }
-.pa-scene[data-tone='4'] { --scene-solid: light-dark(#8f3830, #f1998e); --scene-bg: light-dark(#fff3f1, #2a1917); --scene-light: light-dark(#ffd1ca, #4f2e29); --scene-surface: light-dark(#ffebe7, #3e2724); }
-.pa-scene { --pele-series-1: light-dark(#aa4429, #eb9070); --pele-series-2: light-dark(#976712, #e5b568); --pele-series-3: light-dark(#ab505f, #e9979e); --pele-series-4: light-dark(#6b4e3a, #c4a48c); --pele-series-5: light-dark(#8f3830, #dc8d7d); --pele-series-6: light-dark(#8a6d2c, #dcc17f); --pele-series-7: light-dark(#825269, #ca9caf); --pele-series-8: light-dark(#666736, #abb07c); }
+.pa-scene[data-tone='1'] { --scene-solid: var(--tone1-solid); --scene-bg: var(--tone1-bg); --scene-light: var(--tone1-light); --scene-surface: var(--tone1-surface); }
+.pa-scene[data-tone='2'] { --scene-solid: var(--tone2-solid); --scene-bg: var(--tone2-bg); --scene-light: var(--tone2-light); --scene-surface: var(--tone2-surface); }
+.pa-scene[data-tone='3'] { --scene-solid: var(--tone3-solid); --scene-bg: var(--tone3-bg); --scene-light: var(--tone3-light); --scene-surface: var(--tone3-surface); }
+.pa-scene[data-tone='4'] { --scene-solid: var(--tone4-solid); --scene-bg: var(--tone4-bg); --scene-light: var(--tone4-light); --scene-surface: var(--tone4-surface); }
+.pa-scene { --pele-series-1: var(--series-1); --pele-series-2: var(--series-2); --pele-series-3: var(--series-3); --pele-series-4: var(--series-4); --pele-series-5: var(--series-5); --pele-series-6: var(--series-6); --pele-series-7: var(--series-7); --pele-series-8: var(--series-8); }
 
 .wrap { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
 

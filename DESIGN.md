@@ -34,17 +34,16 @@ Components use the variables, never raw colors. The old names (`--bg`, `--fg`, `
 
 ## 3. Typography
 
-- **Text and heads:** Ranade (variable, 400/500/600). **One serif moment:** Gambarino, roman, the large "4,368" on the home
-  page only; never a head, never italic. **Code:** Geist Mono Variable (Fontsource).
-- Ranade and Gambarino are Fontshare faces (ITF Free Font License), loaded from the Fontshare CSS API in `site/src/app.html`
+- **Text and heads:** Ranade (variable, 400/500/600). No serif on the site; if one returns, Gambarino, roman, once a page,
+  never a head. **Code:** Geist Mono Variable (Fontsource).
+- Ranade is a Fontshare face (ITF Free Font License), loaded from the Fontshare CSS API in `site/src/app.html`
   (the licence bars redistributing the files through public repositories, so they are not self-hosted).
 - Heads are one weight (600) and one colour; docs prose uses a smaller head scale than the display heads. Docs text 72ch.
 
 ## 4. Layout
 
 - Container 1440px max, 64px gutters (24px, then 16px on phones), no horizontal page scroll at any width.
-- **Home:** the first screen is headline, one sentence, two actions and the live diagram on its grid; then a split (the icon
-  count in the serif beside three proofs), Install, Where it fits, For coding agents.
+- **Home:** the first screen is headline, one sentence, two actions and the live diagram on its grid; then a split (the diagram's Mermaid source in an editor panel beside three proofs), Install, Where it fits, For coding agents.
 - **Docs:** three columns on wide screens (sidebar 15rem, content, table of contents 13rem); under 62rem the sidebar becomes a
   `<details>` menu and the table of contents is dropped.
 - **Header:** a masthead bar on a blur backdrop: name, Docs, Icons, Playground, Changelog, GitHub, npm, theme toggle.
@@ -84,5 +83,5 @@ Plain words, short sentences, no marketing claims that are not measured. Say "st
 ## 10. Do and don't
 
 - Do show code next to the result it produces.
-- Don't add a third bloom, a terracotta field or card, an italic serif, or a glow.
+- Don't add a third bloom, a terracotta field or card, a serif in a head, or a glow.
 - Don't link to pages that do not exist; don't claim anything the build does not measure.
