@@ -9,6 +9,10 @@ may change behavior, so pin a range such as `^0.16.2` and bump it deliberately.
 
 ### Changed
 - Docs: the architecture, state, class and C4 examples now use edge pins, so relationships appear as their own steps.
+- Website: redesigned with a warm paper theme (terracotta accent, Ranade and Geist Mono), light and dark; the live diagram sits on a generated grid on the home page, next to its Mermaid source in an editor panel. The site is now at https://pele-animate.danielkimdev.com/.
+- Website: diagrams on the docs pages take one of five warm tones in turn, and timeline, journey, git graph and Gantt use a warm eight-colour series set.
+- Website playground: the colour controls are collapsed until opened, the diagram starts in the site colours, and the examples menu is styled.
+- Docs and README: the getting-started example is now a five-step round trip (request, load balancer, cloud service, response, reply): `%% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C`.
 
 ## [0.16.2] - 2026-10-24
 

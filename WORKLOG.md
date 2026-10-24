@@ -363,3 +363,19 @@ Checked in a local build (dark theme). Light theme, phone width for the new colo
 ### Status
 
 Checked on class, architecture and state repro cases and the step-order flowchart examples; ER with both directions present untested.
+
+## Unreleased — site redesign (Bloom) and round-trip example
+
+**Date:** 2026-10-25 (work done 2026-10-24 to 25)
+
+### Changes
+
+- Custom domain pele-animate.danielkimdev.com attached to the Pages project (CNAME in the danielkimdev.com zone); links in README, docs and AGENTS now use it.
+- Site redesigned with the Hallmark Bloom theme: `site/src/tokens.css` + `base.css`, rules in `DESIGN.md`. Ranade from the Fontshare CSS API (the licence bars committing the files to a public repo), Geist Mono via Fontsource; Inter and JetBrains Mono removed. Light and dark; Shiki high-contrast themes.
+- Home: Corridor hero with the live diagram on a generated grid; the diagram's Mermaid source in an editor panel (small in-page highlighter); the example is a five-step round trip, also used in getting-started, README, the skill and the playground default.
+- Docs diagrams cycle five warm tones (`data-tone`, set in `live.ts`) and use a warm eight-colour `--pele-series-*` set; all colours are `:root` tokens.
+- Playground: Colors is a collapsed `<details>`, the scene starts in the site colours, the examples `<select>` is styled.
+
+### Status
+
+`pnpm build` (site check) and `pnpm test` pass; sloplint 0 FAIL on the home page, 0 FAIL on the other routes at the last full sweep (waived 39b, 72, 77). Fresh-context finish review not run. Docs and playground not re-checked visually after the last changes. No npm release; next is 0.17.0.
