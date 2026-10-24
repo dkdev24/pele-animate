@@ -255,5 +255,5 @@ Planning only, no code in the repo beyond docs. No npm release since 0.13.0. Ope
 
 ### Status
 
-Committed and pushed; not published to npm (next release 0.14.0). Cloudflare Pages project not created. S3 on hold.
+Committed and pushed; not published to npm (next release 0.14.0). Cloudflare Pages project created by Daniel afterwards (https://pele-animate.pages.dev/, placeholder). S3 on hold.
 

@@ -9,8 +9,8 @@ Status (2026-10-24): **S0, S1 and S2 are done; S3 onward is on hold** until upst
 
 - **S0:** pnpm workspace (`.`, `site`; `npm pack` file list identical before and after the migration), `.node-version`,
   `.github/workflows/ci.yml` (`pnpm test` + `pnpm build`), root `wrangler.toml` (`site/build`), and a placeholder `site/`.
-  **Not done:** the Cloudflare Pages project itself (dashboard step for Daniel: connect the repo, root `/`, build command
-  `pnpm build`, output `site/build`).
+  The Cloudflare Pages project `pele-animate` was created by Daniel (Git integration, root `/`, `pnpm build`, output
+  `site/build`) and serves the placeholder at https://pele-animate.pages.dev/ (verified 2026-10-24). Pushing to `main` now deploys it.
 - **S1:** `types/` wired through `exports`; the 16 `docs/*.md` pages (shipped in npm); README reduced to a quickstart;
   `docs/migrating.md`; `scripts/check-docs.mjs` renders every Mermaid fence and checks icon names. **Not done:** the API-drift
   check (§11) and an outside-developer run of the docs exit criterion.

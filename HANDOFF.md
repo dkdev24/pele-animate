@@ -25,7 +25,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 4. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-5. Daniel: create the Cloudflare Pages project (repo root, `pnpm build`, output `site/build`); reply to kepano/wallabyway threads. Then S3 (SvelteKit site) when upstream answers. Release 0.14.0 = types + docs + skills.
+5. Pages project done (https://pele-animate.pages.dev/, placeholder; push to `main` deploys). Daniel: reply to kepano/wallabyway threads. Then S3 (SvelteKit site) when upstream answers. Release 0.14.0 = types + docs + skills.
 
 ---
 
