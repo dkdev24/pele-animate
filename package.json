@@ -1,6 +1,6 @@
 {
   "name": "pele-animate",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "Animated, illustrated SVG scenes from plain Mermaid code, as a post-processor for Pele.",
   "type": "module",
   "license": "MIT",
@@ -13,10 +13,11 @@
     ".": "./pele-animate.js",
     "./glyphs": "./glyphs.js",
     "./preset-doverunner": "./preset-doverunner.js",
-    "./style.css": "./pele-animate.css"
+    "./style.css": "./pele-animate.css",
+    "./tabler/*": "./tabler/*.js"
   },
-  "files": ["pele-animate.js", "pele-animate.css", "glyphs.js", "preset-doverunner.js", "README.md", "LICENSE"],
-  "sideEffects": ["*.css", "./preset-doverunner.js"],
+  "files": ["pele-animate.js", "pele-animate.css", "glyphs.js", "preset-doverunner.js", "tabler", "THIRD-PARTY-NOTICES.md", "README.md", "LICENSE"],
+  "sideEffects": ["*.css", "./preset-doverunner.js", "./tabler/*.js"],
   "peerDependencies": { "pele": "^1.7.0" },
   "devDependencies": { "pele": "^1.7.0" }
 }

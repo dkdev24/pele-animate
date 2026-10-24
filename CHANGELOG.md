@@ -7,6 +7,17 @@ may change behavior, so pin a range such as `^0.12.0` and bump it deliberately.
 
 ## [Unreleased]
 
+## [0.13.0] - 2026-10-24
+
+Tabler icon packs, and the illustrated glyphs move to a `doverunner-` namespace. Two breaking renames: see Changed.
+### Changed
+- **Breaking:** every illustrated glyph is renamed `doverunner-<name>` (`player` → `doverunner-player`, `lock` → `doverunner-lock`, `bits-a` → `doverunner-bits-a`, and so on, 20 in all) so the plain names belong to the Tabler packs. Update `@{ icon: "..." }` in your sources.
+- **Breaking:** the seven glyphs that lived in `pele-animate/glyphs` moved into `pele-animate/preset-doverunner`; `/glyphs` is now only the registry (`icons`, `registerGlyphs`, `registerTabler`). Import the preset to get any `doverunner-*` glyph.
+
+### Added
+- `icons()` returns a neutral rounded square for unregistered names, instead of Pele's blank icon slot.
+- Tabler Icons packs: `pele-animate/tabler/<category>` (4,368 outline icons in 36 categories, from Tabler Icons 3.49.0, MIT). Stroke width follows the `--pa-stroke` CSS variable. `registerTabler(pack, strokeWidth)` in `/glyphs`; `scripts/build-tabler.mjs` regenerates the packs; license in `THIRD-PARTY-NOTICES.md`.
+
 ## [0.12.0] - 2026-10-24
 
 Edge pins for step order, a step-order review skill, and tidier step controls.
@@ -83,7 +94,8 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.12.0...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.13.0...HEAD
+[0.13.0]: https://github.com/dkdev24/pele-animate/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/dkdev24/pele-animate/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/dkdev24/pele-animate/compare/0.10.0...0.11.0
 [0.10.0]: https://github.com/dkdev24/pele-animate/compare/0.9.0...0.10.0

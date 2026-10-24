@@ -3,31 +3,31 @@
 <style>body{font:16px sans-serif;margin:1rem;color-scheme:light dark}@media(prefers-color-scheme:dark){body{background:#17131f;color:#eee}}pre{margin:0;max-width:640px}</style>
 <pre class="d">flowchart LR
   %% pa: 1=P 2=O 3=D
-  O@{ icon: "server", form: "square", h: 88, label: "OTT service" }
-  P@{ icon: "player", form: "square", h: 88, label: "Player" }
-  D@{ icon: "key", form: "square", h: 88, label: "DRM server" }
+  O@{ icon: "doverunner-server", form: "square", h: 88, label: "OTT service" }
+  P@{ icon: "doverunner-player", form: "square", h: 88, label: "Player" }
+  D@{ icon: "doverunner-key", form: "square", h: 88, label: "DRM server" }
   P <-->|auth token| O
   P <-->|token / license| D</pre>
 <pre class="d">flowchart LR
-  K@{ icon: "package", form: "square", h: 88, label: "Packager" }
-  A@{ icon: "bits-a", form: "square", h: 120, label: "client A segments" }
-  B@{ icon: "bits-b", form: "square", h: 120, label: "client B segments" }
-  PA@{ icon: "player", form: "square", h: 88, label: "Player A" }
-  PB@{ icon: "player", form: "square", h: 88, label: "Player B" }
+  K@{ icon: "doverunner-package", form: "square", h: 88, label: "Packager" }
+  A@{ icon: "doverunner-bits-a", form: "square", h: 120, label: "client A segments" }
+  B@{ icon: "doverunner-bits-b", form: "square", h: 120, label: "client B segments" }
+  PA@{ icon: "doverunner-player", form: "square", h: 88, label: "Player A" }
+  PB@{ icon: "doverunner-player", form: "square", h: 88, label: "Player B" }
   K -->|session 011010| A --> PA
   K -->|session 101101| B --> PB</pre>
 <pre class="d">flowchart LR
-  S@{ icon: "document", form: "square", h: 88, label: "source" }
-  K@{ icon: "package", form: "square", h: 88, label: "package" }
-  T@{ icon: "token", form: "square", h: 88, label: "license token" }
-  L@{ icon: "lock", form: "square", h: 88, label: "encrypted" }
-  DB@{ icon: "database", form: "square", h: 88, label: "key database" }
+  S@{ icon: "doverunner-document", form: "square", h: 88, label: "source" }
+  K@{ icon: "doverunner-package", form: "square", h: 88, label: "package" }
+  T@{ icon: "doverunner-token", form: "square", h: 88, label: "license token" }
+  L@{ icon: "doverunner-lock", form: "square", h: 88, label: "encrypted" }
+  DB@{ icon: "doverunner-database", form: "square", h: 88, label: "key database" }
   S --> K --> L
   DB --> T --> K</pre>
 <pre class="d">flowchart LR
-  A@{ icon: "document", form: "square", h: 88, label: "APK / IPA" }
-  B@{ icon: "shield", form: "square", h: 88, label: "DoveRunner" }
-  C@{ icon: "phone", form: "square", h: 88, label: "Protected app" }
+  A@{ icon: "doverunner-document", form: "square", h: 88, label: "APK / IPA" }
+  B@{ icon: "doverunner-shield", form: "square", h: 88, label: "DoveRunner" }
+  C@{ icon: "doverunner-phone", form: "square", h: 88, label: "Protected app" }
   A --> B --> C</pre>
 <pre class="d">sequenceDiagram
   Player->>OTT: sign in
@@ -38,10 +38,32 @@
   A[Player] --> B{Token ok?}
   B -->|yes| C[License server]
   B -->|no| D[Reject]</pre>
+<pre class="d" id="t0.75" style="--pa-stroke:0.75">flowchart LR
+  %% pa: 1=T 2=A 3=C 4=D
+  T@{ icon: "device-tv", form: "square", h: 88, label: "TV app" }
+  A@{ icon: "api-app", form: "square", h: 88, label: "API" }
+  C@{ icon: "cloud-lock", form: "square", h: 88, label: "License cloud" }
+  D@{ icon: "database-export", form: "square", h: 88, label: "Key store" }
+  T --> A --> C --> D</pre>
+<pre class="d" id="t1.5" style="--pa-stroke:1.5">flowchart LR
+  %% pa: 1=T 2=A 3=C 4=D
+  T@{ icon: "device-tv", form: "square", h: 88, label: "TV app" }
+  A@{ icon: "api-app", form: "square", h: 88, label: "API" }
+  C@{ icon: "cloud-lock", form: "square", h: 88, label: "License cloud" }
+  D@{ icon: "database-export", form: "square", h: 88, label: "Key store" }
+  T --> A --> C --> D</pre>
+<pre class="d" id="t2.25" style="--pa-stroke:2.25">flowchart LR
+  %% pa: 1=T 2=A 3=C 4=D
+  T@{ icon: "device-tv", form: "square", h: 88, label: "TV app" }
+  A@{ icon: "api-app", form: "square", h: 88, label: "API" }
+  C@{ icon: "cloud-lock", form: "square", h: 88, label: "License cloud" }
+  D@{ icon: "database-export", form: "square", h: 88, label: "Key store" }
+  T --> A --> C --> D</pre>
 <script type="module">
 import { mount } from './node_modules/pele/dist/pele.js';
 import { icons } from './glyphs.js';
 import './preset-doverunner.js';
+import './tabler/devices.js'; import './tabler/system.js'; import './tabler/database.js'; import './tabler/development.js';
 import { watch } from './pele-animate.js';
 document.querySelectorAll('pre.d').forEach((el) => { const src = el.textContent; mount(el, src, { icons, onError: console.error }); watch(el, src); });
 </script>

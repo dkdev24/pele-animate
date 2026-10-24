@@ -7,7 +7,7 @@ The source stays valid Mermaid, so GitHub or Obsidian still show a normal diagra
 
 - Nodes appear in order (BFS from the sources, or pinned with a `%% pa:` comment), edges draw in, labels fade in.
 - Hover or focus: tokens travel the edges in sequence. The intro plays once on scroll-in. Click (or Enter) enters step mode: previous / play-pause / next buttons, with Space (play/pause), ←/→ (step) and Esc (leave).
-- `@{ icon: "name" }` nodes become illustrations from a glyph pack. Unknown names fall back to a plain Pele box.
+- `@{ icon: "name" }` nodes become illustrations from a glyph pack. Unknown names get a neutral rounded-square glyph.
 - Sequence diagrams: participant boxes in a row get the tallest height (Pele sizes each to its own text). Group and box titles are bold.
 - Idle state is the finished picture; `prefers-reduced-motion` turns the motion off. Light and dark themes.
 
@@ -59,7 +59,7 @@ npm i pele-animate pele
 import { mount } from 'pele';
 import { watch } from 'pele-animate';
 import { icons } from 'pele-animate/glyphs';
-import 'pele-animate/preset-doverunner'; // optional extra glyphs
+import 'pele-animate/preset-doverunner'; // the illustrated `doverunner-*` glyphs; skip it to use only Tabler packs
 import 'pele-animate/style.css';
 
 for (const el of document.querySelectorAll('pre.mermaid')) {
@@ -74,9 +74,9 @@ Mermaid source:
 ```mermaid
 flowchart LR
   %% pa: 1=P 2=O 3=D
-  P@{ icon: "player", form: "square", h: 88, label: "Player" }
-  O@{ icon: "server", form: "square", h: 88, label: "OTT service" }
-  D@{ icon: "key", form: "square", h: 88, label: "DRM server" }
+  P@{ icon: "doverunner-player", form: "square", h: 88, label: "Player" }
+  O@{ icon: "doverunner-server", form: "square", h: 88, label: "OTT service" }
+  D@{ icon: "doverunner-key", form: "square", h: 88, label: "DRM server" }
   P <-->|auth token| O
   P <-->|token / license| D
 ```
@@ -96,10 +96,27 @@ Sequence diagrams animate actors, then messages in order.
 | `parseOrder(source)` | Read the `%% pa:` pins: `Map(nodeId or 'X>Y' -> level)` |
 | `svg.paSteps` | Set by `animate()`: one array per step, each item `[element, parts that animate in]`. Step mode uses it; read it to check the order |
 | `registerGlyphs(pack, strokeWidth = 1.1)` (`/glyphs`) | Add glyphs: `{ name: '<inner markup of a 24x24 svg>' }`; colors via `--pa-solid` / `--pa-light` |
-| `icons` (`/glyphs`) | Pele `icons` resolver |
+| `icons` (`/glyphs`) | Pele `icons` resolver; unknown names get a neutral rounded square, since Pele ships no icons of its own |
 
-Generic glyphs: `player`, `server`, `key`, `document`, `shield`, `phone`, `cloud`. `preset-doverunner`: `package`, `token`, `lock`,
-`database`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`, `bits-a`, `bits-b`.
+Illustrated glyphs (filled, two-tone, DoveRunner style) come from `pele-animate/preset-doverunner` and are all named `doverunner-<name>`: `player`, `server`, `key`, `document`, `shield`, `phone`, `cloud`, `package`, `token`, `lock`, `database`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`,
+`bits-a`, `bits-b`. Plain names (`server`, `lock`, ...) are Tabler's.
+
+### Tabler icon packs
+
+About 4,300 line icons from [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT), split by Tabler's own categories. Import only what you need:
+
+```js
+import 'pele-animate/tabler/devices';   // also: system, database, development, communication, charts, ...
+```
+
+Then use any name from that category: `A@{ icon: "device-tv", form: "square", h: 88 }`. The illustrated glyphs are prefixed `doverunner-`, so no Tabler name is shadowed.
+Tabler icons are stroke-only, so the stroke width is adjustable: set `--pa-stroke` on the container (default `1.5`; Tabler draws at 2 and
+designs every icon to work at other widths). Categories: see `tabler/` (Brand, Letters, Numbers, Zodiac and Gender are left out).
+Regenerate with `node scripts/build-tabler.mjs <tabler-icons checkout>`. License notice: `THIRD-PARTY-NOTICES.md`.
+
+```css
+.pa-scene { --pa-stroke: 1; }
+```
 
 ## Theme
 

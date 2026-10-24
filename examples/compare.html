@@ -24,9 +24,9 @@ const seq = `sequenceDiagram
   DRM-->>Player: license`;
 const glyphs = `flowchart LR
   %% pa: 1=P 2=O 3=D
-  O@{ icon: "server", form: "square", h: 88, label: "OTT service" }
-  P@{ icon: "player", form: "square", h: 88, label: "Player" }
-  D@{ icon: "key", form: "square", h: 88, label: "DRM server" }
+  O@{ icon: "doverunner-server", form: "square", h: 88, label: "OTT service" }
+  P@{ icon: "doverunner-player", form: "square", h: 88, label: "Player" }
+  D@{ icon: "doverunner-key", form: "square", h: 88, label: "DRM server" }
   P <-->|auth token| O
   P <-->|token / license| D`;
 

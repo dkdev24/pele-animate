@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.12.0** (published to npm 2026-10-24)
+**0.13.0** (published to npm 2026-10-24)
 
 ---
 ## Project Status
@@ -16,9 +16,8 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-24 (later): edge pins `%% pa: 3=A>B` added to `animate()`/`parseOrder()` and the `diagram-step-order` skill (`.claude/skills/`, with `steps.js` probe) released as 0.12.0, plus SVG step-control icons/alignment fix. Used on docs-starlight: 13 of 55 diagrams re-pinned by 3 agents + me, rest reviewed (see docs plan section 6). docs bumped to `^0.12.0` and docs 4.16.0 shipped (2026-10-24) with the reviewed step orders and layouts.
-2026-10-24: 0.11.0 released (npm, tag, GitHub release): step-by-step playback (click → prev/play/next bar, Space/←/→/Esc/✕; `{ controls: false }` = old replay) and README Compare section with animated GIFs (`examples/capture.sh` regenerates). Step mode only browser-checked on flowchart demo.
-
+2026-10-24 (latest): 0.13.0 released: Tabler packs (`pele-animate/tabler/<category>`, `--pa-stroke`), illustrated glyphs renamed `doverunner-<name>` and moved into the preset, `icons()` fallback square. docs-starlight diagrams migrated locally; it must bump to `^0.13.0` before its next push (uncommitted there).
+Earlier: 0.12.0 edge pins + `diagram-step-order` skill; 0.11.0 step mode (see WORKLOG).
 ---
 
 ## Next Actions
@@ -27,7 +26,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 4. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-5. docs-starlight is on `^0.12.0`. Next release 0.13.0.
+5. docs-starlight: bump to `^0.13.0`, build, then push (migrated icon names are in its working tree). Next release 0.14.0.
 
 ---
 
@@ -45,6 +44,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 | `PLAN.md` | Dev plan, phases, risks |
 | `CHANGELOG.md` | Public changelog (add an entry per release; not yet in npm `files`) |
 | `pele-animate.js` / `.css` | Prototype post-processor |
-| `glyphs.js` | Glyph registry + 6 generic glyphs |
-| `preset-doverunner.js` | DRM/FWM/packaging glyph pack |
+| `glyphs.js` | Glyph registry (`icons`, `registerGlyphs`, `registerTabler`); no art; unknown names get a fallback square |
+| `preset-doverunner.js` | 20 illustrated `doverunner-*` glyphs |
+| `tabler/*.js`, `scripts/build-tabler.mjs` | 36 generated Tabler category packs (MIT, notice in `THIRD-PARTY-NOTICES.md`) |
 | `demo.html` | Test page (`python3 -m http.server`, open `/demo.html`) |
