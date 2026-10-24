@@ -3,15 +3,23 @@
 All notable changes to `pele-animate` are recorded here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project stays on `0.x`: minor versions
-may change behavior, so pin a range such as `^0.12.0` and bump it deliberately.
+may change behavior, so pin a range such as `^0.14.0` and bump it deliberately.
 
 ## [Unreleased]
+
+## [0.14.0] - 2026-10-24
+
+Types, documentation and agent skills. No breaking changes.
 
 ### Added
 - TypeScript types (`types/`), wired through `exports`.
 - Documentation in `docs/` (16 pages), shipped in the npm package; the README is now a short quickstart that links to it.
 - Agent skills in `skills/`, shipped in the npm package: `pele-animate` (install, mount, icons, step order, theme, verify in a browser, with a `verify.js` probe) and `diagram-step-order`.
 - `pnpm test` renders every Mermaid example in the docs, skills and README with Pele and checks icon names.
+
+### Changed
+- README is a short quickstart that describes the package as step order, step-by-step playback and icons (not a theme package).
+- The package description on npm says the same.
 
 ## [0.13.0] - 2026-10-24
 
@@ -100,7 +108,8 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.13.0...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.14.0...HEAD
+[0.14.0]: https://github.com/dkdev24/pele-animate/compare/0.13.0...0.14.0
 [0.13.0]: https://github.com/dkdev24/pele-animate/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/dkdev24/pele-animate/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/dkdev24/pele-animate/compare/0.10.0...0.11.0

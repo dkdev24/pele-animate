@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.13.0** (published to npm 2026-10-24)
+**0.14.0** (tagged 2026-10-24; npm publish by Daniel)
 
 ---
 ## Project Status
@@ -16,7 +16,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-24 (latest): 0.13.0 released; docs-starlight migrated and pushed. Then public-site planning (SvelteKit chosen; S3+ on hold for kepano's reply to our upstream issue) and **S0 to S2 built, unreleased**: pnpm workspace + CI + placeholder `site/`, `types/`, 16 `docs/*.md`, `skills/` (pele-animate + diagram-step-order; subagent test passed in a fresh Vite app). Unpublished: next release 0.14.0.
+2026-10-24 (latest): 0.13.0 released; docs-starlight migrated and pushed. Then public-site planning (SvelteKit chosen; S3+ on hold for kepano's reply to our upstream issue) and **S0 to S2 built, unreleased**: pnpm workspace + CI + placeholder `site/`, `types/`, 16 `docs/*.md`, `skills/` (pele-animate + diagram-step-order; subagent test passed in a fresh Vite app). 0.14.0 = these (types, docs, skills).
 ---
 
 ## Next Actions
@@ -25,7 +25,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 4. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-5. Pages project done (https://pele-animate.pages.dev/, placeholder; push to `main` deploys). Daniel: reply to kepano/wallabyway threads. Then S3 (SvelteKit site) when upstream answers. Release 0.14.0 = types + docs + skills.
+5. Pages project done (https://pele-animate.pages.dev/, placeholder; push to `main` deploys). Daniel: reply to kepano/wallabyway threads. Then S3 (SvelteKit site) when upstream answers. Next release 0.15.0.
 
 ---
 

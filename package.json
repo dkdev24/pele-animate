@@ -1,7 +1,7 @@
 {
   "name": "pele-animate",
-  "version": "0.13.0",
-  "description": "Animated, illustrated SVG scenes from plain Mermaid code, as a post-processor for Pele.",
+  "version": "0.14.0",
+  "description": "Step-by-step animated Mermaid diagrams with icons: an unofficial add-on for the Pele renderer.",
   "type": "module",
   "license": "MIT",
   "homepage": "https://github.com/dkdev24/pele-animate#readme",

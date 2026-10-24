@@ -257,3 +257,18 @@ Planning only, no code in the repo beyond docs. No npm release since 0.13.0. Ope
 
 Committed and pushed; not published to npm (next release 0.14.0). Cloudflare Pages project created by Daniel afterwards (https://pele-animate.pages.dev/, placeholder). S3 on hold.
 
+---
+
+## v0.14.0 — Types, docs, agent skills
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `types/` (TypeScript declarations), `docs/` (16 pages) and `skills/` (`pele-animate`, `diagram-step-order`) shipped in the npm package; short README; pnpm workspace, CI, placeholder site on Cloudflare Pages.
+- npm `description` and README now describe it as step order, step playback and icons (not a theme package).
+
+### Status
+
+Tagged and pushed; npm publish and GitHub release follow. Site (S3) on hold pending upstream reply.
+
