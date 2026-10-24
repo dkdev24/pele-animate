@@ -379,3 +379,19 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 ### Status
 
 `pnpm build` (site check) and `pnpm test` pass; sloplint 0 FAIL on the home page, 0 FAIL on the other routes at the last full sweep (waived 39b, 72, 77). Fresh-context finish review not run. Docs and playground not re-checked visually after the last changes. No npm release; next is 0.17.0.
+
+---
+
+## v0.17.0 — remove replay and controls option
+
+**Date:** 2026-10-25
+
+### Changes
+
+- Breaking: `replay()` and `watch(..., { controls: false })` removed; click always enters step mode. Migrating section added.
+- Playground share links are plain URL-encoded (old base64url links no longer open).
+- Cleanup from a ponytail audit: root PNG duplicates, empty `preset-doverunner.d.ts`, repeated slug regex in `build-tabler.mjs`.
+
+### Status
+
+`pnpm test` and `pnpm build` pass.

@@ -68,8 +68,6 @@ Click the diagram, or focus it and press Enter or Space. A small bar appears wit
 | ← | Previous step |
 | Esc | Leave step mode |
 
-Pass `{ controls: false }` as the third argument of `watch()` to turn step mode off; a click then just replays the intro.
-
 ## Checking your order
 
 After `animate()` runs, `svg.paSteps` is one array per step. Print what each step shows:

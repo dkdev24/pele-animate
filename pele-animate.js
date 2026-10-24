@@ -319,8 +319,8 @@ function leaveStep(svg) {
 }
 
 // mount() re-renders on container resize; re-animate each new <svg>, skipping the intro once it has played.
-// Click (or Enter/Space) enters step mode: previous | play/pause | next, Space, ←/→, Esc to leave. `controls: false` keeps click-to-replay.
-export function watch(container, source = '', { controls = true } = {}) {
+// Click (or Enter/Space) enters step mode: previous | play/pause | next, Space, ←/→, Esc to leave.
+export function watch(container, source = '') {
   let played = false;
   let k = -1; // current step; -1 = not in step mode
   let timer = 0;
@@ -401,27 +401,14 @@ export function watch(container, source = '', { controls = true } = {}) {
   new MutationObserver(run).observe(container, { childList: true });
   container.classList.add('pa-scene');
   container.tabIndex = 0;
-  container.title ||= controls ? 'Click to step through' : 'Click to replay';
-  if (!controls) {
-    container.addEventListener('click', () => replay(cur()));
-    container.addEventListener('keydown', (e) => (e.key === 'Enter' || e.key === ' ') && (e.preventDefault(), replay(cur())));
-  } else {
-    container.addEventListener('click', () => k < 0 && enter());
-    container.addEventListener('keydown', (e) => {
-      const key = e.key;
-      if (e.target.closest('button') && (key === 'Enter' || key === ' ')) return; // native button activation
-      if (k < 0) return (key === 'Enter' || key === ' ') && (e.preventDefault(), enter());
-      const act = { ' ': toggle, ArrowRight: () => manual(k + 1), ArrowLeft: () => manual(k - 1), Escape: exit }[key];
-      if (act) { e.preventDefault(); act(); }
-    });
-  }
+  container.title ||= 'Click to step through';
+  container.addEventListener('click', () => k < 0 && enter());
+  container.addEventListener('keydown', (e) => {
+    const key = e.key;
+    if (e.target.closest('button') && (key === 'Enter' || key === ' ')) return; // native button activation
+    if (k < 0) return (key === 'Enter' || key === ' ') && (e.preventDefault(), enter());
+    const act = { ' ': toggle, ArrowRight: () => manual(k + 1), ArrowLeft: () => manual(k - 1), Escape: exit }[key];
+    if (act) { e.preventDefault(); act(); }
+  });
   run();
-}
-
-// Play the intro again (removing pa-in/pa-done restarts the CSS animations).
-export function replay(svg) {
-  if (!svg || reduced()) return;
-  svg.classList.remove('pa-in', 'pa-done');
-  void svg.getBoundingClientRect();
-  svg.classList.add('pa-in');
 }

@@ -3,9 +3,15 @@
 All notable changes to `pele-animate` are recorded here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project stays on `0.x`: minor versions
-may change behavior, so pin a range such as `^0.16.2` and bump it deliberately.
+may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 
 ## [Unreleased]
+
+## [0.17.0] - 2026-10-25
+
+### Removed
+- **Breaking:** `replay()` and the `{ controls: false }` option of `watch()` are gone; a click always enters step mode. See the Migrating page.
+- Website: playground share links now use a plain URL-encoded source, so links made before this change no longer open.
 
 ### Changed
 - Docs: the architecture, state, class and C4 examples now use edge pins, so relationships appear as their own steps.

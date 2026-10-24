@@ -18,7 +18,6 @@
 	] as const;
 	let colors = $state<Record<string, string>>({});
 	let shown = $state<Record<string, string>>({}); // what each picker displays: the override, else the theme's value
-	let controls = $state(true);
 	let width = $state(100);
 	let tab = $state<'edit' | 'preview'>('edit');
 	let error = $state('');
@@ -39,7 +38,7 @@
 
 	// Re-render 250 ms after the last keystroke or control change.
 	$effect(() => {
-		src; controls; ready;
+		src; ready;
 		if (!ready) return;
 		clearTimeout(timer);
 		timer = setTimeout(render, 250);
@@ -61,7 +60,7 @@
 		const el = document.createElement('div'); // a fresh node per render: Pele and watch() keep state on the container
 		host.replaceChildren(el);
 		mount(el, prepare(src), { icons, onError: (e: unknown) => (error = e instanceof Error ? e.message : String(e)) });
-		watch(el, src, { controls });
+		watch(el, src);
 		applyColors();
 	}
 
@@ -146,7 +145,6 @@ watch(el, src);
 				{/each}
 				<button type="button" onclick={() => (colors = {})} disabled={!Object.values(colors).some(Boolean)}>Reset colors</button>
 			</details>
-			<label class="row"><input type="checkbox" bind:checked={controls} /> Step controls (click to step)</label>
 			<div class="btns">
 				<button type="button" onclick={share}>Copy share link</button>
 				<button type="button" onclick={() => copy(src, 'Mermaid copied')}>Copy Mermaid</button>

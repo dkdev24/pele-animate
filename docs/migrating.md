@@ -9,6 +9,10 @@ section: Reference
 
 pele-animate stays on `0.x`: a minor release may break things. Pin a range such as `^0.13.0` and bump it deliberately.
 
+## 0.16 to 0.17
+
+`replay(svg)` and `watch(el, src, { controls: false })` are removed. A click or Enter on a diagram always enters step mode. To restart the intro yourself, remove the `pa-in` and `pa-done` classes from the svg, force a reflow, and add `pa-in` again.
+
 ## 0.12 to 0.13
 
 Two breaking changes.

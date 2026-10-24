@@ -101,7 +101,7 @@ Default order follows the edges. Override with one comment line anywhere in the 
 - `%% pa: 1=A,B 2=C 3=A>B` : `X>Y` pins the edge from X to Y to its own step. **Pin the nodes first.** A two-way edge
   (`A <--> B`) is pinned in the direction you wrote first.
 
-Click or Enter on a diagram starts step mode (prev / play / next; Space, ←, →, Esc). `watch(el, src, { controls: false })` turns that off.
+Click or Enter on a diagram starts step mode (prev / play / next; Space, ←, →, Esc).
 To review the order of existing diagrams against the page text, use the `diagram-step-order` skill.
 
 ## 5. Theme

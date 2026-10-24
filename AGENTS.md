@@ -22,7 +22,7 @@ Dev plan: `PLAN.md`. Owner: Daniel Kim (`dkdev24`). **Public repo and public npm
 - Idle state = finished still frame; honor `prefers-reduced-motion`.
 - pnpm workspace (`.`, `site`); `pnpm test` before committing. Pin `pele`; no new dependencies without need. The package itself is plain ESM, no build step.
 - A breaking change needs a `CHANGELOG.md` entry and a section in `docs/migrating.md`. Keep examples generic.
-- Versioning: stay on 0.x. Next release is 0.17.0; never bump to 1.0.0 until Daniel says so. Consumers on `^0.x` need an explicit range bump per minor.
+- Versioning: stay on 0.x. Next release is 0.18.0; never bump to 1.0.0 until Daniel says so. Consumers on `^0.x` need an explicit range bump per minor.
 - Company boundary: no DoveRunner-internal identifiers in this repo.
 
 ## System Documents

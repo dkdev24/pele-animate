@@ -20,7 +20,6 @@ Two layers, one diagram:
 - `watch(el, src)` is pele-animate's. It marks the container as a scene (class `pa-scene`), animates each SVG Pele renders into
   it, and re-applies after Pele re-draws on resize. The intro is skipped on those re-draws once it has played.
 - `animate(svg, { source })` does one SVG. Use it if you render with Pele yourself and do not want `watch()`.
-- `replay(svg)` plays the intro again.
 
 ## The three kinds of motion
 

@@ -12,7 +12,7 @@
 import { mount } from '../node_modules/pele/dist/pele.js';
 import { icons } from '../glyphs.js';
 import '../tabler/computers.js';
-import { watch, replay } from '../pele-animate.js';
+import { watch } from '../pele-animate.js';
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs';
 
 const flow = `flowchart LR
@@ -41,14 +41,14 @@ for (const [id, src] of [['p1', flow], ['p2', seq]]) mount(document.getElementBy
 for (const [id, src] of [['a1', flow], ['a2', seq], ['a3', glyphs]]) {
   const el = document.getElementById(id);
   mount(el, src, { icons });
-  watch(el, src, { controls: false });
+  watch(el, src);
 }
 
 // Deterministic frames: pause every animation in `el` and seek. Phase 'intro' = draw-in, 'tokens' = hover loop.
 window.start = (id, phase) => {
   const el = document.getElementById(id);
   el.dispatchEvent(new PointerEvent('pointerleave'));
-  if (phase === 'intro') replay(el.querySelector('svg.pele'));
+  if (phase === 'intro') { const v = el.querySelector('svg.pele'); v.classList.remove('pa-in', 'pa-done'); void v.getBoundingClientRect(); v.classList.add('pa-in'); }
   else el.dispatchEvent(new PointerEvent('pointerenter'));
   return el.getAnimations({ subtree: true }).find((a) => !(a instanceof CSSAnimation))?.effect.getTiming().duration / 1000 ?? 0;
 };

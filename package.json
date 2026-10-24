@@ -1,6 +1,6 @@
 {
   "name": "pele-animate",
-  "version": "0.16.2",
+  "version": "0.17.0",
   "description": "Step-by-step animated Mermaid diagrams with icons: an unofficial add-on for the Pele renderer.",
   "type": "module",
   "license": "MIT",
@@ -15,7 +15,7 @@
   "exports": {
     ".": { "types": "./types/index.d.ts", "default": "./pele-animate.js" },
     "./glyphs": { "types": "./types/glyphs.d.ts", "default": "./glyphs.js" },
-    "./preset-doverunner": { "types": "./types/preset-doverunner.d.ts", "default": "./preset-doverunner.js" },
+    "./preset-doverunner": "./preset-doverunner.js",
     "./style.css": "./pele-animate.css",
     "./tabler/*": { "types": "./types/tabler-pack.d.ts", "default": "./tabler/*.js" }
   },
