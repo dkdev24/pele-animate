@@ -272,3 +272,18 @@ Committed and pushed; not published to npm (next release 0.14.0). Cloudflare Pag
 
 Tagged and pushed; npm publish and GitHub release follow. Site (S3) on hold pending upstream reply.
 
+---
+
+## S3 — site shell (unversioned; site deploys on push)
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `site/`: SvelteKit 3 + adapter-static; docs rendered from `../docs`; live diagrams; intro, changelog, RSS, `llms.txt`, `.md` siblings, sitemap, 404; `DESIGN.md`; `site/scripts/check-site.mjs` in `pnpm build`.
+- Gotchas hit: TypeScript 7 breaks SvelteKit's tsconfig loading (pin 6); rest params keep the trailing slash under `trailingSlash: 'always'` (use `[slug]`); `+server.ts` endpoints need their own `prerender = true`.
+
+### Status
+
+Live on pele-animate.pages.dev, verified. Custom domain, `/icons`, `/playground`, e2e tests pending.
+

@@ -5,7 +5,7 @@ developers and coding agents can adopt on any project: proper docs in the repo, 
 playground, and installable agent skills. Modeled on `toonstrip/SITE_DEV_PLAN.md` (same hosting, same
 sibling-site conventions); differences from toonstrip are called out in §4 and §12.
 
-Status (2026-10-24): **S0, S1 and S2 are done; S3 onward is on hold** until upstream answers (§1, §10). What was built:
+Status (2026-10-24): **S0 to S3 are done**; S4 onward waits on Daniel's go (the S3 hold was lifted by Daniel on 2026-10-24 without an upstream reply). What was built:
 
 - **S0:** pnpm workspace (`.`, `site`; `npm pack` file list identical before and after the migration), `.node-version`,
   `.github/workflows/ci.yml` (`pnpm test` + `pnpm build`), root `wrangler.toml` (`site/build`), and a placeholder `site/`.
@@ -16,6 +16,16 @@ Status (2026-10-24): **S0, S1 and S2 are done; S3 onward is on hold** until upst
   check (§11) and an outside-developer run of the docs exit criterion.
 - **S2:** `skills/pele-animate` (with `verify.js` and a generated `references/categories.md`) and `skills/diagram-step-order`, shipped in
   npm. Exit criterion met by a fresh subagent in an empty Vite app using only the installed skill; its feedback was folded in.
+- **S3:** SvelteKit 3 site in `site/` (adapter-static, `prerender`, `trailingSlash: 'always'`): `DESIGN.md`, header/footer, light and
+  dark theme with a toggle, intro page with a live hero diagram, 16 docs pages rendered from `../docs/*.md` (gray-matter, marked,
+  Shiki at build time; sidebar, table of contents, prev/next, edit link), live ```` ```mermaid live ```` fences (Pele and the needed
+  Tabler categories load on demand), `/changelog/` and RSS, `/llms.txt`, `/llms-full.txt`, `/sitemap.xml`, every docs page as `.md`,
+  404. `pnpm build` ends with `site/scripts/check-site.mjs` (broken links, `.md` siblings, agent files, first-load JS budget of
+  130 KB raw with Pele required to load lazily; measured 99 KB). Verified on https://pele-animate.pages.dev/ after the Pages deploy:
+  all pages 200 with correct content types, live diagrams and step counts correct on four docs pages and the home page.
+  **Not done or not tested:** `vite dev`, the Playwright e2e suite (§11), contrast ratios, a real-device phone check (only a 390 px
+  browser viewport), the `/icons` and `/playground` pages (S4, S5), and the custom domain (S7). Sitemap, robots and RSS already
+  point at `pele-animate.danielkimdev.com`, which is not attached yet.
 - Recommended answers in §13 were applied (single-source docs, pnpm, skills in npm, no check CLI, short preset section,
   KO later). Nothing is published to npm yet: the next release is 0.14.0. Nothing here is built. **Framework decided 2026-10-24: SvelteKit 3 (Svelte 5) with
 `adapter-static`**, after spiking SvelteKit and Nuxt 4 + Nuxt Content against Astro; evidence in
