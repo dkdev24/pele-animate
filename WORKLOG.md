@@ -312,3 +312,17 @@ Not yet verified: label-less icon nodes, circle forms, phone width. Consumers on
 ### Status
 
 Verified: docs link opens the diagram, edit re-renders, bad icon warning, parse error inline. Not done: CodeMirror completion and lint of pins, Download SVG, own light/dark toggle (follows the site), tabs at phone width not checked, e2e tests.
+
+## v0.16.0 — more diagram types
+
+**Date:** 2026-10-24
+
+### Changes
+
+- New animated types: `architecture-beta`, `stateDiagram-v2`, `C4Context`, `block-beta`, `classDiagram`, `erDiagram` (flowchart-style BFS; `endpoints()` reads each type's edge-id pattern, `geoEndpoints()` reads state edges from the path geometry), and `timeline`, `journey`, `gitGraph`, `gantt` (`sequentialSteps()`: one step per item in reading order, no pins).
+- CSS: text drawn with `var(--_bg)` on solid fills now uses the panel surface (it was transparent).
+- Playground `/playground` and its docs links (S5) shipped before this release.
+
+### Status
+
+Checked on small examples in dark mode only; light mode, long diagrams, composite states, C4 boundaries, cherry-picks, Korean docs and e2e are untested.

@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.15.0** (published to npm, tagged, GitHub release 2026-10-24; adds `prepare()`)
+**0.16.0** (published 2026-10-24: 10 new diagram types, S5 playground; consumers on `^0.15` need a range bump)
 
 ---
 ## Project Status
@@ -26,7 +26,7 @@ Earlier 2026-10-24: S4 `/icons` + `icons.json`; `prepare()` (Pele sizes an icon 
 1. Refine the `diagram-step-order` skill from the review (layout lessons: `row` wrappers, `TB` vs `LR` siblings, edge declaration order; see docs WORKLOG 2026-10-24).
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
-5. Playground gaps: CodeMirror (icon completion, pin lint), Download SVG (phone-width tabs verified, header overflow fixed); e2e tests for `/icons` and `/playground`. Then S7 (domain, a11y, OG). Still open: kepano/wallabyway replies, custom domain at S7, e2e tests, `vite dev` check. Next release 0.16.0.
+5. Playground gaps: CodeMirror (icon completion, pin lint), Download SVG (phone-width tabs verified, header overflow fixed); e2e tests for `/icons` and `/playground`. Then S7 (domain, a11y, OG). Still open: kepano/wallabyway replies, custom domain at S7, e2e tests, `vite dev` check. Next release 0.17.0.
 
 ---
 
