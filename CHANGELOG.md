@@ -8,6 +8,7 @@ may change behavior, so pin a range such as `^0.14.0` and bump it deliberately.
 ## [Unreleased]
 
 ### Added
+- `prepare(source)`: pads icon-node labels narrower than `h` so Pele's layout box is as wide as the drawn icon. Without it, edge ends and arrowheads land under the icon. Use `mount(el, prepare(src), { icons })`.
 - Website: an icon browser at `/icons/` (search by name and tag, category chips, stroke-width slider, click to copy an `@{ icon }` snippet and the import line) and `/icons.json` (`{ version, icons: [{ name, category, tags }] }`) for agents.
 
 ### Changed

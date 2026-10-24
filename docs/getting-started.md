@@ -30,14 +30,14 @@ Put the Mermaid source in an element, then mount it with Pele and hand it to `wa
 
 ```js
 import { mount } from 'pele';
-import { watch } from 'pele-animate';
+import { watch, prepare } from 'pele-animate';
 import { icons } from 'pele-animate/glyphs';
 import 'pele-animate/tabler/computers'; // icons: one Tabler category, import as many as you need
 import 'pele-animate/style.css';
 
 const el = document.querySelector('pre.mermaid');
 const src = el.textContent;
-mount(el, src, { icons }); // Pele draws the SVG
+mount(el, prepare(src), { icons }); // Pele draws the SVG
 watch(el, src);            // pele-animate animates it, and re-applies when Pele re-lays-out on resize
 ```
 

@@ -13,14 +13,14 @@ rendered.** Load them with dynamic `import()` inside the framework's mounted hoo
 The shape is always:
 
 ```js
-const [{ mount }, { watch }, { icons }] = await Promise.all([
+const [{ mount }, { watch, prepare }, { icons }] = await Promise.all([
   import('pele'),
   import('pele-animate'),
   import('pele-animate/glyphs'),
   import('pele-animate/tabler/computers'), // your icon categories
   import('pele-animate/style.css'),
 ]);
-mount(el, src, { icons });
+mount(el, prepare(src), { icons });
 watch(el, src);
 ```
 
@@ -49,13 +49,13 @@ Notes for all of them:
 <script>
   // runs in the browser only
   import { mount } from 'pele';
-  import { watch } from 'pele-animate';
+  import { watch, prepare } from 'pele-animate';
   import { icons } from 'pele-animate/glyphs';
   import 'pele-animate/tabler/computers';
   import 'pele-animate/style.css';
   document.querySelectorAll('pre.mermaid').forEach((el) => {
     const src = el.textContent ?? '';
-    mount(el as HTMLElement, src, { icons });
+    mount(el as HTMLElement, prepare(src), { icons });
     watch(el as HTMLElement, src);
   });
 </script>
@@ -69,10 +69,10 @@ Notes for all of them:
   let el;
   const src = 'flowchart LR\n  A --> B';
   onMount(async () => {
-    const [{ mount }, { watch }, { icons }] = await Promise.all([
+    const [{ mount }, { watch, prepare }, { icons }] = await Promise.all([
       import('pele'), import('pele-animate'), import('pele-animate/glyphs'), import('pele-animate/style.css'),
     ]);
-    mount(el, src, { icons });
+    mount(el, prepare(src), { icons });
     watch(el, src);
   });
 </script>

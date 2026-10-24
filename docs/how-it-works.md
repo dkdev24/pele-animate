@@ -16,7 +16,7 @@ Two layers, one diagram:
 
 ## The calls
 
-- `mount(el, src, { icons })` is Pele's. The `icons` option is how glyphs get in (see [icons](./icons.md)).
+- `mount(el, prepare(src), { icons })` is Pele's. The `icons` option is how glyphs get in (see [icons](./icons.md)).
 - `watch(el, src)` is pele-animate's. It marks the container as a scene (class `pa-scene`), animates each SVG Pele renders into
   it, and re-applies after Pele re-draws on resize. The intro is skipped on those re-draws once it has played.
 - `animate(svg, { source })` does one SVG. Use it if you render with Pele yourself and do not want `watch()`.

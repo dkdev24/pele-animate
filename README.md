@@ -35,14 +35,14 @@ bun add pele-animate pele
 
 ```js
 import { mount } from 'pele';
-import { watch } from 'pele-animate';
+import { watch, prepare } from 'pele-animate';
 import { icons } from 'pele-animate/glyphs';
 import 'pele-animate/tabler/computers'; // one Tabler icon category; import as many as you need
 import 'pele-animate/style.css';
 
 for (const el of document.querySelectorAll('pre.mermaid')) {
   const src = el.textContent;
-  mount(el, src, { icons });
+  mount(el, prepare(src), { icons });
   watch(el, src); // re-applies after Pele re-lays-out on resize
 }
 ```

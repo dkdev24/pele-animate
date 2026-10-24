@@ -77,6 +77,26 @@ function equalizeActors(svg) {
   }
 }
 
+// Pele sizes an icon node's layout box from its label alone but draws the icon at `h`, so a label narrower than the icon puts
+// the edge ends (and arrowheads) under the icon. Pad such labels with non-breaking spaces so the box is at least `h` wide.
+// Use as: mount(el, prepare(src), { icons }); keep passing the original `src` to watch().
+const NBSP = '\u00a0';
+const WJ = '\u2060'; // zero-width, not whitespace: keeps Pele from trimming the padding
+export function prepare(source = '') {
+  return source.replace(/@\{([^}]*)\}/g, (all, body) => {
+    const h = +/\bh:\s*(\d+)/.exec(body)?.[1];
+    if (!h) return all;
+    const label = /\blabel:\s*"([^"]*)"/.exec(body)?.[1] ?? '';
+    // ponytail: a character counts as ~7 px (a space too); a real measurer would be exact. Over-padding only widens the gap.
+    const need = Math.ceil(h / 7) - label.length;
+    if (need <= 0) return all;
+    const pad = NBSP.repeat(Math.ceil(need / 2));
+    const next = `label: "${WJ}${pad}${label}${pad}${WJ}"`;
+    return `@{${/\blabel:/.test(body) ? body.replace(/\blabel:\s*"[^"]*"/, next) : `${body.replace(/\s*$/, '')}, ${next} `}}`;
+  });
+}
+
+
 export function animate(svg, { hover = svg, source = '' } = {}) {
   fitGlyphs(svg);
   equalizeActors(svg);

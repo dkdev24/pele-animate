@@ -4,7 +4,7 @@ const tabler = import.meta.glob('../../../tabler/*.js');
 export async function mountLive(root: HTMLElement, categories: string[]) {
 	const els = root.querySelectorAll<HTMLElement>('.live');
 	if (!els.length) return;
-	const [{ mount }, { watch }, { icons }] = await Promise.all([
+	const [{ mount }, { watch, prepare }, { icons }] = await Promise.all([
 		import('pele'),
 		import('pele-animate'),
 		import('pele-animate/glyphs'),
@@ -15,7 +15,7 @@ export async function mountLive(root: HTMLElement, categories: string[]) {
 		if (el.dataset.mounted) continue;
 		el.dataset.mounted = '1';
 		const src = el.dataset.src ?? '';
-		mount(el, src, { icons, onError: (e: unknown) => console.error('pele', e) });
+		mount(el, prepare(src), { icons, onError: (e: unknown) => console.error('pele', e) });
 		watch(el, src);
 	}
 }

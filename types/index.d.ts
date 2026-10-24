@@ -27,6 +27,8 @@ export function parseOrder(source?: string): Map<string, number>;
 export function animate(svg: SVGSVGElement, options?: AnimateOptions): void;
 
 /** Animate every svg Pele renders into `container`, re-applying after Pele re-lays-out on resize. */
+/** Pad icon-node labels narrower than `h` so Pele's layout box is at least as wide as the drawn icon. Use as `mount(el, prepare(src), { icons })`; pass the original `src` to `watch()`. */
+export function prepare(source?: string): string;
 export function watch(container: HTMLElement, source?: string, options?: WatchOptions): void;
 
 /** Play the intro again. */

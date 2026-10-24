@@ -30,12 +30,12 @@ npm i pele-animate pele        # or pnpm / yarn / bun; pele is a peer dependency
 ## 2. Mount (client side)
 
 ```js
-const [{ mount }, { watch }, { icons }] = await Promise.all([
+const [{ mount }, { watch, prepare }, { icons }] = await Promise.all([
   import('pele'), import('pele-animate'), import('pele-animate/glyphs'),
   import('pele-animate/tabler/computers'),   // one import per icon category you use
   import('pele-animate/style.css'),
 ]);
-mount(el, src, { icons });   // Pele draws the SVG from the Mermaid text in `src`
+mount(el, prepare(src), { icons });   // Pele draws the SVG from the Mermaid text in `src`
 watch(el, src);              // pele-animate animates it (also on resize)
 ```
 
