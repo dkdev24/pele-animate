@@ -61,7 +61,7 @@ Brand, Letters, Numbers, Zodiac and Gender are not included. Counts are for Tabl
 
 Do not guess names. Look them up:
 
-- The [icon browser](https://pele-animate.pages.dev/icons/) searches names and tags and copies a ready snippet; the same list is [icons.json](https://pele-animate.pages.dev/icons.json).
+- The [icon browser](https://pele-animate.danielkimdev.com/icons/) searches names and tags and copies a ready snippet; the same list is [icons.json](https://pele-animate.danielkimdev.com/icons.json).
 - Tabler's own site, [tabler.io/icons](https://tabler.io/icons), lists names and categories (use the outline style).
 - In your project: `node_modules/pele-animate/tabler/<category>.js` lists every name in that category as an object key.
 - Names that exist in more than one place are not a problem: Tabler names are plain (`server`, `lock`), `doverunner-*` names are prefixed.

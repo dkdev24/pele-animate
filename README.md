@@ -9,7 +9,7 @@ step through it, and nodes can carry icons. A small post-processor for [Pele](ht
 which renders the Mermaid; this adds the step order, the playback and the icons. It is not a theme package.
 Unofficial add-on; not affiliated with or endorsed by the Pele or Obsidian teams.
 
-**[Website](https://pele-animate.pages.dev/) · [Docs](docs/getting-started.md) · [npm](https://www.npmjs.com/package/pele-animate) · [Changelog](CHANGELOG.md)**
+**[Website](https://pele-animate.danielkimdev.com/) · [Docs](docs/getting-started.md) · [npm](https://www.npmjs.com/package/pele-animate) · [Changelog](CHANGELOG.md)**
 
 <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a3.gif" width="560" alt="Animated scene with Tabler icons: a request, a load balancer and a cloud service">
 
