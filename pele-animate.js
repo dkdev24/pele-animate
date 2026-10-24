@@ -6,7 +6,8 @@ const MAX_INTRO = 3; // a long diagram squeezes its steps so the intro never run
 const TOKEN = 0.5; // seconds a token takes to cross an edge
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// `%% pa: 1=A,B 2=C` pins nodes to steps (1-based); returns Map(nodeId -> level). Everything else keeps its BFS level.
+// `%% pa: 1=A,B 2=C 3=A>B` pins nodes to steps (1-based); `X>Y` pins the edge from X to Y. Returns Map(nodeId or 'X>Y' -> level).
+// Everything else keeps its BFS level.
 export function parseOrder(source = '') {
   const m = source.match(/^\s*%%\s*pa:\s*(.+)$/m);
   const levels = new Map();
@@ -103,8 +104,11 @@ export function animate(svg, { hover = svg, source = '' } = {}) {
     // Start after the source is up, but never so early that the arrow lands before its target appears (pinned steps).
     edges.forEach((e, i) => {
       const [s, d] = pairs[i] ?? [];
-      step.set(e, Math.max(level.get(s) ?? 0, level.get(d) ?? 0));
-      times.set(e, Math.max((level.get(s) ?? 0) * u + 0.3 * k, (level.get(d) ?? 0) * u - 0.5 * k));
+      const pin = level.get(`${s}>${d}`); // edge pinned to a step: starts with that step, once its source is up
+      step.set(e, pin ?? Math.max(level.get(s) ?? 0, level.get(d) ?? 0));
+      times.set(e, pin !== undefined
+        ? Math.max(pin * u, (level.get(s) ?? 0) * u + 0.3 * k)
+        : Math.max((level.get(s) ?? 0) * u + 0.3 * k, (level.get(d) ?? 0) * u - 0.5 * k));
     });
   }
 
@@ -169,6 +173,15 @@ export function animate(svg, { hover = svg, source = '' } = {}) {
 }
 
 const STEP_MS = 1200; // autoplay pace in step mode
+// Control icons are SVG, not text glyphs: glyphs like ‹ and ▶ sit at different heights in every font.
+const icon = (d, fill) => `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" ${fill ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"'}>${d}</svg>`;
+const ICON = {
+  prev: icon('<path d="M15 5l-7 7 7 7"/>'),
+  next: icon('<path d="M9 5l7 7-7 7"/>'),
+  play: icon('<path d="M8 5v14l11-7z"/>', 1),
+  pause: icon('<path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>', 1),
+  exit: icon('<path d="M6 6l12 12M18 6L6 18"/>'),
+};
 
 // Show steps 0..k and hide the rest; `pop` animates the elements of step k.
 function showStep(svg, k, pop) {
@@ -197,17 +210,18 @@ export function watch(container, source = '', { controls = true } = {}) {
   bar.setAttribute('role', 'toolbar');
   bar.setAttribute('aria-label', 'Step through the diagram');
   bar.title = ''; // an empty title stops the container's tooltip showing through the gaps
-  bar.innerHTML = '<button type="button" data-a="prev" aria-label="Previous step" title="Previous step (\u2190)">\u2039</button>'
+  bar.innerHTML = '<button type="button" data-a="prev" aria-label="Previous step" title="Previous step (\u2190)">' + ICON.prev + '</button>'
     + '<button type="button" data-a="play"></button>'
-    + '<button type="button" data-a="next" aria-label="Next step" title="Next step (\u2192)">\u203A</button>'
+    + '<button type="button" data-a="next" aria-label="Next step" title="Next step (\u2192)">' + ICON.next + '</button>'
     + '<span class="pa-count" aria-live="polite" title="Current step"></span>'
-    + '<button type="button" data-a="exit" aria-label="Exit step mode" title="Exit step mode (Esc)">\u2715\uFE0E</button>';
+    + '<button type="button" data-a="exit" aria-label="Exit step mode" title="Exit step mode (Esc)">' + ICON.exit + '</button>';
   const btn = (a) => bar.querySelector(`[data-a=${a}]`);
   const last = () => (cur()?.paSteps?.length ?? 1) - 1;
   const ui = () => {
-    btn('prev').disabled = k <= 0;
-    btn('next').disabled = k >= last();
-    btn('play').textContent = timer ? '\u275A\u275A' : '\u25B6\uFE0E';
+    // aria-disabled, not `disabled`: a disabled button passes hover to the container, whose tooltip then shows over it
+    btn('prev').setAttribute('aria-disabled', String(k <= 0));
+    btn('next').setAttribute('aria-disabled', String(k >= last()));
+    btn('play').innerHTML = timer ? ICON.pause : ICON.play;
     const label = timer ? 'Pause (Space)' : 'Play (Space)';
     btn('play').setAttribute('aria-label', label);
     btn('play').title = label;
@@ -251,7 +265,8 @@ export function watch(container, source = '', { controls = true } = {}) {
   const actions = { prev: () => manual(k - 1), next: () => manual(k + 1), play: toggle, exit };
   bar.addEventListener('click', (e) => {
     e.stopPropagation(); // else the container's click would re-enter step mode right after Exit
-    actions[e.target.closest('button')?.dataset.a]?.();
+    const b = e.target.closest('button');
+    if (b?.getAttribute('aria-disabled') !== 'true') actions[b?.dataset.a]?.();
   });
 
   const run = () => {

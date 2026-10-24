@@ -190,3 +190,19 @@ Published to npm; docs-starlight installed it (`^0.10.0`).
 ### Status
 
 Published to npm and GitHub release. docs-starlight bumped to `^0.11.0` (`29b0133`, pushed to main).
+
+---
+
+## v0.12.0 — Edge pins, step-order skill
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `%% pa: 3=A>B` pins the edge from A to B to a step (`parseOrder` returns `'X>Y'` keys; `animate()` uses them for intro timing and step mode). `svg.paSteps` documented.
+- `.claude/skills/diagram-step-order/` (`SKILL.md`, `steps.js`): method for reviewing diagram step order against page text. Repo only, not in the npm `files`.
+- Step controls: SVG icons and a host-margin reset so the buttons align; previous/next use `aria-disabled` so their own tooltip shows.
+
+### Status
+
+Published to npm and GitHub release; docs-starlight bumped to `^0.12.0`.

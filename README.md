@@ -82,7 +82,9 @@ flowchart LR
 ```
 
 `form: "square", h: 88` makes a large frameless glyph; leave both out for a small icon in a frame.
-`%% pa: 1=P 2=O 3=D` pins nodes to steps (optional). Sequence diagrams animate actors, then messages in order.
+`%% pa: 1=P 2=O 3=D` pins nodes to steps (optional). `X>Y` pins the edge from X to Y, so an edge between nodes that are
+already visible can have its own step: `%% pa: 1=A,B 2=C,B>C 3=C>B`. Pin the nodes first; an edge pinned before its target appears lands early.
+Sequence diagrams animate actors, then messages in order.
 
 ## API
 
@@ -91,7 +93,8 @@ flowchart LR
 | `watch(container, source?)` | Animate the SVG inside `container` (and every re-render of it); adds the scene panel and step mode (click / Enter); pass `{ controls: false }` as a third argument for click-to-replay instead |
 | `animate(svg, { hover, source })` | Animate one SVG; you handle re-renders |
 | `replay(svg)` | Play the intro again |
-| `parseOrder(source)` | Read the `%% pa:` pins |
+| `parseOrder(source)` | Read the `%% pa:` pins: `Map(nodeId or 'X>Y' -> level)` |
+| `svg.paSteps` | Set by `animate()`: one array per step, each item `[element, parts that animate in]`. Step mode uses it; read it to check the order |
 | `registerGlyphs(pack, strokeWidth = 1.1)` (`/glyphs`) | Add glyphs: `{ name: '<inner markup of a 24x24 svg>' }`; colors via `--pa-solid` / `--pa-light` |
 | `icons` (`/glyphs`) | Pele `icons` resolver |
 

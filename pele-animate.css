@@ -58,8 +58,9 @@
 .pa-scene.pa-stepping { flex-direction: column; align-items: center; gap: .75rem; }
 .pa-controls { display: flex; align-items: center; gap: .125rem; padding: .25rem; border-radius: 999px; cursor: default;
   background: var(--pele-surface); color: var(--pele-fg); border: 1px solid var(--pele-border); font: 500 .8rem/1 system-ui, sans-serif; }
-.pa-controls button { width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 50%; background: none; color: inherit; font: inherit; font-size: 1rem; cursor: pointer; }
-.pa-controls button:hover:not(:disabled) { background: var(--pele-surface-alt); }
-.pa-controls button:disabled { opacity: .35; cursor: default; }
+.pa-scene .pa-controls > * { margin: 0; } /* host sites often add sibling margins (e.g. prose `* + *` rules) */
+.pa-controls button { display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 50%; background: none; color: inherit; font: inherit; font-size: 1rem; cursor: pointer; }
+.pa-controls button:hover:not([aria-disabled=true]) { background: var(--pele-surface-alt); }
+.pa-controls button[aria-disabled=true] { opacity: .35; cursor: default; }
 .pa-controls button:focus-visible { outline: 2px solid var(--pa-solid); }
-.pa-count { min-width: 4ch; padding: 0 .5rem; text-align: center; font-variant-numeric: tabular-nums; }
+.pa-count { min-width: 4ch; line-height: 2rem; padding: 0 .5rem; text-align: center; font-variant-numeric: tabular-nums; }

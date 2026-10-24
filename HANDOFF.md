@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.11.0** (published to npm 2026-10-24)
+**0.12.0** (published to npm 2026-10-24)
 
 ---
 ## Project Status
@@ -16,18 +16,18 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
+2026-10-24 (later): edge pins `%% pa: 3=A>B` added to `animate()`/`parseOrder()` and the `diagram-step-order` skill (`.claude/skills/`, with `steps.js` probe) released as 0.12.0, plus SVG step-control icons/alignment fix. Used on docs-starlight: 13 of 55 diagrams re-pinned by 3 agents + me, rest reviewed (see docs plan section 6). docs bumped to `^0.12.0`; its diagram pin edits (13 diagrams) are still uncommitted pending Daniel's review.
 2026-10-24: 0.11.0 released (npm, tag, GitHub release): step-by-step playback (click → prev/play/next bar, Space/←/→/Esc/✕; `{ controls: false }` = old replay) and README Compare section with animated GIFs (`examples/capture.sh` regenerates). Step mode only browser-checked on flowchart demo.
-
-2026-10-22 (later): 0.10.0 published (glyphs `cloud`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`; `animate()` equalizes sequence participant box heights; bold titles). Public `CHANGELOG.md` added; tags `0.9.0` (`500cdc0`) and `0.10.0` (`9573bc8`) pushed, each matching its npm tarball. Test trick: copy files into docs `node_modules/pele-animate`, clear `node_modules/.vite`.
 
 ---
 
 ## Next Actions
 
-1. Check step mode on a sequence diagram + phone width; check the live docs step mode.
-2. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
-3. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-4. docs-starlight is on `^0.11.0` (pushed to main 2026-10-24, `29b0133`). Next release 0.12.0.
+1. After Daniel's review of docs section 6, commit the docs pins; refine the skill from what the review finds.
+2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
+3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
+4. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
+5. docs-starlight is on `^0.12.0`. Next release 0.13.0.
 
 ---
 

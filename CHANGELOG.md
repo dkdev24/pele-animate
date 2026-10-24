@@ -3,9 +3,25 @@
 All notable changes to `pele-animate` are recorded here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project stays on `0.x`: minor versions
-may change behavior, so pin a range such as `^0.11.0` and bump it deliberately.
+may change behavior, so pin a range such as `^0.12.0` and bump it deliberately.
 
 ## [Unreleased]
+
+## [0.12.0] - 2026-10-24
+
+Edge pins for step order, a step-order review skill, and tidier step controls.
+### Added
+
+- Edge pins: `%% pa: 3=A>B` pins the edge from A to B to step 3, so a reply between two visible nodes can play on its own step
+  (the intro timing and step mode both follow it).
+- `svg.paSteps` is documented: the steps `animate()` builds, one array per step.
+- A `diagram-step-order` agent skill (`.claude/skills/`, with a `steps.js` probe) for reviewing and fixing step order against the page text. It is in the repo, not in the npm package.
+
+### Fixed
+
+- Step controls: the icons are SVG, so previous, play/pause, next and close line up vertically (text glyphs sat at different heights), and
+  host-page sibling margins no longer push buttons down. Previous/next use `aria-disabled` instead of `disabled`, so hovering them at
+  the first or last step shows their own tooltip rather than the container's.
 
 ## [0.11.0] - 2026-10-24
 
@@ -67,7 +83,8 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.11.0...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.12.0...HEAD
+[0.12.0]: https://github.com/dkdev24/pele-animate/compare/0.11.0...0.12.0
 [0.11.0]: https://github.com/dkdev24/pele-animate/compare/0.10.0...0.11.0
 [0.10.0]: https://github.com/dkdev24/pele-animate/compare/0.9.0...0.10.0
 [0.9.0]: https://github.com/dkdev24/pele-animate/releases/tag/0.9.0
