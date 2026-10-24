@@ -7,7 +7,7 @@ section: Start
 
 # Diagram types
 
-pele-animate supports **flowcharts**, **sequence diagrams**, **architecture diagrams** and **state diagrams** and **C4 context diagrams**. Pele renders other diagram types too, but they are outside what
+pele-animate supports **flowcharts**, **sequence diagrams**, **architecture diagrams** and **state diagrams** and **C4 context diagrams** and **block diagrams**. Pele renders other diagram types too, but they are outside what
 pele-animate is built for.
 
 ## Flowcharts
@@ -97,8 +97,25 @@ C4Context
 Pele lays C4 diagrams out in rows, so a long label between two boxes in the same row can leave no room for the arrowhead:
 keep `Rel` labels short. Only `C4Context` has been checked; the other C4 types and boundaries are untested. C4 shapes take no icons.
 
+## Block diagrams
+
+`block-beta`: blocks appear in step order and each arrow draws from its source block. Pins use the block ids.
+
+```mermaid live
+block-beta
+  columns 3
+  %% pa: 1=client 2=server 3=db
+  client["Client"] space server["Server"]
+  space space db[("Database")]
+  client --> server
+  server --> db
+```
+
+Pele routes arrows between blocks in straight lines or short bends, so place linked blocks in the same row or column; a diagonal
+neighbour can give a bent arrow that runs along another one. Block diagrams take no icons.
+
 ## Everything else
 
 Other Mermaid types (ER, class, gantt, pie and the rest) render through Pele as usual. pele-animate is not designed for
 them and its behavior on them is untested, so use plain Pele for those. Step mode has been checked in a browser on
-flowcharts, architecture, state and C4 context diagrams only; sequence diagrams have not been checked the same way yet.
+flowcharts, architecture, state, C4 context and block diagrams only; sequence diagrams have not been checked the same way yet.
