@@ -23,12 +23,12 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Next Actions
 
-0. Check live docs.doverunner.com after the `0cdd7b8` deploy (short-label icon diagrams: `fwm-concepts`, `ffmpeg-filter`; layouts may shift).
+0. Live docs.doverunner.com checked 2026-10-24 after `0cdd7b8`: `prepare()` active, `fwm-concepts` and `ffmpeg-filter` show arrowheads, no edge ends inside icons.
 1. Refine the `diagram-step-order` skill from the review (layout lessons: `row` wrappers, `TB` vs `LR` siblings, edge declaration order; see docs WORKLOG 2026-10-24).
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 4. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-5. Playground gaps: CodeMirror (icon completion, pin lint), Download SVG, phone-width tabs check; e2e tests for `/icons` and `/playground`. Then S7 (domain, a11y, OG). Still open: kepano/wallabyway replies, custom domain at S7, e2e tests, `vite dev` check. Next release 0.16.0.
+5. Playground gaps: CodeMirror (icon completion, pin lint), Download SVG (phone-width tabs verified, header overflow fixed); e2e tests for `/icons` and `/playground`. Then S7 (domain, a11y, OG). Still open: kepano/wallabyway replies, custom domain at S7, e2e tests, `vite dev` check. Next release 0.16.0.
 
 ---
 
