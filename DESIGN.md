@@ -36,8 +36,8 @@ Components use the variables, never raw colors. The old names (`--bg`, `--fg`, `
 
 - **Text and heads:** Ranade (variable, 400/500/600). **One serif moment:** Gambarino, roman, the large "4,368" on the home
   page only; never a head, never italic. **Code:** Geist Mono Variable (Fontsource).
-- Ranade and Gambarino are Fontshare faces (ITF Free Font License): self-hosted from `site/static/fonts/`, **not committed**
-  (the licence bars redistribution through public repositories). See `site/static/fonts/README.md`.
+- Ranade and Gambarino are Fontshare faces (ITF Free Font License), loaded from the Fontshare CSS API in `site/src/app.html`
+  (the licence bars redistributing the files through public repositories, so they are not self-hosted).
 - Heads are one weight (600) and one colour; docs prose uses a smaller head scale than the display heads. Docs text 72ch.
 
 ## 4. Layout
