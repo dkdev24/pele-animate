@@ -44,7 +44,7 @@
 }
 :root[data-theme='light'] { color-scheme: light; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; accent-color: var(--color-accent); }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body { min-height: 100dvh; font-size: 1.0625rem; font-weight: 400; }
 /* two fixed blooms, never animated; the paper grain sits over the ground */

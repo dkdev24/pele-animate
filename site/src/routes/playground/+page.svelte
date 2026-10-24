@@ -139,13 +139,13 @@ watch(el, src);
 			</select>
 			<label>Stroke <input type="range" min="0.5" max="2.5" step="0.1" bind:value={stroke} /> <output>{stroke.toFixed(1)}</output></label>
 			<label>Preview width <input type="range" min="30" max="100" step="5" bind:value={width} /> <output>{width}%</output></label>
-			<fieldset class="colors">
-				<legend>Colors</legend>
+			<details class="colors">
+				<summary>Colors</summary>
 				{#each COLORS as c}
 					<label class="row"><input type="color" value={shown[c.key] ?? '#000000'} oninput={(e) => (colors[c.key] = e.currentTarget.value)} /> {c.label}</label>
 				{/each}
 				<button type="button" onclick={() => (colors = {})} disabled={!Object.values(colors).some(Boolean)}>Reset colors</button>
-			</fieldset>
+			</details>
 			<label class="row"><input type="checkbox" bind:checked={controls} /> Step controls (click to step)</label>
 			<div class="btns">
 				<button type="button" onclick={share}>Copy share link</button>
@@ -171,7 +171,12 @@ watch(el, src);
 	h1 { font-size: clamp(2.25rem, 2vw + 1.5rem, 3.25rem); max-width: none; }
 	button, select { font: 500 0.92rem var(--font); color: var(--color-ink); background: var(--color-sheet); border: 0; border-radius: var(--radius-pill); padding: 0.55rem 1.1rem; min-height: 44px; cursor: pointer; box-shadow: 0 0 0 1px var(--shade-1), inset 0 1px 0 var(--hi); transition: transform var(--dur-micro) var(--ease-out); }
 	button:active { transform: translateY(1px); }
-	select { box-shadow: 0 0 0 1px var(--color-muted); }
+	select { appearance: none; -webkit-appearance: none; width: 100%; padding-right: 2.6rem; box-shadow: 0 0 0 1px var(--color-muted); text-overflow: ellipsis;
+		background-image: linear-gradient(45deg, transparent 50%, var(--color-ink) 50%), linear-gradient(135deg, var(--color-ink) 50%, transparent 50%);
+		background-position: calc(100% - 1.35rem) 50%, calc(100% - 1.0rem) 50%; background-size: 0.35rem 0.35rem; background-repeat: no-repeat; }
+	select:hover { box-shadow: 0 0 0 1px var(--color-ink); }
+	select option, select optgroup { background: var(--color-sheet); color: var(--color-ink); font: 400 0.95rem var(--font); }
+	select optgroup { font-weight: 600; font-style: normal; color: var(--color-muted); }
 	.tabs { display: none; gap: 0.4rem; margin: 0.75rem 0; }
 	.tabs button[aria-selected='true'] { background: var(--color-accent-soft); box-shadow: 0 0 0 1px var(--color-accent); }
 	.top { display: grid; grid-template-columns: minmax(0, 3fr) minmax(16rem, 2fr); gap: var(--space-lg); margin: var(--space-md) 0; }
@@ -180,8 +185,14 @@ watch(el, src);
 	.ctl { display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.92rem; color: var(--color-ink-2); }
 	.ctl label { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 	.ctl output { font: 0.85rem var(--font-code); }
-	.colors { border: 0; border-radius: var(--radius-inner); padding: 0.75rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; background: var(--color-paper-2); box-shadow: inset 0 0 0 1px var(--color-rule); margin: 0; }
-	.colors legend { padding: 0 0.4rem; font-size: var(--text-sm); color: var(--color-muted); float: left; width: 100%; margin-bottom: 0.4rem; }
+	.colors { border-radius: var(--radius-inner); background: var(--color-paper-2); box-shadow: inset 0 0 0 1px var(--color-rule); }
+	.colors summary { cursor: pointer; font-weight: 500; padding: 0.75rem 1rem; min-height: 44px; list-style: none; display: flex; align-items: center; justify-content: space-between; color: var(--color-ink); }
+	.colors summary::-webkit-details-marker { display: none; }
+	.colors summary::after { content: ''; width: 0.45rem; height: 0.45rem; border-right: 2px solid var(--color-muted); border-bottom: 2px solid var(--color-muted); transform: rotate(45deg); transition: transform var(--dur-short) var(--ease-out); }
+	.colors[open] summary::after { transform: rotate(-135deg); }
+	.colors[open] { display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; padding-bottom: 1rem; }
+	.colors[open] > :not(summary) { margin-inline: 1rem; }
+	.colors[open] summary { align-self: stretch; }
 	.colors input[type='color'] { width: 2.4rem; height: 1.9rem; padding: 0; border: 1px solid var(--color-muted); border-radius: 8px; background: none; cursor: pointer; }
 	.colors button:disabled { opacity: 0.45; cursor: default; }
 	.btns { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -190,6 +201,8 @@ watch(el, src);
 	.err { color: var(--color-error); font: 0.85rem var(--font-code); white-space: pre-wrap; }
 	.pv { margin: var(--space-lg) 0 var(--space-xl); }
 	.frame { max-width: 100%; min-height: 8rem; margin: 0 auto; }
+	/* the playground scene is not a .live one: map it onto the site tokens too */
+	.frame :global(.pa-scene) { --pa-bg: var(--scene-bg); --pa-solid: var(--scene-solid); --pa-light: var(--scene-light); --pele-surface: var(--scene-surface); --pele-fg: var(--scene-fg); border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
 	@media (max-width: 56rem) {
 		.top { grid-template-columns: minmax(0, 1fr); }
 		.tabs { display: flex; }
