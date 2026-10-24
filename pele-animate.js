@@ -16,8 +16,12 @@ export function parseOrder(source = '') {
   return levels;
 }
 
+// Edge ids by diagram type: flowchart `L_A_B_0`, architecture and C4 `A-B` (repeat edges get `-N`), block `1-A-B`.
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 function endpoints(edgeId, ids) {
-  for (const s of ids) for (const d of ids) if (new RegExp(`^L_${s}_${d}_\\d+$`).test(edgeId)) return [s, d];
+  for (const s of ids)
+    for (const d of ids)
+      if (new RegExp(`^(?:L_${esc(s)}_${esc(d)}_\\d+|(?:\\d+-)?${esc(s)}-${esc(d)}(?:-\\d+)?)$`).test(edgeId)) return [s, d];
   return null;
 }
 

@@ -8,6 +8,9 @@ may change behavior, so pin a range such as `^0.15.0` and bump it deliberately.
 ## [Unreleased]
 
 ### Added
+- Architecture diagrams (`architecture-beta`): step order, pins, step controls and icon packs (the icon in parentheses) work as for flowcharts.
+
+### Added
 - Website: a playground at `/playground/` (edit Mermaid, live preview with the real step controls, stroke and color controls, preview width, examples from the docs, share link, copy Mermaid and code snippet) and an "Open in playground" link under every live example in the docs.
 
 ## [0.15.0] - 2026-10-24

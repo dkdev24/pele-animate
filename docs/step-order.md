@@ -14,6 +14,7 @@ them. By default, the order follows the edges. A `%% pa:` comment lets you set i
 
 - **Flowchart:** nodes appear by level, counting from the nodes nothing points to. Each edge draws from its source once the source
   is on screen, and its target appears as the edge lands. Branches of a decision appear together.
+- **Architecture diagram:** like a flowchart: services appear by level, edges follow their written direction, pins work the same way.
 - **Sequence diagram:** actors first, then the messages in order.
 
 ## Pins

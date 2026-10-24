@@ -41,7 +41,7 @@
 
 	async function render() {
 		error = '';
-		const names = [...src.matchAll(/icon:\s*"([^"]+)"/g)].map((m) => m[1]);
+		const names = [...src.matchAll(/icon:\s*"([^"]+)"|^\s*(?:service|group)\s+[\w-]+\(([\w-]+)\)/gm)].map((m) => m[1] ?? m[2]);
 		unknown = [...new Set(names.filter((n) => !index!.has(n)))];
 		const cats = new Set(names.map((n) => index!.get(n)).filter(Boolean) as string[]);
 		const [{ mount }, { watch, prepare }, { icons }] = await Promise.all([

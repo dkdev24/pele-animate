@@ -7,7 +7,7 @@ section: Start
 
 # Diagram types
 
-pele-animate supports **flowcharts** and **sequence diagrams**. Pele renders other diagram types too, but they are outside what
+pele-animate supports **flowcharts**, **sequence diagrams** and **architecture diagrams**. Pele renders other diagram types too, but they are outside what
 pele-animate is built for.
 
 ## Flowcharts
@@ -36,8 +36,30 @@ sequenceDiagram
 
 **Limit:** Pele ignores `@{ icon }` on sequence participants (the box shows its id), so icons apply to flowcharts only.
 
+## Architecture diagrams
+
+`architecture-beta`: services in groups, joined by edges. Services appear in step order like flowchart nodes, groups stay visible,
+and `%% pa:` pins work the same way. The icon in parentheses is looked up in your icon packs, so Tabler names and `doverunner-*`
+names work (import the packs as for [icons](./icons.md)).
+
+```mermaid-icons live
+architecture-beta
+  group edge(cloud)[Edge]
+  group core(cloud)[Core]
+  service user(device-desktop)[User]
+  service cdn(cloud-computing)[CDN] in edge
+  service api(server)[API] in core
+  service db(database)[Database] in core
+  user:R --> L:cdn
+  cdn:R --> L:api
+  api:R --> L:db
+```
+
+Icons here are small and fixed in size; `form` and `h` apply to flowcharts only. Edges are read from their written direction
+(`user:R --> L:cdn` is user to cdn). A node id containing `-` can be mistaken for two ids on an edge, so use plain ids.
+
 ## Everything else
 
-Other Mermaid types (class, state, ER, gantt, pie and the rest) render through Pele as usual. pele-animate is not designed for
+Other Mermaid types (state, ER, class, gantt, pie and the rest) render through Pele as usual. pele-animate is not designed for
 them and its behavior on them is untested, so use plain Pele for those. Step mode has been checked in a browser on
-flowcharts only; sequence diagrams have not been checked the same way yet.
+flowcharts and architecture diagrams only; sequence diagrams have not been checked the same way yet.

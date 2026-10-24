@@ -65,7 +65,8 @@ export async function render(markdown: string) {
 		const lang = fence.replace(/-icons$/, '');
 		let html = highlight(t.text, lang);
 		if (lang === 'mermaid' && meta.includes('live')) {
-			for (const [, name] of t.text.matchAll(/icon:\s*"([^"]+)"/g)) {
+			for (const [, a, b] of t.text.matchAll(/icon:\s*"([^"]+)"|^\s*(?:service|group)\s+[\w-]+\(([\w-]+)\)/gm)) {
+				const name = a ?? b;
 				const cat = name.startsWith('doverunner-') ? 'preset' : categoryOf.get(name);
 				if (cat) categories.add(cat);
 			}
