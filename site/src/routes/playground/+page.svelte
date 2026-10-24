@@ -55,7 +55,19 @@
 		host.replaceChildren(el);
 		mount(el, prepare(src), { icons, onError: (e: unknown) => (error = e instanceof Error ? e.message : String(e)) });
 		watch(el, src, { controls });
+		applyColors();
 	}
+
+	// The scene (.pa-scene) sets --pa-solid/--pa-light itself, so the overrides must sit on it, not on the frame around it.
+	function applyColors() {
+		const scene = host?.firstElementChild as HTMLElement | null;
+		if (!scene) return;
+		for (const [k, v] of [['--pa-solid', solid], ['--pa-light', light]]) customColors ? scene.style.setProperty(k, v) : scene.style.removeProperty(k);
+	}
+	$effect(() => {
+		solid; light; customColors;
+		applyColors();
+	});
 
 	function share() {
 		history.replaceState(null, '', `?s=${encodeSource(src)}`);
@@ -128,7 +140,7 @@ watch(el, src);
 		<div
 			class="frame"
 			bind:this={host}
-			style="width:{width}%; --pa-stroke:{stroke}; {customColors ? `--pa-solid:${solid}; --pa-light:${light};` : ''}"
+			style="width:{width}%; --pa-stroke:{stroke};"
 		></div>
 		<p class="note">Light and dark follow the site theme (button in the header).</p>
 	</section>
