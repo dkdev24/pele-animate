@@ -9,7 +9,7 @@ section: Guides
 
 A flowchart node becomes an illustrated node with Mermaid's own `@{ }` syntax:
 
-```mermaid live
+```mermaid-icons live
 flowchart LR
   A@{ icon: "device-desktop", form: "square", h: 88, label: "Laptop" }
   B@{ icon: "server", form: "square", h: 88, label: "Server" }

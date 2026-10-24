@@ -58,7 +58,7 @@ TypeScript: a CSS side-effect import needs a `*.css` module declaration unless t
 
 Icon nodes use Mermaid's own syntax:
 
-```mermaid
+```mermaid-icons
 flowchart LR
   %% pa: 1=C 2=L 3=S
   C@{ icon: "http-get", form: "square", h: 88, label: "Request" }

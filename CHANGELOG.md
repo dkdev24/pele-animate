@@ -7,6 +7,9 @@ may change behavior, so pin a range such as `^0.14.0` and bump it deliberately.
 
 ## [Unreleased]
 
+### Changed
+- README: badges, links to the website and docs, a hero animation, generic comparison examples (client, API, auth server), and icon examples shown as source text because GitHub's Mermaid renderer cannot draw them.
+
 ## [0.14.0] - 2026-10-24
 
 Types, documentation and agent skills. No breaking changes.

@@ -1,4 +1,5 @@
 <!doctype html><meta charset="utf-8"><title>pele-animate examples</title>
+<script>document.documentElement.dataset.theme = 'light'; // README images are always light</script>
 <!-- Source page for the README images. Serve the repo root (python3 -m http.server) and run examples/capture.sh. -->
 <link rel="stylesheet" href="../pele-animate.css">
 <style>
@@ -15,14 +16,14 @@ import { watch, replay } from '../pele-animate.js';
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs';
 
 const flow = `flowchart LR
-  A[Player] -->|auth token| B[OTT service]
-  A -->|license request| C[DRM server]
-  C -->|license| A`;
+  A[Client] -->|request| B[API]
+  A -->|sign in| C[Auth server]
+  C -->|token| A`;
 const seq = `sequenceDiagram
-  Player->>OTT: sign in
-  OTT-->>Player: token
-  Player->>DRM: token
-  DRM-->>Player: license`;
+  Client->>API: sign in
+  API-->>Client: token
+  Client->>Data: query with token
+  Data-->>Client: result`;
 const glyphs = `flowchart LR
   %% pa: 1=C 2=L 3=S
   C@{ icon: "http-get", form: "square", h: 88, label: "Request" }

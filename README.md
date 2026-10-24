@@ -1,52 +1,23 @@
 # pele-animate
 
+[![npm](https://img.shields.io/npm/v/pele-animate)](https://www.npmjs.com/package/pele-animate)
+[![CI](https://github.com/dkdev24/pele-animate/actions/workflows/ci.yml/badge.svg)](https://github.com/dkdev24/pele-animate/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/pele-animate)](LICENSE)
+
 Mermaid diagrams that explain themselves one step at a time, with icons. You choose the order things appear in, readers
 step through it, and nodes can carry icons. A small post-processor for [Pele](https://github.com/obsidianmd/pele) (MIT),
 which renders the Mermaid; this adds the step order, the playback and the icons. It is not a theme package.
 Unofficial add-on; not affiliated with or endorsed by the Pele or Obsidian teams.
-The source stays valid Mermaid, so GitHub or Obsidian still show a normal diagram.
 
-- Nodes appear in order (BFS from the sources, or pinned with a `%% pa:` comment), edges draw in, labels fade in.
-- Hover or focus: tokens travel the edges in sequence. The intro plays once on scroll-in. Click (or Enter) enters step mode: previous / play-pause / next buttons, with Space (play/pause), ←/→ (step) and Esc (leave).
-- `@{ icon: "name" }` nodes become illustrations from a glyph pack. Unknown names get a neutral rounded-square glyph.
-- Sequence diagrams: participant boxes in a row get the tallest height (Pele sizes each to its own text). Group and box titles are bold.
-- Idle state is the finished picture; `prefers-reduced-motion` turns the motion off. Light and dark themes.
-
-## Compare
-
-The same Mermaid source, three renderers. The pele-animate images loop: the intro draws in, then tokens travel the edges (as on hover).
-Regenerate with `examples/capture.sh`.
-
-```mermaid
-flowchart LR
-  A[Player] -->|auth token| B[OTT service]
-  A -->|license request| C[DRM server]
-  C -->|license| A
-```
-
-| Renderer | Result |
-|---|---|
-| Mermaid | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/m1.png" width="560" alt="Flowchart rendered by Mermaid"> |
-| Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p1.png" width="560" alt="Flowchart rendered by Pele"> |
-| pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a1.gif" width="560" alt="Animated flowchart: nodes appear, edges draw in, tokens travel"> |
-
-```mermaid
-sequenceDiagram
-  Player->>OTT: sign in
-  OTT-->>Player: token
-  Player->>DRM: token
-  DRM-->>Player: license
-```
-
-| Renderer | Result |
-|---|---|
-| Mermaid | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/m2.png" width="560" alt="Sequence diagram rendered by Mermaid"> |
-| Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p2.png" width="560" alt="Sequence diagram rendered by Pele"> |
-| pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a2.gif" width="560" alt="Animated sequence diagram: messages appear in order, tokens travel"> |
-
-With icons (`@{ icon }` nodes from the Tabler `computers` pack, `%% pa: 1=C 2=L 3=S` pins the order):
+**[Website](https://pele-animate.pages.dev/) · [Docs](docs/getting-started.md) · [npm](https://www.npmjs.com/package/pele-animate) · [Changelog](CHANGELOG.md)**
 
 <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a3.gif" width="560" alt="Animated scene with Tabler icons: a request, a load balancer and a cloud service">
+
+- **You set the order.** Nodes appear in the order of a `%% pa:` comment, or by default along the edges; edges draw in and labels fade in.
+- **Readers step through it.** Click (or Enter) starts step mode: previous / play-pause / next buttons, Space, ←/→ and Esc. Hover or focus sends tokens along the edges.
+- **Icons.** `@{ icon: "name" }` nodes use any of 4,368 [Tabler](https://github.com/tabler/tabler-icons) icons (loaded per category) or your own. Unknown names get a neutral rounded square.
+- Flowcharts and sequence diagrams. The finished picture is the resting state; `prefers-reduced-motion` turns the motion off. Light and dark themes.
+- The source stays valid Mermaid. One catch: GitHub's own Mermaid renderer does not know the icon names and draws "?" boxes, so the icon examples in this repository are shown as source text.
 
 ## Install
 
@@ -72,7 +43,7 @@ for (const el of document.querySelectorAll('pre.mermaid')) {
 
 Mermaid source:
 
-```mermaid
+```mermaid-icons
 flowchart LR
   %% pa: 1=C 2=L 3=S
   C@{ icon: "http-get", form: "square", h: 88, label: "Request" }
@@ -97,6 +68,38 @@ Everything is in [`docs/`](docs/getting-started.md), and ships inside the npm pa
 
 **Coding agents:** the package includes a skill, `skills/pele-animate/`, that wires the library into a project and checks the
 result in a browser. See [For coding agents](docs/agents.md).
+
+## Compare
+
+The same Mermaid source, three renderers. The pele-animate images loop: the intro draws in, then tokens travel the edges (as on hover).
+Regenerate with `examples/capture.sh`.
+
+```mermaid
+flowchart LR
+  A[Client] -->|request| B[API]
+  A -->|sign in| C[Auth server]
+  C -->|token| A
+```
+
+| Renderer | Result |
+|---|---|
+| Mermaid | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/m1.png" width="560" alt="Flowchart rendered by Mermaid"> |
+| Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p1.png" width="560" alt="Flowchart rendered by Pele"> |
+| pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a1.gif" width="560" alt="Animated flowchart: nodes appear, edges draw in, tokens travel"> |
+
+```mermaid
+sequenceDiagram
+  Client->>API: sign in
+  API-->>Client: token
+  Client->>Data: query with token
+  Data-->>Client: result
+```
+
+| Renderer | Result |
+|---|---|
+| Mermaid | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/m2.png" width="560" alt="Sequence diagram rendered by Mermaid"> |
+| Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p2.png" width="560" alt="Sequence diagram rendered by Pele"> |
+| pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a2.gif" width="560" alt="Animated sequence diagram: messages appear in order, tokens travel"> |
 
 ## Credits and license
 

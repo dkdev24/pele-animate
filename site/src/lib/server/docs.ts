@@ -58,7 +58,10 @@ export async function render(markdown: string) {
 	const tokens = md.lexer(markdown);
 	for (const t of tokens as (Token & Tokens.Code)[]) {
 		if (t.type !== 'code') continue;
-		const [lang, ...meta] = (t.lang ?? '').split(/\s+/);
+		const [fence, ...meta] = (t.lang ?? '').split(/\s+/);
+		// `mermaid-icons` = a Mermaid diagram with @{ icon } nodes: GitHub cannot draw those (it shows "?" boxes), so on GitHub it is
+		// plain source; the site animates it like `mermaid`.
+		const lang = fence.replace(/-icons$/, '');
 		let html = highlight(t.text, lang);
 		if (lang === 'mermaid' && meta.includes('live')) {
 			for (const [, name] of t.text.matchAll(/icon:\s*"([^"]+)"/g)) {

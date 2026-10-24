@@ -14,7 +14,7 @@ for (const d of ['docs', 'skills']) if (existsSync(d)) walk(d);
 
 let n = 0, bad = 0;
 for (const file of files) {
-  for (const m of readFileSync(file, 'utf8').matchAll(/```mermaid[^\n]*\n([\s\S]*?)```/g)) {
+  for (const m of readFileSync(file, 'utf8').matchAll(/```mermaid(?:-icons)?[^\n]*\n([\s\S]*?)```/g)) {
     n++;
     const src = m[1];
     const line = readFileSync(file, 'utf8').slice(0, m.index).split('\n').length;
