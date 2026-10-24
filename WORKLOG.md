@@ -299,3 +299,16 @@ Live on pele-animate.pages.dev, verified. Custom domain, `/icons`, `/playground`
 ### Status
 
 Not yet verified: label-less icon nodes, circle forms, phone width. Consumers on `^0.13` or `^0.14` need an explicit range bump and the `prepare()` call.
+
+## S5 — playground (unversioned; site deploys on push)
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `/playground`: textarea editor (no CodeMirror yet), preview mounts the real `prepare()` + `mount()` + `watch()` into a fresh node per render (250 ms debounce), controls for stroke, preview width, custom `--pa-solid`/`--pa-light`, step controls on/off, examples menu from the docs' `live` fences, share link (`?s=` plain base64url: a `#` fragment made the prerender link check fail), Copy Mermaid, Copy code snippet. Unknown icon names are flagged from `icons.json`; Pele parse errors show inline. Icon packs load by the names used.
+- Docs: every live example gets an "Open in playground" link.
+
+### Status
+
+Verified: docs link opens the diagram, edit re-renders, bad icon warning, parse error inline. Not done: CodeMirror completion and lint of pins, Download SVG, own light/dark toggle (follows the site), tabs at phone width not checked, e2e tests.

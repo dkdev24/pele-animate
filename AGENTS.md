@@ -9,10 +9,10 @@ Dev plan: `PLAN.md`. Owner: Daniel Kim (`dkdev24`). **Public repo and public npm
 - `pele-animate.js` / `.css` — post-processor (`animate(svg)`, `watch(container)`)
 - `docs/` — the documentation (Markdown, single source: read on GitHub, shipped in npm, rendered by the site later). Fenced `mermaid` blocks must render: `pnpm test`. Diagrams with `@{ icon }` use the ```` ```mermaid-icons live ```` fence (GitHub cannot draw icons)
 - `skills/` — agent skills shipped in npm: `pele-animate` (adopt + verify), `diagram-step-order`; `.claude/skills/diagram-step-order` is a symlink
-- `site/` — SvelteKit 3 site (S4 done; deploys to pele-animate.pages.dev on push to `main`); `DESIGN.md` is its look and feel; `pnpm build` runs its checks. `types/` — hand-written `.d.ts`. `tabler/` — generated, never hand-edit (`scripts/build-tabler.mjs`)
+- `site/` — SvelteKit 3 site (S5 done; deploys to pele-animate.pages.dev on push to `main`); `DESIGN.md` is its look and feel; `pnpm build` runs its checks. `types/` — hand-written `.d.ts`. `tabler/` — generated, never hand-edit (`scripts/build-tabler.mjs`)
 - `demo.html` — test page; serve with `python3 -m http.server`
 - `PLAN.md` — phases and findings
-- `SITE_DEV_PLAN.md` — plan for the public site (pele-animate.danielkimdev.com, SvelteKit), docs and skills; S0–S4 done; S5 (playground) next. `SITE_FRAMEWORK_RESEARCH.md` — why SvelteKit
+- `SITE_DEV_PLAN.md` — plan for the public site (pele-animate.danielkimdev.com, SvelteKit), docs and skills; S0–S5 done; S6/S7 next. `SITE_FRAMEWORK_RESEARCH.md` — why SvelteKit
 - `CHANGELOG.md` — public, Keep a Changelog format; add an entry with every release (no internal names)
 
 ## Working agreements

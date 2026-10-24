@@ -5,7 +5,7 @@ developers and coding agents can adopt on any project: proper docs in the repo, 
 playground, and installable agent skills. Modeled on `toonstrip/SITE_DEV_PLAN.md` (same hosting, same
 sibling-site conventions); differences from toonstrip are called out in §4 and §12.
 
-Status (2026-10-24): **S0 to S4 are done** (S4: `/icons` browser and `/icons.json`, 2026-10-24); S5 onward waits on Daniel's go (the S3 hold was lifted by Daniel on 2026-10-24 without an upstream reply). What was built:
+Status (2026-10-24): **S0 to S5 are done** (S5: `/playground`, share links as `?s=` base64url, examples from the docs' `live` fences, "Open in playground" links; no CodeMirror, plain textarea; no SVG download yet) (S4: `/icons` browser and `/icons.json`, 2026-10-24); S5 onward waits on Daniel's go (the S3 hold was lifted by Daniel on 2026-10-24 without an upstream reply). What was built:
 
 - **S0:** pnpm workspace (`.`, `site`; `npm pack` file list identical before and after the migration), `.node-version`,
   `.github/workflows/ci.yml` (`pnpm test` + `pnpm build`), root `wrangler.toml` (`site/build`), and a placeholder `site/`.

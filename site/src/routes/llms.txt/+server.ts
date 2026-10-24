@@ -17,6 +17,7 @@ ${lines.join('\n')}
 
 ## Optional
 
+- [Playground](${SITE}/playground/): edit Mermaid and watch it animate; share links carry the source in ?s= (base64url).
 - [Icon browser](${SITE}/icons/): search all bundled icons. The machine-readable list is ${SITE}/icons.json ({ version, icons: [{ name, category, tags }] }); take icon names from it, never from memory.
 - [Changelog](${SITE}/changelog/)
 - [Source](https://github.com/dkdev24/pele-animate)

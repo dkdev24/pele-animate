@@ -2,6 +2,7 @@
 import matter from 'gray-matter';
 import { Marked, type Token, type Tokens } from 'marked';
 import { createHighlighter } from 'shiki';
+import { encodeSource } from '../share';
 import changelogRaw from '../../../../CHANGELOG.md?raw';
 
 const files = import.meta.glob('../../../../docs/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
@@ -68,7 +69,7 @@ export async function render(markdown: string) {
 				const cat = name.startsWith('doverunner-') ? 'preset' : categoryOf.get(name);
 				if (cat) categories.add(cat);
 			}
-			html = `<div class="live" data-src="${esc(t.text)}"></div><details class="src"><summary>Mermaid source</summary>${html}</details>`;
+			html = `<div class="live" data-src="${esc(t.text)}"></div><p class="pg"><a href="/playground/?s=${encodeSource(t.text)}">Open in playground</a></p><details class="src"><summary>Mermaid source</summary>${html}</details>`;
 		}
 		Object.assign(t, { type: 'html', raw: t.raw, text: html, pre: false });
 	}
@@ -92,3 +93,16 @@ export async function getDocs(): Promise<Doc[]> {
 
 export const changelogMarkdown = changelogRaw;
 export const renderChangelog = () => render(changelogRaw.replace(/^# Changelog\n/, ''));
+
+// Every `live` diagram in the docs, for the playground's examples menu: [{ label: 'Icons 1', src }]
+export async function getExamples() {
+	const out: { label: string; src: string }[] = [];
+	for (const d of await getDocs()) {
+		let n = 0;
+		for (const t of marked.lexer(d.markdown)) {
+			if (t.type === 'code' && /^mermaid(-icons)?\s+live\b/.test(t.lang ?? '')) out.push({ label: `${d.title} ${++n}`, src: t.text });
+		}
+	}
+	return out;
+}
+const marked = new Marked();
