@@ -1,0 +1,27 @@
+name: Bug report
+description: A diagram renders, animates or steps wrongly
+labels: [bug]
+body:
+  - type: textarea
+    id: source
+    attributes:
+      label: Mermaid source
+      description: The smallest diagram that shows the problem. A playground link also works (https://pele-animate.danielkimdev.com/playground/).
+      render: mermaid
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual
+      description: What you expected, what happened instead.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: pele-animate, pele, and your browser.
+      placeholder: pele-animate 0.17.0, pele 1.8.0, Chrome 130
+    validations:
+      required: true

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://pele-animate.danielkimdev.com/docs/getting-started/
+    about: Setup, API, theming and FAQ.
+  - name: Security issue
+    url: https://github.com/dkdev24/pele-animate/security/advisories/new
+    about: Report vulnerabilities privately, not as an issue.
