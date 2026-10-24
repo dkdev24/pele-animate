@@ -15,6 +15,7 @@ them. By default, the order follows the edges. A `%% pa:` comment lets you set i
 - **Flowchart:** nodes appear by level, counting from the nodes nothing points to. Each edge draws from its source once the source
   is on screen, and its target appears as the edge lands. Branches of a decision appear together.
 - **Architecture diagram:** like a flowchart: services appear by level, edges follow their written direction, pins work the same way.
+- **Timeline, journey, git graph, Gantt chart:** one step per item in reading order (period, task, commit, task); pins do nothing.
 - **Class and ER diagrams:** like a flowchart, but a relationship runs from the class or entity written first.
 - **Block diagram:** like a flowchart, from the blocks nothing points to.
 - **C4 context diagram:** like a flowchart, from the people and systems nothing points to.

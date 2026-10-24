@@ -119,11 +119,77 @@ export function prepare(source = '') {
 }
 
 
+// Diagrams with no edges to follow (timeline, journey, gitGraph, gantt) step through their items in reading order.
+// Returns [[element, ...], ...], one array per step, or null for any other diagram.
+const pts = (path) => path.getAttribute('d').match(/-?[\d.]+/g)?.map(Number) ?? [];
+function sequentialSteps(svg) {
+  const all = (sel) => [...svg.querySelectorAll(sel)];
+  if (svg.classList.contains('pele-timeline')) return all('.pele-period').map((p) => [p]);
+  if (svg.classList.contains('pele-gantt')) return all('.pele-task').map((t) => [t]);
+  if (svg.classList.contains('pele-journey')) {
+    const tasks = all('.pele-task'), faces = all('.pele-face');
+    const line = svg.querySelector('path.pele-edge');
+    // The satisfaction line is one polyline `M x,yL x,y...`: split it so each segment arrives with its task.
+    const segs = [];
+    if (line && /^M[-\d.,]+(L[-\d.,]+)+$/.test(line.getAttribute('d'))) {
+      const p = line.getAttribute('d').slice(1).split('L');
+      for (let i = 1; i < p.length; i++) {
+        const seg = line.cloneNode();
+        seg.setAttribute('d', `M${p[i - 1]}L${p[i]}`);
+        line.before(seg);
+        segs.push(seg);
+      }
+      line.remove();
+    }
+    return tasks.map((t, i) => [t, faces[i], segs[i - 1]].filter(Boolean));
+  }
+  if (svg.classList.contains('pele-gitGraph')) {
+    const commits = all('.pele-commit');
+    const at = (c) => { const e = c.querySelector('circle'); return [+e.getAttribute('cx'), +e.getAttribute('cy')]; };
+    const steps = commits.map((c) => [c]);
+    // an edge arrives with the commit it ends on
+    for (const e of all('.pele-edge')) {
+      const path = e.matches('path') ? e : e.querySelector('path');
+      const end = path.getPointAtLength(path.getTotalLength());
+      let best = steps.length - 1, bd = Infinity;
+      commits.forEach((c, i) => { const [x, y] = at(c), d = Math.hypot(x - end.x, y - end.y); if (d < bd) { bd = d; best = i; } });
+      steps[best]?.push(e);
+    }
+    // a branch (label and lane) appears with its first commit: the commit whose y is on the lane
+    for (const b of all('.pele-branch')) {
+      const y = pts(b.querySelector('.pele-lane'))[1];
+      const first = commits.findIndex((c) => Math.abs(at(c)[1] - y) < 1);
+      steps[first < 0 ? 0 : first].push(b);
+    }
+    return steps;
+  }
+  return null;
+}
+
+// Intro for sequentialSteps: each step fades in after the one before; the same steps drive step mode.
+function introSteps(svg, steps) {
+  const u = Math.min(UNIT, MAX_INTRO / Math.max(1, steps.length));
+  steps.forEach((els, i) => els.forEach((el) => { el.classList.add('pa-item'); el.style.setProperty('--d', `${i * u}s`); }));
+  svg.paSteps = steps.map((els) => els.map((el) => [el, [el]]));
+  reveal(svg);
+}
+
+function reveal(svg) {
+  if (!('IntersectionObserver' in window)) return svg.classList.add('pa-in');
+  svg.classList.remove('pa-in');
+  const io = new IntersectionObserver(([en]) => {
+    if (en.isIntersecting) { svg.classList.add('pa-in'); io.disconnect(); }
+  }, { threshold: 0.3 });
+  io.observe(svg);
+}
+
 export function animate(svg, { hover = svg, source = '' } = {}) {
   fitGlyphs(svg);
   equalizeActors(svg);
   svg.querySelectorAll('.pa-dot').forEach((d) => d.remove());
   svg.classList.add('pa-ready');
+  const seq = sequentialSteps(svg);
+  if (seq) return introSteps(svg, seq);
   const nodes = [...svg.querySelectorAll('.pele-node')];
   const edges = [...svg.querySelectorAll('.pele-edge')];
   const ids = [...new Set(nodes.map((n) => n.dataset.id))];
@@ -216,12 +282,7 @@ export function animate(svg, { hover = svg, source = '' } = {}) {
   hover.addEventListener('focusin', play);
   hover.addEventListener('focusout', stop);
 
-  if (!('IntersectionObserver' in window)) return svg.classList.add('pa-in');
-  svg.classList.remove('pa-in');
-  const io = new IntersectionObserver(([en]) => {
-    if (en.isIntersecting) { svg.classList.add('pa-in'); io.disconnect(); }
-  }, { threshold: 0.3 });
-  io.observe(svg);
+  reveal(svg);
 }
 
 const STEP_MS = 1200; // autoplay pace in step mode

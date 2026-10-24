@@ -2,14 +2,16 @@
 .pa-ready:not(.pa-in):not(.pa-step) .pele-node,
 .pa-ready:not(.pa-in):not(.pa-step) .pele-edge-label,
 .pa-ready:not(.pa-in):not(.pa-step) .pele-lifeline,
-.pa-ready:not(.pa-in):not(.pa-step) .pele-marker { opacity: 0; }
+.pa-ready:not(.pa-in):not(.pa-step) .pele-marker,
+.pa-ready:not(.pa-in):not(.pa-step) .pa-item { opacity: 0; }
 .pa-ready:not(.pa-in):not(.pa-step) .pele-edge > path:not(.pele-marker) { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
 
 /* Keyframes carry the dash, so edges that are dashed in the diagram go back to their own dash pattern afterwards. */
 .pa-ready.pa-in:not(.pa-step) .pele-node,
 .pa-ready.pa-in:not(.pa-step) .pele-edge-label,
 .pa-ready.pa-in:not(.pa-step) .pele-lifeline,
-.pa-ready.pa-in:not(.pa-step) .pele-marker { animation: pa-fade .4s ease-out backwards; animation-delay: var(--d, 0s); }
+.pa-ready.pa-in:not(.pa-step) .pele-marker,
+.pa-ready.pa-in:not(.pa-step) .pa-item { animation: pa-fade .4s ease-out backwards; animation-delay: var(--d, 0s); }
 .pa-ready.pa-in:not(.pa-step) .pele-edge > path:not(.pele-marker) { animation: pa-draw .4s ease-out backwards; animation-delay: var(--d, 0s); }
 .pa-ready.pa-done:not(.pa-step) * { animation: none !important; }
 @keyframes pa-fade { from { opacity: 0; } }
@@ -19,7 +21,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .pa-ready * { animation: none !important; }
-  .pa-ready:not(.pa-step) .pele-node, .pa-ready:not(.pa-step) .pele-edge-label, .pa-ready:not(.pa-step) .pele-lifeline, .pa-ready:not(.pa-step) .pele-marker { opacity: 1 !important; }
+  .pa-ready:not(.pa-step) .pele-node, .pa-ready:not(.pa-step) .pele-edge-label, .pa-ready:not(.pa-step) .pele-lifeline, .pa-ready:not(.pa-step) .pele-marker, .pa-ready:not(.pa-step) .pa-item { opacity: 1 !important; }
   .pa-ready .pele-edge > path { stroke-dasharray: none; stroke-dashoffset: 0 !important; }
 }
 
@@ -50,6 +52,9 @@
 .pa-art > rect:first-child { fill: none; stroke: none; }
 /* Edge labels sit on the line; give them the panel color so the line doesn't strike through the text. */
 .pa-scene .pele-edge-label rect { fill: var(--pa-bg); }
+
+/* Pele colours text on solid fills (timeline periods, gantt bars, git branch tags) with --_bg, which the scene makes transparent: use the panel surface instead. */
+.pa-scene text[fill="var(--_bg)"] { fill: var(--pele-surface); }
 
 /* Group and box titles read as headings. */
 :where(.pa-scene) .pele-cluster-label { font-weight: 700; }
