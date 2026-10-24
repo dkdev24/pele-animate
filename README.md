@@ -51,7 +51,7 @@ Mermaid source:
 
 ```mermaid-icons
 flowchart LR
-  %% pa: 1=C 2=L 3=S 4=C>L 5=L>S 6=S>L 7=L>C
+  %% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C
   C@{ icon: "http-get", form: "square", h: 88, label: "Request" }
   L@{ icon: "load-balancer", form: "square", h: 88, label: "Load balancer" }
   S@{ icon: "cloud-computing", form: "square", h: 88, label: "Cloud service" }
@@ -61,7 +61,7 @@ flowchart LR
   L -->|reply| C
 ```
 
-`%% pa: 1=C 2=L 3=S 4=C>L 5=L>S 6=S>L 7=L>C` pins the order: the three nodes first, then each leg of the round trip (optional). `form: "square", h: 88` makes a large frameless icon.
+`%% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C` pins the order: the request first, then each leg of the round trip (optional). `form: "square", h: 88` makes a large frameless icon.
 
 ## Documentation
 
