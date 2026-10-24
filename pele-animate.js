@@ -16,16 +16,17 @@ export function parseOrder(source = '') {
   return levels;
 }
 
-// Edge ids by diagram type: flowchart `L_A_B_0`, architecture and C4 `A-B` (repeat edges get `-N`), block `1-A-B`.
+// Edge ids by diagram type: flowchart `L_A_B_0`, architecture and C4 `A-B` (repeat edges get `-N`), block `1-A-B`, class `id_A_B_1`,
+// ER `id_entity-A-0_entity-B-1_0`. Ends follow the written order (`A <|-- B` is A, then B).
 const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 function endpoints(edgeId, ids) {
   for (const s of ids)
     for (const d of ids)
-      if (new RegExp(`^(?:L_${esc(s)}_${esc(d)}_\\d+|(?:\\d+-)?${esc(s)}-${esc(d)}(?:-\\d+)?)$`).test(edgeId)) return [s, d];
+      if (new RegExp(`^(?:L_${esc(s)}_${esc(d)}_\\d+|(?:\\d+-)?${esc(s)}-${esc(d)}(?:-\\d+)?|id_${esc(s)}_${esc(d)}_\\d+|id_entity-${esc(s)}-\\d+_entity-${esc(d)}-\\d+_\\d+)$`).test(edgeId)) return [s, d];
   return null;
 }
 
-// State, ER and class diagrams name edges `edge0`, `edge1`, ... with no ends in the id, so read the ends off the geometry:
+// State diagrams name edges `edge0`, `edge1`, ... with no ends in the id, so read the ends off the geometry:
 // the node nearest to where the path starts (source) and ends (target).
 function geoEndpoints(edge, boxes) {
   const path = edge.querySelector('path:not(.pele-marker)');

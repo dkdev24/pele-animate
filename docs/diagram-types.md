@@ -7,7 +7,7 @@ section: Start
 
 # Diagram types
 
-pele-animate supports **flowcharts**, **sequence diagrams**, **architecture diagrams** and **state diagrams** and **C4 context diagrams** and **block diagrams**. Pele renders other diagram types too, but they are outside what
+pele-animate supports **flowcharts**, **sequence diagrams**, **architecture diagrams** and **state diagrams** and **C4 context diagrams** and **block diagrams**, **class diagrams** and **ER diagrams**. Pele renders other diagram types too, but they are outside what
 pele-animate is built for.
 
 ## Flowcharts
@@ -114,8 +114,38 @@ block-beta
 Pele routes arrows between blocks in straight lines or short bends, so place linked blocks in the same row or column; a diagonal
 neighbour can give a bent arrow that runs along another one. Block diagrams take no icons.
 
+## Class diagrams
+
+`classDiagram`: classes appear in step order, relationships draw from the class written first. `Animal <|-- Dog` reveals `Animal`
+and then `Dog`, whichever way the arrowhead points. Pins use the class names.
+
+```mermaid live
+classDiagram
+  %% pa: 1=Animal 2=Dog,Cat 3=Owner
+  Animal <|-- Dog
+  Animal <|-- Cat
+  Dog --> Owner : has
+  Animal : +name
+  Dog : +bark()
+```
+
+## ER diagrams
+
+`erDiagram`: entities appear in step order, relationships draw from the entity written first (`CUSTOMER ||--o{ ORDER` reveals
+`CUSTOMER`, then `ORDER`).
+
+```mermaid live
+erDiagram
+  %% pa: 1=CUSTOMER 2=ORDER 3=LINE,PRODUCT
+  CUSTOMER ||--o{ ORDER : places
+  ORDER ||--|{ LINE : contains
+  PRODUCT ||--o{ LINE : in
+```
+
+Neither takes icons.
+
 ## Everything else
 
-Other Mermaid types (ER, class, gantt, pie and the rest) render through Pele as usual. pele-animate is not designed for
+Other Mermaid types (gantt, pie and the rest) render through Pele as usual. pele-animate is not designed for
 them and its behavior on them is untested, so use plain Pele for those. Step mode has been checked in a browser on
-flowcharts, architecture, state, C4 context and block diagrams only; sequence diagrams have not been checked the same way yet.
+flowcharts, architecture, state, C4 context, block, class and ER diagrams only; sequence diagrams have not been checked the same way yet.

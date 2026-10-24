@@ -22,7 +22,7 @@ you want to explain in order.
 **How big is it?** The core (`pele-animate.js` plus CSS) is about 20 KB unminified. Icon packs are separate modules, so you only
 ship the categories you import (the largest, `system`, is about 199 KB unminified).
 
-**Which diagrams does it support?** Flowcharts, sequence diagrams, architecture diagrams, state diagrams, C4 context diagrams and block diagrams ([diagram types](./diagram-types.md)).
+**Which diagrams does it support?** Flowcharts, sequence diagrams, architecture diagrams, state diagrams, C4 context, block, class and ER diagrams ([diagram types](./diagram-types.md)).
 
 **Can I use my own icons?** Yes ([custom icons](./custom-icons.md)).
 

@@ -8,6 +8,7 @@ may change behavior, so pin a range such as `^0.15.0` and bump it deliberately.
 ## [Unreleased]
 
 ### Added
+- Class diagrams (`classDiagram`) and ER diagrams (`erDiagram`): step order, pins and step controls. A relationship runs from the class or entity written first.
 - Block diagrams (`block-beta`): step order, pins and step controls work as for flowcharts.
 - C4 context diagrams (`C4Context`): step order, pins and step controls work as for flowcharts.
 - State diagrams (`stateDiagram-v2`): step order, pins (`root_start` and `root_end` name the markers) and step controls. Edge ends are now also read from the path geometry when Pele gives an edge no readable id.
