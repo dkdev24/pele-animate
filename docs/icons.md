@@ -11,15 +11,16 @@ A flowchart node becomes an illustrated node with Mermaid's own `@{ }` syntax:
 
 ```mermaid-icons live
 flowchart LR
-  A@{ icon: "device-desktop", form: "square", h: 88, label: "Laptop" }
-  B@{ icon: "server", form: "square", h: 88, label: "Server" }
-  A --> B
+  A@{ icon: "device-desktop", form: "square", h: 88, label: "Your laptop" }
+  B@{ icon: "server", form: "square", h: 88, label: "Web server" }
+  A -->|request| B
 ```
 
 Both names are in the Tabler `devices` category, so this needs `import 'pele-animate/tabler/devices'`.
 
 - `icon` is the glyph name. `label` is the caption.
 - `form: "square", h: 88` makes a large frameless icon. Leave both out for a small icon inside a frame.
+- A node is as wide as its label. With a short label (`Server`) and `form: "square"` the edge ends right at the icon and the arrowhead is hidden; use a longer label or add an edge label.
 - Unknown names get a neutral rounded square, never a blank slot. Pele ships no icons of its own, so every name must come
   from a pack you import.
 
