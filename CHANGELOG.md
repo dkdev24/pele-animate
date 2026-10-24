@@ -3,9 +3,14 @@
 All notable changes to `pele-animate` are recorded here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project stays on `0.x`: minor versions
-may change behavior, so pin a range such as `^0.16.0` and bump it deliberately.
+may change behavior, so pin a range such as `^0.16.1` and bump it deliberately.
 
 ## [Unreleased]
+
+## [0.16.1] - 2026-10-24
+
+### Fixed
+- User journeys now step at narrow widths: Pele lays a journey out as a vertical list there, which pele-animate did not recognise (0 steps).
 
 ## [0.16.0] - 2026-10-24
 
@@ -132,7 +137,8 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.16.0...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.16.1...HEAD
+[0.16.1]: https://github.com/dkdev24/pele-animate/compare/0.16.0...0.16.1
 [0.16.0]: https://github.com/dkdev24/pele-animate/compare/0.15.0...0.16.0
 [0.15.0]: https://github.com/dkdev24/pele-animate/compare/0.14.0...0.15.0
 [0.14.0]: https://github.com/dkdev24/pele-animate/compare/0.13.0...0.14.0

@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.16.0** (published 2026-10-24: 10 new diagram types, S5 playground; consumers on `^0.15` need a range bump)
+**0.16.1** (published 2026-10-24; 0.16.0: 10 new diagram types, S5 playground; consumers on `^0.15` need a range bump)
 
 ---
 ## Project Status

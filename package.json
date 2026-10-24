@@ -1,6 +1,6 @@
 {
   "name": "pele-animate",
-  "version": "0.16.0",
+  "version": "0.16.1",
   "description": "Step-by-step animated Mermaid diagrams with icons: an unofficial add-on for the Pele renderer.",
   "type": "module",
   "license": "MIT",

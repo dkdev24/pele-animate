@@ -326,3 +326,15 @@ Verified: docs link opens the diagram, edit re-renders, bad icon warning, parse 
 ### Status
 
 Checked on small examples in dark mode only; light mode, long diagrams, composite states, C4 boundaries, cherry-picks, Korean docs and e2e are untested.
+
+## v0.16.1 — journey at narrow widths
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `sequentialSteps()` handles Pele's vertical journey layout (`pele-journey-step` nodes with the face inside, separate edge paths). Docs: the diagram-type examples were rewritten as 5 to 7 step stories with pins.
+
+### Status
+
+Checked at 1280 px and 400 px; light mode untested.
