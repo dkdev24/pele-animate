@@ -7,8 +7,27 @@ section: Start
 
 # Diagram types
 
-pele-animate supports **flowcharts**, **sequence diagrams**, **architecture diagrams** and **state diagrams** and **C4 context diagrams** and **block diagrams**, **class diagrams**, **ER diagrams**, **timelines**, **user journeys**, **git graphs** and **Gantt charts**. Pele renders other diagram types too, but they are outside what
-pele-animate is built for.
+pele-animate animates these Mermaid diagram types. Each one plays an intro when it scrolls into view and, on click, steps through its
+items with previous / play / next controls.
+
+| Type | Each step reveals | Pins, icons | Remarks |
+|---|---|---|---|
+| [Flowchart](#flowcharts)<br>`flowchart` | Nodes level by level, edges from their source | Pins and icons | The fullest support: groups, edge labels, large icon nodes. |
+| [Sequence diagram](#sequence-diagrams)<br>`sequenceDiagram` | Actors, then one message at a time | Neither | The order is the source order; reordering messages changes what the diagram says. |
+| [Architecture](#architecture-diagrams)<br>`architecture-beta` | Services level by level, edges from their source | Pins and icons | Icons are written `(name)` and are small and fixed in size. |
+| [State diagram](#state-diagrams)<br>`stateDiagram-v2` | States and transitions from the start marker | Pins | Markers are `root_start` and `root_end`. Composite states are untested. |
+| [C4 context](#c4-context-diagrams)<br>`C4Context` | People and systems, then relationships | Pins | Only `C4Context` is checked. Keep `Rel` labels short. |
+| [Block diagram](#block-diagrams)<br>`block-beta` | Blocks and arrows from their source | Pins | Put linked blocks in the same row or column. |
+| [Class diagram](#class-diagrams)<br>`classDiagram` | Classes and relationships, from the class written first | Pins | `A <\|-- B` reveals `A`, then `B`. |
+| [ER diagram](#er-diagrams)<br>`erDiagram` | Entities and relationships, from the entity written first | Pins | Same written-order rule as class diagrams. |
+| [Timeline](#timelines-journeys-git-graphs-and-gantt-charts)<br>`timeline` | One time period with its events | Neither | Section headers stay visible. |
+| [User journey](#timelines-journeys-git-graphs-and-gantt-charts)<br>`journey` | One task, its face and the line joining it to the last | Neither |  |
+| [Git graph](#timelines-journeys-git-graphs-and-gantt-charts)<br>`gitGraph` | One commit with its edge; a branch with its first commit | Neither | Cherry-picks and tags are untested. |
+| [Gantt chart](#timelines-journeys-git-graphs-and-gantt-charts)<br>`gantt` | One task, top to bottom | Neither | `todayMarker` and parallel tasks are untested. |
+
+Pins are `%% pa:` comments; see [step order](./step-order.md). Types without pins use their source order. Icons are set up in
+[icons](./icons.md). Pele renders the other Mermaid types too (pie, quadrant, radar and the rest), but pele-animate is not built
+for them; see [Everything else](#everything-else).
 
 ## Flowcharts
 
