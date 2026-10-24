@@ -15,10 +15,14 @@ unofficial add-on for Pele and does not change how Pele lays out or draws diagra
 
 ```sh
 npm i pele-animate pele
+# or
+pnpm add pele-animate pele
+yarn add pele-animate pele
+bun add pele-animate pele
 ```
 
-`pele` is a peer dependency (`^1.7.0`). Both run in the browser: they need the DOM, so mount them on the client (see
-[recipes](./recipes.md) for frameworks).
+`pele` is a peer dependency (`^1.7.0`): install it alongside. Both run in the browser and need the DOM, so mount them on the client (see
+[recipes](./recipes.md) for frameworks). The packages are ESM only.
 
 ## First diagram
 

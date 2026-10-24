@@ -23,7 +23,13 @@ Unofficial add-on; not affiliated with or endorsed by the Pele or Obsidian teams
 
 ```sh
 npm i pele-animate pele
+# or
+pnpm add pele-animate pele
+yarn add pele-animate pele
+bun add pele-animate pele
 ```
+
+`pele` is a peer dependency (`^1.7.0`): install it alongside. Both packages run in the browser and need the DOM, so mount them on the client (see [recipes](docs/recipes.md)). ESM only.
 
 ## Use
 
