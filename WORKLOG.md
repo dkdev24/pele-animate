@@ -189,4 +189,4 @@ Published to npm; docs-starlight installed it (`^0.10.0`).
 
 ### Status
 
-Published to npm and GitHub release. docs-starlight is still on `^0.10.0`; needs a range bump to use step mode.
+Published to npm and GitHub release. docs-starlight bumped to `^0.11.0` (`29b0133`, pushed to main).

@@ -24,10 +24,10 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 
 ## Next Actions
 
-1. Check step mode on a sequence diagram + phone width; bump docs-starlight to `^0.11.0`.
+1. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 2. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 3. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-4. docs-starlight is on `^0.10.0`; bump needed for 0.11.0. Next release 0.12.0.
+4. docs-starlight is on `^0.11.0` (pushed to main 2026-10-24, `29b0133`). Next release 0.12.0.
 
 ---
 
