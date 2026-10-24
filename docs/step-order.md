@@ -52,6 +52,7 @@ Rules that avoid surprises:
 
 - **Pin the nodes first.** An edge pinned before its target appears lands early.
 - A two-way edge (`A <--> B`) is pinned in the direction you wrote it first (`A>B`).
+- The ends may be named in either order (`Video>Media` or `Media>Video`), unless the diagram also has the opposite edge: then the order picks which of the two is meant.
 - Do not rename node ids after pinning: pins match ids.
 - Translated pages keep the same ids, so copy the `%% pa:` line across languages after checking the ids match.
 

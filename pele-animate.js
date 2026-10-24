@@ -219,13 +219,17 @@ export function animate(svg, { hover = svg, source = '' } = {}) {
       return geoEndpoints(e, boxes);
     });
     const level = bfs(ids, pairs.filter(Boolean), parseOrder(source));
+    // An edge pin may name the ends in either order (`Video>Media` for `Media <|-- Video`, or either end of an undirected edge),
+    // unless the diagram also has the opposite edge, where the order picks which of the two is meant.
+    const real = new Set(pairs.filter(Boolean).map(([a, b]) => `${a}>${b}`));
+    const pinOf = (s, d) => level.get(`${s}>${d}`) ?? (real.has(`${d}>${s}`) ? undefined : level.get(`${d}>${s}`));
     const u = Math.min(UNIT, MAX_INTRO / (Math.max(0, ...level.values()) + 1));
     const k = u / UNIT;
     nodes.forEach((n) => { set(n, level.get(n.dataset.id) * u); step.set(n, level.get(n.dataset.id)); });
     // Start after the source is up, but never so early that the arrow lands before its target appears (pinned steps).
     edges.forEach((e, i) => {
       const [s, d] = pairs[i] ?? [];
-      const pin = level.get(`${s}>${d}`); // edge pinned to a step: starts with that step, once its source is up
+      const pin = pinOf(s, d); // edge pinned to a step: starts with that step, once its source is up
       step.set(e, pin ?? Math.max(level.get(s) ?? 0, level.get(d) ?? 0));
       times.set(e, pin !== undefined
         ? Math.max(pin * u, (level.get(s) ?? 0) * u + 0.3 * k)
