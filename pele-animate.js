@@ -25,6 +25,23 @@ function endpoints(edgeId, ids) {
   return null;
 }
 
+// State, ER and class diagrams name edges `edge0`, `edge1`, ... with no ends in the id, so read the ends off the geometry:
+// the node nearest to where the path starts (source) and ends (target).
+function geoEndpoints(edge, boxes) {
+  const path = edge.querySelector('path:not(.pele-marker)');
+  if (!path) return null;
+  const near = (pt) => {
+    let best = null, bd = 12; // an end more than 12 px from every node is not an end
+    for (const [id, b] of boxes) {
+      const d = Math.hypot(Math.max(b.x - pt.x, 0, pt.x - b.x - b.width), Math.max(b.y - pt.y, 0, pt.y - b.y - b.height));
+      if (d < bd) { bd = d; best = id; }
+    }
+    return best;
+  };
+  const s = near(path.getPointAtLength(0)), d = near(path.getPointAtLength(path.getTotalLength()));
+  return s && d ? [s, d] : null;
+}
+
 function bfs(ids, pairs, pinned) {
   const level = new Map(pinned);
   const hasIn = new Set(pairs.map(([, d]) => d));
@@ -120,7 +137,17 @@ export function animate(svg, { hover = svg, source = '' } = {}) {
     edges.forEach((e, i) => { times.set(e, 0.5 + i * u); step.set(e, i + 1); });
     nodes.forEach((n) => step.set(n, 0));
   } else {
-    const pairs = edges.map((e) => endpoints(e.dataset.id, ids));
+    const boxes = new Map();
+    const pairs = edges.map((e) => {
+      const found = endpoints(e.dataset.id, ids);
+      if (found) return found;
+      if (!boxes.size)
+        for (const n of nodes) {
+          const b = n.getBBox(), t = n.transform.baseVal.consolidate()?.matrix;
+          boxes.set(n.dataset.id, { x: b.x + (t?.e ?? 0), y: b.y + (t?.f ?? 0), width: b.width, height: b.height });
+        }
+      return geoEndpoints(e, boxes);
+    });
     const level = bfs(ids, pairs.filter(Boolean), parseOrder(source));
     const u = Math.min(UNIT, MAX_INTRO / (Math.max(0, ...level.values()) + 1));
     const k = u / UNIT;

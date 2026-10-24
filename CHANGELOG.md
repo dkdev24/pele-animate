@@ -8,6 +8,7 @@ may change behavior, so pin a range such as `^0.15.0` and bump it deliberately.
 ## [Unreleased]
 
 ### Added
+- State diagrams (`stateDiagram-v2`): step order, pins (`root_start` and `root_end` name the markers) and step controls. Edge ends are now also read from the path geometry when Pele gives an edge no readable id.
 - Architecture diagrams (`architecture-beta`): step order, pins, step controls and icon packs (the icon in parentheses) work as for flowcharts.
 
 ### Added
