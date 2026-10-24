@@ -11,9 +11,10 @@ export async function mountLive(root: HTMLElement, categories: string[]) {
 		import('pele-animate/style.css'),
 		...categories.map((c) => (c === 'preset' ? import('pele-animate/preset-doverunner') : tabler[`../../../tabler/${c}.js`]?.()))
 	]);
-	for (const el of els) {
+	for (const [i, el] of els.entries()) {
 		if (el.dataset.mounted) continue;
 		el.dataset.mounted = '1';
+		el.dataset.tone = String(i % 5); // site CSS varies the scene colours per diagram
 		const src = el.dataset.src ?? '';
 		mount(el, prepare(src), { icons, onError: (e: unknown) => console.error('pele', e) });
 		watch(el, src);
