@@ -3,9 +3,11 @@
 All notable changes to `pele-animate` are recorded here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project stays on `0.x`: minor versions
-may change behavior, so pin a range such as `^0.14.0` and bump it deliberately.
+may change behavior, so pin a range such as `^0.15.0` and bump it deliberately.
 
 ## [Unreleased]
+
+## [0.15.0] - 2026-10-24
 
 ### Added
 - `prepare(source)`: pads icon-node labels narrower than `h` so Pele's layout box is as wide as the drawn icon. Without it, edge ends and arrowheads land under the icon. Use `mount(el, prepare(src), { icons })`.
@@ -115,7 +117,8 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.14.0...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.15.0...HEAD
+[0.15.0]: https://github.com/dkdev24/pele-animate/compare/0.14.0...0.15.0
 [0.14.0]: https://github.com/dkdev24/pele-animate/compare/0.13.0...0.14.0
 [0.13.0]: https://github.com/dkdev24/pele-animate/compare/0.12.0...0.13.0
 [0.12.0]: https://github.com/dkdev24/pele-animate/compare/0.11.0...0.12.0

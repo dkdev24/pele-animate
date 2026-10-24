@@ -287,3 +287,15 @@ Tagged and pushed; npm publish and GitHub release follow. Site (S3) on hold pend
 
 Live on pele-animate.pages.dev, verified. Custom domain, `/icons`, `/playground`, e2e tests pending.
 
+## S4 + v0.15.0 — icon browser, `prepare()`
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `prepare(source)` export: pads icon-node labels narrower than `h` (non-breaking spaces between zero-width word joiners, since Pele trims plain whitespace). Cause: Pele sizes an icon node's layout box from its label but draws the icon at `h`, so edge ends and arrowheads landed under the icon. Use `mount(el, prepare(src), { icons })`; pass the original `src` to `watch()`. Width is an estimate (about 7 px per character); a Pele fix (`max(label, h)`) would make it unnecessary.
+- Site: `/icons` browser and `/icons.json`. `build-tabler.mjs` also reads the npm `@tabler/icons` package (categories and tags from its `icons.json`) and emits `icons.json`.
+
+### Status
+
+Not yet verified: label-less icon nodes, circle forms, phone width. Consumers on `^0.13` or `^0.14` need an explicit range bump and the `prepare()` call.
