@@ -7,7 +7,7 @@ section: Start
 
 # Diagram types
 
-pele-animate supports **flowcharts**, **sequence diagrams**, **architecture diagrams** and **state diagrams**. Pele renders other diagram types too, but they are outside what
+pele-animate supports **flowcharts**, **sequence diagrams**, **architecture diagrams** and **state diagrams** and **C4 context diagrams**. Pele renders other diagram types too, but they are outside what
 pele-animate is built for.
 
 ## Flowcharts
@@ -77,8 +77,28 @@ Without pins the order is breadth-first from the start marker, which shows `Paus
 state edges no readable ids, so pele-animate finds each transition's ends from where its path starts and stops. Composite
 states and forks are untested. State diagrams take no icons.
 
+## C4 context diagrams
+
+`C4Context`: people and systems appear in step order and each `Rel` draws from its source, with its label. Pins use the ids you
+give `Person(...)` and `System(...)`; an edge pin is `3=app>drm`.
+
+```mermaid live
+C4Context
+  %% pa: 1=viewer 2=app 3=drm,cdn
+  Person(viewer, "Viewer", "Watches video")
+  System(app, "Player app", "Plays protected video")
+  System_Ext(drm, "DRM service", "Issues licenses")
+  System(cdn, "CDN", "Delivers segments")
+  Rel(viewer, app, "uses")
+  Rel(app, drm, "license")
+  Rel(app, cdn, "segments")
+```
+
+Pele lays C4 diagrams out in rows, so a long label between two boxes in the same row can leave no room for the arrowhead:
+keep `Rel` labels short. Only `C4Context` has been checked; the other C4 types and boundaries are untested. C4 shapes take no icons.
+
 ## Everything else
 
 Other Mermaid types (ER, class, gantt, pie and the rest) render through Pele as usual. pele-animate is not designed for
 them and its behavior on them is untested, so use plain Pele for those. Step mode has been checked in a browser on
-flowcharts, architecture and state diagrams only; sequence diagrams have not been checked the same way yet.
+flowcharts, architecture, state and C4 context diagrams only; sequence diagrams have not been checked the same way yet.

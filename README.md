@@ -16,7 +16,7 @@ Unofficial add-on; not affiliated with or endorsed by the Pele or Obsidian teams
 - **You set the order.** Nodes appear in the order of a `%% pa:` comment, or by default along the edges; edges draw in and labels fade in.
 - **Readers step through it.** Click (or Enter) starts step mode: previous / play-pause / next buttons, Space, ←/→ and Esc. Hover or focus sends tokens along the edges.
 - **Icons.** `@{ icon: "name" }` nodes use any of 4,368 [Tabler](https://github.com/tabler/tabler-icons) icons (loaded per category) or your own. Unknown names get a neutral rounded square.
-- Flowcharts, sequence diagrams, architecture diagrams and state diagrams. The finished picture is the resting state; `prefers-reduced-motion` turns the motion off. Light and dark themes.
+- Flowcharts, sequence diagrams, architecture diagrams, state diagrams and C4 context diagrams. The finished picture is the resting state; `prefers-reduced-motion` turns the motion off. Light and dark themes.
 - The source stays valid Mermaid. One catch: GitHub's own Mermaid renderer does not know the icon names and draws "?" boxes, so the icon examples in this repository are shown as source text.
 
 ## Install
