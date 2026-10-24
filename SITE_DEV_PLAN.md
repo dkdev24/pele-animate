@@ -5,11 +5,16 @@ developers and coding agents can adopt on any project: proper docs in the repo, 
 playground, and installable agent skills. Modeled on `toonstrip/SITE_DEV_PLAN.md` (same hosting, same
 sibling-site conventions); differences from toonstrip are called out in §4 and §12.
 
-Status: **plan, not started.** Nothing here is built. **Framework decided 2026-10-24: SvelteKit 3 (Svelte 5) with
+Status: **plan, not started; S3 onward is on hold** until upstream answers (§1, §10). S0 to S2 can proceed. Nothing here is built. **Framework decided 2026-10-24: SvelteKit 3 (Svelte 5) with
 `adapter-static`**, after spiking SvelteKit and Nuxt 4 + Nuxt Content against Astro; evidence in
 `SITE_FRAMEWORK_RESEARCH.md`. Open decisions are collected in §13.
 
 ## 0. Mission and non-goals
+
+**What pele-animate is, in plain words:** it makes a Pele diagram explain itself one step at a time. You choose the
+order things appear in, readers can step through it with buttons or the keyboard, and any node can carry an icon from a
+large set. **What it is not:** a theme or visual-style package. Others cover looks; we cover step order, step-by-step
+playback and icons. Every page, the README and the site hero use this wording (see §12, overlap with community looks).
 
 One job: get a developer, or their coding agent, from "what is this?" to an animated diagram rendering in their
 own project in one sitting, without guessing. Surfaces, in visitor order:
@@ -40,6 +45,9 @@ Non-goals:
 - Skill today: `.claude/skills/diagram-step-order/` (repo-only; not in npm `files`; already generic).
 - **No TypeScript types** (README "Limits"). This blocks good docs and good agent use; fixed in S1 (§10).
 - Assets: README GIFs from `examples/capture.sh`, `demo.html`, `examples/compare.html`.
+- Upstream: on 2026-10-24 Daniel posted an issue on `obsidianmd/pele` announcing pele-animate and asking whether Pele's class
+  names and `data-*` attributes are stable public API. No reply yet. Also open: a community demo of CSS looks and
+  built-in icons for Pele (§12).
 - Largest consumer: `docs-starlight` (238 icon uses). It stays a separate project; this site does not replace it.
 - Sibling sites: `toonstrip` (Astro static, Cloudflare Pages Git integration, root `wrangler.toml`, `site/` workspace
   package, hand-built docs layout), `grues-in-comic`, `danielkimdev-astro`. This site keeps their hosting and repo
@@ -115,7 +123,7 @@ Two copies drift; for a smaller package we use one.
 | `diagram-types.md` | Flowcharts and sequence diagrams: what animates, what does not (sequence participants ignore `@{ icon }`) |
 | `icons.md` | `@{ icon }` syntax, `form: "square", h:`, Tabler categories (table with counts), `--pa-stroke`, fallback square, the optional `doverunner-*` pack, how to pick names without guessing |
 | `custom-icons.md` | `registerGlyphs`, colors via `--pa-solid` / `--pa-light`, stroke width, 24x24 contract |
-| `choreography.md` | `%% pa:` node pins, edge pins `A>B`, ordering rules and gotchas, step mode keys, `{ controls: false }` |
+| `step-order.md` | `%% pa:` node pins, edge pins `A>B`, ordering rules and gotchas, step mode keys, `{ controls: false }` |
 | `theming.md` | `--pa-*` and `--pele-*` variables, dark mode, `prefers-reduced-motion`, container class `pa-scene` |
 | `recipes.md` | Vite/vanilla, SvelteKit, Astro (client island), Next/React (client component), Vue, SSR caveat (client-only), re-mount on route change |
 | `api.md` | Every export with types; mirrors `.d.ts` (checked in CI, §11) |
@@ -134,9 +142,9 @@ Exit criterion for the docs, tested before the site exists: a fresh agent sessio
 
 ### 5.1 Intro (`/`)
 
-Hero is a live diagram that plays on load and replays on click (step mode available). Below: three short proofs
-(animation + steps, 4,400 icons, themeable with CSS variables), the install block (npm, pnpm, yarn, bun), a
-"Pele vs Mermaid.js vs pele-animate" honest comparison (animation and icons are ours; layout and size are Pele's), and
+Hero is a live diagram that plays on load and replays on click (step mode available), with the §0 one-liner under it.
+Below: three short proofs (you set the order, readers step through it, 4,400 icons to pick from), the install block (npm, pnpm, yarn, bun), a
+"Pele vs Mermaid.js vs pele-animate" honest comparison (step order, step playback and icon packs are ours; layout, size and looks are Pele's or other add-ons'), and
 credits (Pele, Tabler). No marketing claims that are not measured; bundle numbers come from the build.
 
 ### 5.2 Docs (`/docs/*`)
@@ -201,7 +209,7 @@ pin syntax.
 
 | Skill | Purpose |
 |---|---|
-| `pele-animate` | Adopt the package in a target project. Detect framework, install `pele` + `pele-animate`, wire the three imports and the client-only mount, pick icon packs, write diagrams, theme, verify. Hard rules: icon names come from `icons.json` or `node_modules/pele-animate/tabler/*.js`, never from memory; pins use `%% pa:` exactly as in `choreography.md`; always verify by rendering. Mirrors toonstrip's SKILL: shape reference first, workflow last. |
+| `pele-animate` | Adopt the package in a target project. Detect framework, install `pele` + `pele-animate`, wire the three imports and the client-only mount, pick icon packs, write diagrams, theme, verify. Hard rules: icon names come from `icons.json` or `node_modules/pele-animate/tabler/*.js`, never from memory; pins use `%% pa:` exactly as in `step-order.md`; always verify by rendering. Mirrors toonstrip's SKILL: shape reference first, workflow last. |
 | `diagram-step-order` | Existing skill, moved and generalized (review step order against the surrounding page text). Already uses a `steps.js` probe. |
 
 Details:
@@ -253,7 +261,7 @@ Order is chosen so each phase ships value alone: docs and skills help users befo
 | **S0 Foundation** | Migrate to pnpm workspace (`.`, `site`); add CI (`ci.yml`: install, parse-all-examples, build); create the empty Pages project with `wrangler.toml` | `pnpm install && pnpm build` green; preview URL serves a placeholder |
 | **S1 Types + docs** | Hand-write `pele-animate.d.ts` (and `glyphs.d.ts`), add `types` to exports; write `docs/*.md` (§4.2); slim the README; add `migrating.md` | Docs exit criterion (§4.2) passes with a fresh agent; every docs example parses |
 | **S2 Skills** | `skills/pele-animate` + move `diagram-step-order`; add `skills/` to `files`; `agents.md`; the probe script | Fresh agent in an empty Vite app reaches a verified animated diagram from the skill alone |
-| **S3 Site shell** | `DESIGN.md`; layouts; docs loader over `../docs` (`import.meta.glob`); `live` fence component; intro page; `llms.txt`, `.md` siblings; changelog | Every doc page renders on the preview URL with live examples; budgets pass |
+| **S3 Site shell** (on hold until upstream replies) | `DESIGN.md`; layouts; docs loader over `../docs` (`import.meta.glob`); `live` fence component; intro page; `llms.txt`, `.md` siblings; changelog | Every doc page renders on the preview URL with live examples; budgets pass |
 | **S4 Icons** | Extend `build-tabler.mjs` to emit tags + `icons.json`; `/icons` page | Search finds `lock` and `load-balancer` in under 100 ms; copy snippet renders when pasted into the playground |
 | **S5 Playground** | Editor, preview, controls, examples menu, share, exports | A shared URL round-trips; docs "Open in playground" works on every live example; mobile tabs usable |
 | **S6 Check CLI (optional)** | `bin/pele-animate.js check` | Only if S2's verify step proved clumsy; otherwise skipped and noted here |
@@ -289,6 +297,15 @@ a day, S3 two days, S4 one day, S5 two to three days, S7 half a day, S8 one to t
 - **Untested in the spike:** `vite dev` with docs outside the app folder, prerendered `+server.ts` endpoints (`llms.txt`,
   `.md` siblings, sitemap, RSS), CodeMirror 6 in Svelte, i18n, and a Cloudflare Pages build. Each is the first task of
   the phase that needs it.
+- **Overlap with community looks.** A demo by `wallabyway` (https://wallabyway.github.io/pele-looks-demo/, discussed in Pele
+  issue #24) shows seven visual looks (fonts, shadows, idle animation) and built-in icons across about a dozen Pele diagram
+  types, shipped as a modified Pele bundle (about 715 KB vs 700 KB stock; options `look`, `animate`, `builtinIcons`; repo
+  has only the built files, no source or license shown, not on npm). It is more polished and broader on looks than
+  pele-animate. It does not appear to offer explicit step order, step-by-step playback with keys, Tabler icon packs, or a
+  build that runs on unmodified Pele (the step-order claim is not fully verified). Response: do not compete on looks;
+  position on step order, playback and icons (§0); ask the author for source and license and whether the looks could be
+  optional CSS themes over stock Pele plus pele-animate; never copy code without a license. If looks and animation get
+  upstreamed, pele-animate shrinks to step order, playback and icon packs, which is still worth shipping.
 - **Overlap with pele.run.** Upstream has Playground and API docs for Pele itself. Ours must not re-document Pele.
   Docs link to upstream for layout, syntax and security; our pages cover only what pele-animate adds.
 - **Pele coupling.** Step mode and animation rely on Pele's class names (`.pele-node`, `.pele-edge`). A Pele minor can
@@ -304,6 +321,8 @@ a day, S3 two days, S4 one day, S5 two to three days, S7 half a day, S8 one to t
   company name at all, rename the pack in a later breaking release (not planned).
 
 ## 13. Decisions needed from Daniel
+
+0. Hold S3 onward until kepano answers the upstream issue? **Recommended: yes**; S0 to S2 are useful either way.
 
 1. Confirm single-source docs in `docs/` (differs from toonstrip's two sets).
 2. ~~Docs shell~~ Decided 2026-10-24: SvelteKit with a hand-built docs shell (§3).

@@ -26,7 +26,7 @@ Obsidian and Mermaid itself still render a plain diagram.
 
 1. **Glyph packs.** `core` is generic and extensible (`registerGlyphs(pack)`); `preset-doverunner` ships the DRM/FWM/
    packaging vocabulary. Unknown icon names fall back to a plain Pele box.
-2. **Choreography.** Reveal order = BFS from source nodes over edge ids (sequence diagrams: message order).
+2. **Step order.** Reveal order = BFS from source nodes over edge ids (sequence diagrams: message order).
    Per step: node pop-in, edge draw-in, label fade, token travel. Override via comment: `%% pa: 1=A,B 2=C`.
 3. **Scene frame.** Tinted rounded panel, captions under nodes, `--pa-*` CSS variables for theming, light/dark.
 4. **Integration.** `animate(svg)` / `watch(container)` after Pele `mount()`; re-applies after Pele's resize re-layout.

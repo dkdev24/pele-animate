@@ -1,7 +1,8 @@
 # pele-animate
 
-Animated, illustrated SVG scenes from plain Mermaid code. A small post-processor for
-[Pele](https://github.com/obsidianmd/pele) (MIT), which renders the Mermaid; this adds the motion and the pictures.
+Mermaid diagrams that explain themselves one step at a time, with icons. You choose the order things appear in, readers
+step through it, and nodes can carry icons. A small post-processor for [Pele](https://github.com/obsidianmd/pele) (MIT),
+which renders the Mermaid; this adds the step order, the playback and the icons. It is not a theme package.
 Unofficial add-on; not affiliated with or endorsed by the Pele or Obsidian teams.
 The source stays valid Mermaid, so GitHub or Obsidian still show a normal diagram.
 
