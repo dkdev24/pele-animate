@@ -64,11 +64,11 @@ sequenceDiagram
 
 `architecture-beta`: services in groups, joined by edges. Services appear in step order like flowchart nodes, groups stay visible,
 and `%% pa:` pins work the same way. The icon in parentheses is looked up in your icon packs, so Tabler names and `doverunner-*`
-names work (import the packs as for [icons](./icons.md)). The pins here follow a request: the user, the CDN, the API, the cache and database together, then the queue and worker.
+names work (import the packs as for [icons](./icons.md)). The pins show the services first (the request path, then what sits behind the API), then trace the request one edge at a time with edge pins (`3=user>cdn`).
 
 ```mermaid-icons live title="Architecture: request path through CDN, API, cache, database and worker"
 architecture-beta
-  %% pa: 1=user 2=cdn 3=api 4=cache,db 5=queue 6=worker
+  %% pa: 1=user,cdn,api 2=cache,db,queue,worker 3=user>cdn 4=cdn>api 5=api>cache 6=api>db 7=api>queue 8=queue>worker
   group edge(cloud)[Edge]
   group core(cloud)[Core]
   service user(device-desktop)[User]
@@ -96,7 +96,7 @@ start and end markers are nodes too, with the ids `root_start` and `root_end`, s
 
 ```mermaid live title="State: media player with loading, error and retry"
 stateDiagram-v2
-  %% pa: 1=root_start 2=Idle 3=Loading 4=Playing 5=Paused 6=Error 7=root_end
+  %% pa: 1=root_start 2=Idle 3=Loading 4=Playing 5=Paused 6=Error 7=Error>Idle 8=root_end
   [*] --> Idle
   Idle --> Loading: play
   Loading --> Playing: ready
@@ -107,18 +107,18 @@ stateDiagram-v2
   Playing --> [*]: stop
 ```
 
-The pins give each state its own step, in the order a viewer meets them. Without pins the order is breadth-first from the start marker, which shows states at the same distance together (here `Playing` and `Error`). Pele gives
+The pins give each state its own step, in the order a viewer meets them, and the `retry` transition (`Error>Idle`) its own step after `Error` is on screen. Without pins the order is breadth-first from the start marker, which shows states at the same distance together (here `Playing` and `Error`). Pele gives
 state edges no readable ids, so pele-animate finds each transition's ends from where its path starts and stops. Composite
 states and forks are untested. State diagrams take no icons.
 
 ## C4 context diagrams
 
 `C4Context`: people and systems appear in step order and each `Rel` draws from its source, with its label. Pins use the ids you
-give `Person(...)` and `System(...)`; an edge pin is `3=app>drm`. The example adds the DRM service, CDN and analytics one at a time, then the operator who reads the analytics.
+give `Person(...)` and `System(...)`; an edge pin is `3=app>drm`. The example puts the landscape on screen first, then draws the relationships one at a time, then adds analytics and the operator who reads it.
 
 ```mermaid live title="C4 context: player app and the systems around it"
 C4Context
-  %% pa: 1=viewer 2=app 3=drm 4=cdn 5=analytics 6=admin
+  %% pa: 1=viewer,app,drm,cdn 2=viewer>app 3=app>drm 4=app>cdn 5=analytics,admin 6=app>analytics 7=admin>analytics
   Person(viewer, "Viewer", "Watches video")
   System(app, "Player app", "Plays protected video")
   System_Ext(drm, "DRM service", "Issues licenses")
@@ -158,11 +158,11 @@ neighbour can give a bent arrow that runs along another one. Block diagrams take
 ## Class diagrams
 
 `classDiagram`: classes appear in step order, relationships draw from the class written first. `Media <|-- Video` reveals `Media`
-and then `Video`, whichever way the arrowhead points. Pins use the class names; the example shows the base class, its subtypes, then the classes that use them.
+and then `Video`, whichever way the arrowhead points. Pins use the class names; the example shows the base class, its subtypes, the inheritance arrows as their own step, then the classes that use them. An edge pin may name the ends in either order, so `Video>Media` follows the arrow while the source says `Media <|-- Video`.
 
 ```mermaid live title="Class: media types, player and license"
 classDiagram
-  %% pa: 1=Media 2=Video,Audio 3=Player 4=License 5=Session
+  %% pa: 1=Media 2=Video,Audio 3=Video>Media,Audio>Media 4=Player 5=License 6=Session
   Media <|-- Video
   Media <|-- Audio
   Player --> Media : plays

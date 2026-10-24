@@ -7,6 +7,9 @@ may change behavior, so pin a range such as `^0.16.2` and bump it deliberately.
 
 ## [Unreleased]
 
+### Changed
+- Docs: the architecture, state, class and C4 examples now use edge pins, so relationships appear as their own steps.
+
 ## [0.16.2] - 2026-10-24
 
 ### Fixed
