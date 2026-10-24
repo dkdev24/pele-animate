@@ -95,13 +95,13 @@ export async function getDocs(): Promise<Doc[]> {
 export const changelogMarkdown = changelogRaw;
 export const renderChangelog = () => render(changelogRaw.replace(/^# Changelog\n/, ''));
 
-// Every `live` diagram in the docs, for the playground's examples menu: [{ label: 'Icons 1', src }]
+// Every `live` diagram in the docs, for the playground's examples menu. The label is the fence's `title="..."`; `group` is the doc page.
 export async function getExamples() {
-	const out: { label: string; src: string }[] = [];
+	const out: { label: string; group: string; src: string }[] = [];
 	for (const d of await getDocs()) {
-		let n = 0;
 		for (const t of marked.lexer(d.markdown)) {
-			if (t.type === 'code' && /^mermaid(-icons)?\s+live\b/.test(t.lang ?? '')) out.push({ label: `${d.title} ${++n}`, src: t.text });
+			const m = t.type === 'code' && /^mermaid(?:-icons)?\s+live\b(?:\s+title="([^"]*)")?/.exec(t.lang ?? '');
+			if (m) out.push({ label: m[1] ?? d.title, group: d.title, src: t.text });
 		}
 	}
 	return out;

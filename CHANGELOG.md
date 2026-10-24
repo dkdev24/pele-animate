@@ -7,6 +7,9 @@ may change behavior, so pin a range such as `^0.16.1` and bump it deliberately.
 
 ## [Unreleased]
 
+### Changed
+- Website playground: the colour controls are five pickers (lines and icons, group fill, node fill, background, text) that start from the theme's values, plus Reset; the examples menu is grouped by page with descriptive titles taken from each docs fence's `title="..."`.
+
 ## [0.16.1] - 2026-10-24
 
 ### Fixed

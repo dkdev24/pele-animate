@@ -26,7 +26,7 @@ them. By default, the order follows the edges. A `%% pa:` comment lets you set i
 
 Add one comment line anywhere in the source:
 
-```mermaid live
+```mermaid live title="Pins: request, validate, respond with a shortcut"
 flowchart LR
   %% pa: 1=A 2=B 3=C
   A[Request] --> B[Validate] --> C[Respond]
@@ -40,7 +40,7 @@ level.
 
 `X>Y` pins the edge from X to Y to its own step, so an edge between two nodes that are already visible can be a step:
 
-```mermaid live
+```mermaid live title="Edge pins: a reply as its own step"
 flowchart LR
   %% pa: 1=A,B 2=C 3=A>B
   A[Client] --> B[Server]

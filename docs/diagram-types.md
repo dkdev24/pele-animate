@@ -36,7 +36,7 @@ are kept. Icon nodes (`@{ icon }`) work here; see [icons](./icons.md).
 
 The pins below put "Serve" (the cache hit) before "Fetch", then draw the `Fetch` to `Serve` edge as its own last step. Without them, `Serve` and `Fetch` would appear together.
 
-```mermaid live
+```mermaid live title="Flowchart: cache hit or miss, with pins and an edge pin"
 flowchart LR
   %% pa: 1=A 2=B 3=C 4=D 5=D>C
   A[Client] --> B{Cached?}
@@ -48,7 +48,7 @@ flowchart LR
 
 Actors appear first, then one step per message in source order, so a cache miss reads as five short steps. Participant boxes in a row get the same height, and group titles are bold.
 
-```mermaid live
+```mermaid live title="Sequence: API request with a cache miss"
 sequenceDiagram
   Client->>API: request
   API->>Cache: lookup
@@ -66,7 +66,7 @@ sequenceDiagram
 and `%% pa:` pins work the same way. The icon in parentheses is looked up in your icon packs, so Tabler names and `doverunner-*`
 names work (import the packs as for [icons](./icons.md)). The pins here follow a request: the user, the CDN, the API, the cache and database together, then the queue and worker.
 
-```mermaid-icons live
+```mermaid-icons live title="Architecture: request path through CDN, API, cache, database and worker"
 architecture-beta
   %% pa: 1=user 2=cdn 3=api 4=cache,db 5=queue 6=worker
   group edge(cloud)[Edge]
@@ -94,7 +94,7 @@ Icons here are small and fixed in size; `form` and `h` apply to flowcharts only.
 `stateDiagram-v2`: states appear in step order, transitions draw from their source state, and transition labels fade in. The
 start and end markers are nodes too, with the ids `root_start` and `root_end`, so pins can name them.
 
-```mermaid live
+```mermaid live title="State: media player with loading, error and retry"
 stateDiagram-v2
   %% pa: 1=root_start 2=Idle 3=Loading 4=Playing 5=Paused 6=Error 7=root_end
   [*] --> Idle
@@ -116,7 +116,7 @@ states and forks are untested. State diagrams take no icons.
 `C4Context`: people and systems appear in step order and each `Rel` draws from its source, with its label. Pins use the ids you
 give `Person(...)` and `System(...)`; an edge pin is `3=app>drm`. The example adds the DRM service, CDN and analytics one at a time, then the operator who reads the analytics.
 
-```mermaid live
+```mermaid live title="C4 context: player app and the systems around it"
 C4Context
   %% pa: 1=viewer 2=app 3=drm 4=cdn 5=analytics 6=admin
   Person(viewer, "Viewer", "Watches video")
@@ -140,7 +140,7 @@ keep `Rel` labels short. Only `C4Context` has been checked; the other C4 types a
 
 `block-beta`: blocks appear in step order and each arrow draws from its source block. Pins use the block ids.
 
-```mermaid live
+```mermaid live title="Block: video pipeline with a storage branch"
 block-beta
   columns 4
   %% pa: 1=src 2=enc 3=pkg 4=cdn 5=store
@@ -160,7 +160,7 @@ neighbour can give a bent arrow that runs along another one. Block diagrams take
 `classDiagram`: classes appear in step order, relationships draw from the class written first. `Media <|-- Video` reveals `Media`
 and then `Video`, whichever way the arrowhead points. Pins use the class names; the example shows the base class, its subtypes, then the classes that use them.
 
-```mermaid live
+```mermaid live title="Class: media types, player and license"
 classDiagram
   %% pa: 1=Media 2=Video,Audio 3=Player 4=License 5=Session
   Media <|-- Video
@@ -179,7 +179,7 @@ classDiagram
 `erDiagram`: entities appear in step order, relationships draw from the entity written first (`CUSTOMER ||--o{ ORDER` reveals
 `CUSTOMER`, then `ORDER`). The example reads from the customer down to the supplier.
 
-```mermaid live
+```mermaid live title="ER: customer orders and product suppliers"
 erDiagram
   %% pa: 1=CUSTOMER 2=ORDER 3=LINE 4=PRODUCT 5=SUPPLIER
   CUSTOMER ||--o{ ORDER : places
@@ -197,7 +197,7 @@ diagrams). Section headers, axes, grids and legends stay visible.
 
 - **`timeline`:** one step per time period, with its events. List periods in time order.
 
-```mermaid live
+```mermaid live title="Timeline: product history in two phases"
 timeline
   title Product history
   section Build
@@ -211,7 +211,7 @@ timeline
 
 - **`journey`:** one step per task: the task, its face, and the line segment that joins it to the task before.
 
-```mermaid live
+```mermaid live title="User journey: watching a protected video"
 journey
   title Watching a protected video
   section Find
@@ -228,7 +228,7 @@ journey
 - **`gitGraph`:** one step per commit in the order written, with the edge that ends on it. A branch's label and lane appear with
   its first commit.
 
-```mermaid live
+```mermaid live title="Git graph: feature branch, merge and release"
 gitGraph
   commit id: "init"
   branch feature
@@ -243,7 +243,7 @@ gitGraph
 
 - **`gantt`:** one step per task, top to bottom: write tasks in the order you want them to appear.
 
-```mermaid live
+```mermaid live title="Gantt: plan, build and ship"
 gantt
   dateFormat YYYY-MM-DD
   section Plan

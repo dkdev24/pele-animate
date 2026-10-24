@@ -43,7 +43,7 @@ watch(el, src);            // pele-animate animates it, and re-applies when Pele
 
 The Mermaid source:
 
-```mermaid-icons live
+```mermaid-icons live title="Icons: request, load balancer and cloud service"
 flowchart LR
   %% pa: 1=C 2=L 3=S
   C@{ icon: "http-get", form: "square", h: 88, label: "Request" }

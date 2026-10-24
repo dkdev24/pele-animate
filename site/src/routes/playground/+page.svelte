@@ -8,9 +8,16 @@
 
 	let src = $state(DEFAULT);
 	let stroke = $state(1.5);
-	let solid = $state('#4f378b');
-	let light = $state('#e4dcf6');
-	let customColors = $state(false);
+	// Colour overrides, set on the scene as CSS variables. An empty value means "the theme's own"; the pickers show the current value.
+	const COLORS = [
+		{ key: 'solid', label: 'Lines and icons', vars: ['--pa-solid'] },
+		{ key: 'light', label: 'Group fill', vars: ['--pa-light'] },
+		{ key: 'node', label: 'Node fill', vars: ['--pele-surface'] },
+		{ key: 'bg', label: 'Background', vars: ['--pa-bg'] },
+		{ key: 'text', label: 'Text', vars: ['--pele-fg'] }
+	] as const;
+	let colors = $state<Record<string, string>>({});
+	let shown = $state<Record<string, string>>({}); // what each picker displays: the override, else the theme's value
 	let controls = $state(true);
 	let width = $state(100);
 	let tab = $state<'edit' | 'preview'>('edit');
@@ -58,14 +65,21 @@
 		applyColors();
 	}
 
-	// The scene (.pa-scene) sets --pa-solid/--pa-light itself, so the overrides must sit on it, not on the frame around it.
+	// The scene (.pa-scene) sets these variables itself, so overrides must sit on it, not on the frame around it.
 	function applyColors() {
 		const scene = host?.firstElementChild as HTMLElement | null;
 		if (!scene) return;
-		for (const [k, v] of [['--pa-solid', solid], ['--pa-light', light]]) customColors ? scene.style.setProperty(k, v) : scene.style.removeProperty(k);
+		const next: Record<string, string> = {};
+		for (const c of COLORS) {
+			for (const v of c.vars) colors[c.key] ? scene.style.setProperty(v, colors[c.key]) : scene.style.removeProperty(v);
+			next[c.key] = colors[c.key] || toHex(getComputedStyle(scene).getPropertyValue(c.vars[0]).trim());
+		}
+		shown = next;
 	}
+	// <input type=color> needs #rrggbb; the theme variables are hex already, anything else falls back to black.
+	const toHex = (v: string) => (/^#[0-9a-f]{6}$/i.test(v) ? v : /^#[0-9a-f]{3}$/i.test(v) ? '#' + [...v.slice(1)].map((c) => c + c).join('') : '#000000');
 	$effect(() => {
-		solid; light; customColors;
+		JSON.stringify(colors);
 		applyColors();
 	});
 
@@ -117,15 +131,21 @@ watch(el, src);
 		<div class="ctl">
 			<select onchange={pickExample} aria-label="Load an example" value="-1">
 				<option value="-1">Load an example…</option>
-				{#each data.examples as e, i}<option value={i}>{e.label}</option>{/each}
+				{#each [...new Set(data.examples.map((e) => e.group))] as g}
+					<optgroup label={g}>
+						{#each data.examples as e, i}{#if e.group === g}<option value={i}>{e.label}</option>{/if}{/each}
+					</optgroup>
+				{/each}
 			</select>
 			<label>Stroke <input type="range" min="0.5" max="2.5" step="0.1" bind:value={stroke} /> <output>{stroke.toFixed(1)}</output></label>
 			<label>Preview width <input type="range" min="30" max="100" step="5" bind:value={width} /> <output>{width}%</output></label>
-			<label class="row"><input type="checkbox" bind:checked={customColors} /> Custom colors</label>
-			{#if customColors}
-				<label class="row">Solid <input type="color" bind:value={solid} /></label>
-				<label class="row">Light <input type="color" bind:value={light} /></label>
-			{/if}
+			<fieldset class="colors">
+				<legend>Colors</legend>
+				{#each COLORS as c}
+					<label class="row"><input type="color" value={shown[c.key] ?? '#000000'} oninput={(e) => (colors[c.key] = e.currentTarget.value)} /> {c.label}</label>
+				{/each}
+				<button type="button" onclick={() => (colors = {})} disabled={!Object.values(colors).some(Boolean)}>Reset colors</button>
+			</fieldset>
 			<label class="row"><input type="checkbox" bind:checked={controls} /> Step controls (click to step)</label>
 			<div class="btns">
 				<button type="button" onclick={share}>Copy share link</button>
@@ -157,6 +177,10 @@ watch(el, src);
 	.ctl { display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.9rem; color: var(--fg-muted); }
 	.ctl label { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
 	.ctl output { font: 0.85rem var(--mono); }
+	.colors { border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem 0.75rem 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+	.colors legend { padding: 0 0.4rem; font-size: 0.85rem; }
+	.colors input[type='color'] { width: 2.2rem; height: 1.7rem; padding: 0; border: 1px solid var(--line); border-radius: 6px; background: none; cursor: pointer; }
+	.colors button:disabled { opacity: 0.4; cursor: default; }
 	.btns { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 	.note { min-height: 1.4em; font-size: 0.85rem; color: var(--fg-muted); margin: 0; }
 	.warn { color: var(--fg-muted); font-size: 0.88rem; }
