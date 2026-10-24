@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.15.0** (prepared 2026-10-24, tagged locally; npm publish by Daniel; docs-starlight not yet updated)
+**0.15.0** (published to npm, tagged, GitHub release 2026-10-24; adds `prepare()`)
 
 ---
 ## Project Status
@@ -16,12 +16,13 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
+2026-10-24 (later): found the cause of hidden arrowheads on icon nodes (Pele sizes the layout box from the label, draws the icon at `h`), added `prepare(src)`, released 0.15.0, bumped docs-starlight to `^0.15.0` (`0cdd7b8`, pushed). S4 details below.
 2026-10-24 (S4): `/icons` browser built (search by name + tag with name-first ranking, 37 category chips incl. `doverunner`, stroke slider via `--pa-stroke`, click copies snippet, import line, 240-cell paging, per-category lazy markup) and `site/static/icons.json` (4,386 names). `build-tabler.mjs` now takes category and tags from the npm `@tabler/icons` package too (`icons.json`), strips its bounding-box path, and emits `icons.json`; `tabler/*.js` output unchanged. Nav, sitemap, llms.txt, docs/icons.md, CHANGELOG updated. `pnpm build` passes (0 problems). Verified in headless browser: `lock` 63 ms, `load-balancer` 26 ms.  Earlier: 0.14.0 released, S3 live at https://pele-animate.pages.dev/.
 ---
 
 ## Next Actions
 
-0. Publish 0.15.0 (`npm publish`, `git push --tags`, GitHub release), then in docs-starlight bump to `^0.15.0` and wrap `mount` with `prepare(src)` (production deploy).
+0. Check live docs.doverunner.com after the `0cdd7b8` deploy (short-label icon diagrams: `fwm-concepts`, `ffmpeg-filter`; layouts may shift).
 1. Refine the `diagram-step-order` skill from the review (layout lessons: `row` wrappers, `TB` vs `LR` siblings, edge declaration order; see docs WORKLOG 2026-10-24).
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
