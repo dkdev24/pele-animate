@@ -338,3 +338,16 @@ Checked on small examples in dark mode only; light mode, long diagrams, composit
 ### Status
 
 Checked at 1280 px and 400 px; light mode untested.
+
+## Playground colours and example titles (unversioned; site deploys on push)
+
+**Date:** 2026-10-24
+
+### Changes
+
+- Colour controls: five pickers (`--pa-solid`, `--pa-light`, `--pele-surface`, `--pa-bg`, `--pele-fg`) set inline on the `.pa-scene` element, initial values read from the computed theme, Reset clears. The old two-picker version looked broken because `--pa-light` only fills groups and the background and node fill were never overridden.
+- Examples menu: each `live` fence carries `title="Type: what it shows"` (parsed in `getExamples()`), grouped by docs page with `<optgroup>`.
+
+### Status
+
+Checked in a local build (dark theme). Light theme, phone width for the new colour fieldset and e2e tests are untested.
