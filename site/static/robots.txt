@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pele-animate.danielkimdev.com/sitemap.xml
