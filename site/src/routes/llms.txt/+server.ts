@@ -17,6 +17,7 @@ ${lines.join('\n')}
 
 ## Optional
 
+- [Icon browser](${SITE}/icons/): search all bundled icons. The machine-readable list is ${SITE}/icons.json ({ version, icons: [{ name, category, tags }] }); take icon names from it, never from memory.
 - [Changelog](${SITE}/changelog/)
 - [Source](https://github.com/dkdev24/pele-animate)
 - [npm](https://www.npmjs.com/package/pele-animate)

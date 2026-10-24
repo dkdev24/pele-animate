@@ -16,7 +16,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-24 (latest): 0.14.0 released (types, docs, skills). **S3 built and live** at https://pele-animate.pages.dev/: SvelteKit 3 site with the 16 docs rendered from `/docs`, live diagrams, changelog + RSS, `llms.txt`, `.md` siblings, `DESIGN.md`, build-time site check. Daniel lifted the upstream hold; kepano has not replied yet. README polished for GitHub (badges, links, hero, generic examples; repo description/topics/homepage set). GitHub's Mermaid shows "?" for `@{ icon }` nodes, so icon examples use the ```` ```mermaid-icons ```` fence (source on GitHub, animated on the site). Next: S4 `/icons`, S5 playground.
+2026-10-24 (S4): `/icons` browser built (search by name + tag with name-first ranking, 37 category chips incl. `doverunner`, stroke slider via `--pa-stroke`, click copies snippet, import line, 240-cell paging, per-category lazy markup) and `site/static/icons.json` (4,386 names). `build-tabler.mjs` now takes category and tags from the npm `@tabler/icons` package too (`icons.json`), strips its bounding-box path, and emits `icons.json`; `tabler/*.js` output unchanged. Nav, sitemap, llms.txt, docs/icons.md, CHANGELOG updated. `pnpm build` passes (0 problems). Verified in headless browser: `lock` 63 ms, `load-balancer` 26 ms. Not committed/pushed yet. Earlier: 0.14.0 released, S3 live at https://pele-animate.pages.dev/.
 ---
 
 ## Next Actions
@@ -25,7 +25,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 4. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-5. S4: `/icons` browser (needs `icons.json` from `build-tabler`); then S5 playground. Still open: kepano/wallabyway replies, custom domain at S7, e2e tests, `vite dev` check. Next release 0.15.0.
+5. S5 playground (the S4 "copy snippet renders when pasted into the playground" check waits on it); add an e2e test for `/icons` search and copy. Still open: kepano/wallabyway replies, custom domain at S7, e2e tests, `vite dev` check. Next release 0.15.0.
 
 ---
 

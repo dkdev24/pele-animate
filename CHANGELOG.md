@@ -7,6 +7,9 @@ may change behavior, so pin a range such as `^0.14.0` and bump it deliberately.
 
 ## [Unreleased]
 
+### Added
+- Website: an icon browser at `/icons/` (search by name and tag, category chips, stroke-width slider, click to copy an `@{ icon }` snippet and the import line) and `/icons.json` (`{ version, icons: [{ name, category, tags }] }`) for agents.
+
 ### Changed
 - README: badges, links to the website and docs, a hero animation, generic comparison examples (client, API, auth server), and icon examples shown as source text because GitHub's Mermaid renderer cannot draw them.
 

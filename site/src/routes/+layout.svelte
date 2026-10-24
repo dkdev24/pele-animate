@@ -27,6 +27,7 @@
 		<a class="brand" href="/">pele-animate</a>
 		<nav aria-label="Main">
 			<a href="/docs/getting-started/">Docs</a>
+			<a href="/icons/">Icons</a>
 			<a href="/changelog/">Changelog</a>
 			<a href="https://github.com/dkdev24/pele-animate">GitHub</a>
 			<a href="https://www.npmjs.com/package/pele-animate">npm</a>
@@ -55,5 +56,5 @@
 	button { height: 36px; width: 36px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 8px; cursor: pointer; font-size: 1rem; }
 	footer { border-top: 1px solid var(--line); margin-top: 4rem; padding: 1.5rem 0 2.5rem; color: var(--fg-muted); font-size: 0.88rem; }
 	footer p { margin: 0.35rem 0; }
-	@media (max-width: 34rem) { nav a:nth-child(n + 3) { display: none; } }
+	@media (max-width: 34rem) { nav a:nth-child(n + 4) { display: none; } }
 </style>
