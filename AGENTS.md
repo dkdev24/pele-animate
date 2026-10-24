@@ -17,7 +17,7 @@ Dev plan: `PLAN.md` (read it before building). Owner: Daniel Kim (`dkdev24`, pri
 - Prefer the post-processor and Pele's public `icons` option; fork Pele only per PLAN.md phase 5.
 - Idle state = finished still frame; honor `prefers-reduced-motion`.
 - Pin `pele`; no new dependencies without need. Plain ESM, no build step until packaging.
-- Versioning: stay on 0.x. Next release is 0.10.0; never bump to 1.0.0 until Daniel says so. Consumers on `^0.x` need an explicit range bump per minor.
+- Versioning: stay on 0.x. Next release is 0.13.0; never bump to 1.0.0 until Daniel says so. Consumers on `^0.x` need an explicit range bump per minor.
 - Company boundary: no DoveRunner-internal identifiers in this repo.
 
 ## System Documents
