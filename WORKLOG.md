@@ -239,3 +239,21 @@ Breaking for `^0.12` consumers (icon names, glyphs moved). Published to npm and 
 
 Planning only, no code in the repo beyond docs. No npm release since 0.13.0. Open decisions in `SITE_DEV_PLAN.md` §13.
 
+---
+
+## S0 to S2 — foundation, types, docs, skills (unversioned, unreleased)
+
+**Date:** 2026-10-24
+
+### Changes
+
+- pnpm workspace (`.`, `site`), CI workflow, root `wrangler.toml`, placeholder `site/`; `npm pack` file list unchanged by the migration.
+- `types/*.d.ts` wired through `exports` (type-checked from a packed tarball).
+- `docs/` (16 pages) and a short README; `scripts/check-docs.mjs` (`pnpm test`) renders every Mermaid fence and checks icon names.
+- `skills/pele-animate` (`verify.js`, generated `references/categories.md`) and `skills/diagram-step-order` (moved from `.claude/skills`, symlinked back).
+- Skill test: a fresh subagent with only the installed skill built a working 3-icon, 3-step diagram in an empty Vite app; verify output `{diagrams:1, steps:[3], emptyIcons:[], fallbackIcons:[]}`, independently re-checked.
+
+### Status
+
+Committed and pushed; not published to npm (next release 0.14.0). Cloudflare Pages project not created. S3 on hold.
+

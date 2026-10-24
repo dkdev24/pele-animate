@@ -16,7 +16,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-24 (latest): 0.13.0 released (Tabler packs, `doverunner-*` rename, fallback glyph); docs-starlight migrated and pushed (`8ff46b4`). Then public-site planning: `SITE_DEV_PLAN.md` (site, `/docs`, skills) and `SITE_FRAMEWORK_RESEARCH.md`; spiked SvelteKit and Nuxt in scratch dirs; **Daniel picked SvelteKit 3**. Nothing built yet; no npm release since 0.13.0.
+2026-10-24 (latest): 0.13.0 released; docs-starlight migrated and pushed. Then public-site planning (SvelteKit chosen; S3+ on hold for kepano's reply to our upstream issue) and **S0 to S2 built, unreleased**: pnpm workspace + CI + placeholder `site/`, `types/`, 16 `docs/*.md`, `skills/` (pele-animate + diagram-step-order; subagent test passed in a fresh Vite app). Unpublished: next release 0.14.0.
 ---
 
 ## Next Actions
@@ -25,7 +25,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 4. Minor: edge-label patches look slightly lighter than the panel on multi-line labels (KO page).
-5. Site: answer `SITE_DEV_PLAN.md` §13 (docs single-source, pnpm migration, skills in npm, check CLI, preset docs, KO timing), then start S0 (pnpm workspace, CI, Pages project) and S1 (types + `/docs`). Next release 0.14.0.
+5. Daniel: create the Cloudflare Pages project (repo root, `pnpm build`, output `site/build`); reply to kepano/wallabyway threads. Then S3 (SvelteKit site) when upstream answers. Release 0.14.0 = types + docs + skills.
 
 ---
 

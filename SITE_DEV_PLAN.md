@@ -5,7 +5,19 @@ developers and coding agents can adopt on any project: proper docs in the repo, 
 playground, and installable agent skills. Modeled on `toonstrip/SITE_DEV_PLAN.md` (same hosting, same
 sibling-site conventions); differences from toonstrip are called out in §4 and §12.
 
-Status: **plan, not started; S3 onward is on hold** until upstream answers (§1, §10). S0 to S2 can proceed. Nothing here is built. **Framework decided 2026-10-24: SvelteKit 3 (Svelte 5) with
+Status (2026-10-24): **S0, S1 and S2 are done; S3 onward is on hold** until upstream answers (§1, §10). What was built:
+
+- **S0:** pnpm workspace (`.`, `site`; `npm pack` file list identical before and after the migration), `.node-version`,
+  `.github/workflows/ci.yml` (`pnpm test` + `pnpm build`), root `wrangler.toml` (`site/build`), and a placeholder `site/`.
+  **Not done:** the Cloudflare Pages project itself (dashboard step for Daniel: connect the repo, root `/`, build command
+  `pnpm build`, output `site/build`).
+- **S1:** `types/` wired through `exports`; the 16 `docs/*.md` pages (shipped in npm); README reduced to a quickstart;
+  `docs/migrating.md`; `scripts/check-docs.mjs` renders every Mermaid fence and checks icon names. **Not done:** the API-drift
+  check (§11) and an outside-developer run of the docs exit criterion.
+- **S2:** `skills/pele-animate` (with `verify.js` and a generated `references/categories.md`) and `skills/diagram-step-order`, shipped in
+  npm. Exit criterion met by a fresh subagent in an empty Vite app using only the installed skill; its feedback was folded in.
+- Recommended answers in §13 were applied (single-source docs, pnpm, skills in npm, no check CLI, short preset section,
+  KO later). Nothing is published to npm yet: the next release is 0.14.0. Nothing here is built. **Framework decided 2026-10-24: SvelteKit 3 (Svelte 5) with
 `adapter-static`**, after spiking SvelteKit and Nuxt 4 + Nuxt Content against Astro; evidence in
 `SITE_FRAMEWORK_RESEARCH.md`. Open decisions are collected in §13.
 

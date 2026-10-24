@@ -60,7 +60,7 @@ npm i pele-animate pele
 import { mount } from 'pele';
 import { watch } from 'pele-animate';
 import { icons } from 'pele-animate/glyphs';
-import 'pele-animate/tabler/computers'; // one Tabler category; import as many as you need
+import 'pele-animate/tabler/computers'; // one Tabler icon category; import as many as you need
 import 'pele-animate/style.css';
 
 for (const el of document.querySelectorAll('pre.mermaid')) {
@@ -82,53 +82,24 @@ flowchart LR
   L <-->|forward| S
 ```
 
-`form: "square", h: 88` makes a large frameless glyph; leave both out for a small icon in a frame.
-`%% pa: 1=C 2=L 3=S` pins nodes to steps (optional). `X>Y` pins the edge from X to Y, so an edge between nodes that are
-already visible can have its own step: `%% pa: 1=A,B 2=C,B>C 3=C>B`. Pin the nodes first; an edge pinned before its target appears lands early.
-Sequence diagrams animate actors, then messages in order.
+`%% pa: 1=C 2=L 3=S` pins the order (optional). `form: "square", h: 88` makes a large frameless icon.
 
-## API
+## Documentation
 
-| Export | |
+Everything is in [`docs/`](docs/getting-started.md), and ships inside the npm package:
+
+| | |
 |---|---|
-| `watch(container, source?)` | Animate the SVG inside `container` (and every re-render of it); adds the scene panel and step mode (click / Enter); pass `{ controls: false }` as a third argument for click-to-replay instead |
-| `animate(svg, { hover, source })` | Animate one SVG; you handle re-renders |
-| `replay(svg)` | Play the intro again |
-| `parseOrder(source)` | Read the `%% pa:` pins: `Map(nodeId or 'X>Y' -> level)` |
-| `svg.paSteps` | Set by `animate()`: one array per step, each item `[element, parts that animate in]`. Step mode uses it; read it to check the order |
-| `registerGlyphs(pack, strokeWidth = 1.1)` (`/glyphs`) | Add glyphs: `{ name: '<inner markup of a 24x24 svg>' }`; colors via `--pa-solid` / `--pa-light` |
-| `icons` (`/glyphs`) | Pele `icons` resolver; unknown names get a neutral rounded square, since Pele ships no icons of its own |
+| [Getting started](docs/getting-started.md) · [How it works](docs/how-it-works.md) · [Diagram types](docs/diagram-types.md) | The basics |
+| [Icons](docs/icons.md) · [Custom icons](docs/custom-icons.md) · [Step order](docs/step-order.md) · [Theming](docs/theming.md) · [Recipes](docs/recipes.md) | Guides (Vite, Astro, SvelteKit, Nuxt, React) |
+| [API](docs/api.md) · [Compatibility](docs/compatibility.md) · [Accessibility](docs/accessibility.md) · [Security](docs/security.md) | Reference |
+| [Migrating](docs/migrating.md) · [For coding agents](docs/agents.md) · [FAQ](docs/faq.md) · [Contributing](docs/contributing.md) | Everything else |
 
-Icons come from the packs you import: Tabler categories (below) or your own via `registerGlyphs`. `pele-animate/preset-doverunner` is an optional extra set of filled, two-tone glyphs (all named `doverunner-<name>`).
+**Coding agents:** the package includes a skill, `skills/pele-animate/`, that wires the library into a project and checks the
+result in a browser. See [For coding agents](docs/agents.md).
 
-### Tabler icon packs
+## Credits and license
 
-About 4,300 line icons from [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT), split by Tabler's own categories. Import only what you need:
-
-```js
-import 'pele-animate/tabler/devices';   // also: system, database, development, communication, charts, ...
-```
-
-Then use any name from that category: `A@{ icon: "device-tv", form: "square", h: 88 }`. The `computers` pack (44 icons: `network`, `load-balancer`, `cloud-computing`, `http-get`, `topology-star`, ...) suits infrastructure diagrams.
-Tabler icons are stroke-only, so the stroke width is adjustable: set `--pa-stroke` on the container (default `1.5`; Tabler draws at 2 and
-designs every icon to work at other widths). Categories: see `tabler/` (Brand, Letters, Numbers, Zodiac and Gender are left out).
-Regenerate with `node scripts/build-tabler.mjs <tabler-icons checkout>`. License notice: `THIRD-PARTY-NOTICES.md`.
-
-```css
-.pa-scene { --pa-stroke: 1; }
-```
-
-## Theme
-
-`watch()` adds class `pa-scene` to the container. Override `--pa-bg`, `--pa-solid`, `--pa-light` or any `--pele-*`
-variable on it; defaults are `:where()` rules, so your stylesheet wins.
-
-## Limits
-
-- Relies on Pele's SVG structure (`.pele-node`, `.pele-edge`, `data-id`); `pele` is a peer dependency pinned to `^1.7.0`.
-- Flowcharts and sequence diagrams only. No types yet.
-- Glyph art is square-boxed; wide art is drawn as a wide glyph inside the square.
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md).
+MIT. Built on [Pele](https://github.com/obsidianmd/pele) by kepano (MIT); this is an unofficial add-on, not affiliated with or
+endorsed by the Pele or Obsidian teams. The Tabler icon packs come from [Tabler Icons](https://github.com/tabler/tabler-icons)
+(MIT, Paweł Kuna); see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). See also [CHANGELOG.md](CHANGELOG.md).

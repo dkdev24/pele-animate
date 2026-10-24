@@ -5,18 +5,21 @@
   "type": "module",
   "license": "MIT",
   "homepage": "https://github.com/dkdev24/pele-animate#readme",
+  "packageManager": "pnpm@10.13.1",
+  "scripts": { "test": "node scripts/check-docs.mjs", "build": "pnpm -r --filter ./site build" },
   "publishConfig": { "access": "public" },
   "author": "Daniel Kim",
   "repository": { "type": "git", "url": "git+https://github.com/dkdev24/pele-animate.git" },
   "keywords": ["mermaid", "pele", "svg", "diagram", "animation"],
+  "types": "./types/index.d.ts",
   "exports": {
-    ".": "./pele-animate.js",
-    "./glyphs": "./glyphs.js",
-    "./preset-doverunner": "./preset-doverunner.js",
+    ".": { "types": "./types/index.d.ts", "default": "./pele-animate.js" },
+    "./glyphs": { "types": "./types/glyphs.d.ts", "default": "./glyphs.js" },
+    "./preset-doverunner": { "types": "./types/preset-doverunner.d.ts", "default": "./preset-doverunner.js" },
     "./style.css": "./pele-animate.css",
-    "./tabler/*": "./tabler/*.js"
+    "./tabler/*": { "types": "./types/tabler-pack.d.ts", "default": "./tabler/*.js" }
   },
-  "files": ["pele-animate.js", "pele-animate.css", "glyphs.js", "preset-doverunner.js", "tabler", "THIRD-PARTY-NOTICES.md", "README.md", "LICENSE"],
+  "files": ["pele-animate.js", "pele-animate.css", "glyphs.js", "preset-doverunner.js", "tabler", "types", "docs", "skills", "THIRD-PARTY-NOTICES.md", "README.md", "LICENSE"],
   "sideEffects": ["*.css", "./preset-doverunner.js", "./tabler/*.js"],
   "peerDependencies": { "pele": "^1.7.0" },
   "devDependencies": { "pele": "^1.7.0" }

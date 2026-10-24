@@ -1,0 +1,6 @@
+# Cloudflare Pages configuration for pele-animate.danielkimdev.com (SITE_DEV_PLAN.md section 8).
+# Lives at the REPO ROOT because the Pages project (connected to GitHub, root directory /) reads it from there.
+# The build command is dashboard-only: `pnpm build`. Keep pages_build_output_dir equal to the site's adapter output.
+name = "pele-animate"
+compatibility_date = "2026-10-24"
+pages_build_output_dir = "site/build"

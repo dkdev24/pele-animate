@@ -7,6 +7,12 @@ may change behavior, so pin a range such as `^0.12.0` and bump it deliberately.
 
 ## [Unreleased]
 
+### Added
+- TypeScript types (`types/`), wired through `exports`.
+- Documentation in `docs/` (16 pages), shipped in the npm package; the README is now a short quickstart that links to it.
+- Agent skills in `skills/`, shipped in the npm package: `pele-animate` (install, mount, icons, step order, theme, verify in a browser, with a `verify.js` probe) and `diagram-step-order`.
+- `pnpm test` renders every Mermaid example in the docs, skills and README with Pele and checks icon names.
+
 ## [0.13.0] - 2026-10-24
 
 Tabler icon packs, and the illustrated glyphs move to a `doverunner-` namespace. Two breaking renames: see Changed.

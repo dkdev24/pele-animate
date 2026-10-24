@@ -16,7 +16,7 @@ Goal: when a viewer steps through a diagram (click, then ←/→), each step sho
 ## Workflow
 
 1. **Find the blocks** in the page and read the prose around each one (heading, the paragraph before and after, captions, numbered lists). Write down the order the text describes, one line per step.
-2. **Probe the current order.** With the site running (restart a dev server after changing a locally copied library, then hard reload; a soft reload can show stale steps): `agent-browser open <url>`, then `agent-browser eval "$(cat steps.js)"`. Each step prints its nodes, `[FROM_TO]` edges and quoted edge labels.
+2. **Probe the current order.** With the site running (restart a dev server after changing a locally copied library, then hard reload; a soft reload can show stale steps): open the page in a headless browser and evaluate `steps.js` in it (for example `agent-browser open <url>` then `agent-browser eval "$(cat steps.js)"`, or Playwright's `page.evaluate`). Each step prints its nodes, `[FROM_TO]` edges and quoted edge labels.
 3. **Triage.**
    - Sequence diagram: compare message order with the text, change nothing, flag mismatches.
    - Linear chain or decision tree: BFS order is normally right (branches of a decision appear together). Say "no change" and why.

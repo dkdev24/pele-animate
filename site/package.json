@@ -1,0 +1,10 @@
+{
+  "name": "pele-animate-site",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Placeholder until S3 (SvelteKit site); see ../SITE_DEV_PLAN.md",
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}

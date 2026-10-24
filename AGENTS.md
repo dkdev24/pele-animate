@@ -1,15 +1,18 @@
 # AGENTS.md — pele-animate
 
-Animated, illustrated SVG diagrams from plain Mermaid code, built on [Pele](https://github.com/obsidianmd/pele) (MIT).
-First consumer: the DoveRunner docs site. Visual reference: the DoveRunner Lab product cards.
-Dev plan: `PLAN.md` (read it before building). Owner: Daniel Kim (`dkdev24`, private repo).
+Step-by-step animated Mermaid diagrams with icons, built on [Pele](https://github.com/obsidianmd/pele) (MIT). Unofficial add-on.
+Positioning: step order, step playback and icons; not a theme package. First consumer: the DoveRunner docs site.
+Dev plan: `PLAN.md`. Owner: Daniel Kim (`dkdev24`). **Public repo and public npm package.**
 
 ## Layout
 
 - `pele-animate.js` / `.css` — post-processor (`animate(svg)`, `watch(container)`)
+- `docs/` — the documentation (Markdown, single source: read on GitHub, shipped in npm, rendered by the site later). Fenced `mermaid` blocks must render: `pnpm test`
+- `skills/` — agent skills shipped in npm: `pele-animate` (adopt + verify), `diagram-step-order`; `.claude/skills/diagram-step-order` is a symlink
+- `site/` — placeholder now; SvelteKit site in S3 (on hold). `types/` — hand-written `.d.ts`. `tabler/` — generated, never hand-edit (`scripts/build-tabler.mjs`)
 - `demo.html` — test page; serve with `python3 -m http.server`
 - `PLAN.md` — phases and findings
-- `SITE_DEV_PLAN.md` — plan for the public site (pele-animate.danielkimdev.com, SvelteKit), `/docs` and agent skills; not started. `SITE_FRAMEWORK_RESEARCH.md` — why SvelteKit
+- `SITE_DEV_PLAN.md` — plan for the public site (pele-animate.danielkimdev.com, SvelteKit), docs and skills; S0–S2 done, S3 on hold. `SITE_FRAMEWORK_RESEARCH.md` — why SvelteKit
 - `CHANGELOG.md` — public, Keep a Changelog format; add an entry with every release (no internal names)
 
 ## Working agreements
@@ -17,7 +20,8 @@ Dev plan: `PLAN.md` (read it before building). Owner: Daniel Kim (`dkdev24`, pri
 - Source stays valid Mermaid (extensions only via Mermaid's own `@{ icon }` syntax or `%%` comments).
 - Prefer the post-processor and Pele's public `icons` option; fork Pele only per PLAN.md phase 5.
 - Idle state = finished still frame; honor `prefers-reduced-motion`.
-- Pin `pele`; no new dependencies without need. Plain ESM, no build step until packaging.
+- pnpm workspace (`.`, `site`); `pnpm test` before committing. Pin `pele`; no new dependencies without need. The package itself is plain ESM, no build step.
+- A breaking change needs a `CHANGELOG.md` entry and a section in `docs/migrating.md`. Keep examples generic.
 - Versioning: stay on 0.x. Next release is 0.14.0; never bump to 1.0.0 until Daniel says so. Consumers on `^0.x` need an explicit range bump per minor.
 - Company boundary: no DoveRunner-internal identifiers in this repo.
 
