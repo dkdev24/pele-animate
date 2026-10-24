@@ -16,5 +16,5 @@
 </div>
 
 <style>
-	article { max-width: 72ch; padding-top: 2rem; }
+	article { max-width: 72ch; padding-top: var(--space-xl); }
 </style>

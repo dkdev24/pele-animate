@@ -1,2 +1,4 @@
 node_modules/
 .DS_Store
+site/static/fonts/Ranade-*
+site/static/fonts/Gambarino-*

@@ -121,26 +121,28 @@
 </div>
 
 <style>
-	button { font-family: var(--font); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; cursor: pointer; }
-	.wrap { padding-top: 2rem; }
-	.lead { max-width: 72ch; color: var(--fg-muted); }
-	.controls { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin: 1.25rem 0 0.75rem; }
-	input[type='search'] { flex: 1 1 18rem; height: 2.5rem; padding: 0 0.85rem; font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; }
-	.stroke { display: flex; gap: 0.5rem; align-items: center; color: var(--fg-muted); font-size: 0.9rem; }
-	.stroke output { font: 0.85rem var(--mono); width: 2ch; }
-	.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-	.chips button {  padding: 0.2rem 0.65rem; font: 0.85rem var(--font); border-radius: 999px; }
-	.chips button[aria-pressed='true'] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
-	.detail { display: flex; gap: 1rem; align-items: flex-start; padding: 1rem; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 1rem; }
-	.detail svg { flex: none; color: var(--accent); --pa-solid: var(--accent); }
+	button { font-family: var(--font); color: var(--color-ink); background: var(--color-sheet); border: 0; border-radius: var(--radius-pill); cursor: pointer; box-shadow: 0 0 0 1px var(--shade-1), inset 0 1px 0 var(--hi); transition: transform var(--dur-micro) var(--ease-out); }
+	button:active { transform: translateY(1px); }
+	.wrap { padding-top: var(--space-xl); }
+	h1 { font-size: clamp(2.25rem, 2vw + 1.5rem, 3.25rem); max-width: none; }
+	.lead { max-width: 72ch; color: var(--color-ink-2); font-size: var(--text-md); margin-top: var(--space-sm); }
+	.controls { display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; margin: var(--space-lg) 0 var(--space-sm); }
+	input[type='search'] { flex: 1 1 18rem; height: 52px; padding: 0 1.25rem; font: inherit; color: var(--color-ink); background: var(--color-sheet); border: 1px solid var(--color-muted); border-radius: var(--radius-pill); }
+	.stroke { display: flex; gap: 0.5rem; align-items: center; color: var(--color-muted); font-size: 0.9rem; }
+	.stroke output { font: 0.85rem var(--font-code); width: 2ch; }
+	.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: var(--space-md); }
+	.chips button { padding: 0.35rem 0.85rem; font: 500 0.88rem var(--font); }
+	.chips button[aria-pressed='true'] { background: var(--color-accent-soft); box-shadow: 0 0 0 1px var(--color-accent); color: var(--color-ink); }
+	.detail { display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md); background: var(--color-sheet); border-radius: var(--radius-card); box-shadow: var(--shadow-card); margin-bottom: var(--space-md); }
+	.detail svg { flex: none; color: var(--color-accent); --pa-solid: var(--color-accent); }
 	.detail div { min-width: 0; }
 	.detail pre { margin: 0.4rem 0; }
-	.muted, .count { color: var(--fg-muted); font-size: 0.9rem; }
-	.copy, .more { padding: 0.3rem 0.8rem; font: 0.88rem var(--font); margin-right: 0.4rem; }
-	.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr)); gap: 0.5rem; }
-	.grid button { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.7rem 0.3rem; font: 0.72rem var(--mono); background: var(--bg); }
-	.grid button:hover { border-color: var(--accent); }
-	.grid button[aria-pressed='true'] { background: var(--accent-soft); border-color: var(--accent); }
-	.grid svg { --pa-solid: var(--fg); }
-	.grid span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--fg-muted); }
+	.muted, .count { color: var(--color-muted); font-size: 0.9rem; }
+	.copy, .more { padding: 0.4rem 1rem; font: 500 0.88rem var(--font); margin-right: 0.4rem; min-height: 36px; }
+	.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr)); gap: var(--space-xs); }
+	.grid button { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.8rem 0.6rem; font: 0.72rem var(--font-code); background: var(--color-sheet); border-radius: var(--radius-inner); box-shadow: 0 0 0 1px var(--color-rule); }
+	.grid button:hover { box-shadow: 0 0 0 1px var(--color-accent); }
+	.grid button[aria-pressed='true'] { background: var(--color-accent-soft); box-shadow: 0 0 0 1px var(--color-accent); }
+	.grid svg { --pa-solid: var(--color-ink); }
+	.grid span { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-muted); }
 </style>

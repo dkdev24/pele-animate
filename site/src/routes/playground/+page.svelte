@@ -167,28 +167,31 @@ watch(el, src);
 </div>
 
 <style>
-	.wrap { padding-top: 2rem; }
-	button, select { font: 0.9rem var(--font); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 0.35rem 0.8rem; cursor: pointer; }
+	.wrap { padding-top: var(--space-xl); }
+	h1 { font-size: clamp(2.25rem, 2vw + 1.5rem, 3.25rem); max-width: none; }
+	button, select { font: 500 0.92rem var(--font); color: var(--color-ink); background: var(--color-sheet); border: 0; border-radius: var(--radius-pill); padding: 0.55rem 1.1rem; min-height: 44px; cursor: pointer; box-shadow: 0 0 0 1px var(--shade-1), inset 0 1px 0 var(--hi); transition: transform var(--dur-micro) var(--ease-out); }
+	button:active { transform: translateY(1px); }
+	select { box-shadow: 0 0 0 1px var(--color-muted); }
 	.tabs { display: none; gap: 0.4rem; margin: 0.75rem 0; }
-	.tabs button[aria-selected='true'] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
-	.top { display: grid; grid-template-columns: minmax(0, 3fr) minmax(16rem, 2fr); gap: 1.25rem; margin: 1rem 0; }
-	.ed label { font-size: 0.85rem; color: var(--fg-muted); }
-	textarea { width: 100%; font: 0.85rem/1.55 var(--mono); color: var(--fg); background: var(--bg-soft); border: 1px solid var(--line); border-radius: 8px; padding: 0.75rem 1rem; resize: vertical; tab-size: 2; }
-	.ctl { display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.9rem; color: var(--fg-muted); }
+	.tabs button[aria-selected='true'] { background: var(--color-accent-soft); box-shadow: 0 0 0 1px var(--color-accent); }
+	.top { display: grid; grid-template-columns: minmax(0, 3fr) minmax(16rem, 2fr); gap: var(--space-lg); margin: var(--space-md) 0; }
+	.ed label { font-size: var(--text-sm); color: var(--color-muted); }
+	textarea { width: 100%; font: 0.85rem/1.6 var(--font-code); color: var(--color-ink); background: var(--color-sheet); border: 1px solid var(--color-muted); border-radius: var(--radius-inner); padding: 0.9rem 1.1rem; resize: vertical; tab-size: 2; }
+	.ctl { display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.92rem; color: var(--color-ink-2); }
 	.ctl label { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-	.ctl output { font: 0.85rem var(--mono); }
-	.colors { border: 1px solid var(--line); border-radius: 8px; padding: 0.5rem 0.75rem 0.75rem; display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
-	.colors legend { padding: 0 0.4rem; font-size: 0.85rem; }
-	.colors input[type='color'] { width: 2.2rem; height: 1.7rem; padding: 0; border: 1px solid var(--line); border-radius: 6px; background: none; cursor: pointer; }
-	.colors button:disabled { opacity: 0.4; cursor: default; }
+	.ctl output { font: 0.85rem var(--font-code); }
+	.colors { border: 0; border-radius: var(--radius-inner); padding: 0.75rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; background: var(--color-paper-2); box-shadow: inset 0 0 0 1px var(--color-rule); margin: 0; }
+	.colors legend { padding: 0 0.4rem; font-size: var(--text-sm); color: var(--color-muted); float: left; width: 100%; margin-bottom: 0.4rem; }
+	.colors input[type='color'] { width: 2.4rem; height: 1.9rem; padding: 0; border: 1px solid var(--color-muted); border-radius: 8px; background: none; cursor: pointer; }
+	.colors button:disabled { opacity: 0.45; cursor: default; }
 	.btns { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-	.note { min-height: 1.4em; font-size: 0.85rem; color: var(--fg-muted); margin: 0; }
-	.warn { color: var(--fg-muted); font-size: 0.88rem; }
-	.err { color: #c0392b; font: 0.85rem var(--mono); white-space: pre-wrap; }
-	.pv { margin: 1rem 0 2rem; }
+	.note { min-height: 1.4em; font-size: var(--text-sm); color: var(--color-muted); margin: 0; }
+	.warn { color: var(--color-muted); font-size: 0.9rem; }
+	.err { color: var(--color-error); font: 0.85rem var(--font-code); white-space: pre-wrap; }
+	.pv { margin: var(--space-lg) 0 var(--space-xl); }
 	.frame { max-width: 100%; min-height: 8rem; margin: 0 auto; }
 	@media (max-width: 56rem) {
-		.top { grid-template-columns: 1fr; }
+		.top { grid-template-columns: minmax(0, 1fr); }
 		.tabs { display: flex; }
 		.hide { display: none; }
 	}

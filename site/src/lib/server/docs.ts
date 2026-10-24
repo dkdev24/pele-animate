@@ -21,7 +21,7 @@ export type Doc = {
 };
 
 const highlighter = await createHighlighter({
-	themes: ['github-light', 'github-dark'],
+	themes: ['github-light-high-contrast', 'github-dark-high-contrast'],
 	langs: ['js', 'ts', 'sh', 'css', 'json', 'html', 'astro', 'svelte', 'md', 'mermaid']
 });
 const loaded = new Set(highlighter.getLoadedLanguages());
@@ -31,7 +31,7 @@ const slugify = (s: string) => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/
 function highlight(text: string, lang: string) {
 	return highlighter.codeToHtml(text, {
 		lang: loaded.has(lang) ? lang : 'text',
-		themes: { light: 'github-light', dark: 'github-dark' },
+		themes: { light: 'github-light-high-contrast', dark: 'github-dark-high-contrast' },
 		defaultColor: false
 	});
 }
