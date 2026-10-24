@@ -351,3 +351,15 @@ Checked at 1280 px and 400 px; light mode untested.
 ### Status
 
 Checked in a local build (dark theme). Light theme, phone width for the new colour fieldset and e2e tests are untested.
+
+## v0.16.2 — edge pins in either order
+
+**Date:** 2026-10-24
+
+### Changes
+
+- `animate()`: an edge pin `X>Y` also matches `Y>X` when the diagram has no opposite edge (`pinOf`). Pins written against the recorded order (class and ER relationships, undirected architecture edges) were ignored, so every edge showed with step 1. Documented in `step-order.md`.
+
+### Status
+
+Checked on class, architecture and state repro cases and the step-order flowchart examples; ER with both directions present untested.

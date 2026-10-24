@@ -3,9 +3,11 @@
 All notable changes to `pele-animate` are recorded here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project stays on `0.x`: minor versions
-may change behavior, so pin a range such as `^0.16.1` and bump it deliberately.
+may change behavior, so pin a range such as `^0.16.2` and bump it deliberately.
 
 ## [Unreleased]
+
+## [0.16.2] - 2026-10-24
 
 ### Fixed
 - Edge pins (`X>Y`) are matched in either order when the diagram has no opposite edge. Before, a pin written against the arrow (class and ER relationships, undirected architecture edges, `A <--> B` read as `B>A`) was ignored and the edge appeared with the first step.
@@ -143,7 +145,8 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.16.1...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.16.2...HEAD
+[0.16.2]: https://github.com/dkdev24/pele-animate/compare/0.16.1...0.16.2
 [0.16.1]: https://github.com/dkdev24/pele-animate/compare/0.16.0...0.16.1
 [0.16.0]: https://github.com/dkdev24/pele-animate/compare/0.15.0...0.16.0
 [0.15.0]: https://github.com/dkdev24/pele-animate/compare/0.14.0...0.15.0
