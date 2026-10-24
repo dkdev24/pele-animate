@@ -127,12 +127,15 @@ function sequentialSteps(svg) {
   if (svg.classList.contains('pele-timeline')) return all('.pele-period').map((p) => [p]);
   if (svg.classList.contains('pele-gantt')) return all('.pele-task').map((t) => [t]);
   if (svg.classList.contains('pele-journey')) {
-    const tasks = all('.pele-task'), faces = all('.pele-face');
-    const line = svg.querySelector('path.pele-edge');
+    // Wide: tasks, faces and one polyline are separate. Narrow (vertical list): each step holds its face, edges join the steps.
+    const tasks = all('.pele-task, .pele-journey-step');
+    const faces = all('.pele-face').filter((f) => !f.closest('.pele-node'));
     // The satisfaction line is one polyline `M x,yL x,y...`: split it so each segment arrives with its task.
     const segs = [];
-    if (line && /^M[-\d.,]+(L[-\d.,]+)+$/.test(line.getAttribute('d'))) {
-      const p = line.getAttribute('d').slice(1).split('L');
+    for (const line of all('path.pele-edge')) {
+      const d = line.getAttribute('d');
+      if (!/^M[-\d.,]+(L[-\d.,]+)+$/.test(d)) { segs.push(line); continue; }
+      const p = d.slice(1).split('L');
       for (let i = 1; i < p.length; i++) {
         const seg = line.cloneNode();
         seg.setAttribute('d', `M${p[i - 1]}L${p[i]}`);

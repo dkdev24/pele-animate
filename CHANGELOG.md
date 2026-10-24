@@ -27,6 +27,7 @@ may change behavior, so pin a range such as `^0.16.0` and bump it deliberately.
 - Website: an icon browser at `/icons/` (search by name and tag, category chips, stroke-width slider, click to copy an `@{ icon }` snippet and the import line) and `/icons.json` (`{ version, icons: [{ name, category, tags }] }`) for agents.
 
 ### Changed
+- Docs: the diagram-type examples are longer (five to seven steps) with pins that follow a story, so step mode shows what pins and step order are for.
 - Text on solid fills (timeline periods, Gantt bars, git branch tags) was invisible because the scene made Pele's contrast colour transparent; it now uses the panel surface colour.
 - README: badges, links to the website and docs, a hero animation, generic comparison examples (client, API, auth server), and icon examples shown as source text because GitHub's Mermaid renderer cannot draw them.
 

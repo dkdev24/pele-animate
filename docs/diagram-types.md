@@ -34,8 +34,11 @@ for them; see [Everything else](#everything-else).
 Nodes appear in step order, edges draw from their source node, and edge labels fade in. Groups (`subgraph`) and their titles
 are kept. Icon nodes (`@{ icon }`) work here; see [icons](./icons.md).
 
+The pins below put "Serve" (the cache hit) before "Fetch", then draw the `Fetch` to `Serve` edge as its own last step. Without them, `Serve` and `Fetch` would appear together.
+
 ```mermaid live
 flowchart LR
+  %% pa: 1=A 2=B 3=C 4=D 5=D>C
   A[Client] --> B{Cached?}
   B -->|yes| C[Serve]
   B -->|no| D[Fetch] --> C
@@ -43,11 +46,13 @@ flowchart LR
 
 ## Sequence diagrams
 
-Actors appear first, then the messages in order. Participant boxes in a row get the same height, and group titles are bold.
+Actors appear first, then one step per message in source order, so a cache miss reads as five short steps. Participant boxes in a row get the same height, and group titles are bold.
 
 ```mermaid live
 sequenceDiagram
   Client->>API: request
+  API->>Cache: lookup
+  Cache-->>API: miss
   API->>Database: query
   Database-->>API: rows
   API-->>Client: response
@@ -59,19 +64,26 @@ sequenceDiagram
 
 `architecture-beta`: services in groups, joined by edges. Services appear in step order like flowchart nodes, groups stay visible,
 and `%% pa:` pins work the same way. The icon in parentheses is looked up in your icon packs, so Tabler names and `doverunner-*`
-names work (import the packs as for [icons](./icons.md)).
+names work (import the packs as for [icons](./icons.md)). The pins here follow a request: the user, the CDN, the API, the cache and database together, then the queue and worker.
 
 ```mermaid-icons live
 architecture-beta
+  %% pa: 1=user 2=cdn 3=api 4=cache,db 5=queue 6=worker
   group edge(cloud)[Edge]
   group core(cloud)[Core]
   service user(device-desktop)[User]
   service cdn(cloud-computing)[CDN] in edge
   service api(server)[API] in core
+  service cache(bolt)[Cache] in core
   service db(database)[Database] in core
+  service queue(mail)[Queue] in core
+  service worker(settings)[Worker] in core
   user:R --> L:cdn
   cdn:R --> L:api
-  api:R --> L:db
+  api:T --> B:cache
+  api:B --> T:db
+  api:R --> L:queue
+  queue:R --> L:worker
 ```
 
 Icons here are small and fixed in size; `form` and `h` apply to flowcharts only. Edges are read from their written direction
@@ -84,33 +96,41 @@ start and end markers are nodes too, with the ids `root_start` and `root_end`, s
 
 ```mermaid live
 stateDiagram-v2
-  %% pa: 1=root_start 2=Idle 3=Running 4=Paused 5=root_end
+  %% pa: 1=root_start 2=Idle 3=Loading 4=Playing 5=Paused 6=Error 7=root_end
   [*] --> Idle
-  Idle --> Running: start
-  Running --> Paused: pause
-  Paused --> Running: resume
-  Running --> [*]: done
+  Idle --> Loading: play
+  Loading --> Playing: ready
+  Playing --> Paused: pause
+  Paused --> Playing: resume
+  Loading --> Error: fail
+  Error --> Idle: retry
+  Playing --> [*]: stop
 ```
 
-Without pins the order is breadth-first from the start marker, which shows `Paused` and the end marker together. Pele gives
+The pins give each state its own step, in the order a viewer meets them. Without pins the order is breadth-first from the start marker, which shows states at the same distance together (here `Playing` and `Error`). Pele gives
 state edges no readable ids, so pele-animate finds each transition's ends from where its path starts and stops. Composite
 states and forks are untested. State diagrams take no icons.
 
 ## C4 context diagrams
 
 `C4Context`: people and systems appear in step order and each `Rel` draws from its source, with its label. Pins use the ids you
-give `Person(...)` and `System(...)`; an edge pin is `3=app>drm`.
+give `Person(...)` and `System(...)`; an edge pin is `3=app>drm`. The example adds the DRM service, CDN and analytics one at a time, then the operator who reads the analytics.
 
 ```mermaid live
 C4Context
-  %% pa: 1=viewer 2=app 3=drm,cdn
+  %% pa: 1=viewer 2=app 3=drm 4=cdn 5=analytics 6=admin
   Person(viewer, "Viewer", "Watches video")
   System(app, "Player app", "Plays protected video")
   System_Ext(drm, "DRM service", "Issues licenses")
-  System(cdn, "CDN", "Delivers segments")
-  Rel(viewer, app, "uses")
+  System_Ext(cdn, "CDN", "Delivers segments")
+  System(analytics, "Analytics", "Tracks playback")
+  Person(admin, "Operator", "Reviews usage")
+  Rel(viewer, app, "watches")
   Rel(app, drm, "license")
   Rel(app, cdn, "segments")
+  Rel(app, analytics, "events")
+  Rel(admin, analytics, "reviews")
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
 ```
 
 Pele lays C4 diagrams out in rows, so a long label between two boxes in the same row can leave no room for the arrowhead:
@@ -122,12 +142,14 @@ keep `Rel` labels short. Only `C4Context` has been checked; the other C4 types a
 
 ```mermaid live
 block-beta
-  columns 3
-  %% pa: 1=client 2=server 3=db
-  client["Client"] space server["Server"]
-  space space db[("Database")]
-  client --> server
-  server --> db
+  columns 4
+  %% pa: 1=src 2=enc 3=pkg 4=cdn 5=store
+  src["Source"] enc["Encode"] pkg["Package"] cdn["CDN"]
+  space space store[("Storage")] space
+  src --> enc
+  enc --> pkg
+  pkg --> cdn
+  pkg --> store
 ```
 
 Pele routes arrows between blocks in straight lines or short bends, so place linked blocks in the same row or column; a diagonal
@@ -135,30 +157,35 @@ neighbour can give a bent arrow that runs along another one. Block diagrams take
 
 ## Class diagrams
 
-`classDiagram`: classes appear in step order, relationships draw from the class written first. `Animal <|-- Dog` reveals `Animal`
-and then `Dog`, whichever way the arrowhead points. Pins use the class names.
+`classDiagram`: classes appear in step order, relationships draw from the class written first. `Media <|-- Video` reveals `Media`
+and then `Video`, whichever way the arrowhead points. Pins use the class names; the example shows the base class, its subtypes, then the classes that use them.
 
 ```mermaid live
 classDiagram
-  %% pa: 1=Animal 2=Dog,Cat 3=Owner
-  Animal <|-- Dog
-  Animal <|-- Cat
-  Dog --> Owner : has
-  Animal : +name
-  Dog : +bark()
+  %% pa: 1=Media 2=Video,Audio 3=Player 4=License 5=Session
+  Media <|-- Video
+  Media <|-- Audio
+  Player --> Media : plays
+  Player --> License : needs
+  License --> Session : opens
+  Media : +id
+  Media : +title
+  Player : +play()
+  License : +expiry
 ```
 
 ## ER diagrams
 
 `erDiagram`: entities appear in step order, relationships draw from the entity written first (`CUSTOMER ||--o{ ORDER` reveals
-`CUSTOMER`, then `ORDER`).
+`CUSTOMER`, then `ORDER`). The example reads from the customer down to the supplier.
 
 ```mermaid live
 erDiagram
-  %% pa: 1=CUSTOMER 2=ORDER 3=LINE,PRODUCT
+  %% pa: 1=CUSTOMER 2=ORDER 3=LINE 4=PRODUCT 5=SUPPLIER
   CUSTOMER ||--o{ ORDER : places
   ORDER ||--|{ LINE : contains
-  PRODUCT ||--o{ LINE : in
+  LINE }o--|| PRODUCT : lists
+  PRODUCT }o--|| SUPPLIER : "supplied by"
 ```
 
 Neither takes icons.
@@ -168,28 +195,34 @@ Neither takes icons.
 These have no edges to follow, so each steps through its items in reading order and `%% pa:` pins do nothing (as for sequence
 diagrams). Section headers, axes, grids and legends stay visible.
 
-- **`timeline`:** one step per time period, with its events.
+- **`timeline`:** one step per time period, with its events. List periods in time order.
 
 ```mermaid live
 timeline
-  title History
-  section Early
-    2002 : Launch : Beta
-    2004 : Growth
-  section Late
-    2010 : Scale
+  title Product history
+  section Build
+    2019 : Prototype
+    2020 : Private beta : First customers
+  section Grow
+    2021 : Public launch
+    2023 : Mobile apps : Offline mode
+    2025 : Global rollout
 ```
 
 - **`journey`:** one step per task: the task, its face, and the line segment that joins it to the task before.
 
 ```mermaid live
 journey
-  title My day
-  section Work
-    Make tea: 5: Me, Bob
-    Do work: 3: Me
-  section Home
-    Relax: 4: Me
+  title Watching a protected video
+  section Find
+    Open the app: 5: Viewer
+    Pick a title: 4: Viewer
+  section Play
+    Wait for the license: 2: Viewer, App
+    Playback starts: 5: Viewer
+  section Finish
+    Resume later: 4: Viewer
+    Rate the title: 3: Viewer
 ```
 
 - **`gitGraph`:** one step per commit in the order written, with the edge that ends on it. A branch's label and lane appear with
@@ -197,24 +230,31 @@ journey
 
 ```mermaid live
 gitGraph
-  commit id: "a"
-  branch dev
-  commit id: "b"
+  commit id: "init"
+  branch feature
+  commit id: "api"
+  commit id: "ui"
   checkout main
-  commit id: "c"
-  merge dev id: "m"
+  commit id: "fix"
+  merge feature id: "m"
+  branch release
+  commit id: "v1"
 ```
 
-- **`gantt`:** one step per task, top to bottom.
+- **`gantt`:** one step per task, top to bottom: write tasks in the order you want them to appear.
 
 ```mermaid live
 gantt
   dateFormat YYYY-MM-DD
+  section Plan
+    Scope :a1, 2024-01-01, 3d
+    Design :after a1, 4d
   section Build
-    Design :a1, 2024-01-01, 3d
-    Code :after a1, 4d
+    Code :b1, 2024-01-08, 8d
+    Review :after b1, 2d
   section Ship
-    Test :2024-01-08, 2d
+    Test :2024-01-18, 4d
+    Release :2024-01-22, 1d
 ```
 
 None of these take icons. Only these small examples have been checked in a browser; long diagrams, `todayMarker`, tags, cherry-picks and
