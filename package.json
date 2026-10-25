@@ -6,7 +6,7 @@
   "license": "MIT",
   "homepage": "https://github.com/dkdev24/pele-animate#readme",
   "packageManager": "pnpm@10.13.1",
-  "scripts": { "test": "node scripts/check-docs.mjs", "build": "pnpm -r --filter ./site build" },
+  "scripts": { "test": "node scripts/check-docs.mjs && node scripts/smoke-pele.mjs", "build": "pnpm -r --filter ./site build" },
   "publishConfig": { "access": "public" },
   "author": "Daniel Kim",
   "repository": { "type": "git", "url": "git+https://github.com/dkdev24/pele-animate.git" },

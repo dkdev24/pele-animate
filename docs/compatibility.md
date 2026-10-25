@@ -22,7 +22,7 @@ pele-animate reads the SVG Pele produces. It selects on these class names and at
 `.pele-node`, `.pele-edge`, `.pele-edge-label`, `.pele-marker`, `.pele-cluster-label`, `.pele-icon`, `.pele-lifeline`,
 `.pele-actor-participant`, and the `data-id` attribute.
 
-Pele has not promised these are stable across releases (the question is open upstream). That is why Pele is a peer dependency:
+Pele's maintainer has said there are no plans to change them, but there is no formal promise that they stay stable across releases. That is why Pele is a peer dependency:
 upgrade it deliberately, and re-check your diagrams afterwards. The repository's tests render every documentation example,
 which catches parse errors but not visual changes.
 

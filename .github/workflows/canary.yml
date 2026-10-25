@@ -1,0 +1,44 @@
+name: pele canary
+# Daily: run the tests against the latest Pele (ignoring the lockfile). A failure opens or updates one issue.
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm update pele --latest -w
+      - id: ver
+        run: echo "v=$(node -p "require('pele/package.json').version")" >> "$GITHUB_OUTPUT"
+      - run: pnpm test 2>&1 | tee canary.log
+        id: test
+        shell: bash # adds pipefail, so a failing test still fails the step
+      - name: Report
+        if: failure() && steps.test.conclusion == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Pele ${{ steps.ver.outputs.v }} breaks pele-animate"
+          {
+            echo "The daily canary failed against pele@${{ steps.ver.outputs.v }}."
+            echo
+            echo "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo
+            echo '```'
+            tail -n 30 canary.log
+            echo '```'
+          } > body.md
+          existing=$(gh issue list --label pele-canary --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then gh issue comment "$existing" --body-file body.md
+          else gh issue create --title "$title" --label pele-canary --body-file body.md; fi

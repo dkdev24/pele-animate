@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       pele:
-        specifier: ^1.7.0
-        version: 1.8.0
+        specifier: ^1.10.0
+        version: 1.10.0
 
   site:
     dependencies:
@@ -18,8 +18,8 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       pele:
-        specifier: ^1.8.0
-        version: 1.8.0
+        specifier: ^1.10.0
+        version: 1.10.0
       pele-animate:
         specifier: workspace:*
         version: link:..
@@ -491,8 +491,8 @@ packages:
   oniguruma-to-es@4.3.6:
     resolution: {integrity: sha512-csuQ9x3Yr0cEIs/Zgx/OEt9iBw9vqIunAPQkx19R/fiMq2oGVTgcMqO/V3Ybqefr1TBvosI6jU539ksaBULJyA==}
 
-  pele@1.8.0:
-    resolution: {integrity: sha512-AYmHttE70cwNJVXdfPMCANGivFlmc3bGGpMG0GqH5S5vE3RgtEuLlkqbhRfe94Csv/ZEd1TUbv2dMUHpw4p1Bg==}
+  pele@1.10.0:
+    resolution: {integrity: sha512-hDMEM+GQ01pZin8tst3PRXGeB/xFATvXBreHHtjx2glSNAQ7nHFq7EbMuNJGTbqkYgueWPboLjyUBsAudsb1qQ==}
     engines: {node: '>=20'}
 
   picocolors@1.1.1:
@@ -1010,7 +1010,7 @@ snapshots:
       regex: 6.1.0
       regex-recursion: 6.0.2
 
-  pele@1.8.0: {}
+  pele@1.10.0: {}
 
   picocolors@1.1.1: {}
 

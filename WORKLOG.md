@@ -382,6 +382,22 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 
 ---
 
+## Pele canary and Pele 1.10.0 (no release)
+
+**Date:** 2026-10-25
+
+### Changes
+
+- `scripts/smoke-pele.mjs` (part of `pnpm test`) checks the Pele SVG hooks; `.github/workflows/canary.yml` runs `pnpm test` daily against latest Pele and opens a `pele-canary` issue on failure; Dependabot bumps `pele` weekly.
+- Site and lockfile moved to Pele 1.10.0 (site range `^1.10.0`).
+- Docs: compatibility page records the maintainer's answer on class names (obsidianmd/pele#78).
+
+### Status
+
+`pnpm test` and `pnpm build` pass on 1.10.0; home page checked in a browser.
+
+---
+
 ## Site polish after v0.17.1 (no release)
 
 **Date:** 2026-10-25

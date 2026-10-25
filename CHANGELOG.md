@@ -8,6 +8,11 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 ## [Unreleased]
 
 ### Changed
+- Website: runs on Pele 1.10.0.
+- Docs: the compatibility page notes that Pele's maintainer has no plans to change the class names pele-animate reads.
+- Repository: a daily check against the latest Pele and a smoke test of the SVG hooks.
+
+### Changed
 - Website: code blocks have a copy button, and install commands show npm, pnpm, yarn and bun as tabs. The 404 page is designed, the homepage diagram fits narrow screens, and "View as Markdown" links work.
 
 ## [0.17.1] - 2026-10-25
