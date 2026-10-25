@@ -15,18 +15,18 @@
 	const hl = (line: string) =>
 		esc(line).replace(/^(\s*%%.*)$|("[^"]*")|(\|[^|]*\|)|(--&gt;)|(\bflowchart\b|\bLR\b)|(\b(?:icon|form|h|label)(?=:))/g,
 			(m, c, str, lbl, arrow, kw, key) => `<span class="${c ? 'c' : str ? 's' : lbl ? 'l' : arrow ? 'a' : kw ? 'k' : 'p'}">${m}</span>`);
-	// The comparison: one 3-step vertical flow, drawn four ways.
-	const flow = `flowchart TB
+	// The comparison: one 3-step flow written left to right, drawn four ways in panels too narrow for it. Pele re-lays it out; Mermaid scales it down.
+	const flow = `flowchart LR
   A[Mermaid code] -->|parse| B[Diagram model]
   B -->|lay out and draw| C[SVG on the page]`;
-	const flowIcons = `flowchart TB
+	const flowIcons = `flowchart LR
   %% pa: autoplay
   A@{ icon: "file-code", form: "square", h: 88, label: "Mermaid code" }
   B@{ icon: "settings", form: "square", h: 88, label: "Diagram model" }
   C@{ icon: "photo", form: "square", h: 88, label: "SVG on the page" }
   A -->|parse| B
   B -->|lay out and draw| C`;
-	const flowAuto = `flowchart TB
+	const flowAuto = `flowchart LR
   %% pa: autoplay
   A[Mermaid code] -->|parse| B[Diagram model]
   B -->|lay out and draw| C[SVG on the page]`;
@@ -80,10 +80,10 @@ bun add pele-animate pele</code></pre>
 
 	<section class="wrap sec">
 		<h2>Same diagram, four ways</h2>
-		<p class="cmp-lead">One three-step flow, from Mermaid code to SVG, rendered by each layer. The last two loop on their own; click either to step through it.</p>
+		<p class="cmp-lead">One three-step flow, written left to right, in panels too narrow for it. Mermaid keeps its layout and shrinks it until the text is hard to read. Pele lays it out again to fit, and pele-animate adds the steps: the last two loop on their own, and a click steps through them.</p>
 		<div class="cmp" use:live={['document', 'system', 'media']}>
-			<figure><div class="mermaid-live" data-src={flow}></div><figcaption><strong>Mermaid.js</strong> the standard renderer</figcaption></figure>
-			<figure><div class="live" data-mode="plain" data-src={flow}></div><figcaption><strong>Pele</strong> same code, restyled</figcaption></figure>
+			<figure><div class="mermaid-live" data-src={flow}></div><figcaption><strong>Mermaid.js</strong> fixed layout, scaled down</figcaption></figure>
+			<figure><div class="live" data-mode="plain" data-src={flow}></div><figcaption><strong>Pele</strong> layout adapts to the width</figcaption></figure>
 			<figure><div class="live" data-src={flowAuto}></div><figcaption><strong>pele-animate</strong> with autoplay</figcaption></figure>
 			<figure><div class="live" data-src={flowIcons}></div><figcaption><strong>pele-animate</strong> with autoplay and icons</figcaption></figure>
 		</div>

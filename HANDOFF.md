@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.18.0** (committed, NOT yet published: looping step mode, `autoplay`/`interval`/`hold`, home comparison section; 0.17.1 published 2026-10-25: zoom buttons no longer start step mode, zoom hidden in step mode; 0.17.0 published 2026-10-25: removed `replay()` and `watch` `controls: false`, share links URL-encoded; 0.16.2 published 2026-10-24; 0.16.1: 0.16.0: 10 new diagram types, S5 playground; consumers on `^0.15` need a range bump)
+**0.18.0** (published 2026-10-25, tag `v0.18.0`: looping step mode, `autoplay`/`interval`/`hold`, home comparison section; 0.17.1 published 2026-10-25: zoom buttons no longer start step mode, zoom hidden in step mode; 0.17.0 published 2026-10-25: removed `replay()` and `watch` `controls: false`, share links URL-encoded; 0.16.2 published 2026-10-24; 0.16.1: 0.16.0: 10 new diagram types, S5 playground; consumers on `^0.15` need a range bump)
 
 ---
 ## Project Status
@@ -16,7 +16,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-25 (0.18.0 prepared, unpublished, unpushed): play loops; `watch()` `autoplay` (or `%% pa: autoplay`), `interval`, `hold`; home "Same diagram, four ways" section (`mermaid` dep in site). Next: `npm publish`, then push `main` (deploys site), then bump docs-starlight to `^0.18.0`.
+2026-10-25 (0.18.0 published, tagged, GitHub release; docs-starlight `^0.18.0` pushed): looping play; `watch()` `autoplay` (or `%% pa: autoplay`), `interval`, `hold`; home "Same diagram, four ways" now an LR flow in narrow panels (Mermaid scales, Pele re-lays out; mobile layout unchecked). `mermaid` dep in site.
 2026-10-25 (site, no npm release): homepage diagram natural size under 48rem; styled 404; "View as Markdown" link fix; copy buttons + npm/pnpm/yarn/bun install tabs (runtime, `codecopy` in `+layout.svelte`; docs Markdown unchanged); Pele canary (`scripts/smoke-pele.mjs` in `pnpm test`, daily `canary.yml` opens a `pele-canary` issue, Dependabot) and Pele 1.10.0 on site; Migrating page removed; CHANGELOG = user-visible only (rule in AGENTS.md).
 2026-10-25 (analytics): Google tag `G-FVJH7Z0DFY` loads only after Accept (`src/lib/Consent.svelte`, key `pa-consent`, production host only; pattern from doverunner-lab's `Consent.tsx`); `/privacy/` page with a "Change cookie settings" button; two-row mobile header (brand + theme button, scrollable nav) like the Lab. Banner and GA Realtime confirmed live by Daniel.
 ---

@@ -7,6 +7,9 @@ may change behavior, so pin a range such as `^0.18.0` and bump it deliberately.
 
 ## [Unreleased]
 
+### Changed
+- Website: the home page comparison now writes the flow left to right in narrow panels, so it shows Pele re-laying the diagram out to fit while Mermaid.js scales a fixed layout down.
+
 ## [0.18.0] - 2026-10-25
 
 ### Added

@@ -475,3 +475,18 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 ### Status
 
 `pnpm test` and `pnpm build` pass. Not yet published.
+
+## Site: home comparison shows adaptive layout (no release)
+
+**Date:** 2026-10-25
+
+### Changes
+
+- "Same diagram, four ways" first drew a top-to-bottom flow, so every renderer looked alike. Now the flow is `flowchart LR` in ~276px panels: Mermaid.js scales the fixed layout down (text hard to read), Pele flips it vertical at full size (checked on a scratch page first).
+- Panels are equal height (grid stretch, `flex: 1` on the diagram box); plain Pele needs `--pele-bg` set for its edge-label boxes.
+- Not checked: the 2-column and phone layouts (one panel per row, Pele may stay left to right there).
+- 0.18.0 published to npm, tagged `v0.18.0` with a GitHub release; docs-starlight bumped to `^0.18.0` (`b0db58b`, pushed).
+
+### Status
+
+`pnpm build` and site check pass.
