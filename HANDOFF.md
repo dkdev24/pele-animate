@@ -16,7 +16,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-25 (0.18.0 published, tagged, GitHub release; docs-starlight `^0.18.0` pushed): looping play; `watch()` `autoplay` (or `%% pa: autoplay`), `interval`, `hold`; home "Same diagram, four ways" now an LR flow in narrow panels (Mermaid scales, Pele re-lays out; mobile layout unchecked). `mermaid` dep in site.
+2026-10-26 (0.18.0 published + site/README follow-ups, all pushed; docs-starlight `^0.18.0`): looping play; `watch()` `autoplay` (or `%% pa: autoplay`), `interval`, `hold`. Home: hero example now explains pele-animate (Mermaid code → ordered steps → illustrated scene → reader), "Same diagram, four ways" is an LR flow in 276px panels (Mermaid scales, Pele re-lays out; `mermaid` dep in `site/`), "Where it fits" has a Layout column, plain-Pele panel arrows fixed in dark (`--pele-line`). README: hero gif and four-case Compare table regenerated; `examples/capture.sh` records autoplay gifs live. Block diagram arrows are short by design (Pele `block.padding` default 12; left as is). Live deploys and phone width unchecked.
 2026-10-25 (site, no npm release): homepage diagram natural size under 48rem; styled 404; "View as Markdown" link fix; copy buttons + npm/pnpm/yarn/bun install tabs (runtime, `codecopy` in `+layout.svelte`; docs Markdown unchanged); Pele canary (`scripts/smoke-pele.mjs` in `pnpm test`, daily `canary.yml` opens a `pele-canary` issue, Dependabot) and Pele 1.10.0 on site; Migrating page removed; CHANGELOG = user-visible only (rule in AGENTS.md).
 2026-10-25 (analytics): Google tag `G-FVJH7Z0DFY` loads only after Accept (`src/lib/Consent.svelte`, key `pa-consent`, production host only; pattern from doverunner-lab's `Consent.tsx`); `/privacy/` page with a "Change cookie settings" button; two-row mobile header (brand + theme button, scrollable nav) like the Lab. Banner and GA Realtime confirmed live by Daniel.
 ---
@@ -24,7 +24,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ## Next Actions
 
 1. Refine the `diagram-step-order` skill from the review (layout lessons: `row` wrappers, `TB` vs `LR` siblings, edge declaration order; see docs WORKLOG 2026-10-24).
-2. Check step mode on a sequence diagram + phone width; check the live docs step mode.
+2. Check step mode on a sequence diagram + phone width; check the live docs step mode. Also phone width of the home comparison and Layout table, and eyeball `c3.gif`/`a3.gif`.
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 5. Playground gaps: CodeMirror (icon completion, pin lint), Download SVG (phone-width tabs verified, header overflow fixed); e2e tests for `/icons` and `/playground`. Then S7 (a11y, OG). Still open: wallabyway reply (kepano answered on obsidianmd/pele#78: no plans to change the class names), S7 a11y/OG, e2e tests, `vite dev` check. Next release 0.19.0.
 

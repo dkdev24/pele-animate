@@ -505,3 +505,18 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 ### Status
 
 `pnpm test` passes.
+
+## Site follow-ups after 0.18.0 (no release)
+
+**Date:** 2026-10-26
+
+### Changes
+
+- Home hero example replaced (was request / load balancer / cloud service): LR flow with icons, Mermaid code → Ordered steps → Illustrated scene → Reader follows along; pins `%% pa: 1=W 2=W>O 3=O>I 4=I>R`; the "You set the order" text matches. `docs/getting-started.md` and the README quickstart keep their own examples.
+- "Where it fits" table gained a Layout column (Mermaid.js: fixed, scaled down; Pele and pele-animate: adapt to the container width). Phone width not checked.
+- Plain-Pele comparison panel: edges use `--pele-line` (default near-black), so set it to the scene text colour; invisible arrows in dark mode before.
+- Finding (no change): block diagram arrow length is Pele's block gap, `block.padding` from `%%{init}%%` (default 12 px, capped at 6 in compact mode); `{"block":{"padding":40}}` lengthens arrows. docs-starlight strips per-diagram init, so it would not carry over there.
+
+### Status
+
+`pnpm build` and site check pass; all pushed to `main` (deploys the site).
