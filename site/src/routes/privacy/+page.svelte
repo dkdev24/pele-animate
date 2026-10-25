@@ -22,14 +22,14 @@
 
 		<h2>Google Analytics</h2>
 		<p>
-			The site uses Google Analytics 4 (Google tag <code>G-FVJH7Z0DFY</code>) to see which pages are read and how people arrive. It
+			The site uses Google Analytics 4 to see which pages are read and how people arrive. It
 			loads only after you press Accept in the cookie banner, and only on the live site. If you decline, no analytics tag loads and no
 			analytics cookies are set. Declining after accepting stops the tag from the next page load; cookies already set stay until they expire.
 		</p>
 		<p><button class="btn" type="button" onclick={reset}>Change cookie settings</button></p>
 		<ul>
 			<li><strong>Collected:</strong> pages viewed (the full address, including any query string), referrer, approximate location, browser, device and screen size, language, and interaction events such as outbound clicks and scrolls.</li>
-			<li><strong>Cookies:</strong> <code>_ga</code> and <code>_ga_FVJH7Z0DFY</code>, which identify a browser anonymously across visits.</li>
+			<li><strong>Cookies:</strong> <code>_ga</code> and a second cookie starting with <code>_ga_</code>, which identify a browser anonymously across visits.</li>
 			<li><strong>IP address:</strong> Google Analytics 4 does not log or store IP addresses; Google receives it with the request to deliver the tag.</li>
 			<li><strong>Processor:</strong> Google, under <a href="https://policies.google.com/privacy">Google's privacy policy</a>. Data may be processed outside your country.</li>
 			<li><strong>Opting out:</strong> press Decline, or use a content blocker, your browser's tracking protection, or the <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out add-on</a>.</li>
