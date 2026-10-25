@@ -68,6 +68,8 @@ Click the diagram, or focus it and press Enter or Space. A small bar appears wit
 | ← | Previous step |
 | Esc | Leave step mode |
 
+Pele's zoom controls (the +/- buttons and keys) are hidden in step mode. Zoom and the step keys would both claim the arrow keys and Esc, so the two do not run together. Entering step mode resets any zoom, and leaving it brings the controls back.
+
 ## Checking your order
 
 After `animate()` runs, `svg.paSteps` is one array per step. Print what each step shows:

@@ -370,7 +370,8 @@ export function watch(container, source = '') {
   const manual = (n) => { pause(); go(n); };
   const enter = () => {
     played = true;
-    container.classList.add('pa-stepping');
+    container.classList.add('pa-stepping'); // CSS hides Pele's zoom controls: arrows/Esc would clash
+    container.querySelector('.pele-zoom [aria-label="Reset zoom"]')?.click(); // leave no stale zoom behind
     container.append(bar);
     go(0);
   };
@@ -402,7 +403,8 @@ export function watch(container, source = '') {
   container.classList.add('pa-scene');
   container.tabIndex = 0;
   container.title ||= 'Click to step through';
-  container.addEventListener('click', () => k < 0 && enter());
+  // Pele's zoom buttons live inside the container: their clicks must not enter step mode.
+  container.addEventListener('click', (e) => k < 0 && !e.target.closest('.pele-zoom') && enter());
   container.addEventListener('keydown', (e) => {
     const key = e.key;
     if (e.target.closest('button') && (key === 'Enter' || key === ' ')) return; // native button activation

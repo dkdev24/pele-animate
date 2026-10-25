@@ -60,6 +60,7 @@
 :where(.pa-scene) .pele-cluster-label { font-weight: 700; }
 
 /* Step controls: previous | play/pause | next, shown under the diagram in step mode. */
+.pa-scene.pa-stepping .pele-zoom { display: none !important; } /* Pele sets display inline */
 .pa-scene.pa-stepping { flex-direction: column; align-items: center; gap: .75rem; }
 .pa-controls { display: flex; align-items: center; gap: .125rem; padding: .25rem; border-radius: 999px; cursor: default;
   background: var(--pele-surface); color: var(--pele-fg); border: 1px solid var(--pele-border); font: 500 .8rem/1 system-ui, sans-serif; }

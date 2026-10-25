@@ -59,11 +59,14 @@
   C@{ icon: "cloud-lock", form: "square", h: 88, label: "License cloud" }
   D@{ icon: "database-export", form: "square", h: 88, label: "Key store" }
   T --> A --> C --> D</pre>
+<!-- zoom + step mode together: wide diagram in a 320px box, zoom forced on -->
+<pre class="d" data-zoom style="max-width:320px">flowchart LR
+  A[Source] --> B[Encoder] --> C[Packager] --> D[CDN] --> E[Player] --> F[License] --> G[Key store]</pre>
 <script type="module">
 import { mount } from './node_modules/pele/dist/pele.js';
 import { icons } from './glyphs.js';
 import './preset-doverunner.js';
 import './tabler/devices.js'; import './tabler/system.js'; import './tabler/database.js'; import './tabler/development.js';
 import { watch } from './pele-animate.js';
-document.querySelectorAll('pre.d').forEach((el) => { const src = el.textContent; mount(el, src, { icons, onError: console.error }); watch(el, src); });
+document.querySelectorAll('pre.d').forEach((el) => { const src = el.textContent; mount(el, src, { icons, onError: console.error, ...(el.dataset.zoom !== undefined && { zoom: true }) }); watch(el, src); });
 </script>

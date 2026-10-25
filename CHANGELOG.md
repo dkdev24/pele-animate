@@ -7,6 +7,12 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 
 ## [Unreleased]
 
+## [0.17.1] - 2026-10-25
+
+### Fixed
+- Clicking one of Pele's zoom buttons no longer enters step mode.
+- Step mode and Pele's zoom now coexist: the zoom controls are hidden while stepping (both claim the arrow keys and Esc), any zoom is reset on entering, and the controls return on exit.
+
 ## [0.17.0] - 2026-10-25
 
 ### Removed

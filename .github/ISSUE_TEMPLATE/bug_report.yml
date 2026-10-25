@@ -22,6 +22,6 @@ body:
     attributes:
       label: Versions
       description: pele-animate, pele, and your browser.
-      placeholder: pele-animate 0.17.0, pele 1.8.0, Chrome 130
+      placeholder: pele-animate 0.17.1, pele 1.8.0, Chrome 130
     validations:
       required: true

@@ -382,6 +382,22 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 
 ---
 
+## v0.17.1 — zoom vs step mode
+
+**Date:** 2026-10-25
+
+### Changes
+
+- Fix: clicks on Pele's zoom buttons no longer enter step mode (`.pele-zoom` ignored by the container click handler).
+- Decision: zoom is disabled in step mode. Controls hidden via CSS, zoom reset on enter, restored on exit. Reason: Pele's zoom owns ←/→/Esc when zoomed, step mode owns them too; Pele's +/- keys do not work in step mode anyway.
+- `demo.html`: wide diagram in a 320px box with `zoom: true` for testing. Documented in `docs/step-order.md`.
+
+### Status
+
+`pnpm test` passes. Browser check by Daniel.
+
+---
+
 ## v0.17.0 — remove replay and controls option
 
 **Date:** 2026-10-25
