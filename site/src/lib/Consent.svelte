@@ -1,5 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/state';
+	import { langOf, prefix, tr } from '#lib/i18n';
+	const lang = $derived(langOf(page.url.pathname));
+	const t = $derived(tr(lang));
 
 	// Production host only: previews and local builds must not pollute the reports.
 	// The tag loads after Accept; the choice lives in localStorage and the privacy page's button clears it.
@@ -34,11 +38,11 @@
 </script>
 
 {#if choice === null}
-	<div class="consent" role="region" aria-label="Cookie consent">
-		<p>This site uses Google Analytics cookies to see which pages are read, only if you accept. <a href="/privacy/">Privacy</a></p>
+	<div class="consent" role="region" aria-label={t('consentLabel')}>
+		<p>{t('consentText')} <a href="{prefix(lang)}/privacy/">{t('privacy')}</a></p>
 		<div class="actions">
-			<button class="btn" type="button" onclick={() => choose('denied')}>Decline</button>
-			<button class="btn" type="button" onclick={() => choose('granted')}>Accept</button>
+			<button class="btn" type="button" onclick={() => choose('denied')}>{t('decline')}</button>
+			<button class="btn" type="button" onclick={() => choose('granted')}>{t('accept')}</button>
 		</div>
 	</div>
 {/if}

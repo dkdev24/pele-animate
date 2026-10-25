@@ -2,7 +2,18 @@
 	import '../app.css';
 	import { onMount } from 'svelte';
 	import Consent from '#lib/Consent.svelte';
+	import { page } from '$app/state';
+	import { langOf, prefix, swap, tr } from '#lib/i18n';
 	let { children } = $props();
+	const lang = $derived(langOf(page.url.pathname));
+	const t = $derived(tr(lang));
+	const px = $derived(prefix(lang));
+	const other = $derived(swap(page.url.pathname));
+	// keep the query string (a playground share link) when switching; url.search is unavailable while prerendering, so read it on click
+	const keepQuery = (e: MouseEvent) => { (e.currentTarget as HTMLAnchorElement).href = swap(location.pathname) + location.search; };
+	const L = () => langOf(location.pathname); // read at click time: the copy buttons outlive navigation
+	const copyLabel = () => tr(L())('copy');
+	const copiedLabel = () => tr(L())('copied');
 	let dark = $state(false);
 
 	const apply = (t: 'light' | 'dark') => {
@@ -88,15 +99,15 @@
 				const b = document.createElement('button');
 				b.type = 'button';
 				b.className = 'copy';
-				b.title = b.ariaLabel = 'Copy to clipboard';
+				b.title = b.ariaLabel = copyLabel();
 				b.innerHTML = icon(COPY);
 				let t = 0;
 				b.onclick = async () => {
 					try { await navigator.clipboard.writeText(shown().innerText.replace(/\n$/, '')); } catch { return; }
 					b.innerHTML = icon(DONE);
-					b.title = b.ariaLabel = 'Copied';
+					b.title = b.ariaLabel = copiedLabel();
 					clearTimeout(t);
-					t = window.setTimeout(() => { b.innerHTML = icon(COPY); b.title = b.ariaLabel = 'Copy to clipboard'; }, 1600);
+					t = window.setTimeout(() => { b.innerHTML = icon(COPY); b.title = b.ariaLabel = copyLabel(); }, 1600);
 				};
 				pre.replaceWith(box);
 				body.append(...panes, b);
@@ -115,32 +126,47 @@
 	};
 </script>
 
-<a class="skip" href="#main">Skip to content</a>
+<svelte:head>
+	<link rel="alternate" hreflang={lang} href="https://pele-animate.danielkimdev.com{page.url.pathname}" />
+	<link rel="alternate" hreflang={lang === 'ko' ? 'en' : 'ko'} href="https://pele-animate.danielkimdev.com{swap(page.url.pathname)}" />
+</svelte:head>
+
+<a class="skip" href="#main">{t('skip')}</a>
 <header>
 	<div class="wrap bar">
-		<a class="brand" href="/">pele-animate</a>
-		<nav aria-label="Main">
-			<a href="/docs/getting-started/">Docs</a>
-			<a href="/icons/">Icons</a>
-			<a href="/playground/">Playground</a>
-			<a href="/changelog/">Changelog</a>
+		<a class="brand" href="{px}/">pele-animate</a>
+		<nav aria-label={t('mainNav')}>
+			<a href="{px}/docs/getting-started/">{t('docs')}</a>
+			<a href="{px}/icons/">{t('icons')}</a>
+			<a href="{px}/playground/">{t('playground')}</a>
+			<a href="{px}/changelog/">{t('changelog')}</a>
 			<a href="https://github.com/dkdev24/pele-animate">GitHub</a>
 			<a href="https://www.npmjs.com/package/pele-animate">npm</a>
 		</nav>
-		<button type="button" onclick={toggle} aria-pressed={dark} aria-label="Dark theme">{dark ? '☾' : '☀'}</button>
+		<div class="ctl">
+			<a class="lang" href={other} hreflang={lang === 'ko' ? 'en' : 'ko'} lang={lang === 'ko' ? 'en' : 'ko'} aria-label={t('switchLabel')} data-sveltekit-reload onclick={keepQuery}>{t('switchTo')}</a>
+			<button type="button" onclick={toggle} aria-pressed={dark} aria-label={t('darkTheme')}>{dark ? '☾' : '☀'}</button>
+		</div>
 	</div>
 </header>
-<main id="main" use:codecopy>{@render children()}</main>
+<main id="main" use:codecopy>{#key lang}{@render children()}{/key}</main>
 <Consent />
 <footer>
 	<div class="wrap">
 		<p class="mark" aria-hidden="true">pele-animate</p>
 		<div class="fine">
+		{#if lang === 'ko'}
+		<p>
+			<a href="https://github.com/obsidianmd/pele">Pele</a>(kepano, MIT)를 기반으로 만든 비공식 애드온이며, Pele 및 Obsidian 팀과 제휴하거나 승인을 받지 않았습니다.
+			아이콘은 <a href="https://github.com/tabler/tabler-icons">Tabler Icons</a>(MIT)를 사용합니다.
+		</p>
+		{:else}
 		<p>
 			Built on <a href="https://github.com/obsidianmd/pele">Pele</a> by kepano (MIT). Unofficial add-on, not affiliated with or
 			endorsed by the Pele or Obsidian teams. Icons from <a href="https://github.com/tabler/tabler-icons">Tabler Icons</a> (MIT).
 		</p>
-		<p>pele-animate is MIT licensed. <a href="https://github.com/dkdev24/pele-animate">Source on GitHub</a>. <a href="/privacy/">Privacy</a>.</p>
+		{/if}
+		<p>{t('footerLicense')} <a href="https://github.com/dkdev24/pele-animate">{t('footerSource')}</a>. <a href="{px}/privacy/">{t('privacy')}</a>.</p>
 		</div>
 	</div>
 </footer>
@@ -149,7 +175,9 @@
 	header { position: sticky; top: 0; z-index: var(--z-sticky-nav); background: color-mix(in oklab, var(--color-paper) 86%, transparent); backdrop-filter: blur(14px); }
 	/* Mobile: brand + theme button on row 1, scrollable nav on row 2. Wide: one 4.5rem row. */
 	.bar { display: grid; grid-template-areas: 'brand controls' 'nav nav'; grid-template-columns: 1fr auto; align-items: center; column-gap: var(--space-xs); }
-	.bar > button { grid-area: controls; }
+	.ctl { grid-area: controls; display: flex; align-items: center; gap: var(--space-xs); }
+	.lang { color: var(--color-ink-2); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 0.5rem 0.6rem; border-radius: var(--radius-pill); white-space: nowrap; }
+	.lang:hover { background: var(--color-accent-soft); color: var(--color-ink); }
 	@media (min-width: 56rem) { .bar { grid-template-areas: 'brand nav controls'; grid-template-columns: 1fr auto auto; column-gap: var(--space-lg); height: 4.5rem; } }
 	.brand { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: var(--tracking-display); color: var(--color-ink); text-decoration: none; white-space: nowrap; grid-area: brand; display: flex; align-items: center; height: 3.5rem; }
 	@media (min-width: 56rem) { .brand { height: auto; } }

@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { live } from '#lib/live';
+	import { page } from '$app/state';
+	import { langOf, prefix, tr } from '#lib/i18n';
 	let { data } = $props();
+	const lang = $derived(langOf(page.url.pathname));
+	const t = $derived(tr(lang));
+	const px = $derived(prefix(lang));
 	let menu: HTMLDetailsElement;
 	// the menu starts open for no-JS readers and closes on narrow screens, where it sits above the content
 	onMount(() => { if (matchMedia('(max-width: 62rem)').matches) menu.open = false; });
@@ -11,18 +16,18 @@
 <svelte:head>
 	<title>{data.doc.title} · pele-animate</title>
 	<meta name="description" content={data.doc.description} />
-	<link rel="alternate" type="text/markdown" href="/docs/{data.doc.slug}.md" />
+	<link rel="alternate" type="text/markdown" href="{px}/docs/{data.doc.slug}.md" />
 </svelte:head>
 
 <div class="wrap docs">
 	<aside class="side">
 		<details open bind:this={menu}>
-			<summary>Docs menu</summary>
+			<summary>{t('docsMenu')}</summary>
 			{#each sections as s}
 				<p class="sec">{s}</p>
 				<ul>
 					{#each data.nav.filter((n) => n.section === s) as n}
-						<li><a href="/docs/{n.slug}/" aria-current={n.slug === data.doc.slug ? 'page' : undefined}>{n.title}</a></li>
+						<li><a href="{px}/docs/{n.slug}/" aria-current={n.slug === data.doc.slug ? 'page' : undefined}>{n.title}</a></li>
 					{/each}
 				</ul>
 			{/each}
@@ -31,19 +36,19 @@
 
 	<article use:live={data.doc.categories}>
 		{@html data.doc.html}
-		<nav class="pn" aria-label="Previous and next page">
-			{#if data.prev}<a href="/docs/{data.prev.slug}/"><small>Previous</small>{data.prev.title}</a>{:else}<span></span>{/if}
-			{#if data.next}<a class="next" href="/docs/{data.next.slug}/"><small>Next</small>{data.next.title}</a>{/if}
+		<nav class="pn" aria-label={t('prevNext')}>
+			{#if data.prev}<a href="{px}/docs/{data.prev.slug}/"><small>{t('prev')}</small>{data.prev.title}</a>{:else}<span></span>{/if}
+			{#if data.next}<a class="next" href="{px}/docs/{data.next.slug}/"><small>{t('next')}</small>{data.next.title}</a>{/if}
 		</nav>
 		<p class="meta">
-			<a href="https://github.com/dkdev24/pele-animate/edit/main/docs/{data.doc.slug}.md">Edit this page on GitHub</a> ·
-			<a href="/docs/{data.doc.slug}.md" data-sveltekit-reload>View as Markdown</a>
+			<a href="https://github.com/dkdev24/pele-animate/edit/main/docs/{lang === 'ko' ? 'ko/' : ''}{data.doc.slug}.md">{t('edit')}</a> ·
+			<a href="{px}/docs/{data.doc.slug}.md" data-sveltekit-reload>{t('viewMd')}</a>
 		</p>
 	</article>
 
-	<aside class="toc" aria-label="On this page">
+	<aside class="toc" aria-label={t('onThisPage')}>
 		{#if data.doc.headings.length}
-			<p class="sec">On this page</p>
+			<p class="sec">{t('onThisPage')}</p>
 			<ul>{#each data.doc.headings as h}<li class:sub={h.depth === 3}><a href="#{h.id}">{h.text}</a></li>{/each}</ul>
 		{/if}
 	</aside>

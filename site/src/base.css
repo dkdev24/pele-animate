@@ -25,3 +25,9 @@ button, input, select, textarea { font: inherit; }
 @media (prefers-reduced-motion: reduce) { *:not(.keep-motion), *:not(.keep-motion)::before, *:not(.keep-motion)::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 /* photographs: warm exp=4 */
 [data-slot] > img { filter: sepia(0.28) saturate(0.94) brightness(1.04); }
+
+/* Korean: Ranade has no Hangul, so name the fallbacks; keep words whole at line ends; no negative tracking on Hangul headings */
+:lang(ko) { --font-body: "Ranade", "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", ui-sans-serif, system-ui, sans-serif; --font-display: var(--font-body); --tracking-display: 0; }
+html:lang(ko) body { word-break: keep-all; line-height: 1.7; }
+html:lang(ko) h1, html:lang(ko) h2, html:lang(ko) h3 { line-height: 1.25; }
+html:lang(ko) pre, html:lang(ko) code { word-break: normal; }

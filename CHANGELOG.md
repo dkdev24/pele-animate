@@ -7,6 +7,9 @@ may change behavior, so pin a range such as `^0.18.0` and bump it deliberately.
 
 ## [Unreleased]
 
+### Added
+- Website: Korean at `/ko/` (home, docs, icons, playground, privacy). The Korean docs are written for Korean readers, not translated line by line, and ship in the package under `docs/ko/`. English stays at the root with no language prefix. The changelog stays English-only.
+
 ### Changed
 - Website: the home page comparison now writes the flow left to right in narrow panels, so it shows Pele re-laying the diagram out to fit while Mermaid.js scales a fixed layout down.
 - Website: the "Where it fits" table has a Layout column (Mermaid.js scales a fixed layout; Pele and pele-animate adapt to the container width).

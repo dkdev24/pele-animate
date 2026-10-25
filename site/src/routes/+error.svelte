@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { live } from '#lib/live';
+	import { langOf, prefix } from '#lib/i18n';
+	const ko = $derived(langOf(page.url.pathname) === 'ko');
+	const px = $derived(prefix(ko ? 'ko' : 'en'));
 	const lost = `flowchart LR
   %% pa: 1=C 2=C>X
   C@{ icon: "http-get", form: "square", h: 88, label: "Request" }
@@ -10,23 +13,23 @@
 </script>
 
 <svelte:head>
-	<title>{missing ? 'Page not found' : 'Something went wrong'} · pele-animate</title>
+	<title>{missing ? (ko ? '페이지를 찾을 수 없습니다' : 'Page not found') : ko ? '문제가 발생했습니다' : 'Something went wrong'} · pele-animate</title>
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
 <section class="wrap lost">
 	<p class="code">{page.status}</p>
-	<h1>{missing ? 'This page took a wrong turn' : 'Something went wrong'}</h1>
+	<h1>{missing ? (ko ? '찾으시는 페이지가 없습니다' : 'This page took a wrong turn') : ko ? '문제가 발생했습니다' : 'Something went wrong'}</h1>
 	<p class="lead">
 		{missing
-			? 'The address may be mistyped, or the page may have moved. Try one of these instead.'
-			: 'Reload the page, or head back to the docs.'}
+			? (ko ? '주소가 잘못 입력되었거나 페이지가 이동했을 수 있습니다. 아래 링크를 이용해 보시기 바랍니다.' : 'The address may be mistyped, or the page may have moved. Try one of these instead.')
+			: ko ? '페이지를 새로고침하거나 문서로 돌아가 보시기 바랍니다.' : 'Reload the page, or head back to the docs.'}
 	</p>
 	<div class="cta">
-		<a class="btn primary" href="/docs/getting-started/">Get started</a>
-		<a class="btn" href="/">Home</a>
-		<a class="btn" href="/docs/">Docs</a>
-		<a class="btn" href="/playground/">Playground</a>
+		<a class="btn primary" href="{px}/docs/getting-started/">{ko ? '시작하기' : 'Get started'}</a>
+		<a class="btn" href="{px}/">{ko ? '홈' : 'Home'}</a>
+		<a class="btn" href="{px}/docs/">{ko ? '문서' : 'Docs'}</a>
+		<a class="btn" href="{px}/playground/">{ko ? '플레이그라운드' : 'Playground'}</a>
 	</div>
 	<div use:live={['computers']}><div class="live" data-src={lost}></div></div>
 </section>

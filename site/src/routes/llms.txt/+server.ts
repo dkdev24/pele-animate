@@ -4,6 +4,7 @@ import { SITE } from '#lib/site';
 export const prerender = true;
 export const GET = async () => {
 	const docs = await getDocs();
+	const ko = await getDocs('ko');
 	const lines = docs.map((d) => `- [${d.title}](${SITE}/docs/${d.slug}.md): ${d.description}`);
 	const text = `# pele-animate
 
@@ -14,6 +15,12 @@ Every docs page is also served as Markdown at the URLs below. The whole document
 ## Docs
 
 ${lines.join('\n')}
+
+## Korean docs
+
+The same pages in Korean, written for Korean readers (not word-for-word translations), under /ko/.
+
+${ko.map((d) => `- [${d.title}](${SITE}/ko/docs/${d.slug}.md): ${d.description}`).join('\n')}
 
 ## Optional
 

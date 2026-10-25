@@ -3,9 +3,11 @@ import matter from 'gray-matter';
 import { Marked, type Token, type Tokens } from 'marked';
 import { createHighlighter } from 'shiki';
 import { encodeSource } from '../share';
+import { prefix, tr, type Lang } from '../i18n';
 import changelogRaw from '../../../../CHANGELOG.md?raw';
 
 const files = import.meta.glob('../../../../docs/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+const filesKo = import.meta.glob('../../../../docs/ko/*.md', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const packs = import.meta.glob('../../../../tabler/*.js', { eager: true }) as Record<string, { pack: Record<string, string> }>;
 
 // icon name -> Tabler category module (e.g. "server" -> "devices"); doverunner-* live in the preset
@@ -26,7 +28,7 @@ const highlighter = await createHighlighter({
 });
 const loaded = new Set(highlighter.getLoadedLanguages());
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const slugify = (s: string) => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const slugify = (s: string) => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
 
 function highlight(text: string, lang: string) {
 	return highlighter.codeToHtml(text, {
@@ -36,7 +38,8 @@ function highlight(text: string, lang: string) {
 	});
 }
 
-export async function render(markdown: string) {
+export async function render(markdown: string, ui: Lang = 'en') {
+	const tx = tr(ui);
 	const headings: Doc['headings'] = [];
 	const categories = new Set<string>();
 	const md = new Marked({
@@ -50,7 +53,7 @@ export async function render(markdown: string) {
 			// ./icons.md  ->  /docs/icons/   (relative .md links keep working on GitHub)
 			link({ href, title, tokens }) {
 				const m = href.match(/^\.\/([\w-]+)\.md(#.*)?$/);
-				const url = m ? `/docs/${m[1]}/${m[2] ?? ''}` : href;
+				const url = m ? `${prefix(ui)}/docs/${m[1]}/${m[2] ?? ''}` : href;
 				const ext = /^https?:/.test(url) ? ' rel="noopener"' : '';
 				return `<a href="${esc(url)}"${title ? ` title="${esc(title)}"` : ''}${ext}>${this.parser.parseInline(tokens)}</a>`;
 			}
@@ -70,18 +73,18 @@ export async function render(markdown: string) {
 				const cat = name.startsWith('doverunner-') ? 'preset' : categoryOf.get(name);
 				if (cat) categories.add(cat);
 			}
-			html = `<div class="live" data-src="${esc(t.text)}"></div><p class="pg"><a href="/playground/?s=${encodeSource(t.text)}">Open in playground</a></p><details class="src"><summary>Mermaid source</summary>${html}</details>`;
+			html = `<div class="live" data-src="${esc(t.text)}"></div><p class="pg"><a href="${prefix(ui)}/playground/?s=${encodeSource(t.text)}">${tx('openPlayground')}</a></p><details class="src"><summary>${tx('mermaidSource')}</summary>${html}</details>`;
 		}
 		Object.assign(t, { type: 'html', raw: t.raw, text: html, pre: false });
 	}
 	return { html: md.parser(tokens), headings, categories: [...categories] };
 }
 
-export async function getDocs(): Promise<Doc[]> {
+export async function getDocs(lang: Lang = 'en'): Promise<Doc[]> {
 	const docs = await Promise.all(
-		Object.entries(files).map(async ([path, raw]) => {
+		Object.entries(lang === 'ko' ? filesKo : files).map(async ([path, raw]) => {
 			const { data, content } = matter(raw);
-			const r = await render(content);
+			const r = await render(content, lang);
 			return {
 				slug: path.split('/').pop()!.replace(/\.md$/, ''),
 				title: String(data.title), description: String(data.description ?? ''), order: Number(data.order), section: String(data.section ?? ''),
@@ -93,12 +96,12 @@ export async function getDocs(): Promise<Doc[]> {
 }
 
 export const changelogMarkdown = changelogRaw;
-export const renderChangelog = () => render(changelogRaw.replace(/^# Changelog\n/, ''));
+export const renderChangelog = (lang: Lang = 'en') => render(changelogRaw.replace(/^# Changelog\n/, ''), lang);
 
 // Every `live` diagram in the docs, for the playground's examples menu. The label is the fence's `title="..."`; `group` is the doc page.
-export async function getExamples() {
+export async function getExamples(lang: Lang = 'en') {
 	const out: { label: string; group: string; src: string }[] = [];
-	for (const d of await getDocs()) {
+	for (const d of await getDocs(lang)) {
 		for (const t of marked.lexer(d.markdown)) {
 			const m = t.type === 'code' && /^mermaid(?:-icons)?\s+live\b(?:\s+title="([^"]*)")?/.exec(t.lang ?? '');
 			if (m) out.push({ label: m[1] ?? d.title, group: d.title, src: t.text });

@@ -1,20 +1,24 @@
 <script lang="ts">
+	import { page } from '$app/state';
+	import { langOf, prefix } from '#lib/i18n';
+	const ko = $derived(langOf(page.url.pathname) === 'ko');
+	const px = $derived(prefix(ko ? 'ko' : 'en'));
 	import { onMount, tick } from 'svelte';
 	import { encodeSource, decodeSource } from '#lib/share';
 
 	let { data } = $props();
-	const packs = import.meta.glob('../../../../tabler/*.js');
-	const DEFAULT = data.examples.find((e) => e.label.startsWith('Icons'))?.src ?? data.examples[0]?.src ?? 'flowchart LR\n  A --> B';
+	const packs = import.meta.glob('../../../../../tabler/*.js');
+	const DEFAULT = () => data.defaultSrc ?? 'flowchart LR\n  A --> B';
 
-	let src = $state(DEFAULT);
+	let src = $state(DEFAULT());
 	let stroke = $state(1.5);
 	// Colour overrides, set on the scene as CSS variables. An empty value means "the theme's own"; the pickers show the current value.
 	const COLORS = [
-		{ key: 'solid', label: 'Lines and icons', vars: ['--pa-solid'] },
-		{ key: 'light', label: 'Group fill', vars: ['--pa-light'] },
-		{ key: 'node', label: 'Node fill', vars: ['--pele-surface'] },
-		{ key: 'bg', label: 'Background', vars: ['--pa-bg'] },
-		{ key: 'text', label: 'Text', vars: ['--pele-fg'] }
+		{ key: 'solid', label: 'Lines and icons', ko: '선과 아이콘', vars: ['--pa-solid'] },
+		{ key: 'light', label: 'Group fill', ko: '그룹 배경', vars: ['--pa-light'] },
+		{ key: 'node', label: 'Node fill', ko: '노드 배경', vars: ['--pele-surface'] },
+		{ key: 'bg', label: 'Background', ko: '배경', vars: ['--pa-bg'] },
+		{ key: 'text', label: 'Text', ko: '글자', vars: ['--pele-fg'] }
 	] as const;
 	let colors = $state<Record<string, string>>({});
 	let shown = $state<Record<string, string>>({}); // what each picker displays: the override, else the theme's value
@@ -55,7 +59,7 @@
 			import('pele-animate'),
 			import('pele-animate/glyphs'),
 			import('pele-animate/style.css'),
-			...[...cats].map((c) => (c === 'doverunner' ? import('pele-animate/preset-doverunner') : packs[`../../../../tabler/${c}.js`]?.()))
+			...[...cats].map((c) => (c === 'doverunner' ? import('pele-animate/preset-doverunner') : packs[`../../../../../tabler/${c}.js`]?.()))
 		]);
 		const el = document.createElement('div'); // a fresh node per render: Pele and watch() keep state on the container
 		host.replaceChildren(el);
@@ -84,7 +88,7 @@
 
 	function share() {
 		history.replaceState(null, '', `?s=${encodeSource(src)}`);
-		copy(location.href, 'Link copied');
+		copy(location.href, ko ? '링크를 복사했습니다' : 'Link copied');
 	}
 	const snippet = () => `import { mount } from 'pele';
 import { watch, prepare } from 'pele-animate';
@@ -97,7 +101,7 @@ mount(el, prepare(src), { icons });
 watch(el, src);
 `;
 	async function copy(text: string, msg: string) {
-		try { await navigator.clipboard.writeText(text); notice = msg; } catch { notice = 'Copy failed'; }
+		try { await navigator.clipboard.writeText(text); notice = msg; } catch { notice = ko ? '복사하지 못했습니다' : 'Copy failed'; }
 		setTimeout(() => (notice = ''), 1800);
 	}
 	async function pickExample(e: Event) {
@@ -109,58 +113,58 @@ watch(el, src);
 </script>
 
 <svelte:head>
-	<title>Playground · pele-animate</title>
-	<meta name="description" content="Edit Mermaid code with icons and step order and watch it animate, then share a link." />
+	<title>{ko ? '플레이그라운드' : 'Playground'} · pele-animate</title>
+	<meta name="description" content={ko ? '아이콘과 단계 순서를 넣은 Mermaid 코드를 수정하며 애니메이션을 바로 확인하고, 링크로 공유합니다.' : 'Edit Mermaid code with icons and step order and watch it animate, then share a link.'} />
 </svelte:head>
 
 <div class="wrap">
-	<h1>Playground</h1>
+	<h1>{ko ? '플레이그라운드' : 'Playground'}</h1>
 	<div class="tabs" role="tablist">
-		<button role="tab" aria-selected={tab === 'edit'} onclick={() => (tab = 'edit')}>Editor</button>
-		<button role="tab" aria-selected={tab === 'preview'} onclick={() => (tab = 'preview')}>Preview</button>
+		<button role="tab" aria-selected={tab === 'edit'} onclick={() => (tab = 'edit')}>{ko ? '편집' : 'Editor'}</button>
+		<button role="tab" aria-selected={tab === 'preview'} onclick={() => (tab = 'preview')}>{ko ? '미리보기' : 'Preview'}</button>
 	</div>
 
 	<section class="top" class:hide={tab !== 'edit'}>
 		<div class="ed">
-			<label for="src">Mermaid source</label>
+			<label for="src">{ko ? 'Mermaid 소스' : 'Mermaid source'}</label>
 			<textarea id="src" bind:value={src} spellcheck="false" rows="14" autocapitalize="off" autocomplete="off"></textarea>
-			{#if unknown.length}<p class="warn">Unknown icon: {unknown.join(', ')}. Find names on <a href="/icons/">/icons</a>.</p>{/if}
+			{#if unknown.length}<p class="warn">{#if ko}알 수 없는 아이콘: {unknown.join(', ')}. 이름은 <a href="{px}/icons/">아이콘</a> 페이지에서 찾을 수 있습니다.{:else}Unknown icon: {unknown.join(', ')}. Find names on <a href="{px}/icons/">/icons</a>.{/if}</p>{/if}
 			{#if error}<p class="err" role="alert">{error}</p>{/if}
 		</div>
 		<div class="ctl">
-			<select onchange={pickExample} aria-label="Load an example" value="-1">
-				<option value="-1">Load an example…</option>
+			<select onchange={pickExample} aria-label={ko ? '예제 불러오기' : 'Load an example'} value="-1">
+				<option value="-1">{ko ? '예제 불러오기…' : 'Load an example…'}</option>
 				{#each [...new Set(data.examples.map((e) => e.group))] as g}
 					<optgroup label={g}>
 						{#each data.examples as e, i}{#if e.group === g}<option value={i}>{e.label}</option>{/if}{/each}
 					</optgroup>
 				{/each}
 			</select>
-			<label>Stroke <input type="range" min="0.5" max="2.5" step="0.1" bind:value={stroke} /> <output>{stroke.toFixed(1)}</output></label>
-			<label>Preview width <input type="range" min="30" max="100" step="5" bind:value={width} /> <output>{width}%</output></label>
+			<label>{ko ? '선 두께' : 'Stroke'} <input type="range" min="0.5" max="2.5" step="0.1" bind:value={stroke} /> <output>{stroke.toFixed(1)}</output></label>
+			<label>{ko ? '미리보기 너비' : 'Preview width'} <input type="range" min="30" max="100" step="5" bind:value={width} /> <output>{width}%</output></label>
 			<details class="colors">
-				<summary>Colors</summary>
+				<summary>{ko ? '색상' : 'Colors'}</summary>
 				{#each COLORS as c}
-					<label class="row"><input type="color" value={shown[c.key] ?? '#000000'} oninput={(e) => (colors[c.key] = e.currentTarget.value)} /> {c.label}</label>
+					<label class="row"><input type="color" value={shown[c.key] ?? '#000000'} oninput={(e) => (colors[c.key] = e.currentTarget.value)} /> {ko ? c.ko : c.label}</label>
 				{/each}
-				<button type="button" onclick={() => (colors = {})} disabled={!Object.values(colors).some(Boolean)}>Reset colors</button>
+				<button type="button" onclick={() => (colors = {})} disabled={!Object.values(colors).some(Boolean)}>{ko ? '색상 초기화' : 'Reset colors'}</button>
 			</details>
 			<div class="btns">
-				<button type="button" onclick={share}>Copy share link</button>
-				<button type="button" onclick={() => copy(src, 'Mermaid copied')}>Copy Mermaid</button>
-				<button type="button" onclick={() => copy(snippet(), 'Code copied')}>Copy code snippet</button>
+				<button type="button" onclick={share}>{ko ? '공유 링크 복사' : 'Copy share link'}</button>
+				<button type="button" onclick={() => copy(src, ko ? 'Mermaid를 복사했습니다' : 'Mermaid copied')}>{ko ? 'Mermaid 복사' : 'Copy Mermaid'}</button>
+				<button type="button" onclick={() => copy(snippet(), ko ? '코드를 복사했습니다' : 'Code copied')}>{ko ? '코드 복사' : 'Copy code snippet'}</button>
 			</div>
 			<p class="note" aria-live="polite">{notice}</p>
 		</div>
 	</section>
 
-	<section class="pv" class:hide={tab !== 'preview'} aria-label="Preview">
+	<section class="pv" class:hide={tab !== 'preview'} aria-label={ko ? '미리보기' : 'Preview'}>
 		<div
 			class="frame"
 			bind:this={host}
 			style="width:{width}%; --pa-stroke:{stroke};"
 		></div>
-		<p class="note">Light and dark follow the site theme (button in the header).</p>
+		<p class="note">{ko ? '라이트와 다크 모드는 사이트 테마(헤더의 버튼)를 따릅니다.' : 'Light and dark follow the site theme (button in the header).'}</p>
 	</section>
 </div>
 

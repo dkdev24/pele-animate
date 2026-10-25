@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { page } from '$app/state';
+	import { langOf, prefix } from '#lib/i18n';
+	const ko = $derived(langOf(page.url.pathname) === 'ko');
+	const px = $derived(prefix(ko ? 'ko' : 'en'));
 	import { onMount } from 'svelte';
 
 	type Icon = { name: string; category: string; tags: string[] };
 	// Icon markup loads per category, only for the cells on screen; the 4,400-name index is plain JSON.
-	const packs = import.meta.glob('../../../../tabler/*.js');
+	const packs = import.meta.glob('../../../../../tabler/*.js');
 	const LIMIT = 240;
 
 	let all = $state<Icon[]>([]);
@@ -38,7 +42,7 @@
 	async function load(c: string) {
 		if (loaded.has(c)) return;
 		loaded.add(c);
-		await (c === 'doverunner' ? import('pele-animate/preset-doverunner') : packs[`../../../../tabler/${c}.js`]?.());
+		await (c === 'doverunner' ? import('pele-animate/preset-doverunner') : packs[`../../../../../tabler/${c}.js`]?.());
 		ready++;
 	}
 	$effect(() => {
@@ -64,27 +68,32 @@
 </script>
 
 <svelte:head>
-	<title>Icons · pele-animate</title>
-	<meta name="description" content={'Search the 4,000+ Tabler icons and the doverunner pack bundled with pele-animate, then copy a ready @{ icon } snippet.'} />
+	<title>{ko ? '아이콘' : 'Icons'} · pele-animate</title>
+	<meta name="description" content={ko ? 'pele-animate에 포함된 4,000여 개의 Tabler 아이콘과 doverunner 팩을 검색하고, 바로 쓸 수 있는 @{ icon } 코드를 복사합니다.' : 'Search the 4,000+ Tabler icons and the doverunner pack bundled with pele-animate, then copy a ready @{ icon } snippet.'} />
 </svelte:head>
 
 <div class="wrap">
-	<h1>Icons</h1>
+	<h1>{ko ? '아이콘' : 'Icons'}</h1>
 	<p class="lead">
+		{#if ko}
+			<a href="https://github.com/tabler/tabler-icons">Tabler Icons</a>{version ? ` ${version}` : ''} (MIT)의 아이콘 {all.length ? all.length.toLocaleString('en') : '4,400'}개와 선택해서 쓰는 <code>doverunner-*</code> 팩입니다.
+			아이콘을 클릭하면 코드를 복사할 수 있습니다. 에이전트가 읽을 수 있는 JSON 목록은 <a href="/icons.json">/icons.json</a>에 있습니다.
+		{:else}
 		{all.length ? all.length.toLocaleString('en') : '4,400'} icons from <a href="https://github.com/tabler/tabler-icons">Tabler Icons</a>{version ? ` ${version}` : ''} (MIT)
 		plus the optional <code>doverunner-*</code> pack. Click an icon to copy its snippet. The same list as JSON, for agents: <a href="/icons.json">/icons.json</a>.
+		{/if}
 	</p>
 
 	<div class="controls">
-		<input type="search" bind:value={q} placeholder="Search names and tags: lock, load-balancer, database" aria-label="Search icons" />
+		<input type="search" bind:value={q} placeholder={ko ? '이름과 태그로 검색: lock, load-balancer, database' : 'Search names and tags: lock, load-balancer, database'} aria-label={ko ? '아이콘 검색' : 'Search icons'} />
 		<label class="stroke">
-			Stroke <input type="range" min="0.5" max="2.5" step="0.1" bind:value={stroke} aria-label="Stroke width" />
+			{ko ? '선 두께' : 'Stroke'} <input type="range" min="0.5" max="2.5" step="0.1" bind:value={stroke} aria-label={ko ? '선 두께' : 'Stroke width'} />
 			<output>{stroke.toFixed(1)}</output>
 		</label>
 	</div>
 
-	<div class="chips" role="group" aria-label="Category">
-		<button type="button" aria-pressed={cat === ''} onclick={() => (cat = '')}>all</button>
+	<div class="chips" role="group" aria-label={ko ? '카테고리' : 'Category'}>
+		<button type="button" aria-pressed={cat === ''} onclick={() => (cat = '')}>{ko ? '전체' : 'all'}</button>
 		{#each cats as c}
 			<button type="button" aria-pressed={cat === c} onclick={() => (cat = cat === c ? '' : c)}>{c}</button>
 		{/each}
@@ -97,13 +106,13 @@
 				<strong>{selected.name}</strong> <span class="muted">{selected.category}</span>
 				<pre><code>{snippet(selected)}</code></pre>
 				<pre><code>{importLine(selected.category)}</code></pre>
-				<button type="button" class="copy" onclick={() => copy(snippet(selected!))}>{copied === snippet(selected) ? 'Copied' : 'Copy snippet'}</button>
-				<button type="button" class="copy" onclick={() => copy(importLine(selected!.category))}>{copied === importLine(selected.category) ? 'Copied' : 'Copy import'}</button>
+				<button type="button" class="copy" onclick={() => copy(snippet(selected!))}>{copied === snippet(selected) ? (ko ? '복사했습니다' : 'Copied') : ko ? '코드 복사' : 'Copy snippet'}</button>
+				<button type="button" class="copy" onclick={() => copy(importLine(selected!.category))}>{copied === importLine(selected.category) ? (ko ? '복사했습니다' : 'Copied') : ko ? 'import 복사' : 'Copy import'}</button>
 			</div>
 		</section>
 	{/if}
 
-	<p class="count" aria-live="polite">{all.length ? `${results.length.toLocaleString('en')} icons` : 'Loading…'}</p>
+	<p class="count" aria-live="polite">{all.length ? (ko ? `아이콘 ${results.length.toLocaleString('en')}개` : `${results.length.toLocaleString('en')} icons`) : ko ? '불러오는 중…' : 'Loading…'}</p>
 	<ul class="grid" style="--pa-stroke:{stroke}">
 		{#each shown as i (i.name)}
 			<li>
@@ -115,9 +124,9 @@
 		{/each}
 	</ul>
 	{#if results.length > limit}
-		<p><button type="button" class="more" onclick={() => (limit += LIMIT)}>Show {Math.min(LIMIT, results.length - limit)} more</button></p>
+		<p><button type="button" class="more" onclick={() => (limit += LIMIT)}>{ko ? `${Math.min(LIMIT, results.length - limit)}개 더 보기` : `Show ${Math.min(LIMIT, results.length - limit)} more`}</button></p>
 	{/if}
-	{#if all.length && !results.length}<p class="muted">No icon matches. Try a shorter word or clear the category.</p>{/if}
+	{#if all.length && !results.length}<p class="muted">{ko ? '일치하는 아이콘이 없습니다. 더 짧은 단어로 검색하거나 카테고리를 해제해 보시기 바랍니다.' : 'No icon matches. Try a shorter word or clear the category.'}</p>{/if}
 </div>
 
 <style>

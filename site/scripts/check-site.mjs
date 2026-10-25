@@ -40,6 +40,14 @@ for (const s of slugs) {
 	if (!llms.includes(`/docs/${s}.md`)) fail(`llms.txt misses ${s}`);
 	if (!sitemap.includes(`/docs/${s}/`)) fail(`sitemap.xml misses ${s}`);
 }
+const slugsKo = existsSync(join(DOCS, 'ko')) ? readdirSync(join(DOCS, 'ko')).filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, '')) : [];
+for (const s of slugs) if (!slugsKo.includes(s)) fail(`docs/ko/${s}.md is missing (every English page needs a Korean one)`);
+for (const s of slugsKo) {
+	if (!existsSync(join(BUILD, 'ko', 'docs', s, 'index.html'))) fail(`docs/ko/${s}.md has no page`);
+	if (!existsSync(join(BUILD, 'ko', 'docs', `${s}.md`))) fail(`docs/ko/${s}.md has no Markdown sibling`);
+	if (!sitemap.includes(`/ko/docs/${s}/`)) fail(`sitemap.xml misses ko/${s}`);
+}
+for (const f of ['ko/index.html', 'ko/icons/index.html', 'ko/playground/index.html', 'ko/changelog/index.html', 'ko/privacy/index.html']) if (!existsSync(join(BUILD, f))) fail(`missing ${f}`);
 for (const f of ['llms-full.txt', 'changelog.xml', 'robots.txt']) if (!existsSync(join(BUILD, f))) fail(`missing ${f}`);
 
 const firstLoad = (page) => {
