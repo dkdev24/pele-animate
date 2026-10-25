@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { live } from '#lib/live';
 	const hero = `flowchart LR
-  %% pa: 1=W 2=W>O 3=O>I 4=I>R
-  W@{ icon: "file-code", form: "square", h: 88, label: "Mermaid code" }
+  %% pa: 1=M 2=M>O 3=O>I 4=I>R
+  M@{ icon: "file-code", form: "square", h: 88, label: "Mermaid code" }
   O@{ icon: "list-numbers", form: "square", h: 88, label: "Ordered steps" }
   I@{ icon: "palette", form: "square", h: 88, label: "Illustrated scene" }
   R@{ icon: "player-play", form: "square", h: 88, label: "Reader follows along" }
-  W -->|pin the order| O
+  M -->|pin the order| O
   O -->|add icons| I
   I -->|click through| R`;
 
@@ -61,7 +61,7 @@
 			<pre aria-label="Mermaid source of the diagram above"><code>{#each lines as l}<span class="ln">{@html l}</span>{/each}</code></pre>
 		</figure>
 		<div class="proofs">
-			<div><h2>You set the order</h2><p>Pin steps with one comment line, <code>%% pa: 1=W 2=W>O 3=O>I 4=I>R</code>. Without it, the order follows the edges. <a href="/docs/step-order/">Step order</a></p></div>
+			<div><h2>You set the order</h2><p>Pin steps with one comment line, <code>%% pa: 1=M 2=M>O 3=O>I 4=I>R</code>. Without it, the order follows the edges. <a href="/docs/step-order/">Step order</a></p></div>
 			<div><h2>Readers step through it</h2><p>Previous, play and next buttons, plus Space and the arrow keys. The finished picture is the resting state. <a href="/docs/how-it-works/">How it works</a></p></div>
 			<div><h2>Icons from a big set</h2><p>4,368 line icons in 36 categories, loaded only for the categories you import, with adjustable stroke width. <a href="/docs/icons/">Icons</a></p></div>
 		</div>
