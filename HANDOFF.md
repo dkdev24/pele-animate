@@ -18,7 +18,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ## Last Session
 2026-10-25 (zoom vs step mode, 0.17.1, published): zoom buttons no longer start step mode; zoom controls hidden in step mode and zoom reset on enter (decision: ←/→/Esc conflict; Pele's +/- keys don't work there anyway). docs-starlight bumped to `^0.17.1`.
 2026-10-25 (site, no npm release): homepage diagram natural size under 48rem; styled 404; "View as Markdown" link fix; copy buttons + npm/pnpm/yarn/bun install tabs (runtime, `codecopy` in `+layout.svelte`; docs Markdown unchanged); Pele canary (`scripts/smoke-pele.mjs` in `pnpm test`, daily `canary.yml` opens a `pele-canary` issue, Dependabot) and Pele 1.10.0 on site; Migrating page removed; CHANGELOG = user-visible only (rule in AGENTS.md).
-2026-10-25 (analytics): Google tag `G-FVJH7Z0DFY` loads only after Accept (`src/lib/Consent.svelte`, key `pa-consent`, production host only; pattern from doverunner-lab's `Consent.tsx`); `/privacy/` page with a "Change cookie settings" button; two-row mobile header (brand + theme button, scrollable nav) like the Lab. Banner checked on a localhost gate, not on the live domain.
+2026-10-25 (analytics): Google tag `G-FVJH7Z0DFY` loads only after Accept (`src/lib/Consent.svelte`, key `pa-consent`, production host only; pattern from doverunner-lab's `Consent.tsx`); `/privacy/` page with a "Change cookie settings" button; two-row mobile header (brand + theme button, scrollable nav) like the Lab. Banner and GA Realtime confirmed live by Daniel.
 ---
 
 ## Next Actions
