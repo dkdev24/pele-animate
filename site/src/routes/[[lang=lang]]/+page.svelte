@@ -137,7 +137,7 @@ bun add pele-animate pele</code></pre>
 			<thead><tr><th></th><th>Mermaid 렌더링</th><th>레이아웃</th><th>단계 순서와 재생</th><th>아이콘</th></tr></thead>
 			<tbody>
 				<tr><td><a href="https://mermaid.js.org">Mermaid.js</a></td><td>가능, 모든 다이어그램 유형</td><td>고정, 폭에 맞춰 축소하므로 글자도 작아짐</td><td>없음</td><td>내장 아이콘은 없으며, Iconify 같은 아이콘 팩을 직접 등록</td></tr>
-				<tr><td><a href="https://pele.run">Pele</a></td><td>가능, 가볍고 동기 방식</td><td>컨테이너 폭에 맞춰 조정</td><td>없음</td><td>내장 아이콘은 없으며, <code>icons</code> 옵션으로 직접 연결</td></tr>
+				<tr><td><a href="https://pele.run">Pele</a></td><td>가능, 가볍고 동기 방식</td><td>컨테이너 폭에 맞춰 조정</td><td>없음</td><td>동일: 내장 아이콘 없음, 직접 연결</td></tr>
 				<tr><td><strong>pele-animate</strong></td><td>Pele 사용</td><td>Pele와 동일하게 조정</td><td>있음</td><td>4,368개 내장, 직접 추가도 가능</td></tr>
 			</tbody>
 		</table>
@@ -147,7 +147,7 @@ bun add pele-animate pele</code></pre>
 			<thead><tr><th></th><th>Renders Mermaid</th><th>Layout</th><th>Adds step order and playback</th><th>Icons</th></tr></thead>
 			<tbody>
 				<tr><td><a href="https://mermaid.js.org">Mermaid.js</a></td><td>Yes, all diagram types</td><td>Fixed; scaled down to fit, so text shrinks</td><td>No</td><td>None bundled; you register an icon pack such as Iconify</td></tr>
-				<tr><td><a href="https://pele.run">Pele</a></td><td>Yes, small and synchronous</td><td>Adapts to the container width</td><td>No</td><td>None built in; you plug in your own through its <code>icons</code> option</td></tr>
+				<tr><td><a href="https://pele.run">Pele</a></td><td>Yes, small and synchronous</td><td>Adapts to the container width</td><td>No</td><td>Same: none built in, you plug in your own</td></tr>
 				<tr><td><strong>pele-animate</strong></td><td>Uses Pele</td><td>Adapts, as Pele does</td><td>Yes</td><td>4,368 bundled, or your own</td></tr>
 			</tbody>
 		</table>
