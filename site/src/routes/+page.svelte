@@ -98,6 +98,8 @@ bun add pele-animate pele</code></pre>
 	.stage :global(.live) { margin: 0 auto; max-width: 60rem; width: 100%; }
 	.stage > div { width: 100%; }
 	.stage :global(.pa-scene svg) { width: min(100%, 52rem); height: auto; flex: none; }
+	/* narrow screens: keep Pele's natural size (as in the playground) instead of stretching a tall diagram to full width */
+	@media (max-width: 48rem) { .stage :global(.pa-scene svg) { width: auto; max-width: 100%; } }
 	.hint { color: var(--color-muted); font-size: var(--text-sm); text-align: center; margin: var(--space-md) auto 0; }
 	.split { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: var(--gap-columns); align-items: center; margin-top: var(--section-gap-s); }
 	.editor { margin: 0; border-radius: var(--radius-card); background: var(--color-sheet); box-shadow: var(--shadow-card); overflow: hidden; min-width: 0; }
