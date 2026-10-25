@@ -9,6 +9,8 @@ may change behavior, so pin a range such as `^0.18.0` and bump it deliberately.
 
 ### Changed
 - Website: the home page comparison now writes the flow left to right in narrow panels, so it shows Pele re-laying the diagram out to fit while Mermaid.js scales a fixed layout down.
+- Website: the "Where it fits" table has a Layout column (Mermaid.js scales a fixed layout; Pele and pele-animate adapt to the container width).
+- Website: the home page example now explains pele-animate itself (Mermaid code, ordered steps, illustrated scene, reader follows along) instead of a request/load balancer flow.
 
 ## [0.18.0] - 2026-10-25
 

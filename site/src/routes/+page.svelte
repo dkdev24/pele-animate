@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { live } from '#lib/live';
 	const hero = `flowchart LR
-  %% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C
-  C@{ icon: "http-get", form: "square", h: 88, label: "Request" }
-  L@{ icon: "load-balancer", form: "square", h: 88, label: "Load balancer" }
-  S@{ icon: "cloud-computing", form: "square", h: 88, label: "Cloud service" }
-  C -->|request| L
-  L -->|forward| S
-  S -->|response| L
-  L -->|reply| C`;
+  %% pa: 1=W 2=W>O 3=O>I 4=I>R
+  W@{ icon: "file-code", form: "square", h: 88, label: "Mermaid code" }
+  O@{ icon: "list-numbers", form: "square", h: 88, label: "Ordered steps" }
+  I@{ icon: "palette", form: "square", h: 88, label: "Illustrated scene" }
+  R@{ icon: "player-play", form: "square", h: 88, label: "Reader follows along" }
+  W -->|pin the order| O
+  O -->|add icons| I
+  I -->|click through| R`;
 
 	// A tiny highlighter for the hero source: one pass, so spans never nest. Input is the constant above, escaped anyway.
 	const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -48,7 +48,7 @@
 			<a class="btn" href="https://github.com/dkdev24/pele-animate">GitHub</a>
 		</div>
 		<div class="stage" role="group" aria-label="Live example">
-		<div use:live={['computers']}>
+		<div use:live={['document', 'text', 'design', 'media']}>
 			<div class="live" data-src={hero}></div>
 		</div>
 		<p class="hint">Click the diagram, or focus it and press Enter, to step through it.</p>
@@ -61,7 +61,7 @@
 			<pre aria-label="Mermaid source of the diagram above"><code>{#each lines as l}<span class="ln">{@html l}</span>{/each}</code></pre>
 		</figure>
 		<div class="proofs">
-			<div><h2>You set the order</h2><p>Pin steps with one comment line, <code>%% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C</code>. Without it, the order follows the edges. <a href="/docs/step-order/">Step order</a></p></div>
+			<div><h2>You set the order</h2><p>Pin steps with one comment line, <code>%% pa: 1=W 2=W>O 3=O>I 4=I>R</code>. Without it, the order follows the edges. <a href="/docs/step-order/">Step order</a></p></div>
 			<div><h2>Readers step through it</h2><p>Previous, play and next buttons, plus Space and the arrow keys. The finished picture is the resting state. <a href="/docs/how-it-works/">How it works</a></p></div>
 			<div><h2>Icons from a big set</h2><p>4,368 line icons in 36 categories, loaded only for the categories you import, with adjustable stroke width. <a href="/docs/icons/">Icons</a></p></div>
 		</div>
@@ -92,11 +92,11 @@ bun add pele-animate pele</code></pre>
 	<section class="wrap sec">
 		<h2>Where it fits</h2>
 		<table>
-			<thead><tr><th></th><th>Renders Mermaid</th><th>Adds step order and playback</th><th>Icons</th></tr></thead>
+			<thead><tr><th></th><th>Renders Mermaid</th><th>Layout</th><th>Adds step order and playback</th><th>Icons</th></tr></thead>
 			<tbody>
-				<tr><td><a href="https://mermaid.js.org">Mermaid.js</a></td><td>Yes, all diagram types</td><td>No</td><td>See Mermaid's docs</td></tr>
-				<tr><td><a href="https://pele.run">Pele</a></td><td>Yes, small and synchronous</td><td>No</td><td>You supply them</td></tr>
-				<tr><td><strong>pele-animate</strong></td><td>Uses Pele</td><td>Yes</td><td>4,368 bundled, or your own</td></tr>
+				<tr><td><a href="https://mermaid.js.org">Mermaid.js</a></td><td>Yes, all diagram types</td><td>Fixed; scaled down to fit, so text shrinks</td><td>No</td><td>See Mermaid's docs</td></tr>
+				<tr><td><a href="https://pele.run">Pele</a></td><td>Yes, small and synchronous</td><td>Adapts to the container width</td><td>No</td><td>You supply them</td></tr>
+				<tr><td><strong>pele-animate</strong></td><td>Uses Pele</td><td>Adapts, as Pele does</td><td>Yes</td><td>4,368 bundled, or your own</td></tr>
 			</tbody>
 		</table>
 		<p>pele-animate supports flowcharts and sequence diagrams. Layout, sizing and syntax stay Pele's. It is an unofficial add-on, not a theme package.</p>
