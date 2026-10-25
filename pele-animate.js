@@ -292,7 +292,6 @@ export function animate(svg, { hover = svg, source = '' } = {}) {
   reveal(svg);
 }
 
-const STEP_MS = 1200; // autoplay pace in step mode
 // Control icons are SVG, not text glyphs: glyphs like ‹ and ▶ sit at different heights in every font.
 const icon = (d, fill) => `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" ${fill ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"'}>${d}</svg>`;
 const ICON = {
@@ -320,7 +319,10 @@ function leaveStep(svg) {
 
 // mount() re-renders on container resize; re-animate each new <svg>, skipping the intro once it has played.
 // Click (or Enter/Space) enters step mode: previous | play/pause | next, Space, ←/→, Esc to leave.
-export function watch(container, source = '') {
+// `interval` / `hold`: ms between steps / on the last step before the loop restarts.
+// `autoplay` (option, or `autoplay` in the `%% pa:` comment) skips the scroll intro: step mode starts playing once the diagram is on screen.
+export function watch(container, source = '', { autoplay = /^\s*%%\s*pa:.*\bautoplay\b/m.test(source), interval = 1200, hold = 2400 } = {}) {
+  autoplay &&= !reduced(); // reduced motion keeps the finished still frame
   let played = false;
   let k = -1; // current step; -1 = not in step mode
   let timer = 0;
@@ -356,16 +358,23 @@ export function watch(container, source = '') {
     k = to;
     ui();
   };
-  const tick = () => {
-    if (k >= last()) { pause(); return ui(); }
-    go(k + 1);
-    timer = setTimeout(tick, STEP_MS);
+  const tick = () => { // loops: after the last step, hold the finished frame, then start over
+    go(k >= last() ? 0 : k + 1);
+    timer = setTimeout(tick, k >= last() ? hold : interval);
   };
   const toggle = () => {
     if (timer) { pause(); return ui(); }
     if (k >= last()) go(0);
-    timer = setTimeout(tick, STEP_MS);
+    timer = setTimeout(tick, interval);
     ui();
+  };
+  let visible = !autoplay || !('IntersectionObserver' in window);
+  let started = !autoplay;
+  const start = () => {
+    if (started || !visible || !cur()?.paSteps) return;
+    started = true;
+    enter();
+    toggle();
   };
   const manual = (n) => { pause(); go(n); };
   const enter = () => {
@@ -395,9 +404,10 @@ export function watch(container, source = '') {
     const svg = container.querySelector('svg.pele:not(.pa-ready)');
     if (!svg) return;
     animate(svg, { hover: container, source });
-    if (played) svg.classList.add('pa-in', 'pa-done');
+    if (played || autoplay) svg.classList.add('pa-in', 'pa-done');
     else svg.addEventListener('animationend', () => (played = true), { once: true });
     if (k >= 0) { k = Math.min(k, last()); showStep(svg, k, false); ui(); }
+    start();
   };
   new MutationObserver(run).observe(container, { childList: true });
   container.classList.add('pa-scene');
@@ -412,5 +422,11 @@ export function watch(container, source = '') {
     const act = { ' ': toggle, ArrowRight: () => manual(k + 1), ArrowLeft: () => manual(k - 1), Escape: exit }[key];
     if (act) { e.preventDefault(); act(); }
   });
+  if (!visible) {
+    const io = new IntersectionObserver(([en]) => {
+      if (en.isIntersecting) { visible = true; io.disconnect(); start(); }
+    }, { threshold: 0.3 });
+    io.observe(container);
+  }
   run();
 }

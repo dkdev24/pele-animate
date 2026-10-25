@@ -63,12 +63,16 @@ Click the diagram, or focus it and press Enter or Space. A small bar appears wit
 
 | Key | Action |
 |---|---|
-| Space | Play or pause |
+| Space | Play or pause (play loops until you pause or press another control) |
 | → | Next step |
 | ← | Previous step |
 | Esc | Leave step mode |
 
 Pele's zoom controls (the +/- buttons and keys) are hidden in step mode. Zoom and the step keys would both claim the arrow keys and Esc, so the two do not run together. Entering step mode resets any zoom, and leaving it brings the controls back.
+
+### Start playing on its own
+
+To skip the one-time scroll intro and have the diagram loop through its steps as soon as it is on screen, add `autoplay` to the pin comment (`%% pa: autoplay 1=A 2=B`; alone, `%% pa: autoplay` works too) or pass `watch(container, source, { autoplay: true })`. Playback timing is `interval` (ms between steps, default 1200) and `hold` (ms the last step stays before the loop restarts, default 2400): `{ interval: 800, hold: 3000 }`. They apply to the play button too. Pause, step or leave and the loop stops. With reduced motion set, autoplay is ignored and the finished diagram stays still.
 
 ## Checking your order
 

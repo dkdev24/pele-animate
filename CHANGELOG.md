@@ -7,7 +7,12 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 
 ## [Unreleased]
 
+### Added
+- `autoplay` option for `watch()` (or `autoplay` in the `%% pa:` comment): the diagram skips the scroll intro and loops step mode once it is on screen. Ignored under reduced motion.
+- `interval` and `hold` options for `watch()` set the milliseconds between steps (default 1200) and on the last step before the loop restarts (default 2400).
+
 ### Changed
+- Step mode's play button now loops (holding the last step a little longer) until you pause or use another control, instead of stopping at the end.
 - Website: code blocks have a copy button, install commands show npm, pnpm, yarn and bun as tabs, the 404 page is designed, the home diagram fits narrow screens, and "View as Markdown" links work.
 - Website: a privacy page and a cookie banner (Google Analytics loads only after you accept), and a two-row header on narrow screens with every link reachable.
 

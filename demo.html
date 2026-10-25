@@ -1,6 +1,14 @@
 <!doctype html><meta charset="utf-8"><title>pele-animate demo</title>
 <link rel="stylesheet" href="pele-animate.css?v=2">
 <style>body{font:16px sans-serif;margin:1rem;color-scheme:light dark}@media(prefers-color-scheme:dark){body{background:#17131f;color:#eee}}pre{margin:0;max-width:640px}</style>
+<p>Autoplay (<code>%% pa: autoplay</code>):</p>
+<pre class="d">flowchart LR
+  %% pa: autoplay 1=P 2=O 3=D
+  O@{ icon: "doverunner-server", form: "square", h: 88, label: "OTT service" }
+  P@{ icon: "doverunner-player", form: "square", h: 88, label: "Player" }
+  D@{ icon: "doverunner-key", form: "square", h: 88, label: "DRM server" }
+  P <-->|auth token| O
+  P <-->|token / license| D</pre>
 <pre class="d">flowchart LR
   %% pa: 1=P 2=O 3=D
   O@{ icon: "doverunner-server", form: "square", h: 88, label: "OTT service" }

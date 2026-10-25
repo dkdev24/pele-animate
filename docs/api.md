@@ -13,7 +13,7 @@ TypeScript types ship with the package (`types/`).
 
 | Export | Signature | Description |
 |---|---|---|
-| `watch` | `watch(container: HTMLElement, source?: string): void` | Marks the container as a scene (`pa-scene`), animates each SVG Pele renders into it and re-applies after Pele re-lays-out on resize. |
+| `watch` | `watch(container: HTMLElement, source?: string, options?: { autoplay?: boolean; interval?: number; hold?: number }): void` | Marks the container as a scene (`pa-scene`), animates each SVG Pele renders into it and re-applies after Pele re-lays-out on resize. `autoplay` (or `autoplay` in the `%% pa:` comment) starts looping step mode on screen instead of the scroll intro. `interval` (default 1200 ms) and `hold` (default 2400 ms on the last step) set playback timing. |
 | `prepare` | `prepare(source?: string): string` | Returns the Mermaid source with icon-node labels padded so Pele lays out a box at least as wide as the icon (`h`). Pass its result to `mount()` and the original source to `watch()`. Without it, a label shorter than the icon puts edge ends and arrowheads under the icon. |
 | `animate` | `animate(svg: SVGSVGElement, options?: { hover?: Element; source?: string }): void` | Animates one rendered svg. `source` is read for `%% pa:` pins. Sets `svg.paSteps`. |
 | `parseOrder` | `parseOrder(source?: string): Map<string, number>` | Parses the `%% pa:` comment: node id, or `'X>Y'` for an edge, to a 0-based step. |
