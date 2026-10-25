@@ -382,6 +382,22 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 
 ---
 
+## Analytics, consent and header (no release)
+
+**Date:** 2026-10-25
+
+### Changes
+
+- Google Analytics 4 (`G-FVJH7Z0DFY`) behind a consent banner: `site/src/lib/Consent.svelte`, choice in `localStorage` (`pa-consent`), tag injected only after Accept and only on `pele-animate.danielkimdev.com`. Approach taken from doverunner-lab's `Consent.tsx` (its ADR 0026); no Lab identifiers copied.
+- `/privacy/` page (GA, share links carry source in the URL and reach analytics, Fontshare fonts, Cloudflare, browser storage) with "Change cookie settings". Fontshare still loads before any choice; disclosed. Not legally reviewed.
+- Header: two-row grid under 56rem (brand + theme button, then a horizontally scrolling nav), after the Lab; the old rule hiding links past the third is gone.
+
+### Status
+
+`pnpm build` passes. Banner flow (show, Accept loads tag, choice persists) tested with a temporary `localhost` host gate; Decline path, the live domain, GA Realtime and very narrow widths (< 23rem) not checked.
+
+---
+
 ## Pele canary and Pele 1.10.0 (no release)
 
 **Date:** 2026-10-25

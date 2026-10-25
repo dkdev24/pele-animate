@@ -1,6 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import { onMount } from 'svelte';
+	import Consent from '#lib/Consent.svelte';
 	let { children } = $props();
 	let dark = $state(false);
 
@@ -130,6 +131,7 @@
 	</div>
 </header>
 <main id="main" use:codecopy>{@render children()}</main>
+<Consent />
 <footer>
 	<div class="wrap">
 		<p class="mark" aria-hidden="true">pele-animate</p>
@@ -138,17 +140,23 @@
 			Built on <a href="https://github.com/obsidianmd/pele">Pele</a> by kepano (MIT). Unofficial add-on, not affiliated with or
 			endorsed by the Pele or Obsidian teams. Icons from <a href="https://github.com/tabler/tabler-icons">Tabler Icons</a> (MIT).
 		</p>
-		<p>pele-animate is MIT licensed. <a href="https://github.com/dkdev24/pele-animate">Source on GitHub</a>.</p>
+		<p>pele-animate is MIT licensed. <a href="https://github.com/dkdev24/pele-animate">Source on GitHub</a>. <a href="/privacy/">Privacy</a>.</p>
 		</div>
 	</div>
 </footer>
 
 <style>
 	header { position: sticky; top: 0; z-index: var(--z-sticky-nav); background: color-mix(in oklab, var(--color-paper) 86%, transparent); backdrop-filter: blur(14px); }
-	.bar { display: flex; align-items: center; gap: var(--space-lg); height: 4.5rem; }
-	.brand { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: var(--tracking-display); color: var(--color-ink); text-decoration: none; margin-right: auto; white-space: nowrap; }
-	nav { display: flex; gap: var(--space-xs); font-size: 0.95rem; font-weight: 500; }
-	nav a { color: var(--color-ink-2); text-decoration: none; padding: 0.55rem 0.85rem; border-radius: var(--radius-pill); transition: background-color var(--dur-micro) var(--ease-out); }
+	/* Mobile: brand + theme button on row 1, scrollable nav on row 2. Wide: one 4.5rem row. */
+	.bar { display: grid; grid-template-areas: 'brand controls' 'nav nav'; grid-template-columns: 1fr auto; align-items: center; column-gap: var(--space-xs); }
+	.bar > button { grid-area: controls; }
+	@media (min-width: 56rem) { .bar { grid-template-areas: 'brand nav controls'; grid-template-columns: 1fr auto auto; column-gap: var(--space-lg); height: 4.5rem; } }
+	.brand { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); letter-spacing: var(--tracking-display); color: var(--color-ink); text-decoration: none; white-space: nowrap; grid-area: brand; display: flex; align-items: center; height: 3.5rem; }
+	@media (min-width: 56rem) { .brand { height: auto; } }
+	nav { grid-area: nav; min-width: 0; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; padding-bottom: var(--space-xs); margin-left: -0.4rem; font-size: 0.9rem; font-weight: 500; }
+	nav::-webkit-scrollbar { display: none; }
+	@media (min-width: 56rem) { nav { gap: var(--space-xs); padding-bottom: 0; margin-left: 0; font-size: 0.95rem; } nav a { padding: 0.55rem 0.85rem; } }
+	nav a { color: var(--color-ink-2); text-decoration: none; padding: 0.5rem 0.6rem; white-space: nowrap; border-radius: var(--radius-pill); transition: background-color var(--dur-micro) var(--ease-out); }
 	nav a:hover { background: var(--color-accent-soft); color: var(--color-ink); }
 	button { height: 44px; width: 44px; border: 0; border-radius: 50%; background: var(--color-sheet); color: var(--color-ink); cursor: pointer; font-size: 1.05rem; box-shadow: 0 0 0 1px var(--shade-1), inset 0 1px 0 var(--hi); }
 	button:active { transform: translateY(1px); }
@@ -156,6 +164,5 @@
 	.mark { font-family: var(--font-display); font-weight: 600; font-size: var(--text-display-s); letter-spacing: var(--tracking-display); line-height: 1; margin: 0 0 var(--space-lg); color: var(--color-ink); }
 	footer .fine { color: var(--color-muted); font-size: 0.9rem; border-top: 1px solid var(--color-rule); padding-top: var(--space-lg); }
 	footer p:not([class]) { max-width: 70ch; margin: 0.4rem 0; }
-	@media (max-width: 40rem) { nav a:nth-child(n + 4) { display: none; } .bar { gap: var(--space-2xs); } nav { gap: 0; font-size: 0.85rem; } nav a { padding: 0.5rem 0.4rem; } .brand { font-size: var(--text-md); } button { width: 40px; height: 40px; } }
-	@media (max-width: 23rem) { nav a:nth-child(n + 3) { display: none; } }
+	@media (max-width: 55.99rem) { button { width: 40px; height: 40px; } }
 </style>

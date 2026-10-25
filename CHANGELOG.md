@@ -9,6 +9,7 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 
 ### Changed
 - Website: code blocks have a copy button, install commands show npm, pnpm, yarn and bun as tabs, the 404 page is designed, the home diagram fits narrow screens, and "View as Markdown" links work.
+- Website: a privacy page and a cookie banner (Google Analytics loads only after you accept), and a two-row header on narrow screens with every link reachable.
 
 ## [0.17.1] - 2026-10-25
 
