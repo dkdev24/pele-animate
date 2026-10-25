@@ -7,6 +7,9 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 
 ## [Unreleased]
 
+### Changed
+- Website: code blocks have a copy button, and install commands show npm, pnpm, yarn and bun as tabs. The 404 page is designed, the homepage diagram fits narrow screens, and "View as Markdown" links work.
+
 ## [0.17.1] - 2026-10-25
 
 ### Fixed

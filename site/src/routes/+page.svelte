@@ -121,6 +121,6 @@ bun add pele-animate pele</code></pre>
 	.sec h2 { font-size: var(--text-section); margin-bottom: var(--space-md); }
 	.two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--gap-columns); align-items: start; }
 	.two h2 { margin-bottom: 0; }
-	.two pre:first-child { margin-top: 0; }
+	.two pre:first-child, .two :global(.codewrap:first-child) { margin-top: 0; }
 	@media (max-width: 60rem) { .split, .two { grid-template-columns: minmax(0, 1fr); } }
 </style>

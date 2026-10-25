@@ -382,6 +382,23 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 
 ---
 
+## Site polish after v0.17.1 (no release)
+
+**Date:** 2026-10-25
+
+### Changes
+
+- Homepage hero diagram no longer stretches on narrow screens; 404 page designed (`+error.svelte`).
+- "View as Markdown" no longer goes to `.md/` (`data-sveltekit-reload`, `trailingSlash = 'never'` on the endpoint).
+- Code blocks: copy button (Tabler `copy`/`copy-check`) and package-manager tabs for install blocks, added at runtime by the layout action `codecopy`; docs Markdown stays plain.
+- "Open in playground" shares a row with the "Mermaid source" summary.
+
+### Status
+
+`pnpm build` passes; checked in a browser at desktop width (phone width not checked for tabs, copy, alignment).
+
+---
+
 ## v0.17.1 — zoom vs step mode
 
 **Date:** 2026-10-25

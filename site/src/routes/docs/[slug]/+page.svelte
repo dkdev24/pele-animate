@@ -37,7 +37,7 @@
 		</nav>
 		<p class="meta">
 			<a href="https://github.com/dkdev24/pele-animate/edit/main/docs/{data.doc.slug}.md">Edit this page on GitHub</a> ·
-			<a href="/docs/{data.doc.slug}.md">View as Markdown</a>
+			<a href="/docs/{data.doc.slug}.md" data-sveltekit-reload>View as Markdown</a>
 		</p>
 	</article>
 

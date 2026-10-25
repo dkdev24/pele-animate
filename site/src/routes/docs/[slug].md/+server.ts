@@ -2,6 +2,7 @@ import { error } from '@sveltejs/kit';
 import { getDocs } from '#lib/server/docs';
 
 export const prerender = true;
+export const trailingSlash = 'never';
 export const entries = async () => (await getDocs()).map((d) => ({ slug: d.slug }));
 
 // Every docs page is also served as Markdown, for agents and for "View as Markdown".
