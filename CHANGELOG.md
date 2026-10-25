@@ -3,9 +3,11 @@
 All notable changes to `pele-animate` are recorded here.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The project stays on `0.x`: minor versions
-may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
+may change behavior, so pin a range such as `^0.18.0` and bump it deliberately.
 
 ## [Unreleased]
+
+## [0.18.0] - 2026-10-25
 
 ### Added
 - `autoplay` option for `watch()` (or `autoplay` in the `%% pa:` comment): the diagram skips the scroll intro and loops step mode once it is on screen. Ignored under reduced motion.
@@ -13,6 +15,7 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 
 ### Changed
 - Step mode's play button now loops (holding the last step a little longer) until you pause or use another control, instead of stopping at the end.
+- Website: a "Same diagram, four ways" section on the home page compares Mermaid.js, Pele, pele-animate with autoplay, and pele-animate with autoplay and icons.
 - Website: code blocks have a copy button, install commands show npm, pnpm, yarn and bun as tabs, the 404 page is designed, the home diagram fits narrow screens, and "View as Markdown" links work.
 - Website: a privacy page and a cookie banner (Google Analytics loads only after you accept), and a two-row header on narrow screens with every link reachable.
 

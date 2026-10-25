@@ -461,3 +461,17 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 ### Status
 
 `pnpm test` and `pnpm build` pass.
+
+## v0.18.0 — looping step mode and autoplay
+
+**Date:** 2026-10-25
+
+### Changes
+
+- Step mode's play button loops (`hold` on the last step) until paused or another control is used.
+- `watch()` options `autoplay` (also `autoplay` in the `%% pa:` comment), `interval` (1200 ms) and `hold` (2400 ms); autoplay skips the scroll intro and is ignored under reduced motion.
+- Home page: "Same diagram, four ways" comparison (vanilla Mermaid via on-demand `mermaid` dependency in `site/`).
+
+### Status
+
+`pnpm test` and `pnpm build` pass. Not yet published.
