@@ -69,4 +69,3 @@ The `%% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C` comment pins the order: the request fir
 - Pick icons: [icons](./icons.md).
 - Control the order: [step order](./step-order.md).
 - Match your site's colors: [theming](./theming.md).
-- Upgrading from 0.12: [migrating](./migrating.md).

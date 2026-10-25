@@ -8,12 +8,7 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 ## [Unreleased]
 
 ### Changed
-- Website: runs on Pele 1.10.0.
-- Docs: the compatibility page notes that Pele's maintainer has no plans to change the class names pele-animate reads.
-- Repository: a daily check against the latest Pele and a smoke test of the SVG hooks.
-
-### Changed
-- Website: code blocks have a copy button, and install commands show npm, pnpm, yarn and bun as tabs. The 404 page is designed, the homepage diagram fits narrow screens, and "View as Markdown" links work.
+- Website: code blocks have a copy button, install commands show npm, pnpm, yarn and bun as tabs, the 404 page is designed, the home diagram fits narrow screens, and "View as Markdown" links work.
 
 ## [0.17.1] - 2026-10-25
 
@@ -24,23 +19,15 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 ## [0.17.0] - 2026-10-25
 
 ### Removed
-- **Breaking:** `replay()` and the `{ controls: false }` option of `watch()` are gone; a click always enters step mode. See the Migrating page.
-- Website: playground share links now use a plain URL-encoded source, so links made before this change no longer open.
+- **Breaking:** `replay()` and the `{ controls: false }` option of `watch()` are gone; a click always enters step mode.
 
 ### Changed
-- Docs: the architecture, state, class and C4 examples now use edge pins, so relationships appear as their own steps.
-- Website: redesigned with a warm paper theme (terracotta accent, Ranade and Geist Mono), light and dark; the live diagram sits on a generated grid on the home page, next to its Mermaid source in an editor panel. The site is now at https://pele-animate.danielkimdev.com/.
-- Website: diagrams on the docs pages take one of five warm tones in turn, and timeline, journey, git graph and Gantt use a warm eight-colour series set.
-- Website playground: the colour controls are collapsed until opened, the diagram starts in the site colours, and the examples menu is styled.
-- Docs and README: the getting-started example is now a five-step round trip (request, load balancer, cloud service, response, reply): `%% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C`.
+- Website: redesigned with a warm paper theme, light and dark, at https://pele-animate.danielkimdev.com/.
 
 ## [0.16.2] - 2026-10-24
 
 ### Fixed
 - Edge pins (`X>Y`) are matched in either order when the diagram has no opposite edge. Before, a pin written against the arrow (class and ER relationships, undirected architecture edges, `A <--> B` read as `B>A`) was ignored and the edge appeared with the first step.
-
-### Changed
-- Website playground: the colour controls are five pickers (lines and icons, group fill, node fill, background, text) that start from the theme's values, plus Reset; the examples menu is grouped by page with descriptive titles taken from each docs fence's `title="..."`.
 
 ## [0.16.1] - 2026-10-24
 
@@ -56,8 +43,6 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 - C4 context diagrams (`C4Context`): step order, pins and step controls work as for flowcharts.
 - State diagrams (`stateDiagram-v2`): step order, pins (`root_start` and `root_end` name the markers) and step controls. Edge ends are now also read from the path geometry when Pele gives an edge no readable id.
 - Architecture diagrams (`architecture-beta`): step order, pins, step controls and icon packs (the icon in parentheses) work as for flowcharts.
-
-### Added
 - Website: a playground at `/playground/` (edit Mermaid, live preview with the real step controls, stroke and color controls, preview width, examples from the docs, share link, copy Mermaid and code snippet) and an "Open in playground" link under every live example in the docs.
 
 ## [0.15.0] - 2026-10-24
@@ -66,10 +51,8 @@ may change behavior, so pin a range such as `^0.17.0` and bump it deliberately.
 - `prepare(source)`: pads icon-node labels narrower than `h` so Pele's layout box is as wide as the drawn icon. Without it, edge ends and arrowheads land under the icon. Use `mount(el, prepare(src), { icons })`.
 - Website: an icon browser at `/icons/` (search by name and tag, category chips, stroke-width slider, click to copy an `@{ icon }` snippet and the import line) and `/icons.json` (`{ version, icons: [{ name, category, tags }] }`) for agents.
 
-### Changed
-- Docs: the diagram-type examples are longer (five to seven steps) with pins that follow a story, so step mode shows what pins and step order are for.
-- Text on solid fills (timeline periods, Gantt bars, git branch tags) was invisible because the scene made Pele's contrast colour transparent; it now uses the panel surface colour.
-- README: badges, links to the website and docs, a hero animation, generic comparison examples (client, API, auth server), and icon examples shown as source text because GitHub's Mermaid renderer cannot draw them.
+### Fixed
+- Text on solid fills (timeline periods, Gantt bars, git branch tags) was invisible; it now uses the panel surface colour.
 
 ## [0.14.0] - 2026-10-24
 
@@ -79,11 +62,6 @@ Types, documentation and agent skills. No breaking changes.
 - TypeScript types (`types/`), wired through `exports`.
 - Documentation in `docs/` (16 pages), shipped in the npm package; the README is now a short quickstart that links to it.
 - Agent skills in `skills/`, shipped in the npm package: `pele-animate` (install, mount, icons, step order, theme, verify in a browser, with a `verify.js` probe) and `diagram-step-order`.
-- `pnpm test` renders every Mermaid example in the docs, skills and README with Pele and checks icon names.
-
-### Changed
-- README is a short quickstart that describes the package as step order, step-by-step playback and icons (not a theme package).
-- The package description on npm says the same.
 
 ## [0.13.0] - 2026-10-24
 
@@ -94,7 +72,7 @@ Tabler icon packs, and the illustrated glyphs move to a `doverunner-` namespace.
 
 ### Added
 - `icons()` returns a neutral rounded square for unregistered names, instead of Pele's blank icon slot.
-- Tabler Icons packs: `pele-animate/tabler/<category>` (4,368 outline icons in 36 categories, from Tabler Icons 3.49.0, MIT). Stroke width follows the `--pa-stroke` CSS variable. `registerTabler(pack, strokeWidth)` in `/glyphs`; `scripts/build-tabler.mjs` regenerates the packs; license in `THIRD-PARTY-NOTICES.md`.
+- Tabler Icons packs: `pele-animate/tabler/<category>` (4,368 outline icons in 36 categories, from Tabler Icons 3.49.0, MIT). Stroke width follows the `--pa-stroke` CSS variable. `registerTabler(pack, strokeWidth)` in `/glyphs`; license in `THIRD-PARTY-NOTICES.md`.
 
 ## [0.12.0] - 2026-10-24
 
@@ -122,7 +100,6 @@ Step-by-step playback.
 
 ### Changed
 
-- README: Mermaid vs Pele vs pele-animate comparison with animated GIFs (`examples/`, regenerate with `examples/capture.sh`).
 - Step controls have their own tooltips; the ✕ button exits step mode instead of restarting it.
 - `watch()` click now enters step mode instead of replaying the intro. Pass `{ controls: false }` as the third argument for the old click-to-replay.
 
@@ -172,7 +149,9 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.16.2...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.17.1...HEAD
+[0.17.1]: https://github.com/dkdev24/pele-animate/compare/0.17.0...0.17.1
+[0.17.0]: https://github.com/dkdev24/pele-animate/compare/0.16.2...0.17.0
 [0.16.2]: https://github.com/dkdev24/pele-animate/compare/0.16.1...0.16.2
 [0.16.1]: https://github.com/dkdev24/pele-animate/compare/0.16.0...0.16.1
 [0.16.0]: https://github.com/dkdev24/pele-animate/compare/0.15.0...0.16.0

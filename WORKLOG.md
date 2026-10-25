@@ -391,6 +391,7 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 - `scripts/smoke-pele.mjs` (part of `pnpm test`) checks the Pele SVG hooks; `.github/workflows/canary.yml` runs `pnpm test` daily against latest Pele and opens a `pele-canary` issue on failure; Dependabot bumps `pele` weekly.
 - Site and lockfile moved to Pele 1.10.0 (site range `^1.10.0`).
 - Docs: compatibility page records the maintainer's answer on class names (obsidianmd/pele#78).
+- Docs: Migrating page removed (no outside users of earlier versions; restore from git history when needed). `CHANGELOG.md` cleaned: repo/CI/docs-wording items and README/site-restyle bullets dropped from past entries, duplicate headings merged, 0.17.x compare links added. Log split rule added to `AGENTS.md`.
 
 ### Status
 

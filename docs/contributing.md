@@ -21,6 +21,6 @@ pnpm build   # builds the site (a placeholder until the site lands)
 - Every `live` fence carries a title after the word `live`: `title="Flowchart: cache hit or miss"`. The playground's examples menu shows it (grouped by page), so write "Type: what it shows".
 - Tabler packs are generated: `node scripts/build-tabler.mjs <path to a tabler-icons checkout>` rewrites `tabler/*.js`. Do not edit those
   files by hand. The Tabler version is recorded in each file header and in `THIRD-PARTY-NOTICES.md`.
-- Add an entry to `CHANGELOG.md` for any user-visible change. Breaking changes also get a section in `docs/migrating.md`.
+- Add an entry to `CHANGELOG.md` for any user-visible change.
 - Versioning stays on `0.x`.
 - Keep example diagrams generic (clients, APIs, databases).

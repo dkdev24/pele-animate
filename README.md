@@ -72,7 +72,7 @@ Everything is in [`docs/`](docs/getting-started.md), and ships inside the npm pa
 | [Getting started](docs/getting-started.md) · [How it works](docs/how-it-works.md) · [Diagram types](docs/diagram-types.md) | The basics |
 | [Icons](docs/icons.md) · [Custom icons](docs/custom-icons.md) · [Step order](docs/step-order.md) · [Theming](docs/theming.md) · [Recipes](docs/recipes.md) | Guides (Vite, Astro, SvelteKit, Nuxt, React) |
 | [API](docs/api.md) · [Compatibility](docs/compatibility.md) · [Accessibility](docs/accessibility.md) · [Security](docs/security.md) | Reference |
-| [Migrating](docs/migrating.md) · [For coding agents](docs/agents.md) · [FAQ](docs/faq.md) · [Contributing](docs/contributing.md) | Everything else |
+| [For coding agents](docs/agents.md) · [FAQ](docs/faq.md) · [Contributing](docs/contributing.md) | Everything else |
 
 **Coding agents:** the package includes a skill, `skills/pele-animate/`, that wires the library into a project and checks the
 result in a browser. See [For coding agents](docs/agents.md).
