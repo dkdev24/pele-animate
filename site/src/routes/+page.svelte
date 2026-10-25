@@ -151,7 +151,7 @@ bun add pele-animate pele</code></pre>
 	.cmp :global(.live), .cmp :global(.mermaid-live) { margin: 0; display: flex; justify-content: center; align-items: center; flex: 1; min-height: 20rem; padding: var(--space-sm); border-radius: var(--radius-card); box-shadow: var(--shadow-card); background: var(--color-sheet); }
 	.cmp :global(.mermaid-live svg), .cmp :global(.pa-scene svg), .cmp :global(.live svg) { max-width: 100%; height: auto; }
 	/* plain Pele has no .pa-scene: give it the scene colours so only the behaviour differs */
-	.cmp :global(.live[data-mode='plain']) { --pele-bg: var(--scene-bg); --pele-surface: var(--scene-surface); --pele-fg: var(--scene-fg); background: var(--scene-bg); }
+	.cmp :global(.live[data-mode='plain']) { --pele-bg: var(--scene-bg); --pele-line: var(--scene-fg); --pele-surface: var(--scene-surface); --pele-fg: var(--scene-fg); background: var(--scene-bg); }
 	@media (max-width: 70rem) { .cmp { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 	@media (max-width: 36rem) { .cmp { grid-template-columns: minmax(0, 1fr); } }
 	.sec { margin-top: var(--section-gap-s); }
