@@ -15,6 +15,21 @@
 	const hl = (line: string) =>
 		esc(line).replace(/^(\s*%%.*)$|("[^"]*")|(\|[^|]*\|)|(--&gt;)|(\bflowchart\b|\bLR\b)|(\b(?:icon|form|h|label)(?=:))/g,
 			(m, c, str, lbl, arrow, kw, key) => `<span class="${c ? 'c' : str ? 's' : lbl ? 'l' : arrow ? 'a' : kw ? 'k' : 'p'}">${m}</span>`);
+	// The comparison: one 3-step vertical flow, drawn four ways.
+	const flow = `flowchart TB
+  A[Mermaid code] -->|parse| B[Diagram model]
+  B -->|lay out and draw| C[SVG on the page]`;
+	const flowIcons = `flowchart TB
+  %% pa: autoplay
+  A@{ icon: "file-code", form: "square", h: 88, label: "Mermaid code" }
+  B@{ icon: "settings", form: "square", h: 88, label: "Diagram model" }
+  C@{ icon: "photo", form: "square", h: 88, label: "SVG on the page" }
+  A -->|parse| B
+  B -->|lay out and draw| C`;
+	const flowAuto = `flowchart TB
+  %% pa: autoplay
+  A[Mermaid code] -->|parse| B[Diagram model]
+  B -->|lay out and draw| C[SVG on the page]`;
 	const lines = hero.split('\n').map(hl);
 </script>
 
@@ -60,6 +75,17 @@ pnpm add pele-animate pele
 yarn add pele-animate pele
 bun add pele-animate pele</code></pre>
 		<p>Then <a href="/docs/getting-started/">render your first diagram</a>. It runs in the browser, so it works in Vite, Astro, SvelteKit, Nuxt and plain HTML: see <a href="/docs/recipes/">recipes</a>.</p>
+		</div>
+	</section>
+
+	<section class="wrap sec">
+		<h2>Same diagram, four ways</h2>
+		<p class="cmp-lead">One three-step flow, from Mermaid code to SVG, rendered by each layer. The last two loop on their own; click either to step through it.</p>
+		<div class="cmp" use:live={['document', 'system', 'media']}>
+			<figure><div class="mermaid-live" data-src={flow}></div><figcaption><strong>Mermaid.js</strong> the standard renderer</figcaption></figure>
+			<figure><div class="live" data-mode="plain" data-src={flow}></div><figcaption><strong>Pele</strong> same code, restyled</figcaption></figure>
+			<figure><div class="live" data-src={flowAuto}></div><figcaption><strong>pele-animate</strong> with autoplay</figcaption></figure>
+			<figure><div class="live" data-src={flowIcons}></div><figcaption><strong>pele-animate</strong> with autoplay and icons</figcaption></figure>
 		</div>
 	</section>
 
@@ -117,6 +143,17 @@ bun add pele-animate pele</code></pre>
 	.proofs { display: grid; gap: var(--space-lg); }
 	.proofs h2 { font-size: var(--text-title); max-width: none; margin-bottom: var(--space-2xs); }
 	.proofs p { color: var(--color-ink-2); }
+	.cmp-lead { color: var(--color-ink-2); max-width: 46rem; margin-bottom: var(--space-md); }
+	.cmp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-md); align-items: stretch; }
+	.cmp figure { margin: 0; min-width: 0; display: flex; flex-direction: column; }
+	.cmp figcaption { margin-top: var(--space-xs); font-size: var(--text-sm); color: var(--color-muted); text-align: center; }
+	.cmp figcaption strong { display: block; color: var(--color-ink); }
+	.cmp :global(.live), .cmp :global(.mermaid-live) { margin: 0; display: flex; justify-content: center; align-items: center; flex: 1; min-height: 20rem; padding: var(--space-sm); border-radius: var(--radius-card); box-shadow: var(--shadow-card); background: var(--color-sheet); }
+	.cmp :global(.mermaid-live svg), .cmp :global(.pa-scene svg), .cmp :global(.live svg) { max-width: 100%; height: auto; }
+	/* plain Pele has no .pa-scene: give it the scene colours so only the behaviour differs */
+	.cmp :global(.live[data-mode='plain']) { --pele-bg: var(--scene-bg); --pele-surface: var(--scene-surface); --pele-fg: var(--scene-fg); background: var(--scene-bg); }
+	@media (max-width: 70rem) { .cmp { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+	@media (max-width: 36rem) { .cmp { grid-template-columns: minmax(0, 1fr); } }
 	.sec { margin-top: var(--section-gap-s); }
 	.sec h2 { font-size: var(--text-section); margin-bottom: var(--space-md); }
 	.two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--gap-columns); align-items: start; }
