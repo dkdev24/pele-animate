@@ -11,7 +11,7 @@ Unofficial add-on; not affiliated with or endorsed by the Pele or Obsidian teams
 
 **[Website](https://pele-animate.danielkimdev.com/) · [Docs](docs/getting-started.md) · [npm](https://www.npmjs.com/package/pele-animate) · [Changelog](CHANGELOG.md)**
 
-<img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a3.gif" width="560" alt="Animated scene with Tabler icons: a request, a load balancer and a cloud service">
+<img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a3.gif" width="560" alt="Animated step mode looping over four steps: Mermaid code, ordered steps, illustrated scene, reader follows along">
 
 - **You set the order.** Nodes appear in the order of a `%% pa:` comment, or by default along the edges; edges draw in and labels fade in.
 - **Readers step through it.** Click (or Enter) starts step mode: previous / play-pause / next buttons, Space, ←/→ and Esc. Hover or focus sends tokens along the edges.
@@ -37,7 +37,10 @@ bun add pele-animate pele
 import { mount } from 'pele';
 import { watch, prepare } from 'pele-animate';
 import { icons } from 'pele-animate/glyphs';
-import 'pele-animate/tabler/computers'; // one Tabler icon category; import as many as you need
+import 'pele-animate/tabler/document'; // one Tabler icon category per import; add as many as you need
+import 'pele-animate/tabler/text';
+import 'pele-animate/tabler/design';
+import 'pele-animate/tabler/media';
 import 'pele-animate/style.css';
 
 for (const el of document.querySelectorAll('pre.mermaid')) {
@@ -51,17 +54,17 @@ Mermaid source:
 
 ```mermaid-icons
 flowchart LR
-  %% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C
-  C@{ icon: "http-get", form: "square", h: 88, label: "Request" }
-  L@{ icon: "load-balancer", form: "square", h: 88, label: "Load balancer" }
-  S@{ icon: "cloud-computing", form: "square", h: 88, label: "Cloud service" }
-  C -->|request| L
-  L -->|forward| S
-  S -->|response| L
-  L -->|reply| C
+  %% pa: autoplay 1=W 2=W>O 3=O>I 4=I>R
+  W@{ icon: "file-code", form: "square", h: 88, label: "Mermaid code" }
+  O@{ icon: "list-numbers", form: "square", h: 88, label: "Ordered steps" }
+  I@{ icon: "palette", form: "square", h: 88, label: "Illustrated scene" }
+  R@{ icon: "player-play", form: "square", h: 88, label: "Reader follows along" }
+  W -->|pin the order| O
+  O -->|add icons| I
+  I -->|click through| R
 ```
 
-`%% pa: 1=C 2=C>L 3=L>S 4=S>L 5=L>C` pins the order: the request first, then each leg of the round trip (optional). `form: "square", h: 88` makes a large frameless icon.
+`%% pa: 1=W 2=W>O 3=O>I 4=I>R` pins the order: each node, then the edge to the next (optional). `autoplay` skips the scroll intro and loops step mode once the diagram is on screen. `form: "square", h: 88` makes a large frameless icon.
 
 ## Documentation
 
@@ -79,21 +82,22 @@ result in a browser. See [For coding agents](docs/agents.md).
 
 ## Compare
 
-The same Mermaid source, three renderers. The pele-animate images loop: the intro draws in, then tokens travel the edges (as on hover).
-Regenerate with `examples/capture.sh`.
+The same three-step flow, written left to right, in panels too narrow for it:
 
 ```mermaid
 flowchart LR
-  A[Client] -->|request| B[API]
-  A -->|sign in| C[Auth server]
-  C -->|token| A
+  A[Mermaid code] -->|parse| B[Diagram model] -->|lay out and draw| C[SVG on the page]
 ```
 
-| Renderer | Result |
-|---|---|
-| Mermaid | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/m1.png" width="560" alt="Flowchart rendered by Mermaid"> |
-| Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p1.png" width="560" alt="Flowchart rendered by Pele"> |
-| pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a1.gif" width="560" alt="Animated flowchart: nodes appear, edges draw in, tokens travel"> |
+| Mermaid.js | Pele | pele-animate with autoplay | pele-animate with autoplay and icons |
+|---|---|---|---|
+| <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/c1.png" width="200" alt="Mermaid.js keeps the left-to-right layout and scales it down until the text is tiny"> | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/c2.png" width="200" alt="Pele lays the flow out vertically to fit the panel, at full text size"> | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/c3.gif" width="200" alt="pele-animate in autoplay step mode: the vertical flow appears one step at a time, then loops"> | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/c4.gif" width="200" alt="The same autoplay loop with an icon on every node"> |
+
+Mermaid.js keeps a fixed layout and scales it down to fit, so the text shrinks. Pele lays the diagram out again for the width
+it has. pele-animate adds the steps (the loops above run on their own; a click steps through them) and, optionally, icons.
+
+The same Mermaid source, three renderers, for a sequence diagram. The pele-animate image loops: the intro draws in, then tokens
+travel the edges (as on hover). Regenerate all images with `examples/capture.sh`.
 
 ```mermaid
 sequenceDiagram

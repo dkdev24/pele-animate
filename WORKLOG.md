@@ -490,3 +490,18 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 ### Status
 
 `pnpm build` and site check pass.
+
+## README images match the home page (no release)
+
+**Date:** 2026-10-26
+
+### Changes
+
+- Top `a3.gif` is the home page hero (autoplay step mode, 4 steps); the README source block and imports match it.
+- Compare section: one four-case table (`c1.png` Mermaid.js, `c2.png` Pele, `c3.gif` autoplay, `c4.gif` autoplay + icons) of the home page's left-to-right flow in 276px panels, showing Mermaid scaling vs Pele re-laying out. Sequence comparison kept (re-rendered with Mermaid 12.2.0). Removed `a1.gif`, `m1.png`, `p1.png`.
+- `examples/capture.sh`: the autoplay gifs are recorded live (`agent-browser record`), one loop is cut using marker squares the page flashes at each loop restart, and the cut is retimed to the nominal loop length (the recording's clock drifts ~10%). The webm is full range: read it with `scale=in_range=pc` or light panels clip to white.
+- Not checked by eye: `c3.gif`, `a3.gif` and the regenerated sequence images.
+
+### Status
+
+`pnpm test` passes.
