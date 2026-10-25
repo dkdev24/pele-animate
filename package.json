@@ -22,5 +22,5 @@
   "files": ["pele-animate.js", "pele-animate.css", "glyphs.js", "preset-doverunner.js", "tabler", "types", "docs", "skills", "THIRD-PARTY-NOTICES.md", "README.md", "LICENSE"],
   "sideEffects": ["*.css", "./preset-doverunner.js", "./tabler/*.js"],
   "peerDependencies": { "pele": "^1.7.0" },
-  "devDependencies": { "pele": "^1.7.0" }
+  "devDependencies": { "pele": "^1.10.0" }
 }
