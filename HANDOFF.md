@@ -16,13 +16,13 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-26 (Korean site, **not committed or pushed yet**): `/ko/` for home, docs (15 pages in `docs/ko/`), icons, playground, privacy; changelog page has Korean chrome, English content. Routes moved under `[[lang=lang]]` (matcher in `src/params.ts`, set via `files.params` in `vite.config.ts`); `src/lib/i18n.ts` holds UI strings and `swap()` for the header language link; `hooks.server.ts` sets `<html lang>`; hreflang + sitemap alternates; `check-site.mjs` fails if a `docs/ko/` twin is missing. Slugify is Unicode-aware (Korean heading ids). Terms: 단계, 엣지, 핀, 인트로, 단계 모드. `pnpm test` and `pnpm build` pass; screenshots of `/ko/` and a docs page checked at 800px. Not checked: phone width, light mode, live deploy.
+2026-10-26 (Korean site, **not committed or pushed yet**): `/ko/` for home, docs (15 pages in `docs/ko/`), icons, playground, privacy; changelog page has Korean chrome, English content. Routes moved under `[[lang=lang]]` (matcher in `src/params.ts`, set via `files.params` in `vite.config.ts`); `src/lib/i18n.ts` holds UI strings and `swap()` for the header language link; `hooks.server.ts` sets `<html lang>`; hreflang + sitemap alternates; `check-site.mjs` fails if a `docs/ko/` twin is missing. Slugify is Unicode-aware (Korean heading ids). Terms: 단계, 엣지, 핀, 인트로, 단계 모드. `pnpm test` and `pnpm build` pass; screenshots of `/ko/` and a docs page checked at 800px. Phone width, light mode and the live deploy were checked by Daniel afterwards (2026-10-26).
 ---
 
 ## Next Actions
 
 1. Refine the `diagram-step-order` skill from the review (layout lessons: `row` wrappers, `TB` vs `LR` siblings, edge declaration order; see docs WORKLOG 2026-10-24).
-2. Check step mode on a sequence diagram + phone width; check the live docs step mode. Also phone width of the home comparison and Layout table, and eyeball `c3.gif`/`a3.gif`.
+2. Eyeball `c3.gif`/`a3.gif` (step mode, live docs and phone-width checks done by Daniel 2026-10-26).
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
 5. Playground gaps: CodeMirror (icon completion, pin lint), Download SVG (phone-width tabs verified, header overflow fixed); e2e tests for `/icons` and `/playground`. Then S7 (a11y, OG). Still open: wallabyway reply (kepano answered on obsidianmd/pele#78: no plans to change the class names), S7 a11y/OG, e2e tests, `vite dev` check. Next release 0.19.0.
 
