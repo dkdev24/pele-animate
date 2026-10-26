@@ -520,3 +520,19 @@ Checked on class, architecture and state repro cases and the step-order flowchar
 ### Status
 
 `pnpm build` and site check pass; all pushed to `main` (deploys the site).
+
+---
+
+## v0.19.0 — Node 24 toolchain, release of the Korean site (GitHub release only)
+
+**Date:** 2026-10-26
+
+### Changes
+
+- `.node-version` 24; CI (`ci.yml`, `canary.yml`) uses it, with `actions/checkout@v7`, `actions/setup-node@v7`, `pnpm/action-setup@v6`. `pnpm test` and `pnpm build` (site check, 42 pages) pass on Node 24.22.1; the Pages deploy on `286db03` succeeded. Trigger: Node2Shell (CVE-2026-111497); plan in basecamp `NODE24-MIGRATION.md`.
+- Cut `v0.19.0` per the 0.x rule (the `[Unreleased]` block had Added items). **Not published to npm** on Daniel's call; npm `latest` stays 0.18.0, so consumers (docs-starlight on `^0.18.0`) are unaffected until it is published.
+
+### Status
+
+Pushed to `main`; tag and GitHub release `v0.19.0`.
+

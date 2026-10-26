@@ -7,10 +7,13 @@ may change behavior, so pin a range such as `^0.18.0` and bump it deliberately.
 
 ## [Unreleased]
 
+## [0.19.0] - 2026-10-26
+
 ### Added
 - Website: Korean at `/ko/` (home, docs, icons, playground, privacy). The Korean docs are written for Korean readers, not translated line by line, and ship in the package under `docs/ko/`. English stays at the root with no language prefix. The changelog stays English-only.
 
 ### Changed
+- Development toolchain: Node 24 LTS (`.node-version` 24, CI on Node 24 and current GitHub Actions); the package itself is unchanged and still supports Node 22.
 - Website: the home page comparison now writes the flow left to right in narrow panels, so it shows Pele re-laying the diagram out to fit while Mermaid.js scales a fixed layout down.
 - Website: the "Where it fits" table has a Layout column (Mermaid.js scales a fixed layout; Pele and pele-animate adapt to the container width).
 - Website: the home page example now explains pele-animate itself (Mermaid code, ordered steps, illustrated scene, reader follows along) instead of a request/load balancer flow.
@@ -166,7 +169,9 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/0.17.1...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/v0.19.0...HEAD
+[0.19.0]: https://github.com/dkdev24/pele-animate/compare/v0.18.0...v0.19.0
+[0.18.0]: https://github.com/dkdev24/pele-animate/compare/0.17.1...v0.18.0
 [0.17.1]: https://github.com/dkdev24/pele-animate/compare/0.17.0...0.17.1
 [0.17.0]: https://github.com/dkdev24/pele-animate/compare/0.16.2...0.17.0
 [0.16.2]: https://github.com/dkdev24/pele-animate/compare/0.16.1...0.16.2
