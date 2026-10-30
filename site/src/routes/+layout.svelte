@@ -129,6 +129,20 @@
 <svelte:head>
 	<link rel="alternate" hreflang={lang} href="https://pele-animate.danielkimdev.com{page.url.pathname}" />
 	<link rel="alternate" hreflang={lang === 'ko' ? 'en' : 'ko'} href="https://pele-animate.danielkimdev.com{swap(page.url.pathname)}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="pele-animate" />
+	<meta property="og:title" content={t('ogTitle')} />
+	<meta property="og:description" content={t('ogDescription')} />
+	<meta property="og:url" content="https://pele-animate.danielkimdev.com{page.url.pathname}" />
+	<meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'} />
+	<meta property="og:image" content="https://pele-animate.danielkimdev.com/og/og-card.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content={t('ogTitle')} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={t('ogTitle')} />
+	<meta name="twitter:description" content={t('ogDescription')} />
+	<meta name="twitter:image" content="https://pele-animate.danielkimdev.com/og/og-card.jpg" />
 </svelte:head>
 
 <a class="skip" href="#main">{t('skip')}</a>

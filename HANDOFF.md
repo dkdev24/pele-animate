@@ -16,7 +16,10 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-10-26 (Korean site, **not committed or pushed yet**): `/ko/` for home, docs (15 pages in `docs/ko/`), icons, playground, privacy; changelog page has Korean chrome, English content. Routes moved under `[[lang=lang]]` (matcher in `src/params.ts`, set via `files.params` in `vite.config.ts`); `src/lib/i18n.ts` holds UI strings and `swap()` for the header language link; `hooks.server.ts` sets `<html lang>`; hreflang + sitemap alternates; `check-site.mjs` fails if a `docs/ko/` twin is missing. Slugify is Unicode-aware (Korean heading ids). Terms: 단계, 엣지, 핀, 인트로, 단계 모드. `pnpm test` and `pnpm build` pass; screenshots of `/ko/` and a docs page checked at 800px. Phone width, light mode and the live deploy were checked by Daniel afterwards (2026-10-26).
+2026-10-30 (OG tags + image, **not pushed yet** — push to main deploys pele-animate.danielkimdev.com, needs Daniel's go-ahead): shared links showed a platform placeholder because the site had no OG tags at all. Added `site/static/og/og-card.jpg` (1200×630 JPEG, 79KB — screenshot of the live Bloom hero at 1200×630 via headless Chromium, diagram settled to still frame) and full OG/Twitter meta tags in `site/src/routes/+layout.svelte` (`<svelte:head>`: og:type/site_name/title/description/url/locale/image+1200×630+alt, twitter:card summary_large_image). New `ogTitle`/`ogDescription` i18n keys (en/ko) reuse the homepage's exact title/description copy; og:url is per-page, og:title/description are site-wide for now (per-page OG is a follow-up). `pnpm build` green (42 pages, 0 problems); EN/KO home, docs, playground dist verified. `pnpm test` pass. Note: this VM was replaced — `pnpm install` re-run, and global pnpm 11.1.1 (for whatif-classics) reinstalled via npm.
+---
+## Previous Session
+2026-10-26 (Korean site): `/ko/` for home, docs (15 pages in `docs/ko/`), icons, playground, privacy; changelog page has Korean chrome, English content. Routes moved under `[[lang=lang]]` (matcher in `src/params.ts`, set via `files.params` in `vite.config.ts`); `src/lib/i18n.ts` holds UI strings and `swap()` for the header language link; `hooks.server.ts` sets `<html lang>`; hreflang + sitemap alternates; `check-site.mjs` fails if a `docs/ko/` twin is missing. Slugify is Unicode-aware (Korean heading ids). Terms: 단계, 엣지, 핀, 인트로, 단계 모드. `pnpm test` and `pnpm build` pass; screenshots of `/ko/` and a docs page checked at 800px. Phone width, light mode and the live deploy were checked by Daniel afterwards (2026-10-26).
 ---
 
 ## Next Actions
@@ -24,7 +27,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 1. Refine the `diagram-step-order` skill from the review (layout lessons: `row` wrappers, `TB` vs `LR` siblings, edge declaration order; see docs WORKLOG 2026-10-24).
 2. Eyeball `c3.gif`/`a3.gif` (step mode, live docs and phone-width checks done by Daniel 2026-10-26).
 3. Smoke test for Pele class names; touch-device behavior; types; `≠`/lock-pill glyphs.
-5. Playground gaps: CodeMirror (icon completion, pin lint), Download SVG (phone-width tabs verified, header overflow fixed); e2e tests for `/icons` and `/playground`. Then S7 (a11y, OG). Still open: wallabyway reply (kepano answered on obsidianmd/pele#78: no plans to change the class names), S7 a11y/OG, e2e tests, `vite dev` check. Next release 0.19.0.
+5. Playground gaps: CodeMirror (icon completion, pin lint), Download SVG (phone-width tabs verified, header overflow fixed); e2e tests for `/icons` and `/playground`. Then S7 (a11y; OG done 2026-10-30 — see Last Session). Still open: wallabyway reply (kepano answered on obsidianmd/pele#78: no plans to change the class names), S7 a11y, e2e tests, `vite dev` check. Next release 0.19.0.
 
 ---
 
