@@ -16,6 +16,9 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
+2026-10-31 (homepage AEO pass, **not pushed**): audit of the homepage found a stale claim ("supports flowcharts and sequence diagrams" — actual support is 12 types), no Organization/SoftwareApplication schema, and no FAQ block. Fixed: diagram-type list now matches docs (EN/KO); added a 4-question FAQ section at the page bottom (curated subset of docs/faq.md, EN/KO); `<svelte:head>` now emits a `@graph` JSON-LD with SoftwareApplication (MIT, price 0) + FAQPage. `vite build` + `check-site.mjs` green (42 pages, 0 problems); JSON-LD verified in `build/index.html` and `build/ko/index.html`. Committed locally as `b3ab580`; push pending Daniel's approval (main = production deploy).
+---
+## Previous Session
 2026-10-31 (AEO docs pass, **not pushed**): per Draft.dev AEO/GEO playbook review — README got a TL;DR summary blockquote and a "which renderer for which job" comparison table (Mermaid.js / Pele / pele-animate), plus an inline FAQ section; `docs/faq.md` and `docs/ko/faq.md` expanded to 15 Q&As each (definition-first: "What is pele-animate?", autoplay, framework recipes, MIT, playground); site FAQ page now emits `FAQPage` JSON-LD parsed from the markdown (`+page.server.ts` `faqPairs`, rendered in `+page.svelte` head; works for EN and KO). `pnpm test` pass (0 problems), `vite build` + `check-site.mjs` green (42 pages, 0 problems); JSON-LD verified in `build/docs/faq/index.html` and `build/ko/docs/faq/index.html`. Committed locally as `70cb6d3`; push pending Daniel's approval (main = production deploy).
 ---
 ## Previous Session
