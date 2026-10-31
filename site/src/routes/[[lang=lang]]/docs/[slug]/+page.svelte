@@ -17,6 +17,9 @@
 	<title>{data.doc.title} · pele-animate</title>
 	<meta name="description" content={data.doc.description} />
 	<link rel="alternate" type="text/markdown" href="{px}/docs/{data.doc.slug}.md" />
+	{#if data.faqJsonLd}
+		{@html `<script type="application/ld+json">${JSON.stringify(data.faqJsonLd).replace(/<\//g, '<\\/')}</script>`}
+	{/if}
 </svelte:head>
 
 <div class="wrap docs">

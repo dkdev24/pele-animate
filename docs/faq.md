@@ -7,6 +7,25 @@ section: Reference
 
 # FAQ
 
+**What is pele-animate?** A small JavaScript post-processor that turns Mermaid diagrams into step-by-step animated scenes
+with icons. You write plain Mermaid; it adds step order, playback controls, and icons on top of Pele's rendering. It is
+not a theme package.
+
+**How do I animate a diagram step by step?** Pin the reveal order with a `%% pa:` comment (e.g. `%% pa: 1=A 2=A>B`),
+or leave it out and it follows the edges. Readers click through the steps, or watch them autoplay ([step order](./step-order.md)).
+
+**How do I make a diagram play automatically?** Add `autoplay` to the `%% pa:` comment. The intro draws in once the
+diagram is on screen, then step mode loops.
+
+**Does it work with my framework?** Yes. It runs in the browser and mounts on the client. There are recipes for Vite,
+Astro, SvelteKit, Nuxt, and React ([recipes](./recipes.md)).
+
+**Is it free for commercial use?** Yes. pele-animate is MIT, Pele is MIT, and the Tabler icon packs are MIT
+(see `THIRD-PARTY-NOTICES.md`).
+
+**Can I try it in the browser?** Yes, in the [playground](https://pele-animate.danielkimdev.com/playground/): paste
+Mermaid source and step through the result live.
+
 **Is this part of Pele?** No. It is an unofficial add-on, not affiliated with or endorsed by the Pele or Obsidian teams. Pele does the
 layout and drawing; pele-animate adds step order, step-by-step playback and icons on top.
 
