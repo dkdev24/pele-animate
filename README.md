@@ -4,6 +4,10 @@
 [![CI](https://github.com/dkdev24/pele-animate/actions/workflows/ci.yml/badge.svg)](https://github.com/dkdev24/pele-animate/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/pele-animate)](LICENSE)
 
+> **TL;DR** — pele-animate turns Mermaid diagrams into step-by-step animated scenes with icons. You write plain Mermaid,
+> pin the reveal order with a `%% pa:` comment, and readers click through the steps (or watch them autoplay). Built as a
+> post-processor on [Pele](https://github.com/obsidianmd/pele) (MIT): small (~20 KB core), synchronous rendering, MIT licensed.
+
 Mermaid diagrams that explain themselves one step at a time, with icons. You choose the order things appear in, readers
 step through it, and nodes can carry icons. A small post-processor for [Pele](https://github.com/obsidianmd/pele) (MIT),
 which renders the Mermaid; this adds the step order, the playback and the icons. It is not a theme package.
@@ -82,6 +86,17 @@ result in a browser. See [For coding agents](docs/agents.md).
 
 ## Compare
 
+Which renderer for which job:
+
+| | Mermaid.js | Pele | pele-animate |
+|---|---|---|---|
+| Best for | Static diagrams anywhere, including GitHub and chat | Lightweight static SVG on a page | Guided walkthroughs: explain a diagram one step at a time |
+| Layout | Fixed; scales down to fit, so text shrinks | Re-lays-out for the width it has | Pele's layout, plus your step order |
+| Motion | None | None | Step playback, autoplay, hover tokens along edges |
+| Icons | No | No | 4,368 Tabler icons (per-category imports) or your own |
+| Footprint | Full Mermaid.js bundle | Small, synchronous | Pele + ~20 KB core (unminified) |
+| License | MIT | MIT | MIT |
+
 The same three-step flow, written left to right, in panels too narrow for it:
 
 ```mermaid
@@ -112,6 +127,22 @@ sequenceDiagram
 | Mermaid | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/m2.png" width="560" alt="Sequence diagram rendered by Mermaid"> |
 | Pele | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/p2.png" width="560" alt="Sequence diagram rendered by Pele"> |
 | pele-animate | <img src="https://raw.githubusercontent.com/dkdev24/pele-animate/main/examples/a2.gif" width="560" alt="Animated sequence diagram: messages appear in order, tokens travel"> |
+
+## FAQ
+
+**What is pele-animate?** A small JavaScript post-processor that turns Mermaid diagrams into step-by-step animated scenes
+with icons. You write plain Mermaid; it adds step order, playback controls, and icons on top of Pele's rendering.
+
+**How do I make a diagram play automatically?** Add `autoplay` to the `%% pa:` comment
+(e.g. `%% pa: autoplay 1=A 2=A>B`). The intro draws in once the diagram is on screen, then step mode loops.
+
+**Does it work with my framework?** Yes. It runs in the browser and mounts on the client; there are recipes for Vite,
+Astro, SvelteKit, Nuxt, and React ([recipes](docs/recipes.md)).
+
+**Is it free for commercial use?** Yes. pele-animate is MIT, Pele is MIT, and the Tabler icon packs are MIT
+(see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)).
+
+Full list: [docs/faq.md](docs/faq.md).
 
 ## Credits and license
 
