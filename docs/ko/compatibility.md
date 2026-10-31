@@ -10,7 +10,7 @@ section: 레퍼런스
 | | 지원 범위 |
 |---|---|
 | Pele | `^1.7.0`(피어 의존성). 1.7(문서 사이트), 1.8, 1.9로 검증했습니다. |
-| 다이어그램 유형 | 플로차트와 시퀀스 다이어그램 ([다이어그램 유형](./diagram-types.md)) |
+| 다이어그램 유형 | 플로차트, 시퀀스 다이어그램, 아키텍처, 상태, C4 컨텍스트, 블록, 클래스, ER 다이어그램, 타임라인, 저니, 깃 그래프, 간트 차트 ([다이어그램 유형](./diagram-types.md)) |
 | 브라우저 | Web Animations API, `IntersectionObserver`, `matchMedia`를 지원하는 최신 브라우저(Chrome, Edge, Firefox, Safari). `IntersectionObserver`가 없으면 인트로가 즉시 재생됩니다. |
 | 모듈 형식 | ESM만 지원 |
 | 서버 렌더링 | 해당 없음. 클라이언트에서 마운트합니다 ([레시피](./recipes.md)) |

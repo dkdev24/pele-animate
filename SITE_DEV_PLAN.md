@@ -142,7 +142,7 @@ Two copies drift; for a smaller package we use one.
 |---|---|
 | `getting-started.md` | Install, vanilla + Vite example, the three imports (`pele`, `pele-animate`, `/glyphs`), first diagram |
 | `how-it-works.md` | The model: Pele renders SVG, `animate()` post-processes, `watch()` re-applies on resize; intro, hover tokens, step mode |
-| `diagram-types.md` | Flowcharts and sequence diagrams: what animates, what does not (sequence participants ignore `@{ icon }`) |
+| `diagram-types.md` | Flowcharts, sequence diagrams, architecture diagrams, state diagrams, C4 context, block, class and ER diagrams, timelines, journeys, git graphs and Gantt charts: what animates, what does not (sequence participants ignore `@{ icon }`) |
 | `icons.md` | `@{ icon }` syntax, `form: "square", h:`, Tabler categories (table with counts), `--pa-stroke`, fallback square, the optional `doverunner-*` pack, how to pick names without guessing |
 | `custom-icons.md` | `registerGlyphs`, colors via `--pa-solid` / `--pa-light`, stroke width, 24x24 contract |
 | `step-order.md` | `%% pa:` node pins, edge pins `A>B`, ordering rules and gotchas, step mode keys, `{ controls: false }` |

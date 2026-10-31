@@ -6,7 +6,7 @@ description: Add animated, step-by-step Mermaid diagrams to a project with pele-
 # pele-animate
 
 pele-animate makes a [Pele](https://pele.run) diagram explain itself one step at a time: you choose the order things appear in,
-readers step through it, and flowchart nodes can carry icons. It supports **flowcharts and sequence diagrams only**. Pele
+readers step through it, and flowchart nodes can carry icons. It supports flowcharts, sequence diagrams, architecture diagrams, state diagrams, C4 context, block, class and ER diagrams, timelines, journeys, git graphs and Gantt charts. Pele
 does the layout; pele-animate is an unofficial add-on and not a theme package.
 
 Your job when this skill is loaded: wire it into the project **and prove it renders**. Do not hand work back unverified.

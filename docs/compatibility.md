@@ -10,7 +10,7 @@ section: Reference
 | | Supported |
 |---|---|
 | Pele | `^1.7.0` (peer dependency). Tested with 1.7 (the docs site), 1.8 and 1.9. |
-| Diagram types | Flowcharts and sequence diagrams ([diagram types](./diagram-types.md)) |
+| Diagram types | Flowcharts, sequence diagrams, architecture diagrams, state diagrams, C4 context, block, class and ER diagrams, timelines, journeys, git graphs and Gantt charts ([diagram types](./diagram-types.md)) |
 | Browsers | Current browsers with the Web Animations API, `IntersectionObserver` and `matchMedia` (Chrome, Edge, Firefox, Safari). Without `IntersectionObserver` the intro plays at once. |
 | Module format | ESM only |
 | Server rendering | Not applicable: mount on the client ([recipes](./recipes.md)) |

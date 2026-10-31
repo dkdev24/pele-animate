@@ -8,7 +8,7 @@ export const GET = async () => {
 	const lines = docs.map((d) => `- [${d.title}](${SITE}/docs/${d.slug}.md): ${d.description}`);
 	const text = `# pele-animate
 
-> Step-by-step animated Mermaid diagrams with icons, as an unofficial add-on for the Pele renderer. You choose the order things appear in, readers step through it, nodes can carry icons. Flowcharts and sequence diagrams. Client-side only.
+> Step-by-step animated Mermaid diagrams with icons, as an unofficial add-on for the Pele renderer. You choose the order things appear in, readers step through it, nodes can carry icons. Supports flowcharts, sequence diagrams, architecture diagrams, state diagrams, C4 context, block, class and ER diagrams, timelines, journeys, git graphs and Gantt charts. Client-side only.
 
 Every docs page is also served as Markdown at the URLs below. The whole documentation in one file: ${SITE}/llms-full.txt
 
