@@ -54,6 +54,46 @@
   B -->|lay out and draw| C`);
 	const flowAuto = $derived('flowchart LR\n  %% pa: autoplay\n' + flow.split('\n').slice(1).join('\n'));
 	const lines = $derived(hero.split('\n').map(hl));
+
+	// FAQ for the page bottom: curated subset of docs/faq.md; also emitted as FAQPage JSON-LD.
+	const homeFaq = $derived(ko
+		? [
+				{ q: 'pele-animate이 뭔가요?', a: 'Mermaid 다이어그램을 단계별 애니메이션 장면으로 바꿔주는 작은 JavaScript 후처리기입니다. Mermaid 코드는 그대로 쓰고, 그 위에 단계 순서·재생 컨트롤·아이콘을 얹습니다. 배치는 <a href="https://pele.run">Pele</a>가 합니다.' },
+				{ q: '자동으로 재생되게 하려면요?', a: '<code>%% pa:</code> 주석에 <code>autoplay</code>를 붙이면 됩니다. 다이어그램이 화면에 들어오면 인트로가 그려지고, 이후 단계 모드가 반복됩니다.' },
+				{ q: '제 프레임워크에서도 돌아가나요?', a: '돌아갑니다. 브라우저에서 실행되고 클라이언트에서 마운트하며, Vite·Astro·SvelteKit·Nuxt·React용 레시피가 있습니다.' },
+				{ q: '상업용으로 써도 되나요?', a: '됩니다. pele-animate·Pele·Tabler 아이콘 팩 모두 MIT 라이선스입니다.' }
+			]
+		: [
+				{ q: 'What is pele-animate?', a: "A small JavaScript post-processor that turns Mermaid diagrams into step-by-step animated scenes with icons. You write plain Mermaid; it adds step order, playback controls and icons on top of Pele's rendering." },
+				{ q: 'How do I make a diagram play automatically?', a: 'Add <code>autoplay</code> to the <code>%% pa:</code> comment. The intro draws in once the diagram is on screen, then step mode loops.' },
+				{ q: 'Does it work with my framework?', a: 'Yes. It runs in the browser and mounts on the client, with recipes for Vite, Astro, SvelteKit, Nuxt and React.' },
+				{ q: 'Is it free for commercial use?', a: 'Yes. pele-animate, Pele and the Tabler icon packs are all MIT licensed.' }
+			]);
+	const homeJsonLd = $derived({
+		'@context': 'https://schema.org',
+		'@graph': [
+			{
+				'@type': 'SoftwareApplication',
+				name: 'pele-animate',
+				applicationCategory: 'DeveloperApplication',
+				operatingSystem: 'Web',
+				url: `https://pele-animate.danielkimdev.com${ko ? '/ko/' : '/'}`,
+				description: ko
+					? 'Mermaid 다이어그램이 스스로 설명하게 만드세요. 작성자가 순서를 정하면 독자가 한 단계씩 따라가고, 노드에는 아이콘을 넣을 수 있습니다.'
+					: 'Make a Mermaid diagram explain itself one step at a time: you choose the order, readers step through it, and nodes can carry icons.',
+				license: 'https://opensource.org/licenses/MIT',
+				offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+			},
+			{
+				'@type': 'FAQPage',
+				mainEntity: homeFaq.map((f) => ({
+					'@type': 'Question',
+					name: f.q,
+					acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') }
+				}))
+			}
+		]
+	});
 </script>
 
 <svelte:head>
@@ -61,6 +101,7 @@
 	<meta name="description" content={ko
 		? 'Mermaid 다이어그램이 스스로 설명하게 만드세요. 작성자가 순서를 정하면 독자가 한 단계씩 따라가고, 노드에는 아이콘을 넣을 수 있습니다.'
 		: 'Make a Mermaid diagram explain itself one step at a time: you choose the order, readers step through it, and nodes can carry icons.'} />
+	{@html `<script type="application/ld+json">${JSON.stringify(homeJsonLd).replace(/<\//g, '<\\/')}</script>`}
 </svelte:head>
 
 <section class="wrap hero">
@@ -141,7 +182,7 @@ bun add pele-animate pele</code></pre>
 				<tr><td><strong>pele-animate</strong></td><td>Pele 사용</td><td>Pele와 동일하게 조정</td><td>있음</td><td>4,368개 내장, 직접 추가도 가능</td></tr>
 			</tbody>
 		</table>
-		<p>pele-animate는 플로차트와 시퀀스 다이어그램을 지원하며, 레이아웃, 크기, 문법은 Pele를 그대로 따릅니다. 테마 패키지가 아니라 비공식 애드온입니다.</p>
+		<p>pele-animate는 플로차트, 시퀀스 다이어그램, 아키텍처, 상태, C4 컨텍스트, 블록, 클래스, ER 다이어그램, 타임라인, 저니, 깃 그래프, 간트 차트를 지원하며, 레이아웃, 크기, 문법은 Pele를 그대로 따릅니다. 테마 패키지가 아니라 비공식 애드온입니다.</p>
 		{:else}
 		<table>
 			<thead><tr><th></th><th>Renders Mermaid</th><th>Layout</th><th>Adds step order and playback</th><th>Icons</th></tr></thead>
@@ -151,7 +192,7 @@ bun add pele-animate pele</code></pre>
 				<tr><td><strong>pele-animate</strong></td><td>Uses Pele</td><td>Adapts, as Pele does</td><td>Yes</td><td>4,368 bundled, or your own</td></tr>
 			</tbody>
 		</table>
-		<p>pele-animate supports flowcharts and sequence diagrams. Layout, sizing and syntax stay Pele's. It is an unofficial add-on, not a theme package.</p>
+		<p>pele-animate animates flowcharts, sequence diagrams, architecture, state, C4 context, block, class and ER diagrams, timelines, journeys, git graphs and Gantt charts. Layout, sizing and syntax stay Pele's. It is an unofficial add-on, not a theme package.</p>
 		{/if}
 	</section>
 
@@ -167,6 +208,16 @@ bun add pele-animate pele</code></pre>
 				<a href="{px}/docs/agents/">For coding agents</a>.
 			{/if}
 		</p>
+	</section>
+
+	<section class="wrap sec">
+		<h2>{ko ? '자주 묻는 질문' : 'FAQ'}</h2>
+		<div class="faq">
+			{#each homeFaq as f}
+				<div><h3>{f.q}</h3><p>{@html f.a}</p></div>
+			{/each}
+		</div>
+		<p class="more"><a href="{px}/docs/faq/">{ko ? 'FAQ 전체 보기' : 'Read the full FAQ'}</a></p>
 	</section>
 
 <style>
@@ -214,6 +265,10 @@ bun add pele-animate pele</code></pre>
 	@media (max-width: 36rem) { .cmp { grid-template-columns: minmax(0, 1fr); } }
 	.sec { margin-top: var(--section-gap-s); }
 	.sec h2 { font-size: var(--text-section); margin-bottom: var(--space-md); }
+	.faq { display: grid; gap: var(--space-md); max-width: 46rem; }
+	.faq h3 { font-size: var(--text-title); margin-bottom: var(--space-2xs); }
+	.faq p { color: var(--color-ink-2); margin: 0; }
+	.more { margin-top: var(--space-md); }
 	.two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--gap-columns); align-items: start; }
 	.two h2 { margin-bottom: 0; }
 	.two pre:first-child, .two :global(.codewrap:first-child) { margin-top: 0; }
