@@ -26,6 +26,10 @@ Astro, SvelteKit, Nuxt, and React ([recipes](./recipes.md)).
 **Can I try it in the browser?** Yes, in the [playground](https://pele-animate.danielkimdev.com/playground/): paste
 Mermaid source and step through the result live.
 
+**How do I share a diagram?** In the playground, press "Copy share link": your Mermaid source goes into the `?s=`
+URL parameter (URL-encoded), and anyone who opens the link gets the same diagram loaded. The source travels in the
+address bar, so don't put secrets in it.
+
 **Is this part of Pele?** No. It is an unofficial add-on, not affiliated with or endorsed by the Pele or Obsidian teams. Pele does the
 layout and drawing; pele-animate adds step order, step-by-step playback and icons on top.
 

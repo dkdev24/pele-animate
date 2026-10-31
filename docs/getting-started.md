@@ -7,6 +7,9 @@ section: Start
 
 # Getting started
 
+> **TL;DR** — `npm i pele-animate pele`, mount the Mermaid source with Pele's `mount()`, then hand it to `watch()` to add
+> step order, playback controls and icons. The rest of this page walks through each step.
+
 pele-animate makes a [Pele](https://pele.run) diagram explain itself one step at a time. You choose the order things appear
 in, readers step through it with buttons or the keyboard, and any node can carry an icon from a large set. It is an
 unofficial add-on for Pele and does not change how Pele lays out or draws diagrams.

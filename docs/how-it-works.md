@@ -7,6 +7,9 @@ section: Start
 
 # How it works
 
+> **TL;DR** — Pele parses the Mermaid and draws the SVG; pele-animate reads that SVG, works out the reveal order, and
+> adds intro motion, hover tokens and click-to-step playback. The source stays valid Mermaid throughout.
+
 Two layers, one diagram:
 
 1. **Pele** parses the Mermaid, lays the diagram out and returns an SVG. That is all Pele's job; pele-animate does not

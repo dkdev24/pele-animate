@@ -8,6 +8,7 @@
 
 <svelte:head>
 	<title>{ko ? '변경 내역' : 'Changelog'} · pele-animate</title>
+	<meta name="description" content={ko ? 'pele-animate 릴리스 노트: 버전별 변경 사항. RSS 피드로도 받아볼 수 있습니다.' : 'pele-animate release notes, per version. Also available as an RSS feed.'} />
 	<link rel="alternate" type="application/rss+xml" title="pele-animate releases" href="/changelog.xml" />
 </svelte:head>
 

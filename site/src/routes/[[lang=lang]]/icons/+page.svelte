@@ -68,7 +68,7 @@
 </script>
 
 <svelte:head>
-	<title>{ko ? '아이콘' : 'Icons'} · pele-animate</title>
+	<title>{ko ? '아이콘 갤러리' : 'Icon gallery'} · pele-animate</title>
 	<meta name="description" content={ko ? 'pele-animate에 포함된 4,000여 개의 Tabler 아이콘과 doverunner 팩을 검색하고, 바로 쓸 수 있는 @{ icon } 코드를 복사합니다.' : 'Search the 4,000+ Tabler icons and the doverunner pack bundled with pele-animate, then copy a ready @{ icon } snippet.'} />
 </svelte:head>
 
