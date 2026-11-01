@@ -19,12 +19,18 @@ section: Reference
 
 pele-animate reads the SVG Pele produces. It selects on these class names and attributes:
 
-`.pele-node`, `.pele-edge`, `.pele-edge-label`, `.pele-marker`, `.pele-cluster-label`, `.pele-icon`, `.pele-lifeline`,
-`.pele-actor-participant`, and the `data-id` attribute.
+- Flowchart: `.pele-node`, `.pele-edge`, `.pele-edge-label`, `.pele-marker`, `.pele-cluster-label`, `.pele-icon`, and the `data-id` attribute.
+- Sequence: `.pele-sequence`, `.pele-lifeline`, `.pele-actor-participant`, `.pele-actor-footer`.
+- Timeline: `.pele-timeline`, `.pele-period`.
+- Gantt: `.pele-gantt`, `.pele-task`.
+- Journey: `.pele-journey`, `.pele-task`, `.pele-journey-step`, `.pele-face`.
+- Git graph: `.pele-gitGraph`, `.pele-commit`, `.pele-branch`, `.pele-lane`.
+- Zoom controls (added by `mount()` in the browser, not part of the SVG): `.pele-zoom`.
 
 Pele's maintainer has said there are no plans to change them, but there is no formal promise that they stay stable across releases. That is why Pele is a peer dependency:
 upgrade it deliberately, and re-check your diagrams afterwards. The repository's tests render every documentation example,
-which catches parse errors but not visual changes.
+which catches parse errors but not visual changes. The Pele canary (`scripts/smoke-pele.mjs`, run by `pnpm test`) renders one fixture
+per diagram type above and fails if any of these hooks disappear from the installed Pele — except `.pele-zoom`, which render() never produces.
 
 ## Known limits
 
