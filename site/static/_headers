@@ -4,5 +4,10 @@
   Cache-Control: public, max-age=3600
 /llms-full.txt
   Cache-Control: public, max-age=3600
-/docs/*.md
+# Every .md sibling duplicates its HTML page and carries no canonical signal
+# (same Search Console "duplicate without user-selected canonical" issue as
+# danielkimdev.com, 2026-11-10). X-Robots-Tag: noindex keeps them out of
+# Google's index; agents keep reading them unchanged via llms.txt.
+/*.md
   Content-Type: text/markdown; charset=utf-8
+  X-Robots-Tag: noindex
