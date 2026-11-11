@@ -7,6 +7,13 @@ may change behavior, so pin a range such as `^0.18.0` and bump it deliberately.
 
 ## [Unreleased]
 
+## [0.19.1] - 2026-11-12
+
+### Fixed
+- Hardened the regular expressions that parse step lists and icon bodies so crafted input can no longer make them run for a long time (ReDoS). Behavior for normal diagrams is unchanged.
+
+First release to npm since 0.18.0: it also includes everything in 0.19.0 (Korean docs under `docs/ko/`, updated skill and docs).
+
 ## [0.19.0] - 2026-10-26
 
 ### Added
@@ -169,7 +176,8 @@ First public release. Animated, illustrated SVG scenes from plain Mermaid code, 
 - Versions 0.1.0 to 0.8.2 were internal development milestones and were never published to npm; their work is part of 0.9.0.
 - Requires `pele` `^1.7.0` as a peer dependency.
 
-[Unreleased]: https://github.com/dkdev24/pele-animate/compare/v0.19.0...HEAD
+[Unreleased]: https://github.com/dkdev24/pele-animate/compare/v0.19.1...HEAD
+[0.19.1]: https://github.com/dkdev24/pele-animate/compare/v0.19.0...v0.19.1
 [0.19.0]: https://github.com/dkdev24/pele-animate/compare/v0.18.0...v0.19.0
 [0.18.0]: https://github.com/dkdev24/pele-animate/compare/0.17.1...v0.18.0
 [0.17.1]: https://github.com/dkdev24/pele-animate/compare/0.17.0...0.17.1

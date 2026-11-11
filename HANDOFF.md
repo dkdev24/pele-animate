@@ -5,7 +5,7 @@ Cross-session context memory. Update this file at the end of every session.
 
 ## Current Version
 
-**0.19.0** (GitHub release 2026-10-26, **not on npm**: Korean site and docs, home page refresh, Node 24 toolchain; npm latest is 0.18.0). **0.18.0** (published 2026-10-25, tag `v0.18.0`: looping step mode, `autoplay`/`interval`/`hold`, home comparison section; 0.17.1 published 2026-10-25: zoom buttons no longer start step mode, zoom hidden in step mode; 0.17.0 published 2026-10-25: removed `replay()` and `watch` `controls: false`, share links URL-encoded; 0.16.2 published 2026-10-24; 0.16.1: 0.16.0: 10 new diagram types, S5 playground; consumers on `^0.15` need a range bump)
+**0.19.1** (2026-11-12, on npm: ReDoS regex fixes; includes the 0.19.0 content). 0.19.0 (GitHub release 2026-10-26, never published itself). **0.18.0** (published 2026-10-25, tag `v0.18.0`: looping step mode, `autoplay`/`interval`/`hold`, home comparison section; 0.17.1 published 2026-10-25: zoom buttons no longer start step mode, zoom hidden in step mode; 0.17.0 published 2026-10-25: removed `replay()` and `watch` `controls: false`, share links URL-encoded; 0.16.2 published 2026-10-24; 0.16.1: 0.16.0: 10 new diagram types, S5 playground; consumers on `^0.15` need a range bump)
 
 ---
 ## Project Status
@@ -16,7 +16,7 @@ Phase 0 (prototype) and phase 1 (glyph registry, 6 glyphs, `glyphs.js`) and phas
 ---
 
 ## Last Session
-2026-11-12 (code scanning, committed, pushed): fixed 7 alerts: ReDoS regexes in `pele-animate.js` (lines 12, 14, 108; library behavior unchanged), `stripTags` loop in `site/src/lib/server/docs.ts` (multi-character sanitization), backslash escape in `site/scripts/agent-readiness.mjs`, `permissions: contents: read` in `ci.yml`; new `scripts/check-regex.mjs` in `pnpm test`. No version bump. Alerts close after the CodeQL re-scan. The 2026-11-10 `.md` noindex fix is in WORKLOG.
+2026-11-12 (code scanning, released as 0.19.1): fixed 7 alerts: ReDoS regexes in `pele-animate.js` (lines 12, 14, 108; library behavior unchanged), `stripTags` loop in `site/src/lib/server/docs.ts` (multi-character sanitization), backslash escape in `site/scripts/agent-readiness.mjs`, `permissions: contents: read` in `ci.yml`; new `scripts/check-regex.mjs` in `pnpm test`. No version bump. Alerts close after the CodeQL re-scan. The 2026-11-10 `.md` noindex fix is in WORKLOG.
 ---
 ## Earlier Sessions
 - 2026-11-08 (pele 1.13.0, PR #2 merged): dependabot PR #2 (pele 1.12.0→1.13.0, lockfile-only, pnpm-lock.yaml 10 lines) merged per Daniel's approval (`31ae57c`; main = production deploy → Cloudflare Pages). Pele publishes no per-version release notes (no GitHub releases/CHANGELOG), so verification was the canary: `pnpm test` on the PR branch passed on pele 1.13.0 (check-docs 36 fences/34 files, smoke 6 fixtures/22 class hooks, 0 problems). No code change needed.
