@@ -9,9 +9,9 @@ const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 // `%% pa: 1=A,B 2=C 3=A>B` pins nodes to steps (1-based); `X>Y` pins the edge from X to Y. Returns Map(nodeId or 'X>Y' -> level).
 // Everything else keeps its BFS level.
 export function parseOrder(source = '') {
-  const m = source.match(/^\s*%%\s*pa:\s*(.+)$/m);
+  const m = source.match(/^[ \t]*%%[ \t]*pa:[ \t]*(.+)$/m);
   const levels = new Map();
-  for (const [, step, ids] of (m?.[1] ?? '').matchAll(/(\d+)\s*=\s*([^\s]+)/g))
+  for (const [, step, ids] of (m?.[1] ?? '').matchAll(/(?<!\d)(\d+)\s*=\s*(\S+)/g))
     for (const id of ids.split(',')) levels.set(id.trim(), Number(step) - 1);
   return levels;
 }
@@ -105,7 +105,7 @@ function equalizeActors(svg) {
 const NBSP = '\u00a0';
 const WJ = '\u2060'; // zero-width, not whitespace: keeps Pele from trimming the padding
 export function prepare(source = '') {
-  return source.replace(/@\{([^}]*)\}/g, (all, body) => {
+  return source.replace(/@\{([^{}]*)\}/g, (all, body) => {
     const h = +/\bh:\s*(\d+)/.exec(body)?.[1];
     if (!h) return all;
     const label = /\blabel:\s*"([^"]*)"/.exec(body)?.[1] ?? '';

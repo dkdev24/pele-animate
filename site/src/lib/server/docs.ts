@@ -28,7 +28,11 @@ const highlighter = await createHighlighter({
 });
 const loaded = new Set(highlighter.getLoadedLanguages());
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const slugify = (s: string) => s.toLowerCase().replace(/<[^>]+>/g, '').replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
+const stripTags = (s: string) => {
+	for (let p = ''; p !== s; ) { p = s; s = s.replace(/<[^>]+>/g, ''); }
+	return s;
+};
+const slugify = (s: string) => stripTags(s.toLowerCase()).replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '');
 
 function highlight(text: string, lang: string) {
 	return highlighter.codeToHtml(text, {
@@ -47,7 +51,7 @@ export async function render(markdown: string, ui: Lang = 'en') {
 			heading({ tokens, depth }) {
 				const text = this.parser.parseInline(tokens);
 				const id = slugify(text);
-				if (depth === 2 || depth === 3) headings.push({ id, text: text.replace(/<[^>]+>/g, ''), depth });
+				if (depth === 2 || depth === 3) headings.push({ id, text: stripTags(text), depth });
 				return `<h${depth} id="${id}">${text}</h${depth}>\n`;
 			},
 			// ./icons.md  ->  /docs/icons/   (relative .md links keep working on GitHub)
