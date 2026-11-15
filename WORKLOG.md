@@ -562,3 +562,16 @@ Same Search Console "duplicate without user-selected canonical" issue as danielk
 - 7 alerts (6 high, 1 medium): `js/polynomial-redos` in `pele-animate.js` (lines 12, 14, 108: `[ \t]*` instead of `\s*`, `(?<!\d)(\d+)\s*=\s*(\S+)`, `[^{}]*`), `js/incomplete-multi-character-sanitization` in `site/src/lib/server/docs.ts` (`stripTags` loops until stable, used by `slugify` and heading text), `js/incomplete-sanitization` in `site/scripts/agent-readiness.mjs` (backslash escaped before pipe), `actions/missing-workflow-permissions` in `ci.yml`.
 - New `scripts/check-regex.mjs` (in `pnpm test`): checks behavior and that pathological input finishes in under 1.5 s. `pnpm test` and `pnpm build` pass. No version bump, no publish.
 - Published `0.19.1` to npm (Daniel asked to publish; first publish since 0.18.0, so it also ships the 0.19.0 content, docs/ko included). Not `0.19.0`, because tag and GitHub release `v0.19.0` already point at the older commit. Tag `v0.19.1` pushed; no GitHub release created.
+
+## Site: security bumps — @sveltejs/kit 3.1.1, adapter-static 4.0.1 (no release)
+
+**Date:** 2026-11-15
+
+### Changes
+
+- Manual security bump (no Dependabot PR open): @sveltejs/kit ^3.1.0 → ^3.1.1 (lockfile resolves to 3.2.0) and @sveltejs/adapter-static ^4.0.0 → ^4.0.1 in `site/`; closes Dependabot alerts #3 (kit, medium) and #2 (adapter-static, medium). PR #3 squash-merged (`29f3bde`) per Daniel's approval; main = production deploy → Cloudflare Pages.
+- deepmerge #1 (low) has no patched version, left open.
+
+### Status
+
+`pnpm test` green (check-docs 36 fences/34 files, smoke 6 fixtures/22 hooks, 0 problems); site build green (42 pages, 0 problems). No version bump, no publish.
