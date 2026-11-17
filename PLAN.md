@@ -1,8 +1,8 @@
 # PLAN.md — pele-animate
 
 Animated, illustrated SVG diagrams generated at runtime from plain Mermaid code in a Markdown SSG page.
-Built on [Pele](https://github.com/obsidianmd/pele) (MIT). First consumer: the DoveRunner docs site; visual reference: the
-DoveRunner Lab product card art.
+Built on [Pele](https://github.com/obsidianmd/pele) (MIT). First consumer: the Doverunner docs site; visual reference: the
+Doverunner Lab product card art.
 
 ## Goal
 

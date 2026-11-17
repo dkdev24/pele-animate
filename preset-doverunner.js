@@ -1,4 +1,4 @@
-// DoveRunner illustrated glyphs, all named `doverunner-<name>`: generic player/server/key/document/shield/phone/cloud, plus DRM / forensic watermarking / packaging vocabulary. Needs the registry in glyphs.js.
+// Doverunner illustrated glyphs, all named `doverunner-<name>`: generic player/server/key/document/shield/phone/cloud, plus DRM / forensic watermarking / packaging vocabulary. Needs the registry in glyphs.js.
 import { registerGlyphs, S, L, W } from './glyphs.js';
 
 // A row of six video-segment chips; bit 1 = filled, bit 0 = outline.

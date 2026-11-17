@@ -53,7 +53,7 @@ Non-goals:
   playback. The site credits Pele prominently and links to pele.run for plain Pele questions.
 - No AI features on the site (same rule as toonstrip). Agents are served by files, not by a chat box.
 - No accounts, no saved diagrams, no server state. Sharing is a URL hash.
-- No DoveRunner-internal identifiers anywhere (public repo, company boundary). The optional `preset-doverunner`
+- No Doverunner-internal identifiers anywhere (public repo, company boundary). The optional `preset-doverunner`
   pack is documented as one pack among others, with generic examples.
 - Not a framework-wrapper project. Recipes only; no `pele-animate/react` until someone needs it.
 
@@ -130,7 +130,7 @@ Two copies drift; for a smaller package we use one.
   GitHub (Mermaid renders it there as a diagram) and, on the site, a remark plugin replaces it with the
   `CodeAndStrip` component: highlighted source, the animated result, "Open in playground" with the source in the hash.
   The code shown and the diagram shown come from the same fence and cannot disagree.
-- Examples must be generic (client, API, queue, database, cloud). No DoveRunner names.
+- Examples must be generic (client, API, queue, database, cloud). No Doverunner names.
 - Generated pages are never hand-edited: the icon index (`docs/icons.md` lists categories and counts; the full
   searchable list is the site `/icons` page and `icons.json`), and the API table check (§11).
 - `README.md` shrinks to: what it is, one animated image, install, a 15-line quickstart, links into `docs/`. The long

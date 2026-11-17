@@ -78,7 +78,7 @@ The default is `1.5`. Tabler draws at 2. The `doverunner-*` glyphs have a fixed 
 
 ## The optional doverunner-* pack
 
-`pele-animate/preset-doverunner` ships 20 filled, two-tone glyphs in the style of the DoveRunner Lab product cards, named
+`pele-animate/preset-doverunner` ships 20 filled, two-tone glyphs in the style of the Doverunner Lab product cards, named
 `doverunner-<name>`: `player`, `server`, `key`, `document`, `shield`, `phone`, `cloud`, `package`, `token`, `lock`,
 `database`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`, `bits-a`, `bits-b`. Import it only
 if you want that look; nothing else needs it.

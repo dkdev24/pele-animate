@@ -1,7 +1,7 @@
 # AGENTS.md — pele-animate
 
 Step-by-step animated Mermaid diagrams with icons, built on [Pele](https://github.com/obsidianmd/pele) (MIT). Unofficial add-on.
-Positioning: step order, step playback and icons; not a theme package. First consumer: the DoveRunner docs site.
+Positioning: step order, step playback and icons; not a theme package. First consumer: the Doverunner docs site.
 Dev plan: `PLAN.md`. Owner: Daniel Kim (`dkdev24`). **Public repo and public npm package.**
 
 ## Layout
@@ -25,7 +25,7 @@ Dev plan: `PLAN.md`. Owner: Daniel Kim (`dkdev24`). **Public repo and public npm
 - A breaking change needs a `CHANGELOG.md` entry (the migrating guide was dropped 2026-10-25: no outside users; restore it from git history when there are). Keep examples generic.
 - Versioning: stay on 0.x. Next release is 0.19.2 or 0.20.0; never bump to 1.0.0 until Daniel says so. Consumers on `^0.x` need an explicit range bump per minor.
 - Logs: `CHANGELOG.md` = what a user of the package or site sees (public, rendered at `/changelog/`); `WORKLOG.md` = internal why, decisions, test status. Don't duplicate; repo/CI/docs-wording tasks go in WORKLOG only.
-- Company boundary: no DoveRunner-internal identifiers in this repo.
+- Company boundary: no Doverunner-internal identifiers in this repo.
 
 ## System Documents
 

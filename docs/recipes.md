@@ -27,7 +27,7 @@ watch(el, src);
 | Framework | Status | Where the code goes |
 |---|---|---|
 | Plain HTML / Vite | Tested | A module script, as in [getting started](./getting-started.md) |
-| Astro | Tested in production (the DoveRunner docs site) | A client `<script>` that finds the diagram elements |
+| Astro | Tested in production (the Doverunner docs site) | A client `<script>` that finds the diagram elements |
 | SvelteKit 3 | Tested (build and browser, static adapter) | `onMount(async () => { ... })` in the page or component |
 | Nuxt 4 | Tested (build and browser, static generate) | `onMounted` in a `.client.vue` component |
 | React / Next.js | Not tested | A client component (`'use client'`) with `useEffect` |

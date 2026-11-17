@@ -77,4 +77,4 @@ Tabler 아이콘은 어떤 선 두께에서도 자연스럽게 보이도록 그�
 
 ## 선택 팩: doverunner-*
 
-`pele-animate/preset-doverunner`에는 DoveRunner Lab 제품 카드 스타일의 채움형 투톤 글리프 20개가 `doverunner-<name>`이라는 이름으로 들어 있습니다. 이름은 `player`, `server`, `key`, `document`, `shield`, `phone`, `cloud`, `package`, `token`, `lock`, `database`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`, `bits-a`, `bits-b`입니다. 이 스타일이 필요할 때만 import하시면 되며, 다른 기능은 이 팩에 의존하지 않습니다.
+`pele-animate/preset-doverunner`에는 Doverunner Lab 제품 카드 스타일의 채움형 투톤 글리프 20개가 `doverunner-<name>`이라는 이름으로 들어 있습니다. 이름은 `player`, `server`, `key`, `document`, `shield`, `phone`, `cloud`, `package`, `token`, `lock`, `database`, `video`, `media`, `encoder`, `storage`, `plugin`, `variants`, `watermark`, `bits-a`, `bits-b`입니다. 이 스타일이 필요할 때만 import하시면 되며, 다른 기능은 이 팩에 의존하지 않습니다.

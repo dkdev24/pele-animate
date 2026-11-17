@@ -26,7 +26,7 @@ watch(el, src);
 | 프레임워크 | 상태 | 코드를 두는 곳 |
 |---|---|---|
 | 일반 HTML / Vite | 검증함 | [시작하기](./getting-started.md)와 같은 모듈 스크립트 |
-| Astro | 운영 환경에서 검증함 (DoveRunner 문서 사이트) | 다이어그램 요소를 찾는 클라이언트 `<script>` |
+| Astro | 운영 환경에서 검증함 (Doverunner 문서 사이트) | 다이어그램 요소를 찾는 클라이언트 `<script>` |
 | SvelteKit 3 | 검증함 (빌드와 브라우저, static 어댑터) | 페이지 또는 컴포넌트의 `onMount(async () => { ... })` |
 | Nuxt 4 | 검증함 (빌드와 브라우저, static generate) | `.client.vue` 컴포넌트의 `onMounted` |
 | React / Next.js | 검증하지 않음 | `useEffect`를 쓰는 클라이언트 컴포넌트(`'use client'`) |
